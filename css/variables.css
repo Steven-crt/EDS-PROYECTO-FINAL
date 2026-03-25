@@ -1,0 +1,235 @@
+:root {
+    /* Fondos Claros */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #eff1f5;
+    --bg-card: #ffffff;
+
+    /* Colores EDS - Paleta Completa */
+    --primary: #1565c0;
+    --primary-light: #1e88e5;
+    --accent: #f0b429;
+    --accent-light: #f5c842;
+    --accent-dark: #d4a017;
+    --danger: #e53935;
+    --success: #43a047;
+    --info: #00acc1;
+
+    /* Efectos de brillo */
+    --accent-glow: rgba(240, 180, 41, 0.2);
+    --danger-glow: rgba(229, 57, 53, 0.2);
+    --success-glow: rgba(67, 160, 71, 0.2);
+
+    /* Texto */
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --text-muted: #6b7280;
+
+    /* Bordes y paneles */
+    --border: rgba(0, 0, 0, 0.1);
+    --border-hover: rgba(0, 0, 0, 0.2);
+    --panel: rgba(255, 255, 255, 0.9);
+    --grid: rgba(0, 0, 0, 0.04);
+
+    /* Gradientes */
+    --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-light));
+    --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-light));
+    --gradient-danger: linear-gradient(135deg, var(--danger), #ff5252);
+    --gradient-success: linear-gradient(135deg, var(--success), #66bb6a);
+    --gradient-gold: linear-gradient(135deg, var(--accent-dark), var(--accent), var(--accent-light));
+    --gradient-dark: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
+    --gradient-hero: linear-gradient(135deg, rgba(240, 180, 41, 0.05), rgba(21, 101, 192, 0.05), rgba(229, 57, 53, 0.05));
+
+    /* Sombras con colores */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 0 30px rgba(240, 180, 41, 0.15);
+    --shadow-accent: 0 0 20px rgba(240, 180, 41, 0.2);
+    --shadow-danger: 0 0 20px rgba(229, 57, 53, 0.2);
+
+    /* Espaciado */
+    --section-padding: 100px 0;
+    --container-max: 1200px;
+    --border-radius: 12px;
+
+    /* Transiciones */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Z-index */
+    --z-nav: 1000;
+    --z-modal: 2000;
+    --z-tooltip: 3000;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Questrial', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: 
+        repeating-linear-gradient(0deg, var(--grid), var(--grid) 1px, transparent 1px, transparent 6px),
+        repeating-linear-gradient(90deg, var(--grid), var(--grid) 1px, transparent 1px, transparent 6px);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: -30% -10% 10% -10%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(240, 180, 41, 0.08), transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(229, 57, 53, 0.06), transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(21, 101, 192, 0.05), transparent 50%);
+    animation: backgroundShift 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(20px, -10px); }
+    50% { transform: translate(-10px, 20px); }
+    75% { transform: translate(-20px, -20px); }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.section {
+    padding: var(--section-padding);
+    position: relative;
+    z-index: 1;
+}
+
+.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.highlight {
+    color: var(--accent);
+}
+
+.accent {
+    color: var(--accent);
+}
+
+.gradient-text {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--accent), var(--accent-dark));
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-light);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
