@@ -1,3 +1,9 @@
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- ESTRUCTURA HTML BASE                                       -->
+<!-- Declaración del tipo de documento, configuración de        -->
+<!-- codificación UTF-8, viewport responsivo, título de la      -->
+<!-- pestaña y favicon de la empresa.                           -->
+<!-- ══════════════════════════════════════════════════════════════ -->
 <!doctype html>
 <html lang="es">
   <head>
@@ -9,9 +15,26 @@
       type="image/png"
       href="assets/images/logo_empresa-Photoroom.png"
     />
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- ESTILOS CSS INLINE                                         -->
+    <!-- Todos los estilos están definidos internamente. Incluyen:  -->
+    <!-- variables CSS (colores, fondos), reset universal, estilos  -->
+    <!-- del body con gradientes radiales, canvas de partículas,    -->
+    <!-- rejilla decorativa, efecto glow animado, el panel central  -->
+    <!-- de intro con su sombra y borde, la barra gradiente         -->
+    <!-- animada en la parte superior del panel, estilos del logo,  -->
+    <!-- título, descripción, badges de características, loaders    -->
+    <!-- SVG animados, indicador de estado, barra de progreso,     -->
+    <!-- botón de "saltar intro", todas las keyframes de animación  -->
+    <!-- y media queries para dispositivos móviles.                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <style>
+      /* Importación de tipografías: Bebas Neue (títulos) y Rajdhani (cuerpo) */
       @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;600&display=swap");
 
+      /* ── Variables CSS globales ── */
+      /* Paleta de colores corporativa, fondos, bordes y colores de texto */
       :root {
         --bg-0: #ffffff;
         --bg-1: #f3f4f6;
@@ -27,17 +50,24 @@
         --grid: rgba(0, 0, 0, 0.03);
       }
 
+      /* ── Reset universal ── */
+      /* Elimina márgenes y paddings por defecto, usa border-box en todo */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
 
+      /* Altura completa del viewport */
       html,
       body {
         height: 100%;
       }
 
+      /* ── Estilos del body ── */
+      /* Fondo con múltiples gradientes radiales de colores corporativos */
+      /* (dorado, rojo, azul) superuestos sobre un gradiente lineal.    */
+      /* overflow:hidden evita barras de desplazamiento durante la intro */
       body {
         font-family: "Rajdhani", sans-serif;
         color: var(--text);
@@ -61,6 +91,9 @@
         overflow: hidden;
       }
 
+      /* ── Canvas de partículas ── */
+      /* Capa de fondo donde se dibujan las partículas animadas con JS. */
+      /* Posición fija que cubre todo el viewport, z-index 0 (capa base) */
       #particles-canvas {
         position: fixed;
         inset: 0;
@@ -69,6 +102,9 @@
         z-index: 0;
       }
 
+      /* ── Rejilla decorativa de fondo ── */
+      /* Pseudo-elemento ::before que crea una cuadrícula sutil con     */
+      /* líneas cada 6px. Opacidad baja para no distraer. z-index 1.  */
       body::before {
         content: "";
         position: fixed;
@@ -93,6 +129,9 @@
         z-index: 1;
       }
 
+      /* ── Efecto glow flotante ── */
+      /* Pseudo-elemento ::after con un gradiente radial dorado que se */
+      /* desplaza suavemente con la animación glowShift (8s).          */
       body::after {
         content: "";
         position: fixed;
@@ -107,6 +146,9 @@
         pointer-events: none;
       }
 
+      /* ── Contenedor principal de la intro ── */
+      /* Flexbox centrado que ocupa toda la pantalla. z-index 2       */
+      /* para estar por encima del canvas y los pseudo-elementos.     */
       .intro-container {
         width: 100%;
         height: 100vh;
@@ -117,6 +159,9 @@
         z-index: 2;
       }
 
+      /* ── Panel central de la intro ── */
+      /* Tarjeta semitransparente con bordes redondeados, sombra       */
+      /* pronunciada y animación de entrada (panelIn).                 */
       .intro-panel {
         background: var(--panel);
         border: 1px solid var(--border);
@@ -130,6 +175,9 @@
         max-width: 700px;
       }
 
+      /* ── Gradientes decorativos internos del panel ── */
+      /* Pseudo-elemento ::before con tres gradientes radiales         */
+      /* (dorado, rojo, azul) que dan profundidad visual al panel.    */
       .intro-panel::before {
         content: "";
         position: absolute;
@@ -154,6 +202,9 @@
         pointer-events: none;
       }
 
+      /* ── Barra gradiente animada superior del panel ── */
+      /* Pseudo-elemento ::after con una línea de 3px que cicla       */
+      /* entre los colores corporativos (dorado, azul, rojo).        */
       .intro-panel::after {
         content: "";
         position: absolute;
@@ -172,6 +223,9 @@
         animation: gradientMove 3s linear infinite;
       }
 
+      /* ── Texto kicker (subtítulo superior) ── */
+      /* Pequeño texto en mayúsculas con espaciado amplio que dice     */
+      /* "EDS Edificaciones Inteligentes" en color dorado.            */
       .intro-kicker {
         text-transform: uppercase;
         font-size: 0.8rem;
@@ -180,6 +234,10 @@
         margin-bottom: 15px;
       }
 
+      /* ── Logo de la empresa ── */
+      /* Imagen centrada con efecto glow dorado/rojo, animaciones de  */
+      /* flotación y brillo pulsante. Al hacer hover se agranda y el  */
+      /* brillo se intensifica. Al hacer clic ejecuta skipIntro().    */
       .intro-logo {
         height: 180px;
         width: auto;
@@ -201,6 +259,10 @@
           drop-shadow(0 0 40px rgba(229, 57, 53, 0.5));
       }
 
+      /* ── Título principal ── */
+      /* "Edificaciones Inteligentes" con tipografía Bebas Neue,      */
+      /* tamaño responsivo (clamp), efecto de texto con gradiente     */
+      /* de color usando background-clip.                             */
       .intro-title {
         font-family: "Bebas Neue", sans-serif;
         font-size: clamp(2rem, 5vw, 3.2rem);
@@ -216,6 +278,9 @@
         z-index: 1;
       }
 
+      /* ── Descripción de la empresa ── */
+      /* Párrafo descriptivo centrado con ancho máximo, color         */
+      /* apagado y interlineado cómodo para lectura.                  */
       .intro-description {
         font-size: 1rem;
         max-width: 580px;
@@ -226,6 +291,9 @@
         z-index: 1;
       }
 
+      /* ── Sección de características destacadas ── */
+      /* Contenedor flex con badges: "+10 Años", "+50 Proyectos",     */
+      /* "4 Ciudades". Cada badge tiene un icono de check dorado.    */
       .intro-features {
         display: flex;
         justify-content: center;
@@ -249,6 +317,10 @@
         font-size: 1.1rem;
       }
 
+      /* ── Loaders SVG animados (E, D, S) ── */
+      /* Contenedor flex centrado con tres loaders que representan   */
+      /* las letras E, D, S del logo. Cada uno tiene un punto que   */
+      /* orbita sobre el trazado SVG y un trazado animado (stroke). */
       .intro-loaders {
         display: flex;
         justify-content: center;
@@ -258,6 +330,7 @@
         z-index: 1;
       }
 
+      /* Estilo base de cada loader: tamaño, sombra, flotación */
       .loader {
         --path-color: rgba(255, 255, 255, 0.8);
         --dot-color: var(--eds-green);
@@ -269,6 +342,7 @@
         animation: float 4s ease-in-out infinite;
       }
 
+      /* Punto orbital que recorre el contorno de la letra SVG */
       .loader::before {
         content: "";
         width: 5px;
@@ -290,6 +364,7 @@
         height: 100%;
       }
 
+      /* Trazo SVG animado: dasharray crea el efecto de "dibujado" */
       .loader svg path {
         fill: none;
         stroke: var(--path-color);
@@ -302,6 +377,7 @@
           cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
       }
 
+      /* Retraso escalonado para que las letras no estén sincronizadas */
       .loader:nth-child(2) {
         animation-delay: 0.3s;
       }
@@ -309,6 +385,7 @@
         animation-delay: 0.6s;
       }
 
+      /* Colores y duraciones específicas para cada letra */
       .loader--d {
         --dot-color: var(--eds-orange);
         --duration: 3.1s;
@@ -318,6 +395,8 @@
         --duration: 2.5s;
       }
 
+      /* ── Indicador de estado del sistema ── */
+      /* Texto "Inicializando sistema..." con un punto pulsante verde */
       .intro-status {
         display: inline-flex;
         align-items: center;
@@ -330,6 +409,7 @@
         z-index: 1;
       }
 
+      /* Punto de estado con animación de pulso */
       .status-dot {
         width: 8px;
         height: 8px;
@@ -339,6 +419,9 @@
         animation: pulse 1.2s ease-in-out infinite;
       }
 
+      /* ── Barra de progreso ── */
+      /* Barra horizontal delgada que se llena de 0% a 100% en 8s    */
+      /* con gradiente dorado→azul, indicando el tiempo de carga.    */
       .intro-progress {
         width: 100%;
         max-width: 300px;
@@ -358,6 +441,9 @@
         animation: progressFill 8s ease-out forwards;
       }
 
+      /* ── Botón "Saltar intro" ── */
+      /* Enlace flotante en la esquina inferior derecha que permite   */
+      /* omitir la animación de carga y navegar directamente.         */
       .intro-skip {
         position: absolute;
         bottom: 30px;
@@ -377,6 +463,16 @@
         color: var(--eds-green);
       }
 
+      /* ══════════════════════════════════════════════════════════════ */
+      /* KEYFRAMES DE ANIMACIÓN                                     */
+      /* Todas las animaciones CSS utilizadas en esta página:       */
+      /* entrada del panel, flotación/brillo del logo, desplazamiento*/
+      /* del glow, pulso del punto de estado, flotación de loaders, */
+      /* trazado de letras SVG, órbita del punto, movimiento del    */
+      /* gradiente, llenado de la barra de progreso y fade-out.     */
+      /* ══════════════════════════════════════════════════════════════ */
+
+      /* Entrada del panel: aparece desde abajo con escala */
       @keyframes panelIn {
         0% {
           opacity: 0;
@@ -388,6 +484,7 @@
         }
       }
 
+      /* Flotación vertical del logo */
       @keyframes logoFloat {
         0%,
         100% {
@@ -398,6 +495,7 @@
         }
       }
 
+      /* Brillo pulsante del logo (intensifica sombras dorada y roja) */
       @keyframes logoGlow {
         0%,
         100% {
@@ -410,6 +508,7 @@
         }
       }
 
+      /* Desplazamiento suave del efecto glow de fondo */
       @keyframes glowShift {
         0%,
         100% {
@@ -420,6 +519,7 @@
         }
       }
 
+      /* Pulso del punto de estado (escala + opacidad) */
       @keyframes pulse {
         0%,
         100% {
@@ -432,6 +532,7 @@
         }
       }
 
+      /* Flotación vertical de los loaders SVG */
       @keyframes float {
         0%,
         100% {
@@ -442,6 +543,7 @@
         }
       }
 
+      /* Trazado animado del path SVG (efecto de "dibujado") */
       @keyframes letterTrace {
         0% {
           stroke-dashoffset: 0;
@@ -454,6 +556,7 @@
         }
       }
 
+      /* Órbita del punto que recorre el contorno de cada letra */
       @keyframes dotOrbit {
         0% {
           transform: translate(-15px, 14px);
@@ -477,6 +580,7 @@
         }
       }
 
+      /* Movimiento cíclico del gradiente de la barra superior del panel */
       @keyframes gradientMove {
         0% {
           background-position: 0% 50%;
@@ -486,6 +590,7 @@
         }
       }
 
+      /* Llenado progresivo de la barra de carga (0% → 100% en 8s) */
       @keyframes progressFill {
         0% {
           width: 0%;
@@ -495,10 +600,12 @@
         }
       }
 
+      /* Clase aplicada al body para la transición de salida */
       body.fade-out {
         animation: fadeOut 1s forwards;
       }
 
+      /* Desvanecimiento total de la página al finalizar la intro */
       @keyframes fadeOut {
         0% {
           opacity: 1;
@@ -509,6 +616,8 @@
         }
       }
 
+      /* ── Media query para dispositivos móviles (≤768px) ── */
+      /* Reduce paddings, tamaños de logo/loaders y ajusta espacios */
       @media (max-width: 768px) {
         .intro-panel {
           padding: 40px 30px;
@@ -540,12 +649,25 @@
     </style>
   </head>
   <body>
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- CANVAS DE PARTÍCULAS                                        -->
+    <!-- Elemento <canvas> donde se dibujan las partículas flotantes  -->
+    <!-- y sus conexiones mediante JavaScript.                        -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <canvas id="particles-canvas"></canvas>
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- CONTENEDOR PRINCIPAL DE LA INTRO                            -->
+    <!-- Incluye: logo, título, descripción, badges de logros,       -->
+    <!-- loaders SVG animados (E, D, S), indicador de estado y       -->
+    <!-- barra de progreso de carga.                                 -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <div class="intro-container">
       <div class="intro-panel">
+        <!-- Subtítulo de la marca -->
         <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
 
+        <!-- Logo de la empresa (clickeable para saltar intro) -->
         <img
           src="assets/images/logo_empresa-Photoroom.png"
           alt="EDS Logo"
@@ -553,8 +675,10 @@
           onclick="skipIntro()"
         />
 
+        <!-- Título principal -->
         <h1 class="intro-title">Edificaciones Inteligentes</h1>
 
+        <!-- Descripción de la empresa -->
         <p class="intro-description">
           Empresa dedicada a desarrollar proyectos de construcciones con enfoque
           tecnológico, sistemas de comunicación, seguridad electrónica e
@@ -562,6 +686,7 @@
           Perú.
         </p>
 
+        <!-- Badges de logros: años, proyectos, ciudades -->
         <div class="intro-features">
           <div class="intro-feature">
             <i class="fas fa-check-circle"></i>
@@ -577,6 +702,7 @@
           </div>
         </div>
 
+        <!-- Loaders SVG: letras E, D, S con trazado y punto orbital animados -->
         <div class="intro-loaders">
           <div class="loader loader--e">
             <svg viewBox="0 0 80 80">
@@ -597,37 +723,57 @@
           </div>
         </div>
 
+        <!-- Indicador de estado: punto pulsante + texto -->
         <div class="intro-status">
           <span class="status-dot"></span>
           <span>Inicializando sistema...</span>
         </div>
 
+        <!-- Barra de progreso de carga -->
         <div class="intro-progress">
           <div class="intro-progress-bar"></div>
         </div>
       </div>
     </div>
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- BOTÓN "SALTAR INTRO"                                        -->
+    <!-- Enlace flotante en la esquina inferior derecha para omitir  -->
+    <!-- la animación y navegar directamente a index.html.           -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <div class="intro-skip" onclick="skipIntro()">
       <i class="fas fa-forward"></i> Saltar intro
     </div>
 
+    <!-- Font Awesome 6.4 (iconos de check y forward) cargado al final del body -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- JAVASCRIPT - Lógica de la intro                             -->
+    <!-- Contiene: (1) Motor de partículas con canvas que dibuja     -->
+    <!-- puntos flotantes y líneas de conexión entre ellos, y        -->
+    <!-- (2) Control de temporización: skipIntro() para saltar,      -->
+    <!-- redirección automática a index.html después de 8.5s.        -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <script>
-      // Particles animation
+      /* ── Motor de partículas ── */
+      /* Referencias al canvas y contexto 2D para dibujar */
       const canvas = document.getElementById("particles-canvas");
       const ctx = canvas.getContext("2d");
       let particles = [];
 
+      /* Redimensiona el canvas al tamaño de la ventana */
       function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
 
+      /* Crea partículas aleatorias: cantidad proporcional al área de la */
+      /* pantalla. Cada partícula tiene posición, tamaño, velocidad,     */
+      /* color (dorado, azul o rojo) y opacidad variables.              */
       function createParticles() {
         particles = [];
         const count = Math.floor((canvas.width * canvas.height) / 12000);
@@ -646,6 +792,9 @@
         }
       }
 
+      /* Bucle de animación: limpia el canvas, mueve cada partícula,   */
+      /* rebota en los bordes, dibuja los círculos y luego dibuja      */
+      /* líneas de conexión entre partículas cercanas (< 120px).       */
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -653,9 +802,11 @@
           p.x += p.speedX;
           p.y += p.speedY;
 
+          /* Rebote en los bordes del canvas */
           if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
           if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
 
+          /* Dibuja el círculo de la partícula */
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
@@ -664,7 +815,8 @@
           ctx.globalAlpha = 1;
         });
 
-        // Draw connections
+        /* Dibuja líneas de conexión entre partículas cercanas */
+        /* La opacidad disminuye cuanto mayor es la distancia  */
         for (let i = 0; i < particles.length; i++) {
           for (let j = i + 1; j < particles.length; j++) {
             const dx = particles[i].x - particles[j].x;
@@ -684,15 +836,21 @@
         requestAnimationFrame(animate);
       }
 
+      /* Inicializa el sistema de partículas */
       resize();
       createParticles();
       animate();
+
+      /* Recrea las partículas si la ventana cambia de tamaño */
       window.addEventListener("resize", () => {
         resize();
         createParticles();
       });
 
-      // Intro timing
+      /* ── Control de temporización de la intro ── */
+
+      /* skipIntro(): marca la intro como vista en sessionStorage,  */
+      /* aplica la clase fade-out y redirige a index.html tras 800ms */
       function skipIntro() {
         sessionStorage.setItem("edsIntroSeen", "true");
         document.body.classList.add("fade-out");
@@ -701,11 +859,13 @@
         }, 800);
       }
 
+      /* A los 7.5 segundos: inicia el desvanecimiento de la página */
       setTimeout(() => {
         sessionStorage.setItem("edsIntroSeen", "true");
         document.body.classList.add("fade-out");
       }, 7500);
 
+      /* A los 8.5 segundos: redirige automáticamente a index.html */
       setTimeout(() => {
         window.location.href = "index.html";
       }, 8500);

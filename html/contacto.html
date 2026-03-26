@@ -1,23 +1,32 @@
+<!-- Declaración del tipo de documento y apertura del HTML con idioma español -->
 <!doctype html>
 <html lang="es">
+  <!-- ====== HEAD: Metadatos, estilos y favicon ====== -->
   <head>
+    <!-- Codificación de caracteres UTF-8 para soportar tildes y caracteres especiales -->
     <meta charset="UTF-8" />
+    <!-- Meta viewport para diseño responsivo en dispositivos móviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Meta descripción para SEO: resume el propósito de la página de contacto -->
     <meta
       name="description"
       content="Contáctanos - EDS Edificaciones Inteligentes. WhatsApp, teléfono y email para cotizaciones y consultas."
     />
     <title>Contacto | EDS Edificaciones Inteligentes</title>
 
+    <!-- Hoja de estilos principal del sitio -->
     <link rel="stylesheet" href="../css/main.css" />
+    <!-- Librería de iconos Font Awesome v6.4.0 (íconos de WhatsApp, teléfono, etc.) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
+    <!-- Favicon: ícono que aparece en la pestaña del navegador -->
     <link rel="icon" type="image/png" href="../assets/images/logo.png" />
   </head>
   <body>
+    <!-- ====== PRELOADER: Pantalla de carga animada con las letras E, D, S en SVG ====== -->
     <div id="preloader" class="preloader">
         <div class="intro-panel">
             <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
@@ -38,15 +47,20 @@
             </div>
         </div>
     </div>
+
+    <!-- Efecto de seguimiento del cursor personalizado -->
     <div class="cursor-follower"></div>
 
+    <!-- ====== HEADER: Barra de navegación con logo y menú de enlaces ====== -->
     <header class="header">
       <div class="container header-container">
+        <!-- Logo de la empresa con enlace a la página de inicio -->
         <a href="../index.html" class="logo">
           <img src="../assets/images/logo.png" alt="EDS Logo" class="logo-img" />
           <span class="logo-text">EDS <span>INTELIGENTES</span></span>
         </a>
 
+        <!-- Menú de navegación: enlaces a las secciones principales del sitio -->
         <nav class="nav-menu">
           <a href="../index.html" class="nav-link">Inicio</a>
           <a href="../index.html#nosotros" class="nav-link">Nosotros</a>
@@ -56,6 +70,7 @@
           <a href="contacto.html" class="nav-link active">Contacto</a>
         </nav>
 
+        <!-- Botón de menú hamburguesa para vista móvil (muestra/oculta el menú) -->
         <button class="menu-toggle" aria-label="Abrir menú">
           <span></span>
           <span></span>
@@ -64,8 +79,10 @@
       </div>
     </header>
 
+    <!-- ====== BREADCRUMB Y TÍTULO DE PÁGINA ====== -->
     <section class="page-header">
       <div class="container">
+        <!-- Miga de pan (breadcrumb): indica la ubicación del usuario dentro del sitio -->
         <div class="breadcrumb">
           <a href="../index.html">Inicio</a>
           <span>/</span>
@@ -76,9 +93,12 @@
       </div>
     </section>
 
+    <!-- ====== SECCIÓN DE CONTACTO: Información de contacto + Formulario ====== -->
     <section class="section">
       <div class="container">
+        <!-- Grid de dos columnas: izquierda = info contacto, derecha = formulario -->
         <div class="contact-grid">
+          <!-- TARJETA IZQUIERDA: Datos de contacto (WhatsApp, teléfonos, emails, horarios, dirección) -->
           <div class="card contact-info" data-aos="fade-right">
             <h3>Información de Contacto</h3>
 
@@ -132,6 +152,7 @@
               </div>
             </div>
 
+            <!-- Botón principal de WhatsApp para contacto directo -->
             <div class="mt-3">
               <a
                 href="https://wa.me/51950313642?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20servicios."
@@ -143,6 +164,7 @@
               </a>
             </div>
 
+            <!-- Enlaces a redes sociales (Facebook, LinkedIn, Instagram, WhatsApp) -->
             <div class="mt-2">
               <div class="footer-social" style="justify-content: center">
                 <a href="#" aria-label="Facebook"
@@ -161,9 +183,11 @@
             </div>
           </div>
 
+          <!-- TARJETA DERECHA: Formulario de contacto (envía datos por WhatsApp) -->
           <div class="card contact-form" data-aos="fade-left">
             <h3>Envíanos un Mensaje</h3>
 
+            <!-- Formulario con campos de nombre, empresa, email, teléfono, servicio, ciudad y mensaje -->
             <form id="contactForm">
               <div class="grid grid-2">
                 <div class="form-group">
@@ -215,6 +239,7 @@
                 </div>
               </div>
 
+              <!-- Selector de servicio: lista desplegable con los 12 servicios ofrecidos -->
               <div class="form-group">
                 <label class="form-label" for="servicio"
                   >Servicio de Interés</label
@@ -241,6 +266,7 @@
                 </select>
               </div>
 
+              <!-- Selector de ciudad: permite al usuario elegir su ubicación geográfica -->
               <div class="form-group">
                 <label class="form-label" for="ciudad">Ciudad</label>
                 <select id="ciudad" class="form-select">
@@ -253,6 +279,7 @@
                 </select>
               </div>
 
+              <!-- Campo de texto largo para que el usuario describa su proyecto o consulta -->
               <div class="form-group">
                 <label class="form-label" for="mensaje">Mensaje *</label>
                 <textarea
@@ -263,6 +290,7 @@
                 ></textarea>
               </div>
 
+              <!-- Botón de envío del formulario -->
               <button
                 type="submit"
                 class="btn btn-primary btn-lg"
@@ -276,6 +304,7 @@
       </div>
     </section>
 
+    <!-- ====== SECCIÓN DE UBICACIONES: Muestra las sedes y oficinas en distintas ciudades ====== -->
     <section
       class="section"
       style="background: var(--bg-secondary); padding: 60px 0"
@@ -397,6 +426,7 @@
       </div>
     </section>
 
+    <!-- ====== CTA (CALL TO ACTION): Invitación para contactar por WhatsApp ====== -->
     <section class="section cta">
       <div class="container">
         <div class="cta-content" data-aos="zoom-in">
@@ -417,9 +447,11 @@
       </div>
     </section>
 
+    <!-- ====== FOOTER: Pie de página con marca, navegación, servicios, contacto y derechos ====== -->
     <footer class="footer">
       <div class="container">
         <div class="footer-grid">
+          <!-- Columna de marca: logo, descripción de la empresa y enlaces a redes sociales -->
           <div class="footer-brand">
             <a href="../index.html" class="logo" style="display: block; margin-bottom: 20px;">
               <img src="../assets/images/logo.png" alt="EDS Logo" style="max-width: 200px; height: auto;" />
@@ -445,6 +477,7 @@
             </div>
           </div>
 
+          <!-- Columna de navegación del footer: enlaces a secciones del sitio -->
           <div class="footer-links-col">
             <h4 class="footer-title">Navegación</h4>
             <ul class="footer-links">
@@ -457,6 +490,7 @@
             </ul>
           </div>
 
+          <!-- Columna de servicios del footer: acceso rápido a los servicios ofrecidos -->
           <div class="footer-links-col">
             <h4 class="footer-title">Servicios</h4>
             <ul class="footer-links">
@@ -469,6 +503,7 @@
             </ul>
           </div>
 
+          <!-- Columna de contacto del footer: WhatsApp, email y dirección física -->
           <div class="footer-contact-col">
             <h4 class="footer-title">Contacto</h4>
             <ul class="footer-contact">
@@ -499,7 +534,8 @@
           </div>
         </div>
 
-        <div class="footer-bottom">
+          <!-- Parte inferior del footer: derechos de autor y número de RUC -->
+          <div class="footer-bottom">
           <p>
             &copy; 2024
             <a href="../index.html">EDS Edificaciones Inteligentes SAC</a>. Todos
@@ -510,18 +546,26 @@
       </div>
     </footer>
 
+    <!-- ====== SCRIPTS: Archivos JavaScript del sitio ====== -->
+    <!-- Script principal: maneja menú móvil, preloader, animaciones y efectos del cursor -->
     <script type="module" src="../js/main.js"></script>
+
+    <!-- Script de envío por WhatsApp: intercepta el formulario y abre WhatsApp con los datos del usuario -->
     <script>
+      // Captura el evento "submit" del formulario, extrae los datos y los envía como mensaje a WhatsApp
       document
         .getElementById("contactForm")
         .addEventListener("submit", function (e) {
+          // Evita el envío tradicional del formulario (no recarga la página)
           e.preventDefault();
 
+          // Obtiene los valores de los campos del formulario
           const nombre = document.getElementById("nombre").value;
           const email = document.getElementById("email").value;
           const mensaje = document.getElementById("mensaje").value;
           const servicio = document.getElementById("servicio").value;
 
+          // Construye el mensaje formateado para WhatsApp con los datos del usuario
           const text = encodeURIComponent(
             `Hola, mi nombre es ${nombre}.\n\n` +
               `Correo: ${email}\n` +
@@ -529,6 +573,7 @@
               `Mensaje: ${mensaje}`,
           );
 
+          // Abre WhatsApp Web/Mobile en una nueva pestaña con el mensaje pre-llenado
           window.open(`https://wa.me/51950313642?text=${text}`, "_blank");
         });
     </script>

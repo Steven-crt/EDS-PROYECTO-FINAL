@@ -1,6 +1,7 @@
 /* ================================================
    KEYFRAME ANIMATIONS
    ================================================ */
+/* Definiciones de animaciones @keyframes para efectos de entrada (fade, slide, scale) */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -75,6 +76,7 @@
 /* ================================================
    FLOATING ANIMATION
    ================================================ */
+/* Animaciones de flotación: hacen que los elementos se muevan suavemente arriba y abajo */
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
@@ -85,6 +87,7 @@
     50% { transform: translateY(-10px); }
 }
 
+/* Clases reutilizables para aplicar animaciones de flotación a elementos HTML */
 .float {
     animation: float 6s ease-in-out infinite;
 }
@@ -96,6 +99,7 @@
 /* ================================================
    PULSE / GLOW ANIMATIONS
    ================================================ */
+/* Animaciones de pulso y brillo: controlan opacidad y efectos de sombra animados */
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
@@ -119,6 +123,7 @@
     }
 }
 
+/* Clases para aplicar animaciones de pulso y brillo a elementos */
 .pulse {
     animation: pulse 2s ease-in-out infinite;
 }
@@ -130,6 +135,7 @@
 /* ================================================
    ROTATE ANIMATIONS
    ================================================ */
+/* Animaciones de rotación continua en sentido horario y antihorario */
 @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -140,6 +146,7 @@
     to { transform: rotate(-360deg); }
 }
 
+/* Clases para aplicar rotación a elementos, con velocidades diferentes */
 .rotate {
     animation: rotate 20s linear infinite;
 }
@@ -151,6 +158,7 @@
 /* ================================================
    PROGRESS BAR ANIMATION
    ================================================ */
+/* Animación para barras de progreso que se llenan desde cero */
 @keyframes progressFill {
     from { width: 0; }
 }
@@ -158,6 +166,7 @@
 /* ================================================
    TEXT ANIMATIONS
    ================================================ */
+/* Animaciones de revelado de texto usando clip-path */
 @keyframes textReveal {
     from {
         clip-path: inset(0 100% 0 0);
@@ -167,6 +176,7 @@
     }
 }
 
+/* Clase para aplicar animación de revelado de texto */
 .text-reveal {
     animation: textReveal 1s ease forwards;
 }
@@ -174,6 +184,7 @@
 /* ================================================
    BORDER ANIMATIONS
    ================================================ */
+/* Animación de brillo pulsante en bordes, alternando entre colores primario y acento */
 @keyframes borderGlow {
     0%, 100% {
         border-color: var(--primary);
@@ -188,6 +199,7 @@
 /* ================================================
    SCROLL ANIMATIONS (AOS-like)
    ================================================ */
+/* Sistema de animaciones al hacer scroll (similar a AOS): fade, zoom y flip */
 [data-aos="fade-up"] {
     transform: translateY(40px);
     opacity: 0;
@@ -257,6 +269,7 @@
 /* ================================================
    HOVER EFFECTS
    ================================================ */
+/* Efectos de interacción al pasar el mouse: elevación, escala, brillo y borde animado */
 .hover-lift {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -300,12 +313,14 @@
 /* ================================================
    BACKGROUND ANIMATIONS
    ================================================ */
+/* Animación de desplazamiento de posición de fondo para gradientes */
 @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
+/* Clase para animar fondos con degradado */
 .gradient-animate {
     background-size: 200% 200%;
     animation: gradientShift 8s ease infinite;
@@ -314,11 +329,13 @@
 /* ================================================
    MARQUEE / SCROLL TEXT
    ================================================ */
+/* Animación de texto en movimiento horizontal continuo (marquesina) */
 @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
+/* Clases del componente marquesina: contenedor con overflow oculto y contenido animado */
 .marquee {
     overflow: hidden;
 }
@@ -335,6 +352,7 @@
 /* ================================================
    PARTICLES CONTAINER
    ================================================ */
+/* Contenedor de partículas decorativas flotantes con posicionamiento absoluto */
 .particles-container {
     position: absolute;
     top: 0;
@@ -345,6 +363,7 @@
     pointer-events: none;
 }
 
+/* Estilo individual de cada partícula: pequeño círculo semitransparente */
 .particle {
     position: absolute;
     width: 4px;
@@ -357,6 +376,7 @@
 /* ================================================
    COUNTER ANIMATION
    ================================================ */
+/* Estilos para contadores numéricos con fuente display y sufijo dinámico */
 .counter {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 4rem;
@@ -373,11 +393,13 @@
 /* ================================================
    LINE DRAWING ANIMATION
    ================================================ */
+/* Animación de dibujo progresivo de líneas SVG usando stroke-dashoffset */
 @keyframes drawLine {
     from { stroke-dashoffset: 1000; }
     to { stroke-dashoffset: 0; }
 }
 
+/* Clase para aplicar animación de dibujo a líneas SVG */
 .svg-line {
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
@@ -387,10 +409,12 @@
 /* ================================================
    LOADING SPINNER
    ================================================ */
+/* Animación de rotación para indicador de carga (spinner) */
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 
+/* Estilo del spinner: círculo con borde parcialmente coloreado que rota */
 .spinner {
     width: 40px;
     height: 40px;
@@ -403,6 +427,7 @@
 /* ================================================
    CURSOR FOLLOWER
    ================================================ */
+/* Cursor personalizado que sigue al mouse con efecto de mezcla de colores */
 .cursor-follower {
     position: fixed;
     width: 20px;
@@ -415,6 +440,7 @@
     mix-blend-mode: difference;
 }
 
+/* Estado del cursor personalizado al pasar sobre elementos interactivos */
 .cursor-follower.hover {
     width: 50px;
     height: 50px;

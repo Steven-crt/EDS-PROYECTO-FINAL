@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="es">
   <head>
+    <!-- Metadatos básicos: codificación UTF-8, viewport responsivo y descripción SEO -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
@@ -9,15 +10,18 @@
     />
     <title>Proyectos | EDS Edificaciones Inteligentes</title>
 
+    <!-- Hojas de estilos: CSS principal e íconos de Font Awesome -->
     <link rel="stylesheet" href="../css/main.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
+    <!-- Favicon del sitio -->
     <link rel="icon" type="image/png" href="../assets/images/logo.png" />
   </head>
   <body>
+    <!-- Preloader: pantalla de carga animada con el logo SVG de EDS -->
     <div id="preloader" class="preloader">
         <div class="intro-panel">
             <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
@@ -38,8 +42,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Cursor personalizado: seguimiento del mouse con efecto visual -->
     <div class="cursor-follower"></div>
 
+    <!-- Encabezado principal: logo de EDS, navegación y botón de menú móvil -->
     <header class="header">
       <div class="container header-container">
         <a href="../index.html" class="logo">
@@ -64,6 +71,7 @@
       </div>
     </header>
 
+    <!-- Breadcrumb y título de la página: ruta de navegación y encabezado de sección -->
     <section class="page-header">
       <div class="container">
         <div class="breadcrumb">
@@ -79,8 +87,10 @@
       </div>
     </section>
 
+    <!-- Sección principal de proyectos: filtros por categoría y grid de tarjetas -->
     <section class="section projects-page">
       <div class="container">
+        <!-- Filtros de proyectos: botones para filtrar por categoría (Seguridad, Comunicación, etc.) -->
         <div class="projects-filters" data-aos="fade-up">
           <button class="filter-btn active" data-filter="all">Todos</button>
           <button class="filter-btn" data-filter="seguridad">Seguridad</button>
@@ -94,6 +104,7 @@
           <button class="filter-btn" data-filter="redes">Redes</button>
         </div>
 
+        <!-- Grid de proyectos: tarjetas con imagen, overlay, badges de estado y socios -->
         <div class="projects-grid">
           <div
             class="project-card"
@@ -456,6 +467,7 @@
           </div>
         </div>
 
+        <!-- Llamada a la acción: invitación a contactar por WhatsApp o correo electrónico -->
         <div class="text-center mt-5" data-aos="fade-up">
           <div
             class="card"
@@ -491,6 +503,7 @@
       </div>
     </section>
 
+    <!-- Pie de página: marca, navegación, lista de servicios y datos de contacto -->
     <footer class="footer">
       <div class="container">
         <div class="footer-grid">
@@ -573,6 +586,7 @@
           </div>
         </div>
 
+        <!-- Copyright y datos legales de la empresa -->
         <div class="footer-bottom">
           <p>
             &copy; 2024
@@ -584,6 +598,7 @@
       </div>
     </footer>
 
+    <!-- Script principal: carga el JavaScript modular con la lógica de la página -->
     <script type="module" src="../js/main.js"></script>
   </body>
 </html>

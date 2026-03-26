@@ -1,5 +1,12 @@
 /* ================================================
    BOTONES
+   Estilos para botones reutilizables con diferentes variantes:
+   - btn: Base con efectos hover y animación de brillo
+   - btn-primary: Botón principal con gradiente azul
+   - btn-accent: Botón secundario con gradiente dorado
+   - btn-outline: Botón transparente con borde
+   - btn-whatsapp: Botón verde de WhatsApp
+   - btn-sm/btn-lg: Variantes de tamaño pequeño y grande
    ================================================ */
 .btn {
     display: inline-flex;
@@ -89,7 +96,13 @@
 }
 
 /* ================================================
-   CARDS
+   TARJETAS (CARDS)
+   Contenedores de contenido con эффекты visuales:
+   - card: Tarjeta base con borde superior animado al hover
+   - card-3d: Efecto 3D al pasar el mouse
+   - card-icon: Contenedor circular para iconos
+   - card-title/card-text: Estilos para texto dentro de tarjetas
+   - Se alternan colores de acento según el elemento hijo (3n, 4n)
    ================================================ */
 .card {
     background: var(--bg-card);
@@ -185,7 +198,12 @@
 }
 
 /* ================================================
-   BADGES / TAGS
+   BADGES / ETIQUETAS
+   Pequeñas etiquetas para destacar información:
+   - badge: Base con forma redondeada (pill)
+   - badge-primary: Etiqueta azul para destacar
+   - badge-accent: Etiqueta dorada/amarilla
+   - badge-success: Etiqueta verde para estados exitosos
    ================================================ */
 .badge {
     display: inline-flex;
@@ -220,6 +238,12 @@
 
 /* ================================================
    INPUTS / FORMULARIOS
+   Estilos para elementos de formulario:
+   - form-group: Contenedor de campo con margen
+   - form-label: Etiqueta del campo
+   - form-input/form-textarea/form-select: Campos con estilos base
+   - Efectos focus con borde iluminado
+   - Placeholder muted para mejor UX
    ================================================ */
 .form-group {
     margin-bottom: 20px;
@@ -267,6 +291,12 @@
 
 /* ================================================
    GRID LAYOUTS
+   Sistemas de grilleo responsivo:
+   - grid: Contenedor base con gap de 30px
+   - grid-2/grid-3/grid-4: Grillas de 2, 3 o 4 columnas
+   - grid-services: Auto-ajuste para servicios (min 280px)
+   - grid-projects: Auto-ajuste para proyectos (min 350px)
+   - Media queries para tablets (< 1024px) y móviles (< 768px)
    ================================================ */
 .grid {
     display: grid;
@@ -308,7 +338,13 @@
 }
 
 /* ================================================
-   FLEX UTILITIES
+   UTILIDADES FLEXBOX
+   Clases helper para alineación rápida:
+   - flex: Contenedor flex básico
+   - flex-center: Centra vertical y horizontalmente
+   - flex-between: Distribuye espacio entre elementos
+   - flex-col: Dirección columna
+   - gap-sm/gap-md/gap-lg: Espaciados predefinidos
    ================================================ */
 .flex {
     display: flex;
@@ -335,7 +371,11 @@
 .gap-lg { gap: 40px; }
 
 /* ================================================
-   DECORATIVE ELEMENTS
+   ELEMENTOS DECORATIVOS
+   Efectos visuales y ornamentos para secciones:
+   - line-decoration: Línea horizontal con gradiente
+   - circle-decoration: Círculo decorativo sutil
+   - glow-effect: Brillo de fondo difuminado
    ================================================ */
 .line-decoration {
     position: absolute;
@@ -370,7 +410,10 @@
 }
 
 /* ================================================
-   IMAGE PLACEHOLDERS
+   PLACEHOLDERS DE IMAGENES
+   Contenedores para imágenes con estados de carga:
+   - img-placeholder: Fondo degradado mientras carga la imagen
+   - object-fitcover para ajuste proporcional
    ================================================ */
 .img-placeholder {
     background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-card));
@@ -388,7 +431,10 @@
 }
 
 /* ================================================
-   LOADING / SKELETON
+   ESQUELETOS DE CARGA (SKELETON)
+   Estados de carga simulados para mejor UX:
+   - skeleton: Gradiente animado de izquierda a derecha
+   - animation: Movimiento infinito tipo wave
    ================================================ */
 .skeleton {
     background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-card) 50%, var(--bg-tertiary) 75%);
@@ -402,7 +448,10 @@
 }
 
 /* ================================================
-   OVERLAYS
+   SUPERPOSICIONES (OVERLAYS)
+   Capas semitransparentes sobre imágenes/secciones:
+   - overlay: Capa blanca al 70% de opacidad
+   - overlay-gradient: Degradado desde abajo hacia transparente
    ================================================ */
 .overlay {
     position: absolute;
@@ -418,7 +467,13 @@
 }
 
 /* ================================================
-   PRELOADER
+   PANTALLA DE CARGA (PRELOADER)
+   Animación de carga inicial de la página:
+   - preloader: Pantalla fija completa con z-index alto
+   - fade-out: Clase para ocultar con transición suave
+   - intro-panel: Panel de bienvenida con animación de entrada
+   - loader: Indicador animado con órbita de punto y trazo de letra
+   - Animaciones: panelIn, letterTrace, dotOrbit, pulse
    ================================================ */
 .preloader {
     position: fixed;

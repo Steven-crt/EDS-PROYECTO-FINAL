@@ -1,31 +1,40 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Configuración de caracteres y viewport para responsividad -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta tags SEO para mejorar posicionamiento en buscadores -->
     <meta name="description" content="EDS Edificaciones Inteligentes SAC - Soluciones tecnológicas integrales para la construcción en el sur del Perú. Arequipa, Tacna, Juliaca, Cusco.">
     <meta name="keywords" content="edificaciones inteligentes, construcción, tecnología, IoT, video vigilancia, redes, Arequipa">
     <meta name="author" content="EDS Edificaciones Inteligentes">
     
+    <!-- Meta tags Open Graph para redes sociales -->
     <meta property="og:title" content="EDS Edificaciones Inteligentes - Soluciones Tecnológicas para Construcción">
     <meta property="og:description" content="Construcción con enfoque tecnológico, sistemas de comunicación, seguridad electrónica e IoT.">
     <meta property="og:type" content="website">
     
     <title>EDS Edificaciones Inteligentes | Soluciones Tecnológicas para Construcción</title>
     
+    <!-- Hojas de estilos principales y Font Awesome para iconos -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Favicon de la empresa -->
     <link rel="icon" type="image/png" href="assets/images/logo.png">
 </head>
 <body>
+    <!-- ========== HEADER CON NAVEGACIÓN ========== -->
     <header class="header">
         <div class="container header-container">
+            <!-- Logo de la empresa con enlace al inicio -->
             <a href="#" class="logo">
                 <img src="assets/images/logo.png" alt="EDS Logo" class="logo-img">
                 <span class="logo-text">EDS <span>INTELIGENTES</span></span>
             </a>
             
+            <!-- Menú de navegación principal -->
             <nav class="nav-menu">
                 <a href="#inicio" class="nav-link active">Inicio</a>
                 <a href="#nosotros" class="nav-link">Nosotros</a>
@@ -35,6 +44,7 @@
                 <a href="html/contacto.html" class="nav-link">Contacto</a>
             </nav>
             
+            <!-- Botón hamburguesa para menú móvil -->
             <button class="menu-toggle" aria-label="Abrir menú">
                 <span></span>
                 <span></span>
@@ -43,31 +53,40 @@
         </div>
     </header>
 
+    <!-- ========== SECCIÓN HERO - Banner principal ========== -->
     <section id="inicio" class="hero">
+        <!-- Imagen de fondo del hero -->
         <div class="hero-bg">
             <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80" alt="Construcción moderna">
         </div>
+        <!-- Overlay semitransparente sobre la imagen -->
         <div class="hero-overlay"></div>
         
+        <!-- Canvas para animación de partículas -->
         <canvas id="particles"></canvas>
         
         <div class="container">
+            <!-- Contenido principal del hero con animación de entrada -->
             <div class="hero-content" data-aos="fade-up">
+                <!-- Badge de experiencia -->
                 <span class="hero-badge">
                     <i class="fas fa-check-circle"></i>
                     +10 años de experiencia
                 </span>
                 
+                <!-- Título principal del sitio -->
                 <h1 class="hero-title">
                     Construyendo el <span class="highlight">Futuro</span>
                     con Tecnología
                 </h1>
                 
+                <!-- Descripción de la empresa -->
                 <p class="hero-description">
                     Desarrollamos proyectos de construcciones inteligentes con enfoque tecnológico, 
                     sistemas de comunicación, seguridad electrónica e Internet de las cosas.
                 </p>
                 
+                <!-- Botones de acción: WhatsApp y servicios -->
                 <div class="hero-buttons">
                     <a href="https://wa.me/51950313642" target="_blank" class="btn btn-whatsapp">
                         <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
@@ -76,24 +95,26 @@
                         <i class="fas fa-cogs"></i> Nuestros Servicios
                     </a>
                 </div>
-                
-                <!--Inesecario poner esto aqui--> 
             </div>
         </div>
         
+        <!-- Indicador de scroll para bajar -->
         <a href="#nosotros" class="hero-scroll">
             <span>Scroll</span>
             <i class="fas fa-chevron-down"></i>
         </a>
     </section>
 
+    <!-- ========== SECCIÓN NOSOTROS - Información sobre la empresa ========== -->
     <section id="nosotros" class="section about">
         <div class="container">
             <div class="about-grid">
+                <!-- Imagen representativa del equipo -->
                 <div class="about-image" data-aos="fade-right">
                     <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80" alt="Equipo EDS">
                 </div>
                 
+                <!-- Contenido descriptivo de la empresa -->
                 <div class="about-content" data-aos="fade-left">
                     <span class="badge badge-primary">
                         <i class="fas fa-building"></i> Desde 2014
@@ -101,6 +122,7 @@
                     
                     <h2>Somos <span class="highlight">EDS</span> Edificaciones Inteligentes</h2>
                     
+                    <!-- Descripción de la empresa -->
                     <p>
                         Somos una empresa líder en el sur del Perú especializada en desarrollar 
                         proyectos de construcciones con enfoque tecnológico. Garantizamos el éxito 
@@ -108,11 +130,13 @@
                         fabricantes de la industria.
                     </p>
                     
+                    <!-- Información de la gerencia -->
                     <p>
                         Nuestra gerente general, <strong>Rocío Jara Monteagudo</strong>, lidera un 
                         equipo comprometido con la excelencia y la innovación tecnológica.
                     </p>
                     
+                    <!-- Características destacadas de la empresa -->
                     <div class="about-features">
                         <div class="about-feature">
                             <i class="fas fa-check-circle"></i>
@@ -132,6 +156,7 @@
                         </div>
                     </div>
                     
+                    <!-- Botón para ver proyectos -->
                     <a href="html/proyectos.html" class="btn btn-primary mt-3">
                         Ver Nuestros Proyectos
                     </a>
@@ -140,8 +165,10 @@
         </div>
     </section>
 
+    <!-- ========== SECCIÓN MISIÓN, VISIÓN Y VALORES ========== -->
     <section class="section mv">
         <div class="container">
+            <!-- Título y subtítulo de la sección -->
             <div class="section-title" data-aos="fade-up">
                 Nuestros <span class="highlight">Pilares</span>
             </div>
@@ -149,7 +176,9 @@
                 Principios que guían cada proyecto que ejecutamos
             </p>
             
+            <!-- Grid con las tres tarjetas: Misión, Visión, Valores -->
             <div class="mv-grid">
+                <!-- Tarjeta de Misión -->
                 <div class="card mv-card" data-aos="fade-up" data-aos-delay="150">
                     <i class="fas fa-bullseye"></i>
                     <h3>Misión</h3>
@@ -160,6 +189,7 @@
                     </p>
                 </div>
                 
+                <!-- Tarjeta de Visión -->
                 <div class="card mv-card" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-eye"></i>
                     <h3>Visión</h3>
@@ -170,6 +200,7 @@
                     </p>
                 </div>
                 
+                <!-- Tarjeta de Valores -->
                 <div class="card mv-card" data-aos="fade-up" data-aos-delay="250">
                     <i class="fas fa-heart"></i>
                     <h3>Valores</h3>
@@ -182,8 +213,10 @@
         </div>
     </section>
 
+    <!-- ========== SECCIÓN DE SERVICIOS - 12 servicios tecnológicos ========== -->
     <section id="servicios" class="section services">
         <div class="container">
+            <!-- Título y subtítulo de la sección -->
             <div class="section-title" data-aos="fade-up">
                 Nuestros <span class="highlight">Servicios</span>
             </div>
@@ -191,7 +224,9 @@
                 Soluciones tecnológicas integrales para todo tipo de proyectos
             </p>
             
+            <!-- Grid de tarjetas de servicios -->
             <div class="services-grid">
+                <!-- Servicio 1: Construcciones Civiles -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="150">
                     <span class="service-number">01</span>
                     <div class="card-icon">
@@ -204,6 +239,7 @@
                     </p>
                 </div>
                 
+                <!-- Servicio 2: Radio Comunicación Digital -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="200">
                     <span class="service-number">02</span>
                     <div class="card-icon">
@@ -216,6 +252,7 @@
                     </p>
                 </div>
                 
+                <!-- Servicio 3: Video Vigilancia Industrial -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="250">
                     <span class="service-number">03</span>
                     <div class="card-icon">
@@ -228,6 +265,7 @@
                     </p>
                 </div>
                 
+                <!-- Servicio 4: Redes Inalámbricas -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="300">
                     <span class="service-number">04</span>
                     <div class="card-icon">
@@ -240,6 +278,7 @@
                     </p>
                 </div>
                 
+                <!-- Servicio 5: Telefonía IP y Video Conferencia -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="350">
                     <span class="service-number">05</span>
                     <div class="card-icon">
@@ -252,6 +291,7 @@
                     </p>
                 </div>
                 
+                <!-- Servicio 6: Cableado Estructurado -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="400">
                     <span class="service-number">06</span>
                     <div class="card-icon">
@@ -264,6 +304,7 @@
                     </p>
                 </div>
                 
+                <!-- Servicio 7: Centrales de Alarma -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="450">
                     <span class="service-number">07</span>
                     <div class="card-icon">
@@ -276,6 +317,7 @@
                     </p>
                 </div>
                 
+                <!-- Servicio 8: Sistemas de Extinción -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="500">
                     <span class="service-number">08</span>
                     <div class="card-icon">
@@ -288,6 +330,7 @@
                     </p>
                 </div>
                 
+                <!-- Servicio 9: Control de Accesos -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="550">
                     <span class="service-number">09</span>
                     <div class="card-icon">
@@ -300,6 +343,7 @@
                     </p>
                 </div>
                 
+                <!-- Servicio 10: Infraestructura Eléctrica -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="600">
                     <span class="service-number">10</span>
                     <div class="card-icon">
@@ -312,6 +356,7 @@
                     </p>
                 </div>
                 
+                <!-- Servicio 11: Energía Renovable -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="650">
                     <span class="service-number">11</span>
                     <div class="card-icon">
@@ -324,6 +369,7 @@
                     </p>
                 </div>
                 
+                <!-- Servicio 12: Sistemas de Audio y Video -->
                 <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="700">
                     <span class="service-number">12</span>
                     <div class="card-icon">
@@ -339,21 +385,26 @@
         </div>
     </section>
 
+    <!-- ========== SECCIÓN DE ESTADÍSTICAS - Contadores animados ========== -->
     <section class="section stats">
         <div class="container">
             <div class="stats-grid">
+                <!-- Contador: Años de experiencia -->
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
                     <div class="stat-number counter" data-target="10" data-suffix="+">0</div>
                     <div class="stat-label">Años de Experiencia</div>
                 </div>
+                <!-- Contador: Proyectos ejecutados -->
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
                     <div class="stat-number counter" data-target="50" data-suffix="+">0</div>
                     <div class="stat-label">Proyectos Ejecutados</div>
                 </div>
+                <!-- Contador: Ciudades con soporte -->
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
                     <div class="stat-number counter" data-target="4" data-suffix="">0</div>
                     <div class="stat-label">Ciudades con Soporte</div>
                 </div>
+                <!-- Contador: Fabricantes certificados -->
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
                     <div class="stat-number counter" data-target="50" data-suffix="+">0</div>
                     <div class="stat-label">Fabricantes Certificados</div>
@@ -362,8 +413,10 @@
         </div>
     </section>
 
+    <!-- ========== SECCIÓN PROYECTOS DESTACADOS ========== -->
     <section id="proyectos" class="section projects">
         <div class="container">
+            <!-- Título y subtítulo -->
             <div class="section-title" data-aos="fade-up">
                 Proyectos <span class="highlight">Destacados</span>
             </div>
@@ -371,6 +424,7 @@
                 Conoce algunos de nuestros proyectos más importantes ejecutados en el sur del Perú
             </p>
             
+            <!-- Filtros de proyectos por categoría -->
             <div class="projects-filters" data-aos="fade-up" data-aos-delay="150">
                 <button class="filter-btn active" data-filter="all">Todos</button>
                 <button class="filter-btn" data-filter="seguridad">Seguridad</button>
@@ -378,7 +432,9 @@
                 <button class="filter-btn" data-filter="construccion">Construcción</button>
             </div>
             
+            <!-- Grid de tarjetas de proyectos -->
             <div class="projects-grid">
+                <!-- Proyecto: Centro de Seguridad Ciudadana -->
                 <div class="project-card" data-category="seguridad" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Centro de Seguridad">
                     <div class="project-overlay">
@@ -399,6 +455,7 @@
                     </div>
                 </div>
                 
+                <!-- Proyecto: Semáforos Inteligentes -->
                 <div class="project-card" data-category="comunicacion" data-aos="fade-up" data-aos-delay="250">
                     <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80" alt="Semáforos Inteligentes">
                     <div class="project-overlay">
@@ -419,6 +476,7 @@
                     </div>
                 </div>
                 
+                <!-- Proyecto: Radio Base de Comunicaciones -->
                 <div class="project-card" data-category="comunicacion" data-aos="fade-up" data-aos-delay="300">
                     <img src="https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=600&q=80" alt="Radio Base">
                     <div class="project-overlay">
@@ -439,6 +497,7 @@
                     </div>
                 </div>
                 
+                <!-- Proyecto: Institución Educativa -->
                 <div class="project-card" data-category="construccion" data-aos="fade-up" data-aos-delay="350">
                     <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80" alt="Institución Educativa">
                     <div class="project-overlay">
@@ -459,6 +518,7 @@
                     </div>
                 </div>
                 
+                <!-- Proyecto: Video Vigilancia Industrial -->
                 <div class="project-card" data-category="seguridad" data-aos="fade-up" data-aos-delay="400">
                     <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&q=80" alt="Videovigilancia Industrial">
                     <div class="project-overlay">
@@ -479,6 +539,7 @@
                     </div>
                 </div>
                 
+                <!-- Proyecto: Cableado Hospital Regional -->
                 <div class="project-card" data-category="construccion" data-aos="fade-up" data-aos-delay="450">
                     <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80" alt="Hospital">
                     <div class="project-overlay">
@@ -500,6 +561,7 @@
                 </div>
             </div>
             
+            <!-- Botón para ver todos los proyectos -->
             <div class="text-center mt-4" data-aos="fade-up">
                 <a href="html/proyectos.html" class="btn btn-outline btn-lg">
                     Ver Todos los Proyectos
@@ -509,8 +571,10 @@
         </div>
     </section>
 
+    <!-- ========== SECCIÓN SOCIOS ESTRATÉGICOS - Carrusel de logos ========== -->
     <section class="section partners">
         <div class="container">
+            <!-- Título y subtítulo -->
             <div class="section-title" data-aos="fade-up">
                 Nuestros <span class="highlight">Socios</span> Estratégicos
             </div>
@@ -519,6 +583,7 @@
             </p>
         </div>
         
+        <!-- Primera fila de logos con animación marquee -->
         <div class="partners-track mt-4">
             <div class="partner-item">
                 <img src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Schneider" alt="Schneider Electric">
@@ -558,6 +623,7 @@
             </div>
         </div>
         
+        <!-- Segunda fila de logos con animación inversa -->
         <div class="partners-track mt-4" style="animation-direction: reverse;">
             <div class="partner-item">
                 <img src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Cambium" alt="Cambium">
@@ -598,8 +664,10 @@
         </div>
     </section>
 
+    <!-- ========== SECCIÓN COBERTURA - Ciudades de soporte ========== -->
     <section id="cobertura" class="section coverage">
         <div class="container">
+            <!-- Título y subtítulo -->
             <div class="section-title" data-aos="fade-up">
                 Nuestra <span class="highlight">Cobertura</span>
             </div>
@@ -607,7 +675,9 @@
                 Brindamos soporte técnico en las principales ciudades del sur del Perú
             </p>
             
+            <!-- Grid de tarjetas de cobertura por ciudad -->
             <div class="coverage-grid">
+                <!-- Arequipa - Sede Principal -->
                 <div class="card coverage-card primary" data-aos="fade-up" data-aos-delay="150">
                     <div class="coverage-icon">
                         <i class="fas fa-map-marker-alt"></i>
@@ -617,6 +687,7 @@
                     <p class="mt-2">Urb. Las Peñas A-35, Sachaca</p>
                 </div>
                 
+                <!-- Tacna - Oficina de soporte -->
                 <div class="card coverage-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="coverage-icon">
                         <i class="fas fa-map-marker-alt"></i>
@@ -626,6 +697,7 @@
                     <p class="mt-2">Soporte técnico especializado</p>
                 </div>
                 
+                <!-- Juliaca - Oficina de soporte -->
                 <div class="card coverage-card" data-aos="fade-up" data-aos-delay="250">
                     <div class="coverage-icon">
                         <i class="fas fa-map-marker-alt"></i>
@@ -635,6 +707,7 @@
                     <p class="mt-2">Soporte técnico especializado</p>
                 </div>
                 
+                <!-- Cusco - Oficina de soporte -->
                 <div class="card coverage-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="coverage-icon">
                         <i class="fas fa-map-marker-alt"></i>
@@ -647,14 +720,17 @@
         </div>
     </section>
 
+    <!-- ========== SECCIÓN CTA - Llamada a la acción ========== -->
     <section class="section cta">
         <div class="container">
             <div class="cta-content" data-aos="zoom-in">
+                <!-- Título y descripción del CTA -->
                 <h2>¿Listo para transformar tu proyecto?</h2>
                 <p>
                     Contáctanos hoy y descubre cómo podemos llevar tu próximo proyecto 
                     al siguiente nivel con tecnología de vanguardia.
                 </p>
+                <!-- Botones de acción -->
                 <div class="cta-buttons">
                     <a href="https://wa.me/51950313642" target="_blank" class="btn btn-whatsapp btn-lg">
                         <i class="fab fa-whatsapp"></i> Chatear Ahora
@@ -667,9 +743,12 @@
         </div>
     </section>
 
+    <!-- ========== FOOTER - Pie de página ========== -->
     <footer class="footer">
         <div class="container">
+            <!-- Grid principal del footer -->
             <div class="footer-grid">
+                <!-- Columna de marca y redes sociales -->
                 <div class="footer-brand">
                     <a href="#" class="logo" style="display: block; margin-bottom: 20px;">
                         <img src="assets/images/logo.png" alt="EDS Logo" style="max-width: 200px; height: auto;">
@@ -678,6 +757,7 @@
                         Somos la empresa líder en edificaciones inteligentes en el sur del Perú, 
                         ofreciendo soluciones tecnológicas integrales para la construcción.
                     </p>
+                    <!-- Iconos de redes sociales -->
                     <div class="footer-social">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -686,6 +766,7 @@
                     </div>
                 </div>
                 
+                <!-- Columna de navegación -->
                 <div class="footer-links-col">
                     <h4 class="footer-title">Navegación</h4>
                     <ul class="footer-links">
@@ -698,6 +779,7 @@
                     </ul>
                 </div>
                 
+                <!-- Columna de servicios -->
                 <div class="footer-links-col">
                     <h4 class="footer-title">Servicios</h4>
                     <ul class="footer-links">
@@ -710,6 +792,7 @@
                     </ul>
                 </div>
                 
+                <!-- Columna de información de contacto -->
                 <div class="footer-contact-col">
                     <h4 class="footer-title">Contacto</h4>
                     <ul class="footer-contact">
@@ -745,6 +828,7 @@
                 </div>
             </div>
             
+            <!-- Barra inferior del footer con copyright y RUC -->
             <div class="footer-bottom">
                 <p>&copy; 2024 <a href="#">EDS Edificaciones Inteligentes SAC</a>. Todos los derechos reservados.</p>
                 <p>RUC: 20608965765</p>
@@ -752,6 +836,7 @@
         </div>
     </footer>
 
+    <!-- Script principal de la aplicación -->
     <script type="module" src="js/main.js"></script>
 </body>
 </html>
