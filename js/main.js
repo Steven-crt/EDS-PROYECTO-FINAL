@@ -7,6 +7,15 @@
 
 import { Animations, Particles } from './animations.js';
 
+const INTRO_SESSION_KEY = 'edsIntroSeen';
+const currentPath = window.location.pathname;
+const isIntroPage = currentPath.endsWith('intro.html');
+const isHomePage = currentPath.endsWith('index.html') || currentPath.endsWith('/eds-web/') || currentPath.endsWith('/eds-web');
+
+if (!sessionStorage.getItem(INTRO_SESSION_KEY) && isHomePage && !isIntroPage) {
+    window.location.replace('intro.html');
+}
+
 const App = {
     particlesInstance: null,
 
@@ -202,15 +211,14 @@ const App = {
 document.addEventListener('DOMContentLoaded', () => {
     App.init();
 
-    // Preloader Logic
     const preloader = document.getElementById('preloader');
     if (preloader) {
         setTimeout(() => {
             preloader.classList.add('fade-out');
             setTimeout(() => {
                 preloader.style.display = 'none';
-            }, 500); 
-        }, 1500); 
+            }, 500);
+        }, 3000);
     }
 });
 

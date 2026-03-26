@@ -694,6 +694,7 @@
 
       // Intro timing
       function skipIntro() {
+        sessionStorage.setItem("edsIntroSeen", "true");
         document.body.classList.add("fade-out");
         setTimeout(() => {
           window.location.href = "index.html";
@@ -701,6 +702,7 @@
       }
 
       setTimeout(() => {
+        sessionStorage.setItem("edsIntroSeen", "true");
         document.body.classList.add("fade-out");
       }, 7500);
 
