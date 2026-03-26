@@ -26,6 +26,7 @@ const App = {
         this.initAnimations();
         this.initParticles();
         this.initProjectFilters();
+        this.initProjectCards();
         this.initFormHandling();
     },
 
@@ -133,7 +134,7 @@ const App = {
 
                 projects.forEach(project => {
                     if (filter === 'all' || project.dataset.category === filter) {
-                        project.style.display = 'block';
+                        project.style.display = '';
                         setTimeout(() => project.classList.add('aos-animate'), 50);
                     } else {
                         project.classList.remove('aos-animate');
@@ -141,6 +142,41 @@ const App = {
                     }
                 });
             });
+        });
+    },
+
+    initProjectCards() {
+        const cards = document.querySelectorAll('.project-card');
+
+        if (!cards.length || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            return;
+        }
+
+        cards.forEach(card => {
+            const setCardTransform = (event) => {
+                const rect = card.getBoundingClientRect();
+                const pointerX = ((event.clientX - rect.left) / rect.width) * 100;
+                const pointerY = ((event.clientY - rect.top) / rect.height) * 100;
+                const rotateY = ((pointerX - 50) / 50) * 6;
+                const rotateX = ((50 - pointerY) / 50) * 6;
+
+                card.style.setProperty('--pointer-x', `${pointerX}%`);
+                card.style.setProperty('--pointer-y', `${pointerY}%`);
+                card.style.setProperty('--rotate-x', `${rotateX.toFixed(2)}deg`);
+                card.style.setProperty('--rotate-y', `${rotateY.toFixed(2)}deg`);
+                card.classList.add('is-tilting');
+            };
+
+            const resetCardTransform = () => {
+                card.style.setProperty('--pointer-x', '50%');
+                card.style.setProperty('--pointer-y', '50%');
+                card.style.setProperty('--rotate-x', '0deg');
+                card.style.setProperty('--rotate-y', '0deg');
+                card.classList.remove('is-tilting');
+            };
+
+            card.addEventListener('mousemove', setCardTransform);
+            card.addEventListener('mouseleave', resetCardTransform);
         });
     },
 
