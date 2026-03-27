@@ -1,0 +1,271 @@
+    <style>
+      /* ========== ESTILOS ADICIONALES PARA PÁGINA DE SOCIOS ========== */
+      .page-header {
+        background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+        color: white;
+        padding: 100px 0 60px;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .page-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon fill="rgba(255,255,255,0.05)" points="0,100 100,0 100,100"/></svg>');
+        background-size: cover;
+        opacity: 0.1;
+      }
+      
+      .page-title {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .page-subtitle {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        position: relative;
+        z-index: 1;
+      }
+      
+      /* ========== FILTROS DE CATEGORÍA ========== */
+      .category-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 40px 0;
+        justify-content: center;
+      }
+      
+      .category-btn {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid #e0e0e0;
+        color: #333;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      }
+      
+      .category-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        border-color: #1565c0;
+        color: #1565c0;
+      }
+      
+      .category-btn.active {
+        background: linear-gradient(135deg, #1565c0, #0d47a1);
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 6px 20px rgba(21, 101, 192, 0.3);
+      }
+      
+      .category-btn i {
+        font-size: 1.2rem;
+      }
+      
+      /* ========== GRID DE SOCIOS ========== */
+      .socios-container {
+        padding: 60px 0 100px;
+        background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      }
+      
+      .socios-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 40px;
+        margin-top: 50px;
+      }
+      
+      .socio-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px 20px;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.05);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+      }
+      
+      .socio-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #1565c0, #f0b429);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+      }
+      
+      .socio-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(21, 101, 192, 0.15);
+      }
+      
+      .socio-card:hover::before {
+        transform: scaleX(1);
+      }
+      
+      .socio-logo {
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        position: relative;
+      }
+      
+      .socio-logo img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: all 0.4s ease;
+        filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+      }
+      
+      .socio-card:hover .socio-logo img {
+        transform: scale(1.1) rotate(2deg);
+        filter: drop-shadow(0 10px 25px rgba(21, 101, 192, 0.2));
+      }
+      
+      .socio-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-top: 15px;
+        text-transform: capitalize;
+      }
+      
+      .socio-category {
+        display: inline-block;
+        background: rgba(21, 101, 192, 0.1);
+        color: #1565c0;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-top: 8px;
+      }
+      
+      /* ========== ANIMACIONES ========== */
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      .socio-card:nth-child(even) {
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      .socio-card:nth-child(odd) {
+        animation: float 6s ease-in-out infinite 3s;
+      }
+      
+      /* ========== DECORACIÓN DE FONDO ========== */
+      .decorative-shapes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
+      
+      .shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.05;
+      }
+      
+      .shape-1 {
+        width: 300px;
+        height: 300px;
+        background: #1565c0;
+        top: 10%;
+        left: 5%;
+        animation: pulse 8s ease-in-out infinite;
+      }
+      
+      .shape-2 {
+        width: 200px;
+        height: 200px;
+        background: #f0b429;
+        bottom: 20%;
+        right: 10%;
+        animation: pulse 10s ease-in-out infinite 2s;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.05; }
+        50% { transform: scale(1.2); opacity: 0.08; }
+      }
+      
+      /* ========== ESTADÍSTICAS ========== */
+      .stats-bar {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        margin: 50px 0;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        text-align: center;
+      }
+      
+      .stat-item {
+        padding: 20px;
+      }
+      
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #1565c0, #f0b429);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+      }
+      
+      .stat-label {
+        color: #666;
+        font-weight: 500;
+      }
+      
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 768px) {
+        .page-title {
+          font-size: 2.5rem;
+        }
+        
+        .socios-grid {
+          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+          gap: 30px;
+        }
+        
+        .category-btn {
+          padding: 10px 18px;
+          font-size: 0.9rem;
+        }
+      }
+    </style>

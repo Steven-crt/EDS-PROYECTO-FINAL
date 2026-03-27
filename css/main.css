@@ -1585,19 +1585,15 @@
 
 .partner-item {
     flex-shrink: 0;
-    width: 150px;
-    height: 80px;
+    width: 180px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: grayscale(100%) brightness(0.7);
-    opacity: 0.5;
     transition: var(--transition-fast);
 }
 
 .partner-item:hover {
-    filter: grayscale(0%) brightness(1);
-    opacity: 1;
     transform: scale(1.1);
 }
 
@@ -1606,6 +1602,7 @@
     max-height: 100%;
     object-fit: contain;
 }
+
 
 /* ================================================
    COVERAGE SECTION

@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Socios estratégicos de EDS Edificaciones Inteligentes - Marcas líderes en tecnología, seguridad y telecomunicaciones."
+    />
+    <title>Socios | EDS Edificaciones Inteligentes</title>
+
+    <link rel="stylesheet" href="../css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="../assets/eds_useful_images/logo.png" />
+    
+    <style>
+      /* ========== ESTILOS BASE ========== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Montserrat', sans-serif;
+        color: #2c3e50;
+        line-height: 1.6;
+        background-color: #f8fafc;
+        overflow-x: hidden;
+      }
+      
+      /* ========== HEADER DE PÁGINA ========== */
+      .page-header {
+        background: linear-gradient(-45deg, #1565c0, #0d47a1, #f0b429, #ff8a00);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: white;
+        padding: 120px 0 80px;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+      
+      @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      .page-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon fill="rgba(255,255,255,0.05)" points="0,100 100,0 100,100"/></svg>');
+        background-size: cover;
+        opacity: 0.1;
+      }
+      
+      .page-header::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none"><path fill="%23f8fafc" d="M0,0 C480,120 960,120 1440,0 L1440,120 L0,120 Z"/></svg>');
+        background-size: cover;
+        background-position: center;
+      }
+      
+      .page-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+        letter-spacing: -1px;
+        text-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      }
+      
+      .page-title .highlight {
+        color: #ffffff;
+        position: relative;
+        text-shadow: 0 0 20px rgba(255,255,255,0.5);
+      }
+      
+      .page-title .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #ffffff, #f0b429);
+        border-radius: 2px;
+        box-shadow: 0 0 10px rgba(255,255,255,0.5);
+      }
+      
+      .title-icon {
+        margin-right: 15px;
+        animation: pulseIcon 2s infinite;
+        color: #f0b429;
+        text-shadow: 0 0 20px rgba(240, 180, 41, 0.5);
+      }
+      
+      @keyframes pulseIcon {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+      
+      .page-subtitle {
+        font-size: 1.4rem;
+        opacity: 1;
+        max-width: 800px;
+        margin: 20px auto 0;
+        position: relative;
+        z-index: 1;
+        font-weight: 500;
+        line-height: 1.7;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        background: rgba(0, 0, 0, 0.25);
+        padding: 20px 30px;
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      /* ========== FILTROS DE CATEGORÍA ========== */
+      .category-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 50px 0;
+        justify-content: center;
+      }
+      
+      .category-btn {
+        background: white;
+        border: none;
+        color: #5a6c7d;
+        padding: 14px 28px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        font-family: 'Montserrat', sans-serif;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .category-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, #1565c0, #0d47a1);
+        transform: scaleY(0);
+        transform-origin: bottom;
+        transition: transform 0.3s ease;
+      }
+      
+      .category-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+        color: #1565c0;
+      }
+      
+      .category-btn:hover::before {
+        transform: scaleY(1);
+      }
+      
+      .category-btn.active {
+        background: linear-gradient(135deg, #1565c0, #0d47a1);
+        color: white;
+        box-shadow: 0 10px 30px rgba(21, 101, 192, 0.3);
+      }
+      
+      .category-btn.active::before {
+        transform: scaleY(0);
+      }
+      
+      .category-btn i {
+        font-size: 1.2rem;
+      }
+      
+      /* ========== CONTENEDOR PRINCIPAL ========== */
+      .socios-container {
+        padding: 80px 0 120px;
+        background: #f8fafc;
+        position: relative;
+      }
+      
+      /* ========== GRID DE SOCIOS ========== */
+      .socios-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 35px;
+        margin-top: 60px;
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 20px;
+      }
+      
+      .socio-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px 25px;
+        text-align: center;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.03);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .socio-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #1565c0, #f0b429);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s ease;
+      }
+      
+      .socio-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(21, 101, 192, 0.02), rgba(240, 180, 41, 0.02));
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      
+      .socio-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 25px 60px rgba(21, 101, 192, 0.1);
+      }
+      
+      .socio-card:hover::before {
+        transform: scaleX(1);
+      }
+      
+      .socio-card:hover::after {
+        opacity: 1;
+      }
+      
+      .socio-logo {
+        height: 140px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .socio-logo img {
+        max-width: 85%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        filter: drop-shadow(0 8px 20px rgba(0,0,0,0.08));
+      }
+      
+      .socio-card:hover .socio-logo img {
+        transform: scale(1.15) translateY(-5px);
+        filter: drop-shadow(0 15px 30px rgba(21, 101, 192, 0.15));
+      }
+      
+      .socio-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-top: 15px;
+        text-transform: capitalize;
+        letter-spacing: 0.5px;
+        position: relative;
+        z-index: 1;
+        line-height: 1.4;
+      }
+      
+      .socio-category {
+        display: inline-block;
+        background: linear-gradient(135deg, rgba(21, 101, 192, 0.08), rgba(21, 101, 192, 0.04));
+        color: #1565c0;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-top: 12px;
+        letter-spacing: 0.5px;
+        position: relative;
+        z-index: 1;
+      }
+      
+      /* ========== BARRA DE ESTADÍSTICAS ========== */
+      .stats-bar {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        margin: 60px auto;
+        max-width: 1200px;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 40px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .stats-bar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #1565c0, #f0b429, #ff8a00);
+      }
+      
+      .stat-item {
+        padding: 25px;
+        position: relative;
+      }
+      
+      .stat-item::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 20%;
+        height: 60%;
+        width: 1px;
+        background: linear-gradient(180deg, transparent, rgba(0,0,0,0.05), transparent);
+      }
+      
+      .stat-item:last-child::after {
+        display: none;
+      }
+      
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #1565c0, #0d47a1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 12px;
+        line-height: 1;
+      }
+      
+      .stat-label {
+        color: #5a6c7d;
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      /* ========== DECORACIÓN DE FONDO ========== */
+      .decorative-shapes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
+      
+      .shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.03;
+      }
+      
+      .shape-1 {
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(135deg, #1565c0, #0d47a1);
+        top: 10%;
+        left: -10%;
+        animation: float 20s ease-in-out infinite;
+      }
+      
+      .shape-2 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(135deg, #f0b429, #ff8a00);
+        bottom: 15%;
+        right: -5%;
+        animation: float 25s ease-in-out infinite 5s;
+      }
+      
+      .shape-3 {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, #1565c0, #f0b429);
+        top: 50%;
+        left: 50%;
+        animation: float 15s ease-in-out infinite 2s;
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        33% { transform: translateY(-30px) rotate(10deg); }
+        66% { transform: translateY(20px) rotate(-5deg); }
+      }
+      
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 1200px) {
+        .socios-grid {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+      }
+      
+      @media (max-width: 992px) {
+        .page-title {
+          font-size: 2.8rem;
+        }
+        
+        .stats-bar {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .page-header {
+          padding: 100px 0 70px;
+        }
+        
+        .page-title {
+          font-size: 2.5rem;
+        }
+        
+        .page-subtitle {
+          font-size: 1.1rem;
+        }
+        
+        .socios-grid {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 25px;
+        }
+        
+        .category-filters {
+          gap: 10px;
+        }
+        
+        .category-btn {
+          padding: 12px 20px;
+          font-size: 0.9rem;
+        }
+        
+        .stats-bar {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        
+        .stat-item::after {
+          display: none;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .page-title {
+          font-size: 2rem;
+        }
+        
+        .socios-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .category-btn {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="intro-panel">
+            <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
+            <div class="intro-loaders">
+                <div class="loader loader--e">
+                    <svg viewBox="0 0 80 80"><path d="M60 12 H22 V68 H60 M22 40 H52"></path></svg>
+                </div>
+                <div class="loader loader--d">
+                    <svg viewBox="0 0 80 80"><path d="M22 12 V68 H50 Q62 68 62 56 V24 Q62 12 50 12 H22"></path></svg>
+                </div>
+                <div class="loader loader--s">
+                    <svg viewBox="0 0 80 80"><path d="M52 16 H28 Q16 16 16 28 Q16 40 28 40 H52 Q64 40 64 52 Q64 64 52 64 H28 Q16 64 16 52"></path></svg>
+                </div>
+            </div>
+            <div class="intro-status">
+                <span class="status-dot"></span>
+                <span>Cargando socios...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cursor personalizado -->
+    <div class="cursor-follower"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-container">
+        <a href="../index.html" class="logo">
+          <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" class="logo-img" />
+          <span class="logo-text">EDS <span>INTELIGENTES</span></span>
+        </a>
+
+        <nav class="nav-menu">
+          <a href="../index.html" class="nav-link">Inicio</a>
+          <a href="../index.html#nosotros" class="nav-link">Nosotros</a>
+          <a href="../index.html#servicios" class="nav-link">Servicios</a>
+          <a href="proyectos.html" class="nav-link">Proyectos</a>
+          <a href="socios.html" class="nav-link active">Socios</a>
+          <a href="../index.html#cobertura" class="nav-link">Cobertura</a>
+          <a href="contacto.html" class="nav-link">Contacto</a>
+        </nav>
+
+        <button class="menu-toggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-title" data-aos="fade-up">
+          <i class="fas fa-handshake title-icon"></i> Nuestros <span style="color: #f0b429;">Socios</span> Estratégicos
+        </h1>
+        <p class="page-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Representamos a las marcas más prestigiosas del mundo en tecnología, seguridad y soluciones inteligentes para la construcción.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="socios-container">
+      <div class="decorative-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+      </div>
+      
+      <div class="container">
+        <!-- Stats Bar -->
+        <div class="stats-bar" data-aos="fade-up">
+          <div class="stat-item">
+            <div class="stat-number">59+</div>
+            <div class="stat-label">Socios Estratégicos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Categorías</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Certificados</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Soporte Técnico</div>
+          </div>
+        </div>
+        
+        <!-- Category Filters -->
+        <div class="category-filters" data-aos="fade-up" data-aos-delay="100">
+          <button class="category-btn active" data-filter="all">
+            <i class="fas fa-th"></i> Todos
+          </button>
+          <button class="category-btn" data-filter="seguridad">
+            <i class="fas fa-shield-alt"></i> Seguridad
+          </button>
+          <button class="category-btn" data-filter="telecomunicaciones">
+            <i class="fas fa-network-wired"></i> Telecomunicaciones
+          </button>
+          <button class="category-btn" data-filter="energia">
+            <i class="fas fa-bolt"></i> Energía
+          </button>
+          <button class="category-btn" data-filter="construccion">
+            <i class="fas fa-building"></i> Construcción
+          </button>
+          <button class="category-btn" data-filter="audio">
+            <i class="fas fa-volume-up"></i> Audio/Video
+          </button>
+          <button class="category-btn" data-filter="incendios">
+            <i class="fas fa-fire"></i> Control Incendios
+          </button>
+          <button class="category-btn" data-filter="automatizacion">
+            <i class="fas fa-microchip"></i> Automatización
+          </button>
+        </div>
+        
+        <!-- Socios Grid -->
+        <div class="socios-grid" id="sociosGrid">
+          <!-- Los socios se cargarán dinámicamente con JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="../index.html" class="logo" style="display: block; margin-bottom: 20px;">
+              <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" style="max-width: 200px; height: auto;" />
+            </a>
+            <p>
+              Somos la empresa líder en edificaciones inteligentes en el sur del Perú, ofreciendo soluciones tecnológicas integrales para la construcción.
+            </p>
+            <div class="footer-social">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/51950313642" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+          
+          <div class="footer-links-col">
+            <h4 class="footer-title">Navegación</h4>
+            <ul class="footer-links">
+              <li><a href="../index.html">Inicio</a></li>
+              <li><a href="../index.html#nosotros">Nosotros</a></li>
+              <li><a href="../index.html#servicios">Servicios</a></li>
+              <li><a href="proyectos.html">Proyectos</a></li>
+              <li><a href="socios.html">Socios</a></li>
+              <li><a href="../index.html#cobertura">Cobertura</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-links-col">
+            <h4 class="footer-title">Servicios</h4>
+            <ul class="footer-links">
+              <li><a href="../index.html#servicios">Construcción Civil</a></li>
+              <li><a href="../index.html#servicios">Video Vigilancia</a></li>
+              <li><a href="../index.html#servicios">Redes y Telecom</a></li>
+              <li><a href="../index.html#servicios">Control de Accesos</a></li>
+              <li><a href="../index.html#servicios">Energía Renovable</a></li>
+              <li><a href="../index.html#servicios">Cableado Estructurado</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-contact-col">
+            <h4 class="footer-title">Contacto</h4>
+            <ul class="footer-contact">
+              <li>
+                <i class="fas fa-phone"></i>
+                <div>
+                  <p><strong>WhatsApp:</strong></p>
+                  <a href="https://wa.me/51950313642">950 313 642</a>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <p><strong>Email:</strong></p>
+                  <a href="mailto:rocio.jara@edin-tel.com">rocio.jara@edin-tel.com</a>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <p><strong>Dirección:</strong></p>
+                  <p>Urb. Las Peñas A-35, Sachaca, Arequipa</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; 2024 <a href="../index.html">EDS Edificaciones Inteligentes SAC</a>. Todos los derechos reservados.</p>
+          <p>RUC: 20608965765</p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="../js/main.js"></script>
+    
+    <script>
+      // Datos de los socios
+      const socios = [
+        { nombre: "5elem", archivo: "5elem.png", categoria: "automatizacion" },
+        { nombre: "Allied Telesis", archivo: "allied_telesis.png", categoria: "telecomunicaciones" },
+        { nombre: "Amphenol", archivo: "amphenol.png", categoria: "construccion" },
+        { nombre: "Ansul", archivo: "ansul.png", categoria: "incendios" },
+        { nombre: "APC Schneider", archivo: "apc_schneider.png", categoria: "energia" },
+        { nombre: "Aruba HP", archivo: "aruba_hp.png", categoria: "telecomunicaciones" },
+        { nombre: "Atlona", archivo: "atlona.png", categoria: "audio" },
+        { nombre: "Avaya", archivo: "avaya.png", categoria: "telecomunicaciones" },
+        { nombre: "Avigilon", archivo: "avigilon.png", categoria: "seguridad" },
+        { nombre: "Axis", archivo: "axis.png", categoria: "seguridad" },
+        { nombre: "Belden", archivo: "belden.png", categoria: "construccion" },
+        { nombre: "Bosch", archivo: "bosch.png", categoria: "seguridad" },
+        { nombre: "Bticino", archivo: "bticino.png", categoria: "construccion" },
+        { nombre: "Cablofil", archivo: "cablofil.png", categoria: "construccion" },
+        { nombre: "Cambium Networks", archivo: "cambium_networks.png", categoria: "telecomunicaciones" },
+        { nombre: "Cisco", archivo: "cisco.png", categoria: "telecomunicaciones" },
+        { nombre: "Cla-val", archivo: "cla_val.png", categoria: "construccion" },
+        { nombre: "Corning", archivo: "corning.png", categoria: "construccion" },
+        { nombre: "Dahua", archivo: "dahua.png", categoria: "seguridad" },
+        { nombre: "Dahua Acceso", archivo: "dahua_acceso.png", categoria: "seguridad" },
+        { nombre: "Dell EMC", archivo: "dell_emc.png", categoria: "telecomunicaciones" },
+        { nombre: "Eaton", archivo: "eaton.png", categoria: "energia" },
+        { nombre: "Emerson", archivo: "emerson.png", categoria: "energia" },
+        { nombre: "Firechem", archivo: "firechem.png", categoria: "incendios" },
+        { nombre: "Firetrol", archivo: "firetrol.png", categoria: "incendios" },
+        { nombre: "Flir", archivo: "flir.png", categoria: "seguridad" },
+        { nombre: "Furukawa", archivo: "furukawa.png", categoria: "construccion" },
+        { nombre: "General Cable", archivo: "general_cable.png", categoria: "construccion" },
+        { nombre: "Hanwha", archivo: "hanwha.png", categoria: "seguridad" },
+        { nombre: "Honeywell", archivo: "honeywell.png", categoria: "seguridad" },
+        { nombre: "Intelbras", archivo: "intelbras.png", categoria: "seguridad" },
+        { nombre: "ISS", archivo: "iss.png", categoria: "automatizacion" },
+        { nombre: "JBL Harman", archivo: "jbl_harman.png", categoria: "audio" },
+        { nombre: "Juniper", archivo: "juniper.png", categoria: "telecomunicaciones" },
+        { nombre: "Kidde", archivo: "kidde.png", categoria: "incendios" },
+        { nombre: "Kramer", archivo: "kramer.png", categoria: "audio" },
+        { nombre: "Legrand", archivo: "legrand.png", categoria: "energia" },
+        { nombre: "LG", archivo: "lg.png", categoria: "audio" },
+        { nombre: "Linkbasic", archivo: "linkbasic.png", categoria: "telecomunicaciones" },
+        { nombre: "Milestone", archivo: "milestone.png", categoria: "seguridad" },
+        { nombre: "Mircom", archivo: "mircom.png", categoria: "seguridad" },
+        { nombre: "Motorola", archivo: "motorola.png", categoria: "telecomunicaciones" },
+        { nombre: "Optral", archivo: "optral.png", categoria: "construccion" },
+        { nombre: "Panduit", archivo: "panduit.png", categoria: "energia" },
+        { nombre: "Polycom", archivo: "polycom.png", categoria: "telecomunicaciones" },
+        { nombre: "Radwin", archivo: "radwin.png", categoria: "telecomunicaciones" },
+        { nombre: "Risco", archivo: "risco.png", categoria: "seguridad" },
+        { nombre: "Rittal", archivo: "rittal.png", categoria: "energia" },
+        { nombre: "Ruckus", archivo: "ruckus.png", categoria: "telecomunicaciones" },
+        { nombre: "Shure", archivo: "shure.png", categoria: "audio" },
+        { nombre: "Siemon", archivo: "siemon.png", categoria: "energia" },
+        { nombre: "SmartPTT", archivo: "smartptt.png", categoria: "automatizacion" },
+        { nombre: "Sony Ipela", archivo: "sony_ipela.png", categoria: "seguridad" },
+        { nombre: "Systimax", archivo: "systimax.png", categoria: "energia" },
+        { nombre: "Trbonet", archivo: "trbonet.png", categoria: "automatizacion" },
+        { nombre: "Tripp Lite", archivo: "tripp_lite.png", categoria: "energia" },
+        { nombre: "WaveIP", archivo: "waveip.png", categoria: "telecomunicaciones" },
+        { nombre: "Yamaha", archivo: "yamaha.png", categoria: "audio" },
+        { nombre: "ZKTeco", archivo: "zkteco.png", categoria: "seguridad" }
+      ];
+      
+      // Renderizar socios
+      function renderSocios(filtro = 'all') {
+        const grid = document.getElementById('sociosGrid');
+        if (!grid) {
+          console.error('No se encontró el grid de socios');
+          return;
+        }
+        
+        // Limpiar grid
+        grid.innerHTML = '';
+        
+        // Filtrar socios
+        const sociosFiltrados = filtro === 'all' 
+          ? socios 
+          : socios.filter(socio => socio.categoria === filtro);
+        
+        console.log(`Filtro: ${filtro}, Socios encontrados: ${sociosFiltrados.length}`);
+        
+        // Si no hay socios, mostrar mensaje
+        if (sociosFiltrados.length === 0) {
+          grid.innerHTML = '<div class="no-socios">No hay socios en esta categoría</div>';
+          return;
+        }
+        
+        // Renderizar cada socio
+        sociosFiltrados.forEach((socio, index) => {
+          const card = document.createElement('div');
+          card.className = 'socio-card';
+          
+          // Animación de entrada
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(30px)';
+          card.style.transition = 'all 0.5s ease';
+          
+          card.innerHTML = `
+            <div class="socio-logo">
+              <img src="../assets/logos_named/${socio.archivo}" alt="${socio.nombre}" />
+            </div>
+            <h3 class="socio-name">${socio.nombre}</h3>
+            <span class="socio-category">${getCategoryName(socio.categoria)}</span>
+          `;
+          
+          grid.appendChild(card);
+          
+          // Animar entrada con delay
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, index * 100);
+        });
+      }
+      
+      // Obtener nombre legible de categoría
+      function getCategoryName(categoria) {
+        const categorias = {
+          seguridad: 'Seguridad',
+          telecomunicaciones: 'Telecomunicaciones',
+          energia: 'Energía',
+          construccion: 'Construcción',
+          audio: 'Audio/Video',
+          incendios: 'Control Incendios',
+          automatizacion: 'Automatización'
+        };
+        return categorias[categoria] || 'General';
+      }
+      
+      // Event listeners para filtros
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM cargado, inicializando socios...');
+        
+        // Renderizar todos los socios inicialmente
+        renderSocios();
+        
+        // Configurar filtros
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        console.log(`Botones de categoría encontrados: ${categoryBtns.length}`);
+        
+        categoryBtns.forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remover clase active de todos
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            // Agregar active al botón clickeado
+            this.classList.add('active');
+            
+            // Obtener filtro y renderizar
+            const filtro = this.getAttribute('data-filter');
+            console.log(`Clic en filtro: ${filtro}`);
+            renderSocios(filtro);
+          });
+        });
+        
+        // Ocultar preloader cuando la página esté lista
+        setTimeout(() => {
+          const preloader = document.getElementById('preloader');
+          if (preloader) {
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+              preloader.style.display = 'none';
+            }, 500);
+          }
+        }, 1500);
+      });
+    </script>
+  </body>
+</html>
