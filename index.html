@@ -1,850 +1,1116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
+  <head>
     <!-- Configuración de caracteres y viewport para responsividad -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- Meta tags SEO para mejorar posicionamiento en buscadores -->
-    <meta name="description" content="EDS Edificaciones Inteligentes SAC - Soluciones tecnológicas integrales para la construcción en el sur del Perú. Arequipa, Tacna, Juliaca, Cusco.">
-    <meta name="keywords" content="edificaciones inteligentes, construcción, tecnología, IoT, video vigilancia, redes, Arequipa">
-    <meta name="author" content="EDS Edificaciones Inteligentes">
-    
+    <meta
+      name="description"
+      content="EDS Edificaciones Inteligentes SAC - Soluciones tecnológicas integrales para la construcción en el sur del Perú. Arequipa, Tacna, Juliaca, Cusco."
+    />
+    <meta
+      name="keywords"
+      content="edificaciones inteligentes, construcción, tecnología, IoT, video vigilancia, redes, Arequipa"
+    />
+    <meta name="author" content="EDS Edificaciones Inteligentes" />
+
     <!-- Meta tags Open Graph para redes sociales -->
-    <meta property="og:title" content="EDS Edificaciones Inteligentes - Soluciones Tecnológicas para Construcción">
-    <meta property="og:description" content="Construcción con enfoque tecnológico, sistemas de comunicación, seguridad electrónica e IoT.">
-    <meta property="og:type" content="website">
-    
-    <title>EDS Edificaciones Inteligentes | Soluciones Tecnológicas para Construcción</title>
-    
+    <meta
+      property="og:title"
+      content="EDS Edificaciones Inteligentes - Soluciones Tecnológicas para Construcción"
+    />
+    <meta
+      property="og:description"
+      content="Construcción con enfoque tecnológico, sistemas de comunicación, seguridad electrónica e IoT."
+    />
+    <meta property="og:type" content="website" />
+
+    <title>
+      EDS Edificaciones Inteligentes | Soluciones Tecnológicas para Construcción
+    </title>
+
     <!-- Hojas de estilos principales y Font Awesome para iconos -->
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="icon" type="image/png" href="assets/eds_useful_images/logo.png">
-</head>
-<body>
+    <link rel="stylesheet" href="css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/eds_useful_images/logo.png"
+    />
+  </head>
+  <body>
     <!-- ========== HEADER CON NAVEGACIÓN ========== -->
     <header class="header">
-        <div class="container header-container">
-            <!-- Logo de la empresa con enlace al inicio -->
-            <a href="#" class="logo">
-                <img src="assets/eds_useful_images/logo.png" alt="EDS Logo" class="logo-img">
-                <span class="logo-text">EDS <span>INTELIGENTES</span></span>
-            </a>
-            
-            <!-- Menú de navegación principal -->
-            <nav class="nav-menu">
-                <a href="#inicio" class="nav-link active">Inicio</a>
-                <a href="#nosotros" class="nav-link">Nosotros</a>
-                <a href="#servicios" class="nav-link">Servicios</a>
-                <a href="html/proyectos.html" class="nav-link">Proyectos</a>
-                <a href="#cobertura" class="nav-link">Cobertura</a>
-                <a href="html/contacto.html" class="nav-link">Contacto</a>
-            </nav>
-            
-            <!-- Botón hamburguesa para menú móvil -->
-            <button class="menu-toggle" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
+      <div class="container header-container">
+        <!-- Logo de la empresa con enlace al inicio -->
+        <a href="#" class="logo">
+          <img
+            src="assets/eds_useful_images/logo.png"
+            alt="EDS Logo"
+            class="logo-img"
+          />
+          <span class="logo-text">EDS <span>INTELIGENTES</span></span>
+        </a>
+
+        <!-- Menú de navegación principal -->
+        <nav class="nav-menu">
+          <a href="#inicio" class="nav-link active">Inicio</a>
+          <a href="#nosotros" class="nav-link">Nosotros</a>
+          <a href="#servicios" class="nav-link">Servicios</a>
+          <a href="html/proyectos.html" class="nav-link">Proyectos</a>
+          <a href="#cobertura" class="nav-link">Cobertura</a>
+          <a href="html/contacto.html" class="nav-link">Contacto</a>
+        </nav>
+
+        <!-- Botón hamburguesa para menú móvil -->
+        <button class="menu-toggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </header>
 
     <!-- ========== SECCIÓN HERO - Banner principal ========== -->
     <section id="inicio" class="hero">
-        <!-- Imagen de fondo del hero -->
-        <div class="hero-bg">
-            <img src="assets/eds_useful_images/hero_portada.jpg" alt="Construcción moderna">
+      <!-- Imagen de fondo del hero -->
+      <div class="hero-bg">
+        <img
+          src="assets/eds_useful_images/hero_portada.jpg"
+          alt="Construcción moderna"
+        />
+      </div>
+      <!-- Overlay semitransparente sobre la imagen -->
+      <div class="hero-overlay glass-overlay"></div>
+
+      <!-- Canvas para animación de partículas -->
+      <canvas id="particles"></canvas>
+
+      <!-- Contenedor del Hero modificado con Glassmorphism -->
+      <div class="container hero-glass-container">
+        <!-- Glassmorphism content card -->
+        <div class="hero-glass-card" data-aos="fade-right">
+          <div class="glass-badge bounce">
+            <i class="fas fa-check-circle"></i> +10 años de experiencia
+          </div>
+
+          <h1 class="hero-title">
+            Construyendo el <span class="highlight">Futuro</span>
+            con Tecnología
+          </h1>
+
+          <p class="hero-description">
+            Desarrollamos proyectos de construcciones inteligentes con enfoque
+            tecnológico, sistemas de comunicación, seguridad electrónica e
+            Internet de las cosas.
+          </p>
+
+          <div class="hero-buttons">
+            <a
+              href="https://wa.me/51950313642"
+              target="_blank"
+              class="btn btn-whatsapp shine-effect"
+            >
+              <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
+            </a>
+            <a
+              href="#servicios"
+              class="btn btn-outline"
+              style="color: white; border-color: rgba(255, 255, 255, 0.5)"
+            >
+              <i class="fas fa-cogs"></i> Nuestros Servicios
+            </a>
+          </div>
         </div>
-        <!-- Overlay semitransparente sobre la imagen -->
-        <div class="hero-overlay glass-overlay"></div>
-        
-        <!-- Canvas para animación de partículas -->
-        <canvas id="particles"></canvas>
-        
-        <!-- Contenedor del Hero modificado con Glassmorphism -->
-        <div class="container hero-glass-container">
-            <!-- Glassmorphism content card -->
-            <div class="hero-glass-card" data-aos="fade-right">
-                <div class="glass-badge bounce">
-                    <i class="fas fa-check-circle"></i> +10 años de experiencia
-                </div>
-                
-                <h1 class="hero-title">
-                    Construyendo el <span class="highlight">Futuro</span><br>
-                    con Tecnología
-                </h1>
-                
-                <p class="hero-description">
-                    Desarrollamos proyectos de construcciones inteligentes con enfoque tecnológico, 
-                    sistemas de comunicación, seguridad electrónica e Internet de las cosas.
-                </p>
-                
-                <div class="hero-buttons">
-                    <a href="https://wa.me/51950313642" target="_blank" class="btn btn-whatsapp shine-effect">
-                        <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
-                    </a>
-                    <a href="#servicios" class="btn btn-outline" style="color: white; border-color: rgba(255,255,255,0.5);">
-                        <i class="fas fa-cogs"></i> Nuestros Servicios
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Floating Elements para simular high-tech asimetrico -->
-            <div class="hero-floating-elements" data-aos="fade-left" data-aos-delay="300">
-                <div class="floating-badge badge-1 float-anim-1">
-                    <i class="fas fa-shield-alt"></i> Seguridad 100%
-                </div>
-                <div class="floating-badge badge-2 float-anim-2">
-                    <i class="fas fa-network-wired"></i> Redes y Control
-                </div>
-                <div class="floating-badge badge-3 float-anim-3">
-                    <i class="fas fa-headset"></i> Soporte 24/7
-                </div>
-            </div>
+
+        <!-- Floating Elements para simular high-tech asimetrico -->
+        <div
+          class="hero-floating-elements"
+          data-aos="fade-left"
+          data-aos-delay="300"
+        >
+          <div class="floating-badge badge-1 float-anim-1">
+            <i class="fas fa-shield-alt"></i> Seguridad 100%
+          </div>
+          <div class="floating-badge badge-2 float-anim-2">
+            <i class="fas fa-network-wired"></i> Redes y Control
+          </div>
+          <div class="floating-badge badge-3 float-anim-3">
+            <i class="fas fa-headset"></i> Soporte 24/7
+          </div>
         </div>
-        
-        <!-- Indicador de scroll para bajar -->
-        <a href="#nosotros" class="hero-scroll" style="color: rgba(255,255,255,0.8);">
-            <span>Descubre más</span>
-            <i class="fas fa-chevron-down"></i>
-        </a>
+      </div>
     </section>
 
     <!-- ========== SECCIÓN NOSOTROS - Información sobre la empresa ========== -->
     <section id="nosotros" class="section about">
-        <div class="container">
-            <div class="about-grid">
-                <!-- Imagen representativa del equipo -->
-                <div class="about-image" data-aos="fade-right">
-                    <img src="assets/eds_useful_images/sala_conferencias.jpg" alt="Equipo EDS">
-                </div>
-                
-                <!-- Contenido descriptivo de la empresa -->
-                <div class="about-content" data-aos="fade-left">
-                    <span class="badge badge-primary">
-                        <i class="fas fa-building"></i> Desde 2014
-                    </span>
-                    
-                    <h2>Somos <span class="highlight">EDS</span> Edificaciones Inteligentes</h2>
-                    
-                    <!-- Descripción de la empresa -->
-                    <p>
-                        Somos una empresa líder en el sur del Perú especializada en desarrollar 
-                        proyectos de construcciones con enfoque tecnológico. Garantizamos el éxito 
-                        mediante capacitación constante y certificaciones de los principales 
-                        fabricantes de la industria.
-                    </p>
-                    
-                    <!-- Información de la gerencia -->
-                    <p>
-                        Nuestra gerente general, <strong>Rocío Jara Monteagudo</strong>, lidera un 
-                        equipo comprometido con la excelencia y la innovación tecnológica.
-                    </p>
-                    
-                    <!-- Características destacadas de la empresa -->
-                    <div class="about-features">
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>100% Certificados</span>
-                        </div>
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Marcas de Prestigio</span>
-                        </div>
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Soporte 24/7</span>
-                        </div>
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Cobertura Nacional</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Botón para ver proyectos -->
-                    <a href="html/proyectos.html" class="btn btn-primary mt-3">
-                        Ver Nuestros Proyectos
-                    </a>
-                </div>
+      <div class="container">
+        <div class="about-grid">
+          <!-- Imagen representativa del equipo -->
+          <div class="about-image" data-aos="fade-right">
+            <img
+              src="assets/eds_useful_images/sala_conferencias.jpg"
+              alt="Equipo EDS"
+            />
+          </div>
+
+          <!-- Contenido descriptivo de la empresa -->
+          <div class="about-content" data-aos="fade-left">
+            <span class="badge badge-primary">
+              <i class="fas fa-building"></i> Desde 2014
+            </span>
+
+            <h2>
+              Somos <span class="highlight">EDS</span> Edificaciones
+              Inteligentes
+            </h2>
+
+            <!-- Descripción de la empresa -->
+            <p>
+              Somos una empresa líder en el sur del Perú especializada en
+              desarrollar proyectos de construcciones con enfoque tecnológico.
+              Garantizamos el éxito mediante capacitación constante y
+              certificaciones de los principales fabricantes de la industria.
+            </p>
+
+            <!-- Información de la gerencia -->
+            <p>
+              Nuestra gerente general, <strong>Rocío Jara Monteagudo</strong>,
+              lidera un equipo comprometido con la excelencia y la innovación
+              tecnológica.
+            </p>
+
+            <!-- Características destacadas de la empresa -->
+            <div class="about-features">
+              <div class="about-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>100% Certificados</span>
+              </div>
+              <div class="about-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Marcas de Prestigio</span>
+              </div>
+              <div class="about-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Soporte 24/7</span>
+              </div>
+              <div class="about-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Cobertura Nacional</span>
+              </div>
             </div>
+
+            <!-- Botón para ver proyectos -->
+            <a href="html/proyectos.html" class="btn btn-primary mt-3">
+              Ver Nuestros Proyectos
+            </a>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- ========== SECCIÓN MISIÓN, VISIÓN Y VALORES ========== -->
     <section class="section mv">
-        <div class="container">
-            <!-- Título y subtítulo de la sección -->
-            <div class="section-title" data-aos="fade-up">
-                Nuestros <span class="highlight">Pilares</span>
-            </div>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-                Principios que guían cada proyecto que ejecutamos
-            </p>
-            
-            <!-- Grid con las tres tarjetas: Misión, Visión, Valores -->
-            <div class="mv-grid">
-                <!-- Tarjeta de Misión -->
-                <div class="card mv-card" data-aos="fade-up" data-aos-delay="150">
-                    <i class="fas fa-bullseye"></i>
-                    <h3>Misión</h3>
-                    <p>
-                        Desarrollar proyectos de construcciones con enfoque tecnológico, sistemas de 
-                        comunicación, seguridad electrónica e Internet de las cosas, garantizando el 
-                        éxito mediante capacitación constante y certificaciones.
-                    </p>
-                </div>
-                
-                <!-- Tarjeta de Visión -->
-                <div class="card mv-card" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-eye"></i>
-                    <h3>Visión</h3>
-                    <p>
-                        Ser la empresa líder en edificaciones inteligentes en el sur del Perú, 
-                        posicionándonos como referente en soluciones tecnológicas integrales para 
-                        la construcción.
-                    </p>
-                </div>
-                
-                <!-- Tarjeta de Valores -->
-                <div class="card mv-card" data-aos="fade-up" data-aos-delay="250">
-                    <i class="fas fa-heart"></i>
-                    <h3>Valores</h3>
-                    <p>
-                        Compromiso con el cliente, excelencia en el servicio, capacitación continua, 
-                        representación de marcas de prestigio mundial y garantía del éxito en cada proyecto.
-                    </p>
-                </div>
-            </div>
+      <div class="container">
+        <!-- Título y subtítulo de la sección -->
+        <div class="section-title" data-aos="fade-up">
+          Nuestros <span class="highlight">Pilares</span>
         </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Principios que guían cada proyecto que ejecutamos
+        </p>
+
+        <!-- Grid con las tres tarjetas: Misión, Visión, Valores -->
+        <div class="mv-grid">
+          <!-- Tarjeta de Misión -->
+          <div class="card mv-card" data-aos="fade-up" data-aos-delay="150">
+            <i class="fas fa-bullseye"></i>
+            <h3>Misión</h3>
+            <p>
+              Desarrollar proyectos de construcciones con enfoque tecnológico,
+              sistemas de comunicación, seguridad electrónica e Internet de las
+              cosas, garantizando el éxito mediante capacitación constante y
+              certificaciones.
+            </p>
+          </div>
+
+          <!-- Tarjeta de Visión -->
+          <div class="card mv-card" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-eye"></i>
+            <h3>Visión</h3>
+            <p>
+              Ser la empresa líder en edificaciones inteligentes en el sur del
+              Perú, posicionándonos como referente en soluciones tecnológicas
+              integrales para la construcción.
+            </p>
+          </div>
+
+          <!-- Tarjeta de Valores -->
+          <div class="card mv-card" data-aos="fade-up" data-aos-delay="250">
+            <i class="fas fa-heart"></i>
+            <h3>Valores</h3>
+            <p>
+              Compromiso con el cliente, excelencia en el servicio, capacitación
+              continua, representación de marcas de prestigio mundial y garantía
+              del éxito en cada proyecto.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ========== SECCIÓN DE SERVICIOS - 12 servicios tecnológicos ========== -->
     <section id="servicios" class="section services">
-        <div class="container">
-            <!-- Título y subtítulo de la sección -->
-            <div class="section-title" data-aos="fade-up">
-                Nuestros <span class="highlight">Servicios</span>
-            </div>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-                Soluciones tecnológicas integrales para todo tipo de proyectos
-            </p>
-            
-            <!-- Grid de tarjetas de servicios -->
-            <div class="services-grid">
-                <!-- Servicio 1: Construcciones Civiles -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="150">
-                    <span class="service-number">01</span>
-                    <div class="card-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3 class="card-title">Construcciones Civiles</h3>
-                    <p class="card-text">
-                        Proyectos de construcción con enfoque tecnológico e integración de sistemas IoT 
-                        para edificaciones modernas e inteligentes.
-                    </p>
-                </div>
-                
-                <!-- Servicio 2: Radio Comunicación Digital -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="200">
-                    <span class="service-number">02</span>
-                    <div class="card-icon">
-                        <i class="fas fa-broadcast-tower"></i>
-                    </div>
-                    <h3 class="card-title">Radio Comunicación Digital</h3>
-                    <p class="card-text">
-                        Sistemas de radiocomunicación Motorola para instituciones públicas y privadas, 
-                        con cobertura extendida y alta confiabilidad.
-                    </p>
-                </div>
-                
-                <!-- Servicio 3: Video Vigilancia Industrial -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="250">
-                    <span class="service-number">03</span>
-                    <div class="card-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3 class="card-title">Video Vigilancia Industrial</h3>
-                    <p class="card-text">
-                        Sistemas de videovigilancia con marcas líderes: Axis, Avigilon, Pelco, 
-                        Hikvision y Samsung para máxima seguridad.
-                    </p>
-                </div>
-                
-                <!-- Servicio 4: Redes Inalámbricas -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="300">
-                    <span class="service-number">04</span>
-                    <div class="card-icon">
-                        <i class="fas fa-wifi"></i>
-                    </div>
-                    <h3 class="card-title">Redes Inalámbricas</h3>
-                    <p class="card-text">
-                        Soluciones de conectividad con Cambium Networks, Radwin y WaveIP para 
-                        enlaces punto a punto y punto multipunto.
-                    </p>
-                </div>
-                
-                <!-- Servicio 5: Telefonía IP y Video Conferencia -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="350">
-                    <span class="service-number">05</span>
-                    <div class="card-icon">
-                        <i class="fas fa-phone-volume"></i>
-                    </div>
-                    <h3 class="card-title">Telefonía IP y Video Conferencia</h3>
-                    <p class="card-text">
-                        Sistemas de comunicaciones unificadas con Avaya, Cisco y Polycom para 
-                        empresas modernas y colaborativas.
-                    </p>
-                </div>
-                
-                <!-- Servicio 6: Cableado Estructurado -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="400">
-                    <span class="service-number">06</span>
-                    <div class="card-icon">
-                        <i class="fas fa-ethernet"></i>
-                    </div>
-                    <h3 class="card-title">Cableado Estructurado</h3>
-                    <p class="card-text">
-                        Infraestructura de red con estándares internacionales usando Siemon, 
-                        Panduit, Furukawa y CommScope.
-                    </p>
-                </div>
-                
-                <!-- Servicio 7: Centrales de Alarma -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="450">
-                    <span class="service-number">07</span>
-                    <div class="card-icon">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <h3 class="card-title">Centrales de Alarma</h3>
-                    <p class="card-text">
-                        Sistemas de alarmas para入侵检测 con Honeywell, Risco y Bosch, 
-                        con monitoreo remoto 24/7.
-                    </p>
-                </div>
-                
-                <!-- Servicio 8: Sistemas de Extinción -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="500">
-                    <span class="service-number">08</span>
-                    <div class="card-icon">
-                        <i class="fas fa-fire-extinguisher"></i>
-                    </div>
-                    <h3 class="card-title">Sistemas de Extinción</h3>
-                    <p class="card-text">
-                        Protección contra incendios con sistemas de aspersión y agente limpio 
-                        para proteger vidas y activos.
-                    </p>
-                </div>
-                
-                <!-- Servicio 9: Control de Accesos -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="550">
-                    <span class="service-number">09</span>
-                    <div class="card-icon">
-                        <i class="fas fa-fingerprint"></i>
-                    </div>
-                    <h3 class="card-title">Control de Accesos</h3>
-                    <p class="card-text">
-                        Sistemas biométricos y tarjetas de proximidad con Intelbras, Dahua y 
-                        ZKTeco para control total de instalaciones.
-                    </p>
-                </div>
-                
-                <!-- Servicio 10: Infraestructura Eléctrica -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="600">
-                    <span class="service-number">10</span>
-                    <div class="card-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="card-title">Infraestructura Eléctrica</h3>
-                    <p class="card-text">
-                        Soluciones de energía con Schneider Electric y Legrand para 
-                        distribución eléctrica segura y eficiente.
-                    </p>
-                </div>
-                
-                <!-- Servicio 11: Energía Renovable -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="650">
-                    <span class="service-number">11</span>
-                    <div class="card-icon">
-                        <i class="fas fa-solar-panel"></i>
-                    </div>
-                    <h3 class="card-title">Energía Renovable</h3>
-                    <p class="card-text">
-                        Sistemas fotovoltaicos y eólicos para generación de energía limpia 
-                        y reducción de costos operativos.
-                    </p>
-                </div>
-                
-                <!-- Servicio 12: Sistemas de Audio y Video -->
-                <div class="card service-card card-3d" data-aos="fade-up" data-aos-delay="700">
-                    <span class="service-number">12</span>
-                    <div class="card-icon">
-                        <i class="fas fa-volume-up"></i>
-                    </div>
-                    <h3 class="card-title">Sistemas de Audio y Video</h3>
-                    <p class="card-text">
-                        Soluciones AV para auditorios, salas de conferencia y espacios 
-                        corporativos con equipamiento profesional.
-                    </p>
-                </div>
-            </div>
+      <div class="container">
+        <!-- Título y subtítulo de la sección -->
+        <div class="section-title" data-aos="fade-up">
+          Nuestros <span class="highlight">Servicios</span>
         </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Soluciones tecnológicas integrales para todo tipo de proyectos
+        </p>
+
+        <!-- Grid de tarjetas de servicios -->
+        <div class="services-grid">
+          <!-- Servicio 1: Construcciones Civiles -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
+            <span class="service-number">01</span>
+            <div class="card-icon">
+              <i class="fas fa-building"></i>
+            </div>
+            <h3 class="card-title">Construcciones Civiles</h3>
+            <p class="card-text">
+              Proyectos de construcción con enfoque tecnológico e integración de
+              sistemas IoT para edificaciones modernas e inteligentes.
+            </p>
+          </div>
+
+          <!-- Servicio 2: Radio Comunicación Digital -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <span class="service-number">02</span>
+            <div class="card-icon">
+              <i class="fas fa-broadcast-tower"></i>
+            </div>
+            <h3 class="card-title">Radio Comunicación Digital</h3>
+            <p class="card-text">
+              Sistemas de radiocomunicación Motorola para instituciones públicas
+              y privadas, con cobertura extendida y alta confiabilidad.
+            </p>
+          </div>
+
+          <!-- Servicio 3: Video Vigilancia Industrial -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="250"
+          >
+            <span class="service-number">03</span>
+            <div class="card-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <h3 class="card-title">Video Vigilancia Industrial</h3>
+            <p class="card-text">
+              Sistemas de videovigilancia con marcas líderes: Axis, Avigilon,
+              Pelco, Hikvision y Samsung para máxima seguridad.
+            </p>
+          </div>
+
+          <!-- Servicio 4: Redes Inalámbricas -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <span class="service-number">04</span>
+            <div class="card-icon">
+              <i class="fas fa-wifi"></i>
+            </div>
+            <h3 class="card-title">Redes Inalámbricas</h3>
+            <p class="card-text">
+              Soluciones de conectividad con Cambium Networks, Radwin y WaveIP
+              para enlaces punto a punto y punto multipunto.
+            </p>
+          </div>
+
+          <!-- Servicio 5: Telefonía IP y Video Conferencia -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="350"
+          >
+            <span class="service-number">05</span>
+            <div class="card-icon">
+              <i class="fas fa-phone-volume"></i>
+            </div>
+            <h3 class="card-title">Telefonía IP y Video Conferencia</h3>
+            <p class="card-text">
+              Sistemas de comunicaciones unificadas con Avaya, Cisco y Polycom
+              para empresas modernas y colaborativas.
+            </p>
+          </div>
+
+          <!-- Servicio 6: Cableado Estructurado -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <span class="service-number">06</span>
+            <div class="card-icon">
+              <i class="fas fa-ethernet"></i>
+            </div>
+            <h3 class="card-title">Cableado Estructurado</h3>
+            <p class="card-text">
+              Infraestructura de red con estándares internacionales usando
+              Siemon, Panduit, Furukawa y CommScope.
+            </p>
+          </div>
+
+          <!-- Servicio 7: Centrales de Alarma -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="450"
+          >
+            <span class="service-number">07</span>
+            <div class="card-icon">
+              <i class="fas fa-bell"></i>
+            </div>
+            <h3 class="card-title">Centrales de Alarma</h3>
+            <p class="card-text">
+              Sistemas de alarmas para入侵检测 con Honeywell, Risco y Bosch, con
+              monitoreo remoto 24/7.
+            </p>
+          </div>
+
+          <!-- Servicio 8: Sistemas de Extinción -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <span class="service-number">08</span>
+            <div class="card-icon">
+              <i class="fas fa-fire-extinguisher"></i>
+            </div>
+            <h3 class="card-title">Sistemas de Extinción</h3>
+            <p class="card-text">
+              Protección contra incendios con sistemas de aspersión y agente
+              limpio para proteger vidas y activos.
+            </p>
+          </div>
+
+          <!-- Servicio 9: Control de Accesos -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="550"
+          >
+            <span class="service-number">09</span>
+            <div class="card-icon">
+              <i class="fas fa-fingerprint"></i>
+            </div>
+            <h3 class="card-title">Control de Accesos</h3>
+            <p class="card-text">
+              Sistemas biométricos y tarjetas de proximidad con Intelbras, Dahua
+              y ZKTeco para control total de instalaciones.
+            </p>
+          </div>
+
+          <!-- Servicio 10: Infraestructura Eléctrica -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <span class="service-number">10</span>
+            <div class="card-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="card-title">Infraestructura Eléctrica</h3>
+            <p class="card-text">
+              Soluciones de energía con Schneider Electric y Legrand para
+              distribución eléctrica segura y eficiente.
+            </p>
+          </div>
+
+          <!-- Servicio 11: Energía Renovable -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="650"
+          >
+            <span class="service-number">11</span>
+            <div class="card-icon">
+              <i class="fas fa-solar-panel"></i>
+            </div>
+            <h3 class="card-title">Energía Renovable</h3>
+            <p class="card-text">
+              Sistemas fotovoltaicos y eólicos para generación de energía limpia
+              y reducción de costos operativos.
+            </p>
+          </div>
+
+          <!-- Servicio 12: Sistemas de Audio y Video -->
+          <div
+            class="card service-card card-3d"
+            data-aos="fade-up"
+            data-aos-delay="700"
+          >
+            <span class="service-number">12</span>
+            <div class="card-icon">
+              <i class="fas fa-volume-up"></i>
+            </div>
+            <h3 class="card-title">Sistemas de Audio y Video</h3>
+            <p class="card-text">
+              Soluciones AV para auditorios, salas de conferencia y espacios
+              corporativos con equipamiento profesional.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ========== SECCIÓN DE ESTADÍSTICAS - Contadores animados ========== -->
     <section class="section stats">
-        <div class="container">
-            <div class="stats-grid">
-                <!-- Contador: Años de experiencia -->
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-number counter" data-target="10" data-suffix="+">0</div>
-                    <div class="stat-label">Años de Experiencia</div>
-                </div>
-                <!-- Contador: Proyectos ejecutados -->
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-number counter" data-target="50" data-suffix="+">0</div>
-                    <div class="stat-label">Proyectos Ejecutados</div>
-                </div>
-                <!-- Contador: Ciudades con soporte -->
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-number counter" data-target="4" data-suffix="">0</div>
-                    <div class="stat-label">Ciudades con Soporte</div>
-                </div>
-                <!-- Contador: Fabricantes certificados -->
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="stat-number counter" data-target="50" data-suffix="+">0</div>
-                    <div class="stat-label">Fabricantes Certificados</div>
-                </div>
+      <div class="container">
+        <div class="stats-grid">
+          <!-- Contador: Años de experiencia -->
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-number counter" data-target="10" data-suffix="+">
+              0
             </div>
+            <div class="stat-label">Años de Experiencia</div>
+          </div>
+          <!-- Contador: Proyectos ejecutados -->
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-number counter" data-target="50" data-suffix="+">
+              0
+            </div>
+            <div class="stat-label">Proyectos Ejecutados</div>
+          </div>
+          <!-- Contador: Ciudades con soporte -->
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-number counter" data-target="4" data-suffix="">
+              0
+            </div>
+            <div class="stat-label">Ciudades con Soporte</div>
+          </div>
+          <!-- Contador: Fabricantes certificados -->
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+            <div class="stat-number counter" data-target="50" data-suffix="+">
+              0
+            </div>
+            <div class="stat-label">Fabricantes Certificados</div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- ========== SECCIÓN PROYECTOS DESTACADOS ========== -->
     <section id="proyectos" class="section projects">
-        <div class="container">
-            <!-- Título y subtítulo -->
-            <div class="section-title" data-aos="fade-up">
-                Proyectos <span class="highlight">Destacados</span>
-            </div>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-                Conoce algunos de nuestros proyectos más importantes ejecutados en el sur del Perú
-            </p>
-            
-            <!-- Filtros de proyectos por categoría -->
-            <div class="projects-filters" data-aos="fade-up" data-aos-delay="150">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="seguridad">Seguridad</button>
-                <button class="filter-btn" data-filter="comunicacion">Comunicación</button>
-                <button class="filter-btn" data-filter="construccion">Construcción</button>
-            </div>
-            
-            <!-- Grid de tarjetas de proyectos -->
-            <div class="projects-grid">
-                <!-- Proyecto: Centro de Seguridad Ciudadana -->
-                <div class="project-card" data-category="seguridad" data-aos="fade-up" data-aos-delay="200">
-                    <img src="assets/eds_useful_images/centro_monitoreo2.jpg" alt="Centro de Seguridad">
-                    <div class="project-overlay">
-                        <span class="badge badge-success">Concluido</span>
-                        <h3 class="project-title">Centro de Seguridad Ciudadana</h3>
-                        <p class="project-client">Municipalidad Provincial de Melgar</p>
-                        <p class="project-investment">S/ 4.2 Millones</p>
-                        <div class="project-support">
-                            <p class="project-support-label">Socios que apoyaron la obra</p>
-                            <div class="partner-list">
-                                <span class="partner-pill">Hikvision</span>
-                                <span class="partner-pill">Dahua</span>
-                            </div>
-                        </div>
-                        <div class="project-view">
-                            <span class="badge badge-primary">120 cámaras</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Proyecto: Semáforos Inteligentes -->
-                <div class="project-card" data-category="comunicacion" data-aos="fade-up" data-aos-delay="250">
-                    <img src="assets/eds_useful_images/control_vehiculos.jpg" alt="Semáforos Inteligentes">
-                    <div class="project-overlay">
-                        <span class="badge badge-success">Concluido</span>
-                        <h3 class="project-title">Semáforos Inteligentes</h3>
-                        <p class="project-client">Distrito de J.L. Bustamante y Rivero</p>
-                        <p class="project-investment">S/ 8.5 Millones</p>
-                        <div class="project-support">
-                            <p class="project-support-label">Socios que apoyaron la obra</p>
-                            <div class="partner-list">
-                                <span class="partner-pill">Siemens</span>
-                                <span class="partner-pill">Sice</span>
-                            </div>
-                        </div>
-                        <div class="project-view">
-                            <span class="badge badge-primary">15 intersecciones</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Proyecto: Radio Base de Comunicaciones -->
-                <div class="project-card" data-category="comunicacion" data-aos="fade-up" data-aos-delay="300">
-                    <img src="assets/eds_useful_images/motorola_radio2.jpg" alt="Radio Base">
-                    <div class="project-overlay">
-                        <span class="badge badge-accent">En Ejecución</span>
-                        <h3 class="project-title">Radio Base de Comunicaciones</h3>
-                        <p class="project-client">Iquitos, Loreto</p>
-                        <p class="project-investment">S/ 6.8 Millones</p>
-                        <div class="project-support">
-                            <p class="project-support-label">Socios que apoyaron la obra</p>
-                            <div class="partner-list">
-                                <span class="partner-pill">Motorola</span>
-                                <span class="partner-pill">Hytera</span>
-                            </div>
-                        </div>
-                        <div class="project-view">
-                            <span class="badge badge-primary">Cobertura regional</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Proyecto: Institución Educativa -->
-                <div class="project-card" data-category="construccion" data-aos="fade-up" data-aos-delay="350">
-                    <img src="assets/eds_useful_images/auditorio.jpg" alt="Institución Educativa">
-                    <div class="project-overlay">
-                        <span class="badge badge-success">Concluido</span>
-                        <h3 class="project-title">I.E. Nº 40208</h3>
-                        <p class="project-client">UGEL Arequipa Norte</p>
-                        <p class="project-investment">S/ 5.1 Millones</p>
-                        <div class="project-support">
-                            <p class="project-support-label">Socios que apoyaron la obra</p>
-                            <div class="partner-list">
-                                <span class="partner-pill">Sika</span>
-                                <span class="partner-pill">Ferreyros</span>
-                            </div>
-                        </div>
-                        <div class="project-view">
-                            <span class="badge badge-primary">18 aulas, 900 alumnos</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Proyecto: Video Vigilancia Industrial -->
-                <div class="project-card" data-category="seguridad" data-aos="fade-up" data-aos-delay="400">
-                    <img src="assets/eds_useful_images/camara_analisis.jpg" alt="Videovigilancia Industrial">
-                    <div class="project-overlay">
-                        <span class="badge badge-success">Concluido</span>
-                        <h3 class="project-title">Video Vigilancia Industrial</h3>
-                        <p class="project-client">Complejo Industrial Arequipa</p>
-                        <p class="project-investment">S/ 2.8 Millones</p>
-                        <div class="project-support">
-                            <p class="project-support-label">Socios que apoyaron la obra</p>
-                            <div class="partner-list">
-                                <span class="partner-pill">Axis</span>
-                                <span class="partner-pill">Avigilon</span>
-                            </div>
-                        </div>
-                        <div class="project-view">
-                            <span class="badge badge-primary">200 cámaras IP</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Proyecto: Cableado Hospital Regional -->
-                <div class="project-card" data-category="construccion" data-aos="fade-up" data-aos-delay="450">
-                    <img src="assets/eds_useful_images/cableado1.jpg" alt="Hospital">
-                    <div class="project-overlay">
-                        <span class="badge badge-success">Concluido</span>
-                        <h3 class="project-title">Cableado Hospital Regional</h3>
-                        <p class="project-client">Hospital Regional de Arequipa</p>
-                        <p class="project-investment">S/ 3.5 Millones</p>
-                        <div class="project-support">
-                            <p class="project-support-label">Socios que apoyaron la obra</p>
-                            <div class="partner-list">
-                                <span class="partner-pill">Panduit</span>
-                                <span class="partner-pill">APC</span>
-                            </div>
-                        </div>
-                        <div class="project-view">
-                            <span class="badge badge-primary">Red hospitalaria completa</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Botón para ver todos los proyectos -->
-            <div class="text-center mt-4" data-aos="fade-up">
-                <a href="html/proyectos.html" class="btn btn-outline btn-lg">
-                    Ver Todos los Proyectos
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
+      <div class="container">
+        <!-- Título y subtítulo -->
+        <div class="section-title" data-aos="fade-up">
+          Proyectos <span class="highlight">Destacados</span>
         </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Conoce algunos de nuestros proyectos más importantes ejecutados en el
+          sur del Perú
+        </p>
+
+        <!-- Filtros de proyectos por categoría -->
+        <div class="projects-filters" data-aos="fade-up" data-aos-delay="150">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="seguridad">Seguridad</button>
+          <button class="filter-btn" data-filter="comunicacion">
+            Comunicación
+          </button>
+          <button class="filter-btn" data-filter="construccion">
+            Construcción
+          </button>
+        </div>
+
+        <!-- Grid de tarjetas de proyectos -->
+        <div class="projects-grid">
+          <!-- Proyecto: Centro de Seguridad Ciudadana -->
+          <div
+            class="project-card"
+            data-category="seguridad"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <img
+              src="assets/eds_useful_images/centro_monitoreo2.jpg"
+              alt="Centro de Seguridad"
+            />
+            <div class="project-overlay">
+              <span class="badge badge-success">Concluido</span>
+              <h3 class="project-title">Centro de Seguridad Ciudadana</h3>
+              <p class="project-client">Municipalidad Provincial de Melgar</p>
+              <p class="project-investment">S/ 4.2 Millones</p>
+              <div class="project-support">
+                <p class="project-support-label">Socios que apoyaron la obra</p>
+                <div class="partner-list">
+                  <span class="partner-pill">Hikvision</span>
+                  <span class="partner-pill">Dahua</span>
+                </div>
+              </div>
+              <div class="project-view">
+                <span class="badge badge-primary">120 cámaras</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto: Semáforos Inteligentes -->
+          <div
+            class="project-card"
+            data-category="comunicacion"
+            data-aos="fade-up"
+            data-aos-delay="250"
+          >
+            <img
+              src="assets/eds_useful_images/control_vehiculos.jpg"
+              alt="Semáforos Inteligentes"
+            />
+            <div class="project-overlay">
+              <span class="badge badge-success">Concluido</span>
+              <h3 class="project-title">Semáforos Inteligentes</h3>
+              <p class="project-client">Distrito de J.L. Bustamante y Rivero</p>
+              <p class="project-investment">S/ 8.5 Millones</p>
+              <div class="project-support">
+                <p class="project-support-label">Socios que apoyaron la obra</p>
+                <div class="partner-list">
+                  <span class="partner-pill">Siemens</span>
+                  <span class="partner-pill">Sice</span>
+                </div>
+              </div>
+              <div class="project-view">
+                <span class="badge badge-primary">15 intersecciones</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto: Radio Base de Comunicaciones -->
+          <div
+            class="project-card"
+            data-category="comunicacion"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <img
+              src="assets/eds_useful_images/motorola_radio2.jpg"
+              alt="Radio Base"
+            />
+            <div class="project-overlay">
+              <span class="badge badge-accent">En Ejecución</span>
+              <h3 class="project-title">Radio Base de Comunicaciones</h3>
+              <p class="project-client">Iquitos, Loreto</p>
+              <p class="project-investment">S/ 6.8 Millones</p>
+              <div class="project-support">
+                <p class="project-support-label">Socios que apoyaron la obra</p>
+                <div class="partner-list">
+                  <span class="partner-pill">Motorola</span>
+                  <span class="partner-pill">Hytera</span>
+                </div>
+              </div>
+              <div class="project-view">
+                <span class="badge badge-primary">Cobertura regional</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto: Institución Educativa -->
+          <div
+            class="project-card"
+            data-category="construccion"
+            data-aos="fade-up"
+            data-aos-delay="350"
+          >
+            <img
+              src="assets/eds_useful_images/auditorio.jpg"
+              alt="Institución Educativa"
+            />
+            <div class="project-overlay">
+              <span class="badge badge-success">Concluido</span>
+              <h3 class="project-title">I.E. Nº 40208</h3>
+              <p class="project-client">UGEL Arequipa Norte</p>
+              <p class="project-investment">S/ 5.1 Millones</p>
+              <div class="project-support">
+                <p class="project-support-label">Socios que apoyaron la obra</p>
+                <div class="partner-list">
+                  <span class="partner-pill">Sika</span>
+                  <span class="partner-pill">Ferreyros</span>
+                </div>
+              </div>
+              <div class="project-view">
+                <span class="badge badge-primary">18 aulas, 900 alumnos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto: Video Vigilancia Industrial -->
+          <div
+            class="project-card"
+            data-category="seguridad"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <img
+              src="assets/eds_useful_images/camara_analisis.jpg"
+              alt="Videovigilancia Industrial"
+            />
+            <div class="project-overlay">
+              <span class="badge badge-success">Concluido</span>
+              <h3 class="project-title">Video Vigilancia Industrial</h3>
+              <p class="project-client">Complejo Industrial Arequipa</p>
+              <p class="project-investment">S/ 2.8 Millones</p>
+              <div class="project-support">
+                <p class="project-support-label">Socios que apoyaron la obra</p>
+                <div class="partner-list">
+                  <span class="partner-pill">Axis</span>
+                  <span class="partner-pill">Avigilon</span>
+                </div>
+              </div>
+              <div class="project-view">
+                <span class="badge badge-primary">200 cámaras IP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto: Cableado Hospital Regional -->
+          <div
+            class="project-card"
+            data-category="construccion"
+            data-aos="fade-up"
+            data-aos-delay="450"
+          >
+            <img src="assets/eds_useful_images/cableado1.jpg" alt="Hospital" />
+            <div class="project-overlay">
+              <span class="badge badge-success">Concluido</span>
+              <h3 class="project-title">Cableado Hospital Regional</h3>
+              <p class="project-client">Hospital Regional de Arequipa</p>
+              <p class="project-investment">S/ 3.5 Millones</p>
+              <div class="project-support">
+                <p class="project-support-label">Socios que apoyaron la obra</p>
+                <div class="partner-list">
+                  <span class="partner-pill">Panduit</span>
+                  <span class="partner-pill">APC</span>
+                </div>
+              </div>
+              <div class="project-view">
+                <span class="badge badge-primary"
+                  >Red hospitalaria completa</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón para ver todos los proyectos -->
+        <div class="text-center mt-4" data-aos="fade-up">
+          <a href="html/proyectos.html" class="btn btn-outline btn-lg">
+            Ver Todos los Proyectos
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- ========== SECCIÓN SOCIOS ESTRATÉGICOS - Carrusel de logos ========== -->
     <section class="section partners">
-        <div class="container">
-            <!-- Título y subtítulo -->
-            <div class="section-title" data-aos="fade-up">
-                Nuestros <span class="highlight">Socios</span> Estratégicos
-            </div>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-                Representamos a los mejores fabricantes de tecnología a nivel mundial
-            </p>
+      <div class="container">
+        <!-- Título y subtítulo -->
+        <div class="section-title" data-aos="fade-up">
+          Nuestros <span class="highlight">Socios</span> Estratégicos
         </div>
-        
-        <!-- Primera fila de logos con animación marquee -->
-        <div class="partners-track mt-4">
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Schneider" alt="Schneider Electric">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Motorola" alt="Motorola">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/f0b429/000000?text=Furukawa" alt="Furukawa">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Dahua" alt="Dahua">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Honeywell" alt="Honeywell">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/f0b429/000000?text=Axis" alt="Axis">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Cisco" alt="Cisco">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=ZKTeco" alt="ZKTeco">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/f0b429/000000?text=Hikvision" alt="Hikvision">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Hikvision" alt="Bosch">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Panduit" alt="Panduit">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/f0b429/000000?text=Avaya" alt="Avaya">
-            </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Representamos a los mejores fabricantes de tecnología a nivel mundial
+        </p>
+      </div>
+
+      <!-- Primera fila de logos con animación marquee -->
+      <div class="partners-track mt-4">
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Schneider"
+            alt="Schneider Electric"
+          />
         </div>
-        
-        <!-- Segunda fila de logos con animación inversa -->
-        <div class="partners-track mt-4" style="animation-direction: reverse;">
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Cambium" alt="Cambium">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/f0b429/000000?text=Polycom" alt="Polycom">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Siemon" alt="Siemon">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Risco" alt="Risco">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/f0b429/000000?text=Bosch" alt="Bosch">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Legrand" alt="Legrand">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Pelco" alt="Pelco">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/f0b429/000000?text=Avigilon" alt="Avigilon">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Intelbras" alt="Intelbras">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Samsung" alt="Samsung">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/f0b429/000000?text=CommScope" alt="CommScope">
-            </div>
-            <div class="partner-item">
-                <img src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Radwin" alt="Radwin">
-            </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Motorola"
+            alt="Motorola"
+          />
         </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/f0b429/000000?text=Furukawa"
+            alt="Furukawa"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Dahua"
+            alt="Dahua"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Honeywell"
+            alt="Honeywell"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/f0b429/000000?text=Axis"
+            alt="Axis"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Cisco"
+            alt="Cisco"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=ZKTeco"
+            alt="ZKTeco"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/f0b429/000000?text=Hikvision"
+            alt="Hikvision"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Hikvision"
+            alt="Bosch"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Panduit"
+            alt="Panduit"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/f0b429/000000?text=Avaya"
+            alt="Avaya"
+          />
+        </div>
+      </div>
+
+      <!-- Segunda fila de logos con animación inversa -->
+      <div class="partners-track mt-4" style="animation-direction: reverse">
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Cambium"
+            alt="Cambium"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/f0b429/000000?text=Polycom"
+            alt="Polycom"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Siemon"
+            alt="Siemon"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Risco"
+            alt="Risco"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/f0b429/000000?text=Bosch"
+            alt="Bosch"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Legrand"
+            alt="Legrand"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Pelco"
+            alt="Pelco"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/f0b429/000000?text=Avigilon"
+            alt="Avigilon"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Intelbras"
+            alt="Intelbras"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1e88e5/ffffff?text=Samsung"
+            alt="Samsung"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/f0b429/000000?text=CommScope"
+            alt="CommScope"
+          />
+        </div>
+        <div class="partner-item">
+          <img
+            src="https://via.placeholder.com/150x60/1565c0/ffffff?text=Radwin"
+            alt="Radwin"
+          />
+        </div>
+      </div>
     </section>
 
     <!-- ========== SECCIÓN COBERTURA - Ciudades de soporte ========== -->
     <section id="cobertura" class="section coverage">
-        <div class="container">
-            <!-- Título y subtítulo -->
-            <div class="section-title" data-aos="fade-up">
-                Nuestra <span class="highlight">Cobertura</span>
-            </div>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-                Brindamos soporte técnico en las principales ciudades del sur del Perú
-            </p>
-            
-            <!-- Grid de tarjetas de cobertura por ciudad -->
-            <div class="coverage-grid">
-                <!-- Arequipa - Sede Principal -->
-                <div class="card coverage-card primary" data-aos="fade-up" data-aos-delay="150">
-                    <div class="coverage-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>Arequipa</h3>
-                    <p>Sede Principal</p>
-                    <p class="mt-2">Urb. Las Peñas A-35, Sachaca</p>
-                </div>
-                
-                <!-- Tacna - Oficina de soporte -->
-                <div class="card coverage-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="coverage-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>Tacna</h3>
-                    <p>Oficina de Soporte</p>
-                    <p class="mt-2">Soporte técnico especializado</p>
-                </div>
-                
-                <!-- Juliaca - Oficina de soporte -->
-                <div class="card coverage-card" data-aos="fade-up" data-aos-delay="250">
-                    <div class="coverage-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>Juliaca</h3>
-                    <p>Oficina de Soporte</p>
-                    <p class="mt-2">Soporte técnico especializado</p>
-                </div>
-                
-                <!-- Cusco - Oficina de soporte -->
-                <div class="card coverage-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="coverage-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>Cusco</h3>
-                    <p>Oficina de Soporte</p>
-                    <p class="mt-2">Soporte técnico especializado</p>
-                </div>
-            </div>
+      <div class="container">
+        <!-- Título y subtítulo -->
+        <div class="section-title" data-aos="fade-up">
+          Nuestra <span class="highlight">Cobertura</span>
         </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Brindamos soporte técnico en las principales ciudades del sur del Perú
+        </p>
+
+        <!-- Grid de tarjetas de cobertura por ciudad -->
+        <div class="coverage-grid">
+          <!-- Arequipa - Sede Principal -->
+          <div
+            class="card coverage-card primary"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
+            <div class="coverage-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Arequipa</h3>
+            <p>Sede Principal</p>
+            <p class="mt-2">Urb. Las Peñas A-35, Sachaca</p>
+          </div>
+
+          <!-- Tacna - Oficina de soporte -->
+          <div
+            class="card coverage-card"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="coverage-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Tacna</h3>
+            <p>Oficina de Soporte</p>
+            <p class="mt-2">Soporte técnico especializado</p>
+          </div>
+
+          <!-- Juliaca - Oficina de soporte -->
+          <div
+            class="card coverage-card"
+            data-aos="fade-up"
+            data-aos-delay="250"
+          >
+            <div class="coverage-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Juliaca</h3>
+            <p>Oficina de Soporte</p>
+            <p class="mt-2">Soporte técnico especializado</p>
+          </div>
+
+          <!-- Cusco - Oficina de soporte -->
+          <div
+            class="card coverage-card"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="coverage-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Cusco</h3>
+            <p>Oficina de Soporte</p>
+            <p class="mt-2">Soporte técnico especializado</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ========== SECCIÓN CTA - Llamada a la acción ========== -->
     <section class="section cta">
-        <div class="container">
-            <div class="cta-content" data-aos="zoom-in">
-                <!-- Título y descripción del CTA -->
-                <h2>¿Listo para transformar tu proyecto?</h2>
-                <p>
-                    Contáctanos hoy y descubre cómo podemos llevar tu próximo proyecto 
-                    al siguiente nivel con tecnología de vanguardia.
-                </p>
-                <!-- Botones de acción -->
-                <div class="cta-buttons">
-                    <a href="https://wa.me/51950313642" target="_blank" class="btn btn-whatsapp btn-lg">
-                        <i class="fab fa-whatsapp"></i> Chatear Ahora
-                    </a>
-                    <a href="html/contacto.html" class="btn btn-outline btn-lg">
-                        <i class="fas fa-envelope"></i> Enviar Correo
-                    </a>
-                </div>
-            </div>
+      <div class="container">
+        <div class="cta-content" data-aos="zoom-in">
+          <!-- Título y descripción del CTA -->
+          <h2>¿Listo para transformar tu proyecto?</h2>
+          <p>
+            Contáctanos hoy y descubre cómo podemos llevar tu próximo proyecto
+            al siguiente nivel con tecnología de vanguardia.
+          </p>
+          <!-- Botones de acción -->
+          <div class="cta-buttons">
+            <a
+              href="https://wa.me/51950313642"
+              target="_blank"
+              class="btn btn-whatsapp btn-lg"
+            >
+              <i class="fab fa-whatsapp"></i> Chatear Ahora
+            </a>
+            <a href="html/contacto.html" class="btn btn-outline btn-lg">
+              <i class="fas fa-envelope"></i> Enviar Correo
+            </a>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- ========== FOOTER - Pie de página ========== -->
     <footer class="footer">
-        <div class="container">
-            <!-- Grid principal del footer -->
-            <div class="footer-grid">
-                <!-- Columna de marca y redes sociales -->
-                <div class="footer-brand">
-                    <a href="#" class="logo" style="display: block; margin-bottom: 20px;">
-                        <img src="assets/eds_useful_images/logo.png" alt="EDS Logo" style="max-width: 200px; height: auto;">
-                    </a>
-                    <p>
-                        Somos la empresa líder en edificaciones inteligentes en el sur del Perú, 
-                        ofreciendo soluciones tecnológicas integrales para la construcción.
-                    </p>
-                    <!-- Iconos de redes sociales -->
-                    <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/51950313642" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Columna de navegación -->
-                <div class="footer-links-col">
-                    <h4 class="footer-title">Navegación</h4>
-                    <ul class="footer-links">
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#nosotros">Nosotros</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="html/proyectos.html">Proyectos</a></li>
-                        <li><a href="#cobertura">Cobertura</a></li>
-                        <li><a href="html/contacto.html">Contacto</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Columna de servicios -->
-                <div class="footer-links-col">
-                    <h4 class="footer-title">Servicios</h4>
-                    <ul class="footer-links">
-                        <li><a href="#servicios">Construcción Civil</a></li>
-                        <li><a href="#servicios">Video Vigilancia</a></li>
-                        <li><a href="#servicios">Redes y Telecom</a></li>
-                        <li><a href="#servicios">Control de Accesos</a></li>
-                        <li><a href="#servicios">Energía Renovable</a></li>
-                        <li><a href="#servicios">Cableado Estructurado</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Columna de información de contacto -->
-                <div class="footer-contact-col">
-                    <h4 class="footer-title">Contacto</h4>
-                    <ul class="footer-contact">
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <p><strong>WhatsApp:</strong></p>
-                                <a href="https://wa.me/51950313642">950 313 642</a>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <p><strong>Teléfono:</strong></p>
-                                <a href="tel:+51951277576">951 277 576</a>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <p><strong>Email:</strong></p>
-                                <a href="mailto:rocio.jara@edin-tel.com">rocio.jara@edin-tel.com</a>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <p><strong>Dirección:</strong></p>
-                                <p>Urb. Las Peñas A-35, Sachaca, Arequipa</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+      <div class="container">
+        <!-- Grid principal del footer -->
+        <div class="footer-grid">
+          <!-- Columna de marca y redes sociales -->
+          <div class="footer-brand">
+            <a
+              href="#"
+              class="logo"
+              style="display: block; margin-bottom: 20px"
+            >
+              <img
+                src="assets/eds_useful_images/logo.png"
+                alt="EDS Logo"
+                style="max-width: 200px; height: auto"
+              />
+            </a>
+            <p>
+              Somos la empresa líder en edificaciones inteligentes en el sur del
+              Perú, ofreciendo soluciones tecnológicas integrales para la
+              construcción.
+            </p>
+            <!-- Iconos de redes sociales -->
+            <div class="footer-social">
+              <a href="#" aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" aria-label="LinkedIn"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a href="#" aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://wa.me/51950313642" aria-label="WhatsApp"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
             </div>
-            
-            <!-- Barra inferior del footer con copyright y RUC -->
-            <div class="footer-bottom">
-                <p>&copy; 2024 <a href="#">EDS Edificaciones Inteligentes SAC</a>. Todos los derechos reservados.</p>
-                <p>RUC: 20608965765</p>
-            </div>
+          </div>
+
+          <!-- Columna de navegación -->
+          <div class="footer-links-col">
+            <h4 class="footer-title">Navegación</h4>
+            <ul class="footer-links">
+              <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#nosotros">Nosotros</a></li>
+              <li><a href="#servicios">Servicios</a></li>
+              <li><a href="html/proyectos.html">Proyectos</a></li>
+              <li><a href="#cobertura">Cobertura</a></li>
+              <li><a href="html/contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- Columna de servicios -->
+          <div class="footer-links-col">
+            <h4 class="footer-title">Servicios</h4>
+            <ul class="footer-links">
+              <li><a href="#servicios">Construcción Civil</a></li>
+              <li><a href="#servicios">Video Vigilancia</a></li>
+              <li><a href="#servicios">Redes y Telecom</a></li>
+              <li><a href="#servicios">Control de Accesos</a></li>
+              <li><a href="#servicios">Energía Renovable</a></li>
+              <li><a href="#servicios">Cableado Estructurado</a></li>
+            </ul>
+          </div>
+
+          <!-- Columna de información de contacto -->
+          <div class="footer-contact-col">
+            <h4 class="footer-title">Contacto</h4>
+            <ul class="footer-contact">
+              <li>
+                <i class="fas fa-phone"></i>
+                <div>
+                  <p><strong>WhatsApp:</strong></p>
+                  <a href="https://wa.me/51950313642">950 313 642</a>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-phone"></i>
+                <div>
+                  <p><strong>Teléfono:</strong></p>
+                  <a href="tel:+51951277576">951 277 576</a>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <p><strong>Email:</strong></p>
+                  <a href="mailto:rocio.jara@edin-tel.com"
+                    >rocio.jara@edin-tel.com</a
+                  >
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <p><strong>Dirección:</strong></p>
+                  <p>Urb. Las Peñas A-35, Sachaca, Arequipa</p>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
+
+        <!-- Barra inferior del footer con copyright y RUC -->
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 <a href="#">EDS Edificaciones Inteligentes SAC</a>.
+            Todos los derechos reservados.
+          </p>
+          <p>RUC: 20608965765</p>
+        </div>
+      </div>
     </footer>
 
     <!-- Script principal de la aplicación -->
     <script type="module" src="js/main.js"></script>
-</body>
+  </body>
 </html>
