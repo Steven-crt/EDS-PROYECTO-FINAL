@@ -70,6 +70,7 @@ const App = {
         this.initParticles();       // Inicializar efecto de partículas
         this.initProjectFilters();  // Configurar filtros de proyectos
         this.initProjectCards();    // Configurar interactividad de tarjetas
+        this.initProjectCarousel(); // Configurar carrusel de proyectos 3D
         this.initFormHandling();    // Configurar manejo de formularios
     },
 
@@ -311,6 +312,116 @@ const App = {
             card.addEventListener('mousemove', setCardTransform);
             card.addEventListener('mouseleave', resetCardTransform);
         });
+    },
+
+    /**
+     * ============================================
+     * CARRUSEL 3D DE PROYECTOS
+     * ============================================
+     * Implementa un carrusel interactivo con efectos 3D y blur
+     * para mostrar los proyectos destacados. Inspirado en el
+     * Airpods Animation slider.
+     * 
+     * Funcionalidades:
+     * - Navegación con flechas (anterior/siguiente)
+     * - Efecto de profundidad con blur y escala
+     * - Vista de detalles expandible
+     * - Transiciones suaves entre slides
+     * - Animaciones de texto escalonadas
+     */
+    initProjectCarousel() {
+        const carousel = document.querySelector('.project-carousel');
+        if (!carousel) return;
+
+        const listHTML = carousel.querySelector('.carousel-list');
+        const items = carousel.querySelectorAll('.carousel-item');
+        const nextButton = document.getElementById('carousel-next');
+        const prevButton = document.getElementById('carousel-prev');
+        const backButton = document.getElementById('carousel-back');
+        const seeMoreButtons = carousel.querySelectorAll('.seeMore');
+
+        if (!items.length || !nextButton || !prevButton) return;
+
+        let canClick = true;
+
+        /**
+         * Muestra el siguiente o anterior slide del carrusel.
+         * Aplica animaciones CSS y reorganiza los elementos del DOM.
+         * @param {string} type - 'next' o 'prev'
+         */
+        const showSlider = (type) => {
+            if (!canClick) return;
+            canClick = false;
+
+            carousel.classList.remove('next', 'prev');
+            
+            const currentItems = carousel.querySelectorAll('.carousel-item');
+            
+            if (type === 'next') {
+                listHTML.appendChild(currentItems[0]);
+                carousel.classList.add('next');
+            } else {
+                listHTML.prepend(currentItems[currentItems.length - 1]);
+                carousel.classList.add('prev');
+            }
+
+            setTimeout(() => {
+                canClick = true;
+            }, 2000);
+        };
+
+        // Event listeners para navegación
+        nextButton.addEventListener('click', () => showSlider('next'));
+        prevButton.addEventListener('click', () => showSlider('prev'));
+
+        // Event listeners para botones "Ver más"
+        seeMoreButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                carousel.classList.remove('next', 'prev');
+                carousel.classList.add('showDetail');
+            });
+        });
+
+        // Event listener para botón "Volver"
+        if (backButton) {
+            backButton.addEventListener('click', () => {
+                carousel.classList.remove('showDetail');
+            });
+        }
+
+        // Soporte para navegación con teclado
+        document.addEventListener('keydown', (e) => {
+            if (!carousel.matches(':hover')) return;
+            
+            if (e.key === 'ArrowRight') {
+                showSlider('next');
+            } else if (e.key === 'ArrowLeft') {
+                showSlider('prev');
+            } else if (e.key === 'Escape') {
+                carousel.classList.remove('showDetail');
+            }
+        });
+
+        // Soporte para swipe en dispositivos táctiles
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    showSlider('next');
+                } else {
+                    showSlider('prev');
+                }
+            }
+        }, { passive: true });
     },
 
     /**

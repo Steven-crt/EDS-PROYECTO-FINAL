@@ -59,47 +59,56 @@
             <img src="assets/eds_useful_images/hero_portada.jpg" alt="Construcción moderna">
         </div>
         <!-- Overlay semitransparente sobre la imagen -->
-        <div class="hero-overlay"></div>
+        <div class="hero-overlay glass-overlay"></div>
         
         <!-- Canvas para animación de partículas -->
         <canvas id="particles"></canvas>
         
-        <div class="container">
-            <!-- Contenido principal del hero con animación de entrada -->
-            <div class="hero-content" data-aos="fade-up">
-                <!-- Badge de experiencia -->
-                <span class="hero-badge">
-                    <i class="fas fa-check-circle"></i>
-                    +10 años de experiencia
-                </span>
+        <!-- Contenedor del Hero modificado con Glassmorphism -->
+        <div class="container hero-glass-container">
+            <!-- Glassmorphism content card -->
+            <div class="hero-glass-card" data-aos="fade-right">
+                <div class="glass-badge bounce">
+                    <i class="fas fa-check-circle"></i> +10 años de experiencia
+                </div>
                 
-                <!-- Título principal del sitio -->
                 <h1 class="hero-title">
-                    Construyendo el <span class="highlight">Futuro</span>
+                    Construyendo el <span class="highlight">Futuro</span><br>
                     con Tecnología
                 </h1>
                 
-                <!-- Descripción de la empresa -->
                 <p class="hero-description">
                     Desarrollamos proyectos de construcciones inteligentes con enfoque tecnológico, 
                     sistemas de comunicación, seguridad electrónica e Internet de las cosas.
                 </p>
                 
-                <!-- Botones de acción: WhatsApp y servicios -->
                 <div class="hero-buttons">
-                    <a href="https://wa.me/51950313642" target="_blank" class="btn btn-whatsapp">
+                    <a href="https://wa.me/51950313642" target="_blank" class="btn btn-whatsapp shine-effect">
                         <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
                     </a>
-                    <a href="#servicios" class="btn btn-outline">
+                    <a href="#servicios" class="btn btn-outline" style="color: white; border-color: rgba(255,255,255,0.5);">
                         <i class="fas fa-cogs"></i> Nuestros Servicios
                     </a>
+                </div>
+            </div>
+            
+            <!-- Floating Elements para simular high-tech asimetrico -->
+            <div class="hero-floating-elements" data-aos="fade-left" data-aos-delay="300">
+                <div class="floating-badge badge-1 float-anim-1">
+                    <i class="fas fa-shield-alt"></i> Seguridad 100%
+                </div>
+                <div class="floating-badge badge-2 float-anim-2">
+                    <i class="fas fa-network-wired"></i> Redes y Control
+                </div>
+                <div class="floating-badge badge-3 float-anim-3">
+                    <i class="fas fa-headset"></i> Soporte 24/7
                 </div>
             </div>
         </div>
         
         <!-- Indicador de scroll para bajar -->
-        <a href="#nosotros" class="hero-scroll">
-            <span>Scroll</span>
+        <a href="#nosotros" class="hero-scroll" style="color: rgba(255,255,255,0.8);">
+            <span>Descubre más</span>
             <i class="fas fa-chevron-down"></i>
         </a>
     </section>

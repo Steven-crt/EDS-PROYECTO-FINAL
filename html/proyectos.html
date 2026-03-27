@@ -86,386 +86,480 @@
       </div>
     </section>
 
-    <!-- Sección principal de proyectos: filtros por categoría y grid de tarjetas -->
+    <!-- Sección principal de proyectos: carrusel 3D con animaciones -->
     <section class="section projects-page">
       <div class="container">
-        <!-- Filtros de proyectos: botones para filtrar por categoría (Seguridad, Comunicación, etc.) -->
-        <div class="projects-filters" data-aos="fade-up">
-          <button class="filter-btn active" data-filter="all">Todos</button>
-          <button class="filter-btn" data-filter="seguridad">Seguridad</button>
-          <button class="filter-btn" data-filter="comunicacion">
-            Comunicación
-          </button>
-          <button class="filter-btn" data-filter="construccion">
-            Construcción
-          </button>
-          <button class="filter-btn" data-filter="energia">Energía</button>
-          <button class="filter-btn" data-filter="redes">Redes</button>
+        <!-- Carrusel de proyectos estilo Airpods Animation -->
+        <div class="project-carousel">
+          <div class="carousel-list">
+            <!-- Proyecto 1: Centro de Seguridad Ciudadana -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/centro_monitoreo2.jpg" alt="Centro de Seguridad Ciudadana" />
+              <div class="item-introduce">
+                <span class="badge badge-success">Concluido</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">Centro de Seguridad Ciudadana</div>
+                <div class="item-des">Sistema integral de monitoreo con 120 cámaras de alta definición y centro de control avanzado para la Municipalidad Provincial de Melgar.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">Centro de Seguridad Ciudadana</div>
+                <div class="detail-client">Municipalidad Provincial de Melgar</div>
+                <div class="detail-investment">S/ 4.2 Millones</div>
+                <div class="detail-des">Implementación completa de un centro de monitoreo con tecnología de punta para la vigilancia urbana, incluyendo sala de control, 120 cámaras PTZ y fijas, y software de gestión avanzado.</div>
+                <div class="detail-specs">
+                  <div>
+                    <p>Cámaras</p>
+                    <p>120 unidades</p>
+                  </div>
+                  <div>
+                    <p>Monitores</p>
+                    <p>15 pantallas</p>
+                  </div>
+                  <div>
+                    <p>Almacenamiento</p>
+                    <p>90 días</p>
+                  </div>
+                  <div>
+                    <p>Cobertura</p>
+                    <p>Urbana total</p>
+                  </div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron la obra</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">Hikvision</span>
+                    <span class="partner-pill">Dahua</span>
+                    <span class="partner-pill">FibraTel</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proyecto 2: Semáforos Inteligentes -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/control_vehiculos.jpg" alt="Semáforos Inteligentes" />
+              <div class="item-introduce">
+                <span class="badge badge-success">Concluido</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">Semáforos Inteligentes</div>
+                <div class="item-des">Sistema de semafórico inteligente con control centralizado para 15 intersecciones principales del distrito de J.L. Bustamante y Rivero.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">Semáforos Inteligentes</div>
+                <div class="detail-client">Distrito de J.L. Bustamante y Rivero</div>
+                <div class="detail-investment">S/ 8.5 Millones</div>
+                <div class="detail-des">Modernización del sistema de semáforos con tecnología de adaptación en tiempo real, reduciendo tiempos de espera y mejorando el flujo vehicular.</div>
+                <div class="detail-specs">
+                  <div>
+                    <p>Intersecciones</p>
+                    <p>15 puntos</p>
+                  </div>
+                  <div>
+                    <p>Sistema</p>
+                    <p>Centralizado</p>
+                  </div>
+                  <div>
+                    <p>Sensores</p>
+                    <p>45 unidades</p>
+                  </div>
+                  <div>
+                    <p>Reducción</p>
+                    <p>35% tráfico</p>
+                  </div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron la obra</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">Siemens</span>
+                    <span class="partner-pill">Sice</span>
+                    <span class="partner-pill">Cisco</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proyecto 3: Radio Base de Comunicaciones -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/motorola_radio2.jpg" alt="Radio Base de Comunicaciones" />
+              <div class="item-introduce">
+                <span class="badge badge-accent">En Ejecución</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">Radio Base de Comunicaciones</div>
+                <div class="item-des">Instalación de torre de comunicaciones y sistema de radio base para mejorar la cobertura en zonas remotas de Iquitos, Loreto.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">Radio Base de Comunicaciones</div>
+                <div class="detail-client">Iquitos, Loreto</div>
+                <div class="detail-investment">S/ 6.8 Millones</div>
+                <div class="detail-des">Proyecto de infraestructura de comunicaciones para zonas de difícil acceso, garantizando conectividad en emergencias y operaciones de campo.</div>
+                <div class="detail-specs">
+                  <div>
+                    <p>Torre</p>
+                    <p>45 metros</p>
+                  </div>
+                  <div>
+                    <p>Alcance</p>
+                    <p>50 km</p>
+                  </div>
+                  <div>
+                    <p>Frecuencias</p>
+                    <p>VHF/UHF</p>
+                  </div>
+                  <div>
+                    <p>Respaldo</p>
+                    <p>72 horas</p>
+                  </div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron la obra</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">Motorola</span>
+                    <span class="partner-pill">Hytera</span>
+                    <span class="partner-pill">TowerCom</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proyecto 4: I.E. Nº 40208 -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/auditorio.jpg" alt="I.E. Nº 40208" />
+              <div class="item-introduce">
+                <span class="badge badge-success">Concluido</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">I.E. Nº 40208</div>
+                <div class="item-des">Construcción de infraestructura educativa moderna con 18 aulas y capacidad para 900 alumnos en la UGEL Arequipa Norte.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">I.E. Nº 40208</div>
+                <div class="detail-client">UGEL Arequipa Norte</div>
+                <div class="detail-investment">S/ 5.1 Millones</div>
+                <div class="detail-des">Edificación de centro educativo con estándares antisísmicos, laboratorios equipados y áreas recreativas para la comunidad estudiantil.</div>
+                <div class="detail-specs">
+                  <div>
+                    <p>Aulas</p>
+                    <p>18 unidades</p>
+                  </div>
+                  <div>
+                    <p>Capacidad</p>
+                    <p>900 alumnos</p>
+                  </div>
+                  <div>
+                    <p>Área</p>
+                    <p>3,200 m²</p>
+                  </div>
+                  <div>
+                    <p>Pisos</p>
+                    <p>3 niveles</p>
+                  </div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron la obra</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">Sika</span>
+                    <span class="partner-pill">Cemento Yura</span>
+                    <span class="partner-pill">Ferreyros</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proyecto 5: Video Vigilancia Industrial -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/camara_analisis.jpg" alt="Video Vigilancia Industrial" />
+              <div class="item-introduce">
+                <span class="badge badge-success">Concluido</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">Video Vigilancia Industrial</div>
+                <div class="item-des">Sistema de videovigilancia avanzado con 200 cámaras IP y análisis inteligente para el Complejo Industrial de Arequipa.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">Video Vigilancia Industrial</div>
+                <div class="detail-client">Complejo Industrial Arequipa</div>
+                <div class="detail-investment">S/ 2.8 Millones</div>
+                <div class="detail-des">Solución integral de seguridad con cámaras de última generación, detección de movimiento y reconocimiento facial para protección industrial.</div>
+                <div class="detail-specs">
+                  <div>
+                    <p>Cámaras IP</p>
+                    <p>200 unidades</p>
+                  </div>
+                  <div>
+                    <p>Resolución</p>
+                    <p>4K Ultra HD</p>
+                  </div>
+                  <div>
+                    <p>Análisis</p>
+                    <p>IA integrada</p>
+                  </div>
+                  <div>
+                    <p>Grabación</p>
+                    <p>120 días</p>
+                  </div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron la obra</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">Axis</span>
+                    <span class="partner-pill">Avigilon</span>
+                    <span class="partner-pill">LenelS2</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proyecto 6: Cableado Hospital Regional -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/cableado1.jpg" alt="Cableado Hospital Regional" />
+              <div class="item-introduce">
+                <span class="badge badge-success">Concluido</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">Cableado Hospital Regional</div>
+                <div class="item-des">Infraestructura de cableado estructurado de alta disponibilidad para el Hospital Regional de Arequipa.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">Cableado Hospital Regional</div>
+                <div class="detail-client">Hospital Regional de Arequipa</div>
+                <div class="detail-investment">S/ 3.5 Millones</div>
+                <div class="detail-des">Implementación de red de cableado categoría 6A con redundancia, UPS y sistemas de monitoreo para garantizar la continuidad operativa hospitalaria.</div>
+                <div class="detail-specs">
+                  <div>
+                    <p>Puntos</p>
+                    <p>2,500+</p>
+                  </div>
+                  <div>
+                    <p>Categoría</p>
+                    <p>Cat 6A</p>
+                  </div>
+                  <div>
+                    <p>Switches</p>
+                    <p>48 puertos</p>
+                  </div>
+                  <div>
+                    <p>Uptime</p>
+                    <p>99.99%</p>
+                  </div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron la obra</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">Panduit</span>
+                    <span class="partner-pill">Legrand</span>
+                    <span class="partner-pill">APC</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proyecto 7: Alcaldía Municipal -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/alarma_control_building.png" alt="Alcaldía Municipal" />
+              <div class="item-introduce">
+                <span class="badge badge-success">Concluido</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">Alcaldía Municipal</div>
+                <div class="item-des">Sistema de alarma contra incendios y control integral del edificio.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">Alcaldía Municipal</div>
+                <div class="detail-client">Municipalidad Local</div>
+                <div class="detail-investment">S/ 1.3 Millones</div>
+                <div class="detail-des">Modernización completa de los sistemas de prevención con central de monitoreo.</div>
+                <div class="detail-specs">
+                  <div><p>Sensores</p><p>50+ unid.</p></div>
+                  <div><p>Sistema</p><p>Integrado</p></div>
+                  <div><p>Sirenas</p><p>30 estrobos</p></div>
+                  <div><p>Zonas</p><p>12 áreas</p></div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">Honeywell</span>
+                    <span class="partner-pill">Bosch</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proyecto 8: Centro Empresarial -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/sala_control.jpg" alt="Centro Empresarial" />
+              <div class="item-introduce">
+                <span class="badge badge-success">Concluido</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">Centro Empresarial</div>
+                <div class="item-des">Central de automatización y diseño corporativo de telecomunicaciones.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">Centro Empresarial</div>
+                <div class="detail-client">Centro de Negocios Sur</div>
+                <div class="detail-investment">S/ 2.1 Millones</div>
+                <div class="detail-des">Implementación del Cuarto de Equipos (MDF) con alta disponibilidad y redundancia de datos.</div>
+                <div class="detail-specs">
+                  <div><p>Fibra</p><p>FTTH 10G</p></div>
+                  <div><p>Conexión</p><p>Cat 6A</p></div>
+                  <div><p>UPS</p><p>Respaldo 48h</p></div>
+                  <div><p>Mantenimiento</p><p>Preventivo</p></div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">Cisco</span>
+                    <span class="partner-pill">APC</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proyecto 9: Planta Solar -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/iot_industrial.jpg" alt="Planta Solar" />
+              <div class="item-introduce">
+                <span class="badge badge-accent">En Ejecución</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">Planta Solar Joya</div>
+                <div class="item-des">Supervisión IoT industrial e infraestructura para generación renovable.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">Planta Solar</div>
+                <div class="detail-client">Consorcio Energético</div>
+                <div class="detail-investment">S/ 12 Millones</div>
+                <div class="detail-des">Sistema remoto de adquisición de datos en tiempo real para optimización de paneles.</div>
+                <div class="detail-specs">
+                  <div><p>Sensores</p><p>IoT Data</p></div>
+                  <div><p>Energía</p><p>Renovable</p></div>
+                  <div><p>Telemetry</p><p>99.9% Up</p></div>
+                  <div><p>Control</p><p>SCADA</p></div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">Siemens</span>
+                    <span class="partner-pill">Schneider</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proyecto 10: Universidad -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/comunicacion_seguridad.jpg" alt="Universidad" />
+              <div class="item-introduce">
+                <span class="badge badge-success">Concluido</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">Campus Universitario</div>
+                <div class="item-des">Despliegue de red inalámbrica de alta densidad para 10,000 alumnos simultáneos.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">Campus Universitario</div>
+                <div class="detail-client">Universidad Privada</div>
+                <div class="detail-investment">S/ 4.7 Millones</div>
+                <div class="detail-des">Anillos de seguridad perimetral y cobertura WiFi al 100% de las instalaciones con firewall.</div>
+                <div class="detail-specs">
+                  <div><p>Access Points</p><p>Radio Móvil</p></div>
+                  <div><p>Tecnología</p><p>WiFi 6</p></div>
+                  <div><p>Firewall</p><p>NGFW</p></div>
+                  <div><p>Alumnos</p><p>10k+</p></div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">Aruba</span>
+                    <span class="partner-pill">Palo Alto</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proyecto 11: Obras Viales -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/camara_poste.jpg" alt="Obras Viales" />
+              <div class="item-introduce">
+                <span class="badge badge-success">Concluido</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">Obras Viales e Iluminación</div>
+                <div class="item-des">Automatización e instalación de cámaras de videovigilancia en autopistas principales.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">Vigilancia en Obras Viales</div>
+                <div class="detail-client">Gobierno Regional</div>
+                <div class="detail-investment">S/ 6.5 Millones</div>
+                <div class="detail-des">Integración de cámaras PTZ con tendido de fibra óptica a red metropolitana de monitoreo.</div>
+                <div class="detail-specs">
+                  <div><p>Cámaras</p><p>PTZ Alta res.</p></div>
+                  <div><p>Fibra</p><p>Anillo óptico</p></div>
+                  <div><p>Vehículos</p><p>LPR</p></div>
+                  <div><p>Integración</p><p>Policía Nal.</p></div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">Axis</span>
+                    <span class="partner-pill">Motorola</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proyecto 12: Control Accesos -->
+            <div class="carousel-item">
+              <img src="../assets/eds_useful_images/control_acceso1.jpg" alt="Control Accesos" />
+              <div class="item-introduce">
+                <span class="badge badge-success">Concluido</span>
+                <div class="item-title">Proyecto Destacado</div>
+                <div class="item-topic">Control de Accesos Automático</div>
+                <div class="item-des">Reconocimiento biométrico y apertura automática para conjunto residencial.</div>
+                <button class="seeMore">VER DETALLES &#8599;</button>
+              </div>
+              <div class="item-detail">
+                <div class="detail-title">Control de Accesos</div>
+                <div class="detail-client">Condominio Premium</div>
+                <div class="detail-investment">S/ 0.8 Millones</div>
+                <div class="detail-des">Cerraduras vehiculares y peatonales de ultra alta frecuencia para acceso sin contacto a propietarios.</div>
+                <div class="detail-specs">
+                  <div><p>Molinete</p><p>Doble carril</p></div>
+                  <div><p>Biometría</p><p>Facial/Huella</p></div>
+                  <div><p>UHF</p><p>Lector vehicular</p></div>
+                  <div><p>Software</p><p>App central</p></div>
+                </div>
+                <div class="detail-partners">
+                  <p class="partners-label">Socios que apoyaron</p>
+                  <div class="partners-list">
+                    <span class="partner-pill">ZKTeco</span>
+                    <span class="partner-pill">Hikvision</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controles de navegación del carrusel -->
+          <div class="carousel-arrows">
+            <button id="carousel-prev" class="carousel-arrow" aria-label="Anterior">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="carousel-next" class="carousel-arrow" aria-label="Siguiente">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+            <button id="carousel-back" class="carousel-back">Ver Todos &#8599;</button>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Grid de proyectos: tarjetas con imagen, overlay, badges de estado y socios -->
-        <div class="projects-grid">
-          <div
-            class="project-card"
-            data-category="seguridad"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <img
-              src="../assets/eds_useful_images/centro_monitoreo2.jpg"
-              alt="Centro de Seguridad"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-success">Concluido</span>
-              <h3 class="project-title">Centro de Seguridad Ciudadana</h3>
-              <p class="project-client">Municipalidad Provincial de Melgar</p>
-              <p class="project-investment">S/ 4.2 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">Hikvision</span>
-                  <span class="partner-pill">Dahua</span>
-                  <span class="partner-pill">FibraTel</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">120 cámaras</span>
-                <span class="badge badge-primary">15 monitores</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            data-category="comunicacion"
-            data-aos="fade-up"
-            data-aos-delay="150"
-          >
-            <img
-              src="../assets/eds_useful_images/control_vehiculos.jpg"
-              alt="Semáforos Inteligentes"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-success">Concluido</span>
-              <h3 class="project-title">Semáforos Inteligentes</h3>
-              <p class="project-client">Distrito de J.L. Bustamante y Rivero</p>
-              <p class="project-investment">S/ 8.5 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">Siemens</span>
-                  <span class="partner-pill">Sice</span>
-                  <span class="partner-pill">Cisco</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">15 intersecciones</span>
-                <span class="badge badge-primary">Sistema centralizado</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            data-category="comunicacion"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <img
-              src="../assets/eds_useful_images/motorola_radio2.jpg"
-              alt="Radio Base"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-accent">En Ejecución</span>
-              <h3 class="project-title">Radio Base de Comunicaciones</h3>
-              <p class="project-client">Iquitos, Loreto</p>
-              <p class="project-investment">S/ 6.8 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">Motorola</span>
-                  <span class="partner-pill">Hytera</span>
-                  <span class="partner-pill">TowerCom</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">Cobertura regional</span>
-                <span class="badge badge-primary">Sistema Motorola</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            data-category="construccion"
-            data-aos="fade-up"
-            data-aos-delay="250"
-          >
-            <img
-              src="../assets/eds_useful_images/auditorio.jpg"
-              alt="Institución Educativa"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-success">Concluido</span>
-              <h3 class="project-title">I.E. Nº 40208</h3>
-              <p class="project-client">UGEL Arequipa Norte</p>
-              <p class="project-investment">S/ 5.1 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">Sika</span>
-                  <span class="partner-pill">Cemento Yura</span>
-                  <span class="partner-pill">Ferreyros</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">18 aulas</span>
-                <span class="badge badge-primary">900 alumnos</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            data-category="seguridad"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            <img
-              src="../assets/eds_useful_images/camara_analisis.jpg"
-              alt="Videovigilancia Industrial"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-success">Concluido</span>
-              <h3 class="project-title">Video Vigilancia Industrial</h3>
-              <p class="project-client">Complejo Industrial Arequipa</p>
-              <p class="project-investment">S/ 2.8 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">Axis</span>
-                  <span class="partner-pill">Avigilon</span>
-                  <span class="partner-pill">LenelS2</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">200 cámaras IP</span>
-                <span class="badge badge-primary">Axis + Avigilon</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            data-category="redes"
-            data-aos="fade-up"
-            data-aos-delay="350"
-          >
-            <img
-              src="../assets/eds_useful_images/cableado1.jpg"
-              alt="Hospital"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-success">Concluido</span>
-              <h3 class="project-title">Cableado Hospital Regional</h3>
-              <p class="project-client">Hospital Regional de Arequipa</p>
-              <p class="project-investment">S/ 3.5 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">Panduit</span>
-                  <span class="partner-pill">Legrand</span>
-                  <span class="partner-pill">APC</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">Red hospitalaria</span>
-                <span class="badge badge-primary">Panduit</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            data-category="seguridad"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <img
-              src="../assets/eds_useful_images/alarma_control_building.png"
-              alt="Alcaldía Municipal"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-success">Concluido</span>
-              <h3 class="project-title">Sistema de Alarmas Municipal</h3>
-              <p class="project-client">Municipalidad Distrital de Cayma</p>
-              <p class="project-investment">S/ 1.8 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">Honeywell</span>
-                  <span class="partner-pill">Bosch</span>
-                  <span class="partner-pill">CommScope</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">Honeywell</span>
-                <span class="badge badge-primary">24 zonas</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            data-category="comunicacion"
-            data-aos="fade-up"
-            data-aos-delay="450"
-          >
-            <img
-              src="../assets/eds_useful_images/sala_control.jpg"
-              alt="Centro Empresarial"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-success">Concluido</span>
-              <h3 class="project-title">Central Telefónica IP</h3>
-              <p class="project-client">Centro Empresarial Cayma</p>
-              <p class="project-investment">S/ 1.2 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">Avaya</span>
-                  <span class="partner-pill">Grandstream</span>
-                  <span class="partner-pill">Yealink</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">Avaya IP Office</span>
-                <span class="badge badge-primary">150 extensiones</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            data-category="energia"
-            data-aos="fade-up"
-            data-aos-delay="500"
-          >
-            <img
-              src="../assets/eds_useful_images/iot_industrial.jpg"
-              alt="Planta Solar"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-success">Concluido</span>
-              <h3 class="project-title">Planta Solar Fotovoltaica</h3>
-              <p class="project-client">Empresa Minera - Antapaccay</p>
-              <p class="project-investment">S/ 12.5 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">Schneider</span>
-                  <span class="partner-pill">Sungrow</span>
-                  <span class="partner-pill">Trina Solar</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">500 kW</span>
-                <span class="badge badge-primary">Schneider Electric</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            data-category="redes"
-            data-aos="fade-up"
-            data-aos-delay="550"
-          >
-            <img
-              src="../assets/eds_useful_images/comunicacion_seguridad.jpg"
-              alt="Universidad"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-success">Concluido</span>
-              <h3 class="project-title">Red Inalámbrica Campus</h3>
-              <p class="project-client">Universidad Nacional de San Agustín</p>
-              <p class="project-investment">S/ 2.1 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">Cambium</span>
-                  <span class="partner-pill">MikroTik</span>
-                  <span class="partner-pill">Belden</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">Cambium Networks</span>
-                <span class="badge badge-primary">100+ puntos</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            data-category="construccion"
-            data-aos="fade-up"
-            data-aos-delay="600"
-          >
-            <img
-              src="../assets/eds_useful_images/camara_poste.jpg"
-              alt="Obras Viales"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-accent">En Ejecución</span>
-              <h3 class="project-title">Iluminación Inteligente Vial</h3>
-              <p class="project-client">Provincia de Islay</p>
-              <p class="project-investment">S/ 4.8 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">Signify</span>
-                  <span class="partner-pill">Schreder</span>
-                  <span class="partner-pill">Intelbras</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">500 postes LED</span>
-                <span class="badge badge-primary">IoT</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            data-category="seguridad"
-            data-aos="fade-up"
-            data-aos-delay="650"
-          >
-            <img
-              src="../assets/eds_useful_images/control_acceso1.jpg"
-              alt="Control Accesos"
-            />
-            <div class="project-overlay">
-              <span class="badge badge-success">Concluido</span>
-              <h3 class="project-title">Control de Accesos Biométrico</h3>
-              <p class="project-client">Banco de Crédito del Perú - Arequipa</p>
-              <p class="project-investment">S/ 1.5 Millones</p>
-              <div class="project-support">
-                <p class="project-support-label">Socios que apoyaron la obra</p>
-                <div class="partner-list">
-                  <span class="partner-pill">ZKTeco</span>
-                  <span class="partner-pill">HID</span>
-                  <span class="partner-pill">Suprema</span>
-                </div>
-              </div>
-              <div class="project-view">
-                <span class="badge badge-primary">ZKTeco</span>
-                <span class="badge badge-primary">50 lectores</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
+    <!-- Sección de llamamiento a la acción (CTA) -->
+    <section class="section">
+      <div class="container">
         <!-- Llamada a la acción: invitación a contactar por WhatsApp o correo electrónico -->
         <div class="text-center mt-5" data-aos="fade-up">
           <div
