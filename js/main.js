@@ -23,25 +23,29 @@ import { Animations, Particles } from './animations.js';
    SECCIÓN 2: CONFIGURACIÓN DE LA PÁGINA DE INTRO
    ============================================
    Se definen las constantes para controlar la página de introducción
-   (intro.html). Se usa sessionStorage para verificar si el usuario
-   ya vio la intro en su sesión actual. Si es la primera visita a la
-   página principal y no ha visto la intro, se redirige automáticamente
-   a intro.html.
+   (intro.html). La página principal siempre redirige a la intro, y
+   la intro vuelve a index.html con el parámetro intro=1 para evitar
+   un bucle inmediato. Al llegar con intro=1, se limpia el parámetro
+   para que la próxima apertura vuelva a mostrar la intro.
    
-   - INTRO_SESSION_KEY: Clave usada en sessionStorage para rastrear
-     si la intro ya fue mostrada.
    - currentPath: Ruta actual de la URL de la página.
    - isIntroPage: Verifica si estamos en la página de intro.
    - isHomePage: Verifica si estamos en la página principal (index.html).
    ============================================ */
-const INTRO_SESSION_KEY = 'edsIntroSeen';
 const currentPath = window.location.pathname;
 const isIntroPage = currentPath.endsWith('intro.html');
 const isHomePage = currentPath.endsWith('index.html') || currentPath.endsWith('/eds-web/') || currentPath.endsWith('/eds-web');
+const urlParams = new URLSearchParams(window.location.search);
+const cameFromIntro = urlParams.get('intro') === '1';
 
-// Redirigir a la intro si el usuario no la ha visto y está en la página principal
-if (!sessionStorage.getItem(INTRO_SESSION_KEY) && isHomePage && !isIntroPage) {
+// Redirigir a la intro siempre que se abra la página principal
+if (isHomePage && !isIntroPage && !cameFromIntro) {
     window.location.replace('intro.html');
+} else if (cameFromIntro) {
+    const cleanUrl = new URL(window.location.href);
+    cleanUrl.searchParams.delete('intro');
+    const nextUrl = `${cleanUrl.pathname}${cleanUrl.search}${cleanUrl.hash}`;
+    window.history.replaceState({}, document.title, nextUrl);
 }
 
 /* ============================================

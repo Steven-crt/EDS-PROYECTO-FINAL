@@ -669,7 +669,7 @@
 
         <!-- Logo de la empresa (clickeable para saltar intro) -->
         <img
-          src="assets/images/logo_empresa-Photoroom.png"
+          src="assets/eds_useful_images/logo_empresa-Photoroom.png"
           alt="EDS Logo"
           class="intro-logo"
           onclick="skipIntro()"
@@ -849,25 +849,22 @@
 
       /* ── Control de temporización de la intro ── */
 
-      /* skipIntro(): marca la intro como vista en sessionStorage,  */
-      /* aplica la clase fade-out y redirige a index.html tras 800ms */
+      /* skipIntro(): aplica la clase fade-out y redirige a index.html?intro=1 tras 800ms */
       function skipIntro() {
-        sessionStorage.setItem("edsIntroSeen", "true");
         document.body.classList.add("fade-out");
         setTimeout(() => {
-          window.location.href = "index.html";
+          window.location.href = "index.html?intro=1";
         }, 800);
       }
 
       /* A los 7.5 segundos: inicia el desvanecimiento de la página */
       setTimeout(() => {
-        sessionStorage.setItem("edsIntroSeen", "true");
         document.body.classList.add("fade-out");
       }, 7500);
 
       /* A los 8.5 segundos: redirige automáticamente a index.html */
       setTimeout(() => {
-        window.location.href = "index.html";
+        window.location.href = "index.html?intro=1";
       }, 8500);
     </script>
   </body>
