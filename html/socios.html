@@ -232,6 +232,72 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        perspective: 1000px;
+      }
+
+      .socio-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+      }
+
+      .socio-card:hover .socio-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .socio-card-front,
+      .socio-card-back {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      .socio-card-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 20px;
+        background: linear-gradient(135deg, #1565c0, #0d47a1);
+        border-radius: 20px;
+        color: white;
+      }
+
+      .socio-card-back .socio-back-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: #f0b429;
+      }
+
+      .socio-card-back .socio-back-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .socio-card-back .socio-back-category {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      .socio-card-back .socio-back-desc {
+        font-size: 0.8rem;
+        opacity: 0.85;
+        text-align: center;
+        line-height: 1.5;
       }
       
       .socio-card::before {
@@ -650,10 +716,10 @@
               Somos la empresa líder en edificaciones inteligentes en el sur del Perú, ofreciendo soluciones tecnológicas integrales para la construcción.
             </p>
             <div class="footer-social">
-              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-              <a href="https://wa.me/51950313642" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              <a href="#" aria-label="Facebook" data-social="facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="LinkedIn" data-social="linkedin"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram" data-social="instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/51950313642" aria-label="WhatsApp" data-social="whatsapp"><i class="fab fa-whatsapp"></i></a>
             </div>
           </div>
           
@@ -818,11 +884,21 @@
           card.style.transition = 'all 0.5s ease';
           
           card.innerHTML = `
-            <div class="socio-logo">
-              <img src="../assets/logos_named/${socio.archivo}" alt="${socio.nombre}" />
+            <div class="socio-card-inner">
+              <div class="socio-card-front">
+                <div class="socio-logo">
+                  <img src="../assets/logos_named/${socio.archivo}" alt="${socio.nombre}" />
+                </div>
+                <h3 class="socio-name">${socio.nombre}</h3>
+                <span class="socio-category">${getCategoryName(socio.categoria)}</span>
+              </div>
+              <div class="socio-card-back">
+                <i class="fas fa-handshake socio-back-icon"></i>
+                <div class="socio-back-name">${socio.nombre}</div>
+                <span class="socio-back-category">${getCategoryName(socio.categoria)}</span>
+                <p class="socio-back-desc">Socio estratégico de EDS en soluciones de ${getCategoryName(socio.categoria).toLowerCase()} para proyectos de edificaciones inteligentes.</p>
+              </div>
             </div>
-            <h3 class="socio-name">${socio.nombre}</h3>
-            <span class="socio-category">${getCategoryName(socio.categoria)}</span>
           `;
           
           grid.appendChild(card);

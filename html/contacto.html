@@ -29,6 +29,81 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      .contact-section-wrapper {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-section-wrapper::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: 
+          radial-gradient(circle at 20% 50%, rgba(21, 101, 192, 0.06) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(240, 180, 41, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 40% 80%, rgba(229, 57, 53, 0.03) 0%, transparent 50%);
+        animation: contactBgShift 12s ease-in-out infinite;
+        background-size: 150% 150%;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .contact-section-wrapper .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes contactBgShift {
+        0%, 100% { background-position: 0% 50%; }
+        25% { background-position: 100% 0%; }
+        50% { background-position: 100% 100%; }
+        75% { background-position: 0% 100%; }
+      }
+
+      .contact-info {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-info::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #1565c0, #f0b429, #e53935, #1565c0);
+        background-size: 300% 100%;
+        animation: gradientMove 4s linear infinite;
+      }
+
+      .contact-form {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-form::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #f0b429, #1565c0, #f0b429);
+        background-size: 200% 100%;
+        animation: gradientMove 3s linear infinite;
+      }
+
+      @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 300% 50%; }
+      }
+    </style>
   </head>
   <body>
     <!-- ====== PRELOADER: Pantalla de carga animada con las letras E, D, S en SVG ====== -->
@@ -99,7 +174,7 @@
     </section>
 
     <!-- ====== SECCIÓN DE CONTACTO: Información de contacto + Formulario ====== -->
-    <section class="section">
+    <section class="section contact-section-wrapper">
       <div class="container">
         <!-- Grid de dos columnas: izquierda = info contacto, derecha = formulario -->
         <div class="contact-grid">
@@ -467,16 +542,16 @@
               construcción.
             </p>
             <div class="footer-social">
-              <a href="#" aria-label="Facebook"
+              <a href="#" aria-label="Facebook" data-social="facebook"
                 ><i class="fab fa-facebook-f"></i
               ></a>
-              <a href="#" aria-label="LinkedIn"
+              <a href="#" aria-label="LinkedIn" data-social="linkedin"
                 ><i class="fab fa-linkedin-in"></i
               ></a>
-              <a href="#" aria-label="Instagram"
+              <a href="#" aria-label="Instagram" data-social="instagram"
                 ><i class="fab fa-instagram"></i
               ></a>
-              <a href="https://wa.me/51950313642" aria-label="WhatsApp"
+              <a href="https://wa.me/51950313642" aria-label="WhatsApp" data-social="whatsapp"
                 ><i class="fab fa-whatsapp"></i
               ></a>
             </div>
