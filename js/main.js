@@ -8,17 +8,30 @@
 (function() {
     'use strict';
 
-    /* ============================================
-       CONFIGURACIÓN DE LA PÁGINA DE INTRO
-       ============================================ */
-    var INTRO_SESSION_KEY = 'edsIntroSeen';
-    var currentPath = window.location.pathname;
-    var isIntroPage = currentPath.endsWith('intro.html');
-    var isHomePage = currentPath.endsWith('index.html') || currentPath.endsWith('/eds-web/') || currentPath.endsWith('/eds-web');
+/* ============================================
+   SECCIÓN 2: CONFIGURACIÓN DE LA PÁGINA DE INTRO
+   ============================================
+   Se definen las constantes para controlar la página de introducción
+   (intro.html). Se usa sessionStorage para verificar si el usuario
+   ya vio la intro en su sesión actual. Si es la primera visita a la
+   página principal y no ha visto la intro, se redirige automáticamente
+   a intro.html.
+   
+   - INTRO_SESSION_KEY: Clave usada en sessionStorage para rastrear
+     si la intro ya fue mostrada.
+   - currentPath: Ruta actual de la URL de la página.
+   - isIntroPage: Verifica si estamos en la página de intro.
+   - isHomePage: Verifica si estamos en la página principal (index.html).
+   ============================================ */
+const INTRO_SESSION_KEY = 'edsIntroSeen';
+const currentPath = window.location.pathname;
+const isIntroPage = currentPath.endsWith('intro.html');
+const isHomePage = currentPath.endsWith('index.html') || currentPath.endsWith('/eds-web/') || currentPath.endsWith('/eds-web');
 
-    if (!sessionStorage.getItem(INTRO_SESSION_KEY) && isHomePage && !isIntroPage) {
-        window.location.replace('intro.html');
-    }
+// Redirigir a la intro si el usuario no la ha visto y está en la página principal
+if (!sessionStorage.getItem(INTRO_SESSION_KEY) && isHomePage && !isIntroPage) {
+    window.location.replace('intro.html');
+}
 
     /* ============================================
        OBJETO PRINCIPAL DE LA APLICACIÓN
