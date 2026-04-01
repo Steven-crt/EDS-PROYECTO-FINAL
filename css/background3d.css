@@ -1,0 +1,530 @@
+/* ================================================
+   EDS EDIFICACIONES INTELIGENTES
+   3D Background Stylesheet v1.0
+   ================================================
+   Estilos para fondos 3D inmersivos, efectos de profundidad,
+   tarjetas con tilt 3D, gradientes animados y transiciones
+   de sección con scroll.
+   ================================================ */
+
+/* ================================================
+   CANVAS THREE.JS - Fondo 3D global
+   ================================================ */
+#three-bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3 !important;
+    pointer-events: none;
+}
+
+/* ================================================
+   SECCIONES CON FONDO 3D
+   ================================================ */
+.section-3d-bg {
+    position: relative;
+    overflow: hidden;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-3d-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(15, 32, 39, 0.02) 0%,
+        rgba(15, 32, 39, 0.06) 50%,
+        rgba(15, 32, 39, 0.02) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+.section-3d-bg .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ================================================
+   GRADIENTES ANIMADOS POR SECCIÓN
+   ================================================ */
+.section-3d-bg .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    pointer-events: none;
+    animation: orbFloat 20s ease-in-out infinite;
+}
+
+.section-3d-bg .gradient-orb.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(240, 180, 41, 0.4), transparent 70%);
+    top: -10%;
+    left: -5%;
+    animation-delay: 0s;
+}
+
+.section-3d-bg .gradient-orb.orb-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(21, 101, 192, 0.4), transparent 70%);
+    bottom: -10%;
+    right: -5%;
+    animation-delay: -5s;
+}
+
+.section-3d-bg .gradient-orb.orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(229, 57, 53, 0.3), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -10s;
+}
+
+@keyframes orbFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(30px, -20px) scale(1.1);
+    }
+    50% {
+        transform: translate(-20px, 30px) scale(0.95);
+    }
+    75% {
+        transform: translate(20px, 20px) scale(1.05);
+    }
+}
+
+/* ================================================
+   HERO 3D ENHANCEMENTS
+   ================================================ */
+.hero-3d {
+    position: relative;
+}
+
+.hero-3d .hero-bg {
+    transform: scale(1.1);
+    transition: transform 8s ease;
+}
+
+.hero-3d.loaded .hero-bg {
+    transform: scale(1);
+}
+
+.hero-3d #particles {
+    z-index: 0;
+}
+
+.hero-3d .hero-glass-container {
+    z-index: 2;
+}
+
+.hero-3d .hero-floating-elements {
+    z-index: 2;
+}
+
+/* ================================================
+   EFECTO 3D TILT EN CARDS - MEJORADO
+   ================================================ */
+.card-3d-enhanced {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.card-3d-enhanced:hover {
+    transform: perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg)) translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15),
+                0 10px 20px rgba(21, 101, 192, 0.1);
+}
+
+.card-3d-enhanced .card-content-3d {
+    transform: translateZ(40px);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-3d-enhanced:hover .card-content-3d {
+    transform: translateZ(60px) scale(1.02);
+}
+
+/* Sombra dinámica que sigue el cursor */
+.card-3d-enhanced::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+        rgba(240, 180, 41, 0.15),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.card-3d-enhanced:hover::after {
+    opacity: 1;
+}
+
+/* ================================================
+   PROJECT CARDS 3D ENHANCED
+   ================================================ */
+.project-card-3d {
+    transform-style: preserve-3d;
+    perspective: 1200px;
+}
+
+.project-card-3d .project-overlay {
+    transform: translateZ(20px);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-card-3d:hover .project-overlay {
+    transform: translateZ(40px);
+}
+
+.project-card-3d img {
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.5s ease;
+}
+
+.project-card-3d:hover img {
+    transform: translateZ(40px) scale(1.05);
+    filter: brightness(0.7);
+}
+
+/* ================================================
+   SERVICE CARDS 3D ENHANCED
+   ================================================ */
+.service-card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card-3d::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(240, 180, 41, 0.05) 0%,
+        rgba(21, 101, 192, 0.05) 50%,
+        rgba(229, 57, 53, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.service-card-3d:hover::before {
+    opacity: 1;
+}
+
+.service-card-3d .card-icon {
+    transform: translateZ(30px);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-card-3d:hover .card-icon {
+    transform: translateZ(50px) scale(1.1);
+}
+
+.service-card-3d .card-title {
+    transform: translateZ(20px);
+}
+
+.service-card-3d .card-text {
+    transform: translateZ(10px);
+}
+
+/* ================================================
+   COVERAGE CARDS 3D
+   ================================================ */
+.coverage-card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.coverage-card-3d .coverage-icon {
+    transform: translateZ(25px);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.coverage-card-3d:hover .coverage-icon {
+    transform: translateZ(45px) scale(1.15);
+}
+
+/* ================================================
+   STATS 3D ENHANCEMENTS
+   ================================================ */
+.stat-item-3d {
+    transform-style: preserve-3d;
+    perspective: 800px;
+}
+
+.stat-item-3d .stat-number {
+    transform: translateZ(30px);
+    text-shadow: 0 0 30px rgba(21, 101, 192, 0.3);
+}
+
+.stat-item-3d:hover {
+    transform: perspective(800px) rotateX(5deg) translateY(-5px);
+}
+
+/* ================================================
+   PARALLAX LAYERS
+   ================================================ */
+.parallax-layer {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+.parallax-layer[data-speed="0.1"] {
+    z-index: -1;
+}
+
+.parallax-layer[data-speed="0.2"] {
+    z-index: 0;
+}
+
+.parallax-layer[data-speed="0.3"] {
+    z-index: 1;
+}
+
+/* ================================================
+   SCROLL REVEAL ANIMATIONS
+   ================================================ */
+.reveal-from-bottom {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-from-bottom.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-from-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-from-left.reveal-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-from-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-from-right.reveal-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-scale.reveal-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ================================================
+   PAGE LOAD ANIMATIONS
+   ================================================ */
+.page-loaded .hero-glass-card {
+    animation: heroCardIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes heroCardIn {
+    from {
+        opacity: 0;
+        transform: translateX(-40px) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}
+
+.page-loaded .hero-floating-elements .floating-badge {
+    animation: badgeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+}
+
+.page-loaded .hero-floating-elements .badge-1 {
+    animation-delay: 0.5s;
+}
+
+.page-loaded .hero-floating-elements .badge-2 {
+    animation-delay: 0.7s;
+}
+
+.page-loaded .hero-floating-elements .badge-3 {
+    animation-delay: 0.9s;
+}
+
+@keyframes badgeIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* ================================================
+   SECTION TRANSITIONS
+   ================================================ */
+.section-divider {
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+}
+
+.section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(240, 180, 41, 0.5),
+        rgba(21, 101, 192, 0.5),
+        transparent
+    );
+}
+
+/* ================================================
+   DARK SECTION BACKGROUNDS
+   ================================================ */
+.section-dark {
+    background: linear-gradient(
+        180deg,
+        rgba(15, 32, 39, 0.95) 0%,
+        rgba(20, 40, 50, 0.95) 50%,
+        rgba(15, 32, 39, 0.95) 100%
+    );
+    color: #ffffff;
+}
+
+.section-dark .section-title {
+    color: #ffffff;
+}
+
+.section-dark .section-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.section-dark .card {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.section-dark .card-title {
+    color: #ffffff;
+}
+
+.section-dark .card-text {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ================================================
+   WIREFRAME GEOMETRY BACKGROUNDS
+   ================================================ */
+.wireframe-bg {
+    position: relative;
+}
+
+.wireframe-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231565c0' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ================================================
+   RESPONSIVE ADJUSTMENTS
+   ================================================ */
+@media (max-width: 768px) {
+    .section-3d-bg .gradient-orb {
+        width: 200px;
+        height: 200px;
+        filter: blur(60px);
+        opacity: 0.1;
+    }
+
+    .card-3d-enhanced:hover {
+        transform: none;
+    }
+
+    .card-3d-enhanced .card-content-3d {
+        transform: none;
+    }
+
+    .service-card-3d .card-icon,
+    .service-card-3d:hover .card-icon {
+        transform: none;
+    }
+
+    .coverage-card-3d .coverage-icon,
+    .coverage-card-3d:hover .coverage-icon {
+        transform: none;
+    }
+
+    .project-card-3d:hover img {
+        transform: scale(1.02);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .section-3d-bg .gradient-orb {
+        animation: none;
+    }
+
+    .reveal-from-bottom,
+    .reveal-from-left,
+    .reveal-from-right,
+    .reveal-scale {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+}

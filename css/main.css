@@ -10,6 +10,8 @@
 @import url('variables.css');
 @import url('components.css');
 @import url('animations.css');
+@import url('background3d.css');
+@import url('background3d.css');
 
 /* ================================================
    HEADER / NAVIGATION
@@ -188,7 +190,7 @@
     justify-content: space-between;
     height: 100%;
     position: relative;
-    z-index: 2;
+    z-index: 3;
     padding-top: 100px;
 }
 
@@ -227,6 +229,7 @@
     flex: 1;
     height: 500px;
     display: none; /* Hide on mobile by default */
+    z-index: 3;
 }
 
 @media (min-width: 992px) {
@@ -290,7 +293,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
+    z-index: 0;
 }
 
 .hero-bg img {
@@ -298,6 +301,8 @@
     height: 100%;
     object-fit: cover;
     filter: brightness(0.85);
+    position: relative;
+    z-index: 0;
 }
 
 .hero-overlay {
@@ -310,11 +315,12 @@
         radial-gradient(ellipse at 20% 50%, rgba(240, 180, 41, 0.18), transparent 50%),
         radial-gradient(ellipse at 80% 20%, rgba(21, 101, 192, 0.14), transparent 40%),
         linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.58));
-    z-index: -1;
+    z-index: 1;
 }
 
 .hero-overlay.glass-overlay {
     background: linear-gradient(135deg, rgba(15, 32, 39, 0.5) 0%, rgba(32, 58, 67, 0.6) 50%, rgba(44, 83, 100, 0.5) 100%);
+    z-index: 1;
 }
 
 .hero::before {
@@ -347,7 +353,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0;
 }
 
 .hero-content {

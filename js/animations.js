@@ -17,6 +17,8 @@ const Animations = {
         this.initCounters();   // Inicializa contadores animados
         this.initParallax();   // Inicializa efecto parallax
         this.init3DCards();    // Inicializa efecto 3D en tarjetas
+        this.initScrollReveal(); // Inicializa revelado progresivo al scroll
+        this.initSectionParallax(); // Parallax por sección
     },
 
     /**
@@ -96,7 +98,7 @@ const Animations = {
         update();  // Inicia la animación
     },
 
-/**
+    /**
      * Efecto Parallax - Parallax Effect
      * Crea un efecto de profundidad moviendo elementos a diferentes velocidades
      * durante el desplazamiento de la página
@@ -116,7 +118,7 @@ const Animations = {
                 const yPos = -(scrollY * speed);  // Calcula la posición vertical invertida
                 el.style.transform = `translateY(${yPos}px)`;         // Aplica la transformación CSS
             });
-        });
+        }, { passive: true });
     },
 
     /**
@@ -144,6 +146,63 @@ const Animations = {
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             });
         });
+    },
+
+    /**
+     * Scroll Reveal - Revelado progresivo de secciones
+     * Añade clase 'reveal-visible' cuando las secciones entran en viewport
+     * con efecto de profundidad y aparición desde abajo
+     */
+    initScrollReveal() {
+        const sections = document.querySelectorAll('.section-3d-bg');
+        
+        if (!sections.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        });
+
+        sections.forEach(section => observer.observe(section));
+    },
+
+    /**
+     * Parallax por Sección
+     * Mueve elementos internos de cada sección a velocidades diferentes
+     * según el scroll para crear efecto de profundidad
+     */
+    initSectionParallax() {
+        const parallaxLayers = document.querySelectorAll('.parallax-layer');
+        
+        if (!parallaxLayers.length) return;
+
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollY = window.pageYOffset;
+                    
+                    parallaxLayers.forEach(layer => {
+                        const speed = parseFloat(layer.dataset.speed) || 0.3;
+                        const rect = layer.parentElement.getBoundingClientRect();
+                        const sectionTop = rect.top + scrollY;
+                        const offset = (scrollY - sectionTop) * speed;
+                        
+                        layer.style.transform = `translateY(${offset}px)`;
+                    });
+
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
     }
 };
 
@@ -253,9 +312,8 @@ const Particles = {
     // Debe llamarse cuando ya no se necesita el sistema de partículas
     destroy() {
         if (this.animationId) {
-            cancelAnimationFrame(this.animationId);  // Cancela el ciclo de animación
+            cancelAnimationFrame(this.animationId);
         }
     }
 };
 
-export { Animations, Particles };
