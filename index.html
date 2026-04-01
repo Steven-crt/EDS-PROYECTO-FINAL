@@ -43,6 +43,11 @@
       type="image/png"
       href="assets/eds_useful_images/logo.png"
     />
+
+    <!-- Three.js, GSAP + ScrollTrigger para fondos 3D y animaciones -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   </head>
   <body>
     <!-- ========== HEADER CON NAVEGACIÓN ========== -->
@@ -79,7 +84,7 @@
     </header>
 
     <!-- ========== SECCIÓN HERO - Banner principal ========== -->
-    <section id="inicio" class="hero">
+    <section id="inicio" class="hero hero-3d">
       <!-- Imagen de fondo del hero -->
       <div class="hero-bg">
         <img
@@ -150,7 +155,10 @@
     </section>
 
     <!-- ========== SECCIÓN NOSOTROS - Información sobre la empresa ========== -->
-    <section id="nosotros" class="section about">
+    <section id="nosotros" class="section about section-3d-bg">
+      <!-- Orbes de gradiente animado -->
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
       <div class="container">
         <div class="about-grid">
           <!-- Imagen representativa del equipo -->
@@ -217,7 +225,9 @@
     </section>
 
     <!-- ========== SECCIÓN MISIÓN, VISIÓN Y VALORES ========== -->
-    <section class="section mv">
+    <section class="section mv section-3d-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-3"></div>
       <div class="container">
         <!-- Título y subtítulo de la sección -->
         <div class="section-title" data-aos="fade-up">
@@ -230,7 +240,7 @@
         <!-- Grid con las tres tarjetas: Misión, Visión, Valores -->
         <div class="mv-grid">
           <!-- Tarjeta de Misión -->
-          <div class="card mv-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="card mv-card card-3d-enhanced" data-aos="fade-up" data-aos-delay="150">
             <i class="fas fa-bullseye"></i>
             <h3>Misión</h3>
             <p>
@@ -267,7 +277,9 @@
     </section>
 
     <!-- ========== SECCIÓN DE SERVICIOS - 12 servicios tecnológicos ========== -->
-    <section id="servicios" class="section services">
+    <section id="servicios" class="section services section-3d-bg">
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
       <div class="container">
         <!-- Título y subtítulo de la sección -->
         <div class="section-title" data-aos="fade-up">
@@ -281,7 +293,7 @@
         <div class="services-grid">
           <!-- Servicio 1: Construcciones Civiles -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
             data-aos-delay="150"
           >
@@ -298,7 +310,7 @@
 
           <!-- Servicio 2: Radio Comunicación Digital -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
             data-aos-delay="200"
           >
@@ -315,9 +327,9 @@
 
           <!-- Servicio 3: Video Vigilancia Industrial -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
-            data-aos-delay="250"
+            data-aos-delay="150"
           >
             <span class="service-number">03</span>
             <div class="card-icon">
@@ -332,7 +344,7 @@
 
           <!-- Servicio 4: Redes Inalámbricas -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
             data-aos-delay="300"
           >
@@ -349,7 +361,7 @@
 
           <!-- Servicio 5: Telefonía IP y Video Conferencia -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
             data-aos-delay="350"
           >
@@ -366,7 +378,7 @@
 
           <!-- Servicio 6: Cableado Estructurado -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
             data-aos-delay="400"
           >
@@ -383,7 +395,7 @@
 
           <!-- Servicio 7: Centrales de Alarma -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
             data-aos-delay="450"
           >
@@ -400,7 +412,7 @@
 
           <!-- Servicio 8: Sistemas de Extinción -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
             data-aos-delay="500"
           >
@@ -417,7 +429,7 @@
 
           <!-- Servicio 9: Control de Accesos -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
             data-aos-delay="550"
           >
@@ -434,7 +446,7 @@
 
           <!-- Servicio 10: Infraestructura Eléctrica -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
             data-aos-delay="600"
           >
@@ -451,7 +463,7 @@
 
           <!-- Servicio 11: Energía Renovable -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
             data-aos-delay="650"
           >
@@ -468,7 +480,7 @@
 
           <!-- Servicio 12: Sistemas de Audio y Video -->
           <div
-            class="card service-card card-3d"
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
             data-aos="fade-up"
             data-aos-delay="700"
           >
@@ -487,11 +499,13 @@
     </section>
 
     <!-- ========== SECCIÓN DE ESTADÍSTICAS - Contadores animados ========== -->
-    <section class="section stats">
+    <section class="section stats section-3d-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
       <div class="container">
         <div class="stats-grid">
           <!-- Contador: Años de experiencia -->
-          <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-item stat-item-3d" data-aos="fade-up" data-aos-delay="100">
             <div class="stat-number counter" data-target="10" data-suffix="+">
               0
             </div>
@@ -523,7 +537,9 @@
     </section>
 
     <!-- ========== SECCIÓN PROYECTOS DESTACADOS ========== -->
-    <section id="proyectos" class="section projects">
+    <section id="proyectos" class="section projects section-3d-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-3"></div>
       <div class="container">
         <!-- Título y subtítulo -->
         <div class="section-title" data-aos="fade-up">
@@ -550,7 +566,7 @@
         <div class="projects-grid">
           <!-- Proyecto: Centro de Seguridad Ciudadana -->
           <div
-            class="project-card"
+            class="project-card project-card-3d"
             data-category="seguridad"
             data-aos="fade-up"
             data-aos-delay="200"
@@ -579,7 +595,7 @@
 
           <!-- Proyecto: Semáforos Inteligentes -->
           <div
-            class="project-card"
+            class="project-card project-card-3d"
             data-category="comunicacion"
             data-aos="fade-up"
             data-aos-delay="250"
@@ -608,7 +624,7 @@
 
           <!-- Proyecto: Radio Base de Comunicaciones -->
           <div
-            class="project-card"
+            class="project-card project-card-3d"
             data-category="comunicacion"
             data-aos="fade-up"
             data-aos-delay="300"
@@ -637,7 +653,7 @@
 
           <!-- Proyecto: Institución Educativa -->
           <div
-            class="project-card"
+            class="project-card project-card-3d"
             data-category="construccion"
             data-aos="fade-up"
             data-aos-delay="350"
@@ -666,10 +682,10 @@
 
           <!-- Proyecto: Video Vigilancia Industrial -->
           <div
-            class="project-card"
+            class="project-card project-card-3d"
             data-category="seguridad"
             data-aos="fade-up"
-            data-aos-delay="400"
+            data-aos-delay="200"
           >
             <img
               src="assets/eds_useful_images/camara_analisis.jpg"
@@ -695,7 +711,7 @@
 
           <!-- Proyecto: Cableado Hospital Regional -->
           <div
-            class="project-card"
+            class="project-card project-card-3d"
             data-category="construccion"
             data-aos="fade-up"
             data-aos-delay="450"
@@ -733,7 +749,8 @@
     </section>
 
     <!-- ========== SECCIÓN SOCIOS ESTRATÉGICOS - Carrusel de logos ========== -->
-    <section class="section partners">
+    <section class="section partners section-3d-bg">
+      <div class="gradient-orb orb-2"></div>
       <div class="container">
         <!-- Título y subtítulo -->
         <div class="section-title" data-aos="fade-up">
@@ -885,7 +902,9 @@
 
 
     <!-- ========== SECCIÓN COBERTURA - Ciudades de soporte ========== -->
-    <section id="cobertura" class="section coverage">
+    <section id="cobertura" class="section coverage section-3d-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
       <div class="container">
         <!-- Título y subtítulo -->
         <div class="section-title" data-aos="fade-up">
@@ -899,7 +918,7 @@
         <div class="coverage-grid">
           <!-- Arequipa - Sede Principal -->
           <div
-            class="card coverage-card primary"
+            class="card coverage-card primary coverage-card-3d"
             data-aos="fade-up"
             data-aos-delay="150"
           >
@@ -913,7 +932,7 @@
 
           <!-- Tacna - Oficina de soporte -->
           <div
-            class="card coverage-card"
+            class="card coverage-card coverage-card-3d"
             data-aos="fade-up"
             data-aos-delay="200"
           >
@@ -927,7 +946,7 @@
 
           <!-- Juliaca - Oficina de soporte -->
           <div
-            class="card coverage-card"
+            class="card coverage-card coverage-card-3d"
             data-aos="fade-up"
             data-aos-delay="250"
           >
@@ -941,7 +960,7 @@
 
           <!-- Cusco - Oficina de soporte -->
           <div
-            class="card coverage-card"
+            class="card coverage-card coverage-card-3d"
             data-aos="fade-up"
             data-aos-delay="300"
           >
@@ -957,7 +976,9 @@
     </section>
 
     <!-- ========== SECCIÓN CTA - Llamada a la acción ========== -->
-    <section class="section cta">
+    <section class="section cta section-3d-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-3"></div>
       <div class="container">
         <div class="cta-content" data-aos="zoom-in">
           <!-- Título y descripción del CTA -->
@@ -1099,7 +1120,10 @@
       </div>
     </footer>
 
-    <!-- Script principal de la aplicación -->
-    <script type="module" src="js/main.js"></script>
+    <!-- Scripts: Three.js background, GSAP animations, y lógica principal -->
+    <script src="js/background3d.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/scroll-animations.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

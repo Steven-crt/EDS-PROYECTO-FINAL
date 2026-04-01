@@ -18,6 +18,11 @@
     />
 
     <link rel="icon" type="image/png" href="../assets/eds_useful_images/logo.png" />
+
+    <!-- Three.js, GSAP + ScrollTrigger para fondos 3D y animaciones -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   </head>
   <body>
     <!-- Preloader: pantalla de carga animada con el logo SVG de EDS -->
@@ -691,7 +696,10 @@
       </div>
     </footer>
 
-    <!-- Script principal: carga el JavaScript modular con la lógica de la página -->
-    <script type="module" src="../js/main.js"></script>
+    <!-- Scripts: Three.js background, GSAP animations, y lógica principal -->
+    <script src="../js/background3d.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/scroll-animations.js"></script>
+    <script src="../js/main.js"></script>
   </body>
 </html>

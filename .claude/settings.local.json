@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Read(//c/Users/User/.claude/plugins/marketplaces/anthropic-agent-skills/skills/docx/**)",
+      "Bash(python -c \":*)",
+      "Bash(pandoc:*)",
+      "Bash(python:*)"
     ]
   }
 }
