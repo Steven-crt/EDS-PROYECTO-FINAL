@@ -27,9 +27,11 @@ const INTRO_SESSION_KEY = 'edsIntroSeen';
 const currentPath = window.location.pathname;
 const isIntroPage = currentPath.endsWith('intro.html');
 const isHomePage = currentPath.endsWith('index.html') || currentPath.endsWith('/eds-web/') || currentPath.endsWith('/eds-web');
+const urlParams = new URLSearchParams(window.location.search);
+const introDone = urlParams.get('intro') === '1';
 
-// Redirigir a la intro si el usuario no la ha visto y está en la página principal
-if (!sessionStorage.getItem(INTRO_SESSION_KEY) && isHomePage && !isIntroPage) {
+// Redirigir a la intro si el usuario no viene de la intro y está en la página principal
+if (!introDone && isHomePage && !isIntroPage) {
     window.location.replace('intro.html');
 }
 

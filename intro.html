@@ -968,7 +968,7 @@
         sessionStorage.setItem("edsIntroSeen", "true");
         document.body.classList.add("fade-out");
         setTimeout(() => {
-          window.location.href = "index.html";
+          window.location.href = "index.html?intro=1";
         }, 800);
       }
 
@@ -980,7 +980,7 @@
 
       /* A los 8.5 segundos: redirige automáticamente a index.html */
       setTimeout(() => {
-        window.location.href = "index.html";
+        window.location.href = "index.html?intro=1";
       }, 8500);
     </script>
   </body>
