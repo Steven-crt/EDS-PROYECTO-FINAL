@@ -50,11 +50,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <!-- SVG Filter for Electric Border Effect -->
-    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+    <svg
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+      aria-hidden="true"
+    >
       <defs>
         <filter id="electric-glow">
-          <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" seed="2"/>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.015"
+            numOctaves="3"
+            result="noise"
+            seed="2"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="8"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
         </filter>
       </defs>
     </svg>
@@ -250,7 +265,11 @@
         <!-- Grid con las tres tarjetas: Misión, Visión, Valores -->
         <div class="mv-grid">
           <!-- Tarjeta de Misión -->
-          <div class="card mv-card card-3d-enhanced" data-aos="fade-up" data-aos-delay="150">
+          <div
+            class="card mv-card card-3d-enhanced"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
             <i class="fas fa-bullseye"></i>
             <h3>Misión</h3>
             <p>
@@ -415,8 +434,8 @@
             </div>
             <h3 class="card-title">Centrales de Alarma</h3>
             <p class="card-text">
-              Sistemas de alarmas para detección de intrusos con Honeywell, Risco y Bosch, con
-              monitoreo remoto 24/7.
+              Sistemas de alarmas para detección de intrusos con Honeywell,
+              Risco y Bosch, con monitoreo remoto 24/7.
             </p>
           </div>
 
@@ -515,7 +534,11 @@
       <div class="container">
         <div class="stats-grid">
           <!-- Contador: Años de experiencia -->
-          <div class="stat-item stat-item-3d" data-aos="fade-up" data-aos-delay="100">
+          <div
+            class="stat-item stat-item-3d"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
             <div class="stat-number counter" data-target="10" data-suffix="+">
               0
             </div>
@@ -746,6 +769,37 @@
               </div>
             </div>
           </div>
+
+          <!-- Proyecto: Pantallas Publicitarias Digitales -->
+          <div
+            class="project-card project-card-3d"
+            data-category="seguridad"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <img
+              src="assets/eds_useful_images/jose luis bustamante y rivero/WhatsApp Image 2026-04-01 at 1.53.32 PM (1).jpeg"
+              alt="Pantallas Publicitarias Digitales"
+            />
+            <div class="project-overlay">
+              <span class="badge badge-success">Concluido</span>
+              <h3 class="project-title">Pantallas Publicitarias Digitales</h3>
+              <p class="project-client">
+                Municipalidad Distrital de J.L. Bustamante y Rivero
+              </p>
+              <p class="project-investment">S/ 7.3 Millones</p>
+              <div class="project-support">
+                <p class="project-support-label">Socios que apoyaron la obra</p>
+                <div class="partner-list">
+                  <span class="partner-pill">LG</span>
+                  <span class="partner-pill">JBL Harman</span>
+                </div>
+              </div>
+              <div class="project-view">
+                <span class="badge badge-primary">6 pantallas LED 4K</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Botón para ver todos los proyectos -->
@@ -757,6 +811,7 @@
         </div>
       </div>
     </section>
+
 
     <!-- ========== SECCIÓN SOCIOS ESTRATÉGICOS - Carrusel de logos ========== -->
     <section class="section partners section-3d-bg">
@@ -780,70 +835,37 @@
           />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/motorola.png"
-            alt="Motorola"
-          />
+          <img src="assets/logos_named/motorola.png" alt="Motorola" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/furukawa.png"
-            alt="Furukawa"
-          />
+          <img src="assets/logos_named/furukawa.png" alt="Furukawa" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/dahua.png"
-            alt="Dahua"
-          />
+          <img src="assets/logos_named/dahua.png" alt="Dahua" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/honeywell.png"
-            alt="Honeywell"
-          />
+          <img src="assets/logos_named/honeywell.png" alt="Honeywell" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/axis.png"
-            alt="Axis"
-          />
+          <img src="assets/logos_named/axis.png" alt="Axis" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/cisco.png"
-            alt="Cisco"
-          />
+          <img src="assets/logos_named/cisco.png" alt="Cisco" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/zkteco.png"
-            alt="ZKTeco"
-          />
+          <img src="assets/logos_named/zkteco.png" alt="ZKTeco" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/hanwha.png"
-            alt="Hanwha"
-          />
+          <img src="assets/logos_named/hanwha.png" alt="Hanwha" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/bosch.png"
-            alt="Bosch"
-          />
+          <img src="assets/logos_named/bosch.png" alt="Bosch" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/panduit.png"
-            alt="Panduit"
-          />
+          <img src="assets/logos_named/panduit.png" alt="Panduit" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/avaya.png"
-            alt="Avaya"
-          />
+          <img src="assets/logos_named/avaya.png" alt="Avaya" />
         </div>
       </div>
 
@@ -856,60 +878,33 @@
           />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/polycom.png"
-            alt="Polycom"
-          />
+          <img src="assets/logos_named/polycom.png" alt="Polycom" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/siemon.png"
-            alt="Siemon"
-          />
+          <img src="assets/logos_named/siemon.png" alt="Siemon" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/risco.png"
-            alt="Risco"
-          />
+          <img src="assets/logos_named/risco.png" alt="Risco" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/bosch.png"
-            alt="Bosch"
-          />
+          <img src="assets/logos_named/bosch.png" alt="Bosch" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/legrand.png"
-            alt="Legrand"
-          />
+          <img src="assets/logos_named/legrand.png" alt="Legrand" />
         </div>
         <div class="partner-item">
-          <img
-            src="assets/logos_named/avigilon.png"
-            alt="Avigilon"
-          />
+          <img src="assets/logos_named/avigilon.png" alt="Avigilon" />
         </div>
 
         <div class="partner-item">
-          <img
-            src="assets/logos_named/intelbras.png"
-            alt="Intelbras"
-          />
+          <img src="assets/logos_named/intelbras.png" alt="Intelbras" />
         </div>
 
-
         <div class="partner-item">
-          <img
-            src="assets/logos_named/radwin.png"
-            alt="Radwin"
-          />
+          <img src="assets/logos_named/radwin.png" alt="Radwin" />
         </div>
       </div>
     </section>
-
-
 
     <!-- ========== SECCIÓN COBERTURA - Ciudades de soporte ========== -->
     <section id="cobertura" class="section coverage section-3d-bg">
@@ -1048,7 +1043,10 @@
               <a href="#" aria-label="Instagram" data-social="instagram"
                 ><i class="fab fa-instagram"></i
               ></a>
-              <a href="https://wa.me/51950313642" aria-label="WhatsApp" data-social="whatsapp"
+              <a
+                href="https://wa.me/51950313642"
+                aria-label="WhatsApp"
+                data-social="whatsapp"
                 ><i class="fab fa-whatsapp"></i
               ></a>
             </div>
@@ -1131,6 +1129,7 @@
     </footer>
 
     <!-- Scripts: Three.js background, GSAP animations, y lógica principal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script src="js/background3d.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/scroll-animations.js"></script>

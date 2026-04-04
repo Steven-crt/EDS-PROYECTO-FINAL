@@ -8,6 +8,8 @@
 (function() {
     'use strict';
 
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     var ScrollAnimations = {
         init: function() {
             if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
@@ -16,6 +18,12 @@
             }
 
             gsap.registerPlugin(ScrollTrigger);
+
+            if (prefersReducedMotion) {
+                // Si el usuario prefiere movimiento reducido, solo hacer fade-ins simples
+                this.initSectionFadeIns();
+                return;
+            }
 
             this.initSectionFadeIns();
             this.initParallaxSections();
@@ -116,26 +124,6 @@
         },
 
         initSmoothSectionTransitions: function() {
-            var sectionTitles = document.querySelectorAll('.section-title');
-
-            sectionTitles.forEach(function(title) {
-                gsap.fromTo(
-                    title,
-                    { opacity: 0, y: 40 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        ease: 'power2.out',
-                        scrollTrigger: {
-                            trigger: title,
-                            start: 'top 85%',
-                            toggleActions: 'play none none reverse'
-                        }
-                    }
-                );
-            });
-
             var subtitles = document.querySelectorAll('.section-subtitle');
             subtitles.forEach(function(subtitle) {
                 gsap.fromTo(

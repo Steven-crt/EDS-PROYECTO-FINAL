@@ -10,15 +10,21 @@
 
 // Módulo principal que gestiona todas las animaciones de la página
 const Animations = {
+    // Verifica si el usuario prefiere movimiento reducido (accesibilidad)
+    prefersReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+
     // Inicializa todas las funcionalidades de animación disponibles
     // Este método es el punto de entrada principal que se llama desde el código
     init() {
         this.initAOS();        // Inicializa animaciones al hacer scroll
         this.initCounters();   // Inicializa contadores animados
-        this.initParallax();   // Inicializa efecto parallax
-        this.init3DCards();    // Inicializa efecto 3D en tarjetas
+        if (!this.prefersReducedMotion) {
+            this.initParallax();   // Inicializa efecto parallax (omitir si prefiere movimiento reducido)
+            this.init3DCards();    // Inicializa efecto 3D en tarjetas
+            this.initSectionParallax(); // Parallax por sección
+            this.initGSAP3D();     // Inicializa animaciones 3D avanzadas con GSAP
+        }
         this.initScrollReveal(); // Inicializa revelado progresivo al scroll
-        this.initSectionParallax(); // Parallax por sección
     },
 
     /**
@@ -122,29 +128,54 @@ const Animations = {
     },
 
     /**
-     * Efecto de Tarjeta 3D - 3D Card Tilt Effect
-     * Crea una tarjeta interactiva que rota en respuesta al movimiento del mouse
-     * Simula una perspectiva 3D realista
+     * Efecto de Tarjeta 3D - Avanzado con VanillaTilt si está disponible
      */
     init3DCards() {
-        const cards = document.querySelectorAll('.card-3d');
+        if (typeof VanillaTilt !== 'undefined') {
+            VanillaTilt.init(document.querySelectorAll(".card-3d, .coverage-card, .mv-card"), {
+                max: 10,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.2,
+                scale: 1.02
+            });
+        }
+    },
+
+    /**
+     * Animaciones GSAP - Entrada suave de títulos al hacer scroll
+     */
+    initGSAP3D() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
         
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
+        gsap.registerPlugin(ScrollTrigger);
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+        // Animación de entrada para títulos de sección
+        gsap.utils.toArray('.section-title').forEach(title => {
+            gsap.to(title, {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: title,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                immediateRender: false
             });
+        });
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-            });
+        // Orbes animados flotando estilo 3D
+        gsap.to(".gradient-orb", {
+            y: "random(-80, 80)",
+            x: "random(-80, 80)",
+            rotationZ: "random(-45, 45)",
+            scale: "random(0.8, 1.2)",
+            duration: "random(6, 10)",
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
         });
     },
 

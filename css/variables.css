@@ -139,32 +139,6 @@ main,
     z-index: 1;
 }
 
-/* Fondos radiales difuminados: manchas de color animadas que aportan profundidad visual al fondo */
-body::after {
-    content: "";
-    position: fixed;
-    inset: -30% -10% 10% -10%;
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(240, 180, 41, 0.08), transparent 50%),
-        radial-gradient(circle at 80% 30%, rgba(229, 57, 53, 0.06), transparent 45%),
-        radial-gradient(circle at 50% 80%, rgba(21, 101, 192, 0.05), transparent 50%),
-        radial-gradient(circle at 35% 55%, rgba(21, 101, 192, 0.04), transparent 40%);
-    background-size: 100% 100%, 100% 100%, 100% 100%, 120% 120%;
-    animation: backgroundShift 20s ease-in-out infinite, gradientShift 24s ease-in-out infinite;
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* Capas principales: asegura que secciones, héroe, header y footer estén sobre los overlays del body */
-main,
-.section,
-.hero,
-.page-header,
-.footer {
-    position: relative;
-    z-index: 1;
-}
-
 /* Animación de la cuadrícula: desplazamiento cíclico muy sutil del patrón de rejilla */
 @keyframes gridDrift {
     0% { transform: translate3d(0, 0, 0); }
