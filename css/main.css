@@ -1582,29 +1582,91 @@
 }
 
 @media screen and (max-width: 767px) {
+    .project-carousel {
+        height: auto;
+        min-height: 0;
+    }
+
+    .carousel-list {
+        position: relative;
+        left: auto;
+        transform: none;
+        height: auto;
+        min-height: 0;
+    }
+
+    .carousel-item {
+        display: none;
+        width: 100%;
+        left: 0;
+        font-size: 12px;
+    }
+
+    .carousel-item:nth-child(1),
+    .carousel-item:nth-child(3),
+    .carousel-item:nth-child(4),
+    .carousel-item:nth-child(5),
+    .carousel-item:nth-child(n + 6) {
+        opacity: 0;
+        pointer-events: none;
+        transform: none;
+        filter: none;
+    }
+
+    .carousel-item:nth-child(2) {
+        display: block;
+        position: relative;
+        height: auto;
+        transform: none;
+        filter: none;
+    }
+
+    .carousel-item:nth-child(2) .item-introduce {
+        width: 100%;
+        position: relative;
+        top: auto;
+        transform: none;
+        padding: 0;
+    }
+
+    .carousel-item:nth-child(2) img {
+        position: relative;
+        width: 100%;
+        height: 240px;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin-bottom: 16px;
+    }
+
     .item-introduce .item-topic {
         font-size: 2.2em;
     }
 
     .item-introduce .item-des {
         font-size: 0.85rem;
+        height: auto;
+        overflow: visible;
     }
 
     .item-introduce .seeMore {
         padding: 10px 20px;
         font-size: 0.8rem;
+        width: 100%;
     }
 
     .project-carousel.showDetail .carousel-item:nth-child(2) .item-detail {
         backdrop-filter: blur(10px);
         background: rgba(249, 246, 239, 0.95);
         font-size: small;
+        width: 100%;
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        text-align: left;
         padding: 20px;
-    }
-
-    .item-introduce .item-des {
-        height: 70px;
-        overflow: auto;
+        margin-top: 14px;
     }
 
     .detail-specs {
@@ -1613,6 +1675,12 @@
 
     .detail-specs div {
         flex: 0 0 calc(50% - 10px);
+    }
+
+    .project-carousel.showDetail .carousel-item:nth-child(2) img {
+        right: auto;
+        width: 100%;
+        height: 220px;
     }
 
     .carousel-arrow {
