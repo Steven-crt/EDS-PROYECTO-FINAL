@@ -169,6 +169,33 @@
         text-shadow: 0 10px 30px rgba(0,0,0,0.35);
         animation: titleFloat 5.5s ease-in-out infinite;
       }
+
+      .page-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(250, 204, 21, 0.35);
+        color: #fde68a;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(10px);
+      }
+
+      .page-kicker::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #facc15;
+        box-shadow: 0 0 14px rgba(250, 204, 21, 0.75);
+      }
       
       .page-title .highlight {
         color: #ffffff;
@@ -207,23 +234,32 @@
       }
       
       .page-subtitle {
-        font-size: 1.4rem;
+        font-size: 1.48rem;
         opacity: 1;
-        max-width: 800px;
+        max-width: 920px;
         margin: 20px auto 0;
         position: relative;
         z-index: 1;
-        font-weight: 500;
-        line-height: 1.7;
-        color: #fff3bf;
+        font-weight: 600;
+        line-height: 1.8;
+        color: #ffffff;
         text-shadow: 0 4px 18px rgba(0,0,0,0.35);
-        background: rgba(28, 25, 23, 0.68);
-        padding: 20px 30px;
-        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(28, 25, 23, 0.82), rgba(68, 64, 60, 0.72));
+        padding: 24px 32px;
+        border-radius: 22px;
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 18px 40px rgba(28, 25, 23, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 22px 50px rgba(28, 25, 23, 0.42);
         animation: subtitleGlow 6s ease-in-out infinite;
+      }
+
+      .page-subtitle strong {
+        color: #ffffff;
+        font-weight: 800;
+      }
+
+      .page-subtitle .subtitle-accent {
+        color: #ffffff;
       }
 
       @keyframes subtitleGlow {
@@ -661,9 +697,15 @@
         .page-title {
           font-size: 2.5rem;
         }
+
+        .page-kicker {
+          font-size: 0.78rem;
+          letter-spacing: 0.12em;
+        }
         
         .page-subtitle {
           font-size: 1.1rem;
+          padding: 20px 22px;
         }
         
         .socios-grid {
@@ -749,9 +791,9 @@
           <a href="../index.html" class="nav-link">Inicio</a>
           <a href="../index.html#nosotros" class="nav-link">Nosotros</a>
           <a href="../index.html#servicios" class="nav-link">Servicios</a>
+          <a href="../index.html#cobertura" class="nav-link">Cobertura</a>
           <a href="proyectos.html" class="nav-link">Proyectos</a>
           <a href="socios.html" class="nav-link active">Socios</a>
-          <a href="../index.html#cobertura" class="nav-link">Cobertura</a>
           <a href="contacto.html" class="nav-link">Contacto</a>
         </nav>
 
@@ -768,12 +810,13 @@
       <div class="header-orb header-orb-1"></div>
       <div class="header-orb header-orb-2"></div>
       <div class="header-orb header-orb-3"></div>
-      <div class="container">
+        <div class="container">
+        <div class="page-kicker" data-aos="fade-up">Marcas globales de confianza</div>
         <h1 class="page-title" data-aos="fade-up">
           <i class="fas fa-handshake title-icon"></i> Nuestros <span style="color: #f0b429;">Socios</span> Estratégicos
         </h1>
         <p class="page-subtitle" data-aos="fade-up" data-aos-delay="100">
-          Representamos a las marcas más prestigiosas del mundo en tecnología, seguridad y soluciones inteligentes para la construcción.
+          Representamos a <strong>las marcas más prestigiosas del mundo</strong> en <span class="subtitle-accent">tecnología, seguridad y soluciones inteligentes</span> para la construcción.
         </p>
       </div>
     </section>
@@ -866,9 +909,9 @@
               <li><a href="../index.html">Inicio</a></li>
               <li><a href="../index.html#nosotros">Nosotros</a></li>
               <li><a href="../index.html#servicios">Servicios</a></li>
+              <li><a href="../index.html#cobertura">Cobertura</a></li>
               <li><a href="proyectos.html">Proyectos</a></li>
               <li><a href="socios.html">Socios</a></li>
-              <li><a href="../index.html#cobertura">Cobertura</a></li>
               <li><a href="contacto.html">Contacto</a></li>
             </ul>
           </div>

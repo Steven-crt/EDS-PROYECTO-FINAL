@@ -1158,6 +1158,38 @@
     animation: showContent 0.5s 1s ease-in-out 1 forwards;
 }
 
+/* ==================================================
+   Responsive fixes for Projects carousel (mobile)
+   Ensures content stacks vertically and has breathing room
+   without affecting desktop layout.
+   ================================================== */
+@media (max-width: 992px) {
+    .projects-page { padding: 40px 0; }
+    .project-carousel { height: auto; }
+    .carousel-list { position: static; max-width: 100%; height: auto; transform: none; left: auto; }
+    .carousel-item { position: relative; width: 100%; height: auto; left: auto; font-size: 14px; border-radius: 16px; padding: 18px; box-sizing: border-box; }
+    .carousel-item img { width: 100%; position: relative; right: auto; top: auto; transform: none; height: auto; margin-bottom: 14px; border-radius: 12px; }
+    .carousel-item:nth-child(n + 6) { opacity: 1; pointer-events: auto; }
+    .carousel-item:nth-child(2) { transform: none; }
+    .carousel-item:nth-child(2) .item-introduce { opacity: 1; pointer-events: auto; width: auto; position: relative; top: auto; transform: none; padding-left: 0; padding-right: 0; }
+    .item-introduce .item-topic { font-size: 2.2rem; margin-bottom: 8px; }
+    .item-introduce .item-title { font-size: 1rem; }
+    .item-introduce .item-des { font-size: 0.95rem; }
+    .item-introduce .seeMore { padding: 10px 18px; font-size: 0.85rem; }
+    .carousel-arrows { position: static; margin-top: 12px; display: flex; justify-content: center; gap: 10px; }
+}
+
+@media (max-width: 600px) {
+    .projects-page { padding: 28px 0; }
+    .item-introduce .item-topic { font-size: 1.6rem; }
+    .item-introduce .item-title { font-size: 0.95rem; }
+    .item-introduce .item-des { font-size: 0.9rem; line-height: 1.45; }
+    .item-introduce { padding-left: 0; padding-right: 0; }
+    .carousel-item { padding: 12px; border-radius: 12px; }
+    .carousel-item img { box-shadow: 0 12px 30px rgba(0,0,0,0.18); }
+    .item-introduce .seeMore { width: 100%; text-align: center; }
+}
+
 @keyframes showContent {
     from {
         transform: translateY(-30px);
@@ -1540,10 +1572,6 @@
 
 /* Responsive */
 @media screen and (max-width: 991px) {
-    .carousel-item {
-        width: 90%;
-    }
-
     .project-carousel.showDetail .carousel-item:nth-child(2) .item-detail .detail-specs {
         overflow-x: auto;
     }
@@ -1551,43 +1579,9 @@
     .detail-title {
         font-size: 2em;
     }
-
-    .carousel-item:nth-child(2) .item-introduce {
-        width: 38%;
-        padding-left: 25px;
-    }
-
-    .carousel-item img {
-        width: 42%;
-        right: 15px;
-    }
 }
 
 @media screen and (max-width: 767px) {
-    .project-carousel {
-        height: 500px;
-    }
-
-    .carousel-item {
-        width: 100%;
-        font-size: 12px;
-    }
-
-    .carousel-list {
-        height: 100%;
-    }
-
-    .carousel-item:nth-child(2) .item-introduce {
-        width: 52%;
-        padding-left: 15px;
-        padding-right: 10px;
-    }
-
-    .carousel-item img {
-        width: 42%;
-        right: 10px;
-    }
-
     .item-introduce .item-topic {
         font-size: 2.2em;
     }
@@ -2460,6 +2454,26 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Mobile visibility fixes for Projects section */
+@media (max-width: 768px) {
+    /* Ensure the projects section container is above decorative orbs/overlays */
+    .section.projects { position: relative; z-index: 3; }
+    .section.projects .container { position: relative; z-index: 4; }
+
+    /* Make sure grid and cards are visible and not hidden by unexpected rules */
+    .projects-grid { display: grid !important; grid-template-columns: 1fr; gap: 18px; }
+    .project-card { display: block !important; visibility: visible !important; opacity: 1 !important; height: auto; }
+    .project-card img { height: auto; max-height: 420px; object-fit: cover; }
+
+    /* Make overlays readable on small screens */
+    .project-overlay { background: linear-gradient(to top, rgba(15,32,39,0.95) 0%, rgba(15,32,39,0.8) 40%, rgba(15,32,39,0.45) 70%, rgba(15,32,39,0.15) 100%); padding: 18px; }
+    .project-title { font-size: 1.25rem; }
+    .project-investment { font-size: 1.05rem; }
+
+    /* Defensive: reset any hidden utility class that could hide content */
+    .projects, .projects * { -webkit-font-smoothing: antialiased; }
 }
 
 /* ================================================

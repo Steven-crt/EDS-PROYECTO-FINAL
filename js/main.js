@@ -8,32 +8,26 @@
 (function() {
     'use strict';
 
-/* ============================================
-   SECCIÓN 2: CONFIGURACIÓN DE LA PÁGINA DE INTRO
-   ============================================
-   Se definen las constantes para controlar la página de introducción
-   (intro.html). Se usa sessionStorage para verificar si el usuario
-   ya vio la intro en su sesión actual. Si es la primera visita a la
-   página principal y no ha visto la intro, se redirige automáticamente
-   a intro.html.
-   
-   - INTRO_SESSION_KEY: Clave usada en sessionStorage para rastrear
-     si la intro ya fue mostrada.
-   - currentPath: Ruta actual de la URL de la página.
-   - isIntroPage: Verifica si estamos en la página de intro.
-   - isHomePage: Verifica si estamos en la página principal (index.html).
-   ============================================ */
-const INTRO_SESSION_KEY = 'edsIntroSeen';
-const currentPath = window.location.pathname;
-const isIntroPage = currentPath.endsWith('intro.html');
-const isHomePage = currentPath.endsWith('index.html') || currentPath.endsWith('/eds-web/') || currentPath.endsWith('/eds-web');
-const urlParams = new URLSearchParams(window.location.search);
-const introDone = urlParams.get('intro') === '1';
+    var currentPath = window.location.pathname;
+    var urlParams = new URLSearchParams(window.location.search);
+    var isIntroPage = currentPath.endsWith('intro.html');
+    var isHomePage = currentPath.endsWith('index.html') || currentPath.endsWith('/eds-web/') || currentPath.endsWith('/eds-web');
+    var instantSectionHashes = ['#inicio', '#nosotros', '#servicios', '#cobertura'];
+    var shouldSkipPreloaderForSection = isHomePage && instantSectionHashes.indexOf(window.location.hash) !== -1;
+    var introDone = urlParams.get('intro') === '1';
 
-// Redirigir a la intro si el usuario no viene de la intro y está en la página principal
-if (!introDone && isHomePage && !isIntroPage) {
-    window.location.replace('intro.html');
-}
+/* ============================================
+   SECCIÓN 2: CONFIGURACIÓN GENERAL DE LA APP
+   ============================================
+   El inicio principal muestra primero la bienvenida (`intro.html`).
+   Si el usuario entra directo a una sección del home, se omite la
+   carga para llevarlo de frente al bloque solicitado.
+   ============================================ */
+
+    if (!isIntroPage && isHomePage && !introDone && !shouldSkipPreloaderForSection) {
+        window.location.replace('intro.html');
+        return;
+    }
 
     /* ============================================
        OBJETO PRINCIPAL DE LA APLICACIÓN
@@ -45,6 +39,7 @@ if (!introDone && isHomePage && !isIntroPage) {
             this.initHeader();
             this.initMobileMenu();
             this.initSmoothScroll();
+            this.initInitialHashScroll();
             this.initBackground3D();
             this.initScrollAnimations();
             this.initAnimations();
@@ -115,6 +110,28 @@ if (!introDone && isHomePage && !isIntroPage) {
                         });
                     }
                 });
+            });
+        },
+
+        initInitialHashScroll: function() {
+            if (!shouldSkipPreloaderForSection) return;
+
+            var target = document.querySelector(window.location.hash);
+            if (!target) return;
+
+            var scrollToHash = function() {
+                var headerEl = document.querySelector('.header');
+                var headerHeight = headerEl ? headerEl.offsetHeight : 0;
+                var targetPosition = target.offsetTop - headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'auto'
+                });
+            };
+
+            requestAnimationFrame(function() {
+                requestAnimationFrame(scrollToHash);
             });
         },
 
@@ -399,6 +416,11 @@ if (!introDone && isHomePage && !isIntroPage) {
 
         var preloader = document.getElementById('preloader');
         if (preloader) {
+            if ((isHomePage && introDone) || shouldSkipPreloaderForSection) {
+                preloader.style.display = 'none';
+                return;
+            }
+
             setTimeout(function() {
                 preloader.classList.add('fade-out');
                 setTimeout(function() {
