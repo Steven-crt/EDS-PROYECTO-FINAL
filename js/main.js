@@ -11,7 +11,7 @@
     var currentPath = window.location.pathname;
     var urlParams = new URLSearchParams(window.location.search);
     var isIntroPage = currentPath.endsWith('intro.html');
-    var isHomePage = currentPath.endsWith('index.html') || currentPath.endsWith('/eds-web/') || currentPath.endsWith('/eds-web');
+    var isHomePage = currentPath === '/' || currentPath.endsWith('index.html') || currentPath.endsWith('/eds-web/') || currentPath.endsWith('/eds-web');
     var instantSectionHashes = ['#inicio', '#nosotros', '#servicios', '#cobertura'];
     var shouldSkipPreloaderForSection = isHomePage && instantSectionHashes.indexOf(window.location.hash) !== -1;
     var introDone = urlParams.get('intro') === '1';
