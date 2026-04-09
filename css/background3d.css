@@ -35,9 +35,9 @@
     inset: 0;
     background: linear-gradient(
         180deg,
-        rgba(15, 32, 39, 0.02) 0%,
-        rgba(15, 32, 39, 0.06) 50%,
-        rgba(15, 32, 39, 0.02) 100%
+        rgba(251, 191, 36, 0.04) 0%,
+        rgba(245, 158, 11, 0.06) 50%,
+        rgba(251, 191, 36, 0.04) 100%
     );
     pointer-events: none;
     z-index: 0;
@@ -63,7 +63,7 @@
 .section-3d-bg .gradient-orb.orb-1 {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(240, 180, 41, 0.4), transparent 70%);
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.35), transparent 70%);
     top: -10%;
     left: -5%;
     animation-delay: 0s;
@@ -72,7 +72,7 @@
 .section-3d-bg .gradient-orb.orb-2 {
     width: 350px;
     height: 350px;
-    background: radial-gradient(circle, rgba(21, 101, 192, 0.4), transparent 70%);
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.3), transparent 70%);
     bottom: -10%;
     right: -5%;
     animation-delay: -5s;
@@ -81,7 +81,7 @@
 .section-3d-bg .gradient-orb.orb-3 {
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(229, 57, 53, 0.3), transparent 70%);
+    background: radial-gradient(circle, rgba(217, 119, 6, 0.25), transparent 70%);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -144,8 +144,8 @@
 
 .card-3d-enhanced:hover {
     transform: perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg)) translateY(-8px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15),
-                0 10px 20px rgba(21, 101, 192, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08),
+                0 10px 20px rgba(251, 191, 36, 0.15);
 }
 
 .card-3d-enhanced .card-content-3d {
@@ -221,9 +221,9 @@
     inset: 0;
     background: linear-gradient(
         135deg,
-        rgba(240, 180, 41, 0.05) 0%,
-        rgba(21, 101, 192, 0.05) 50%,
-        rgba(229, 57, 53, 0.05) 100%
+        rgba(251, 191, 36, 0.04) 0%,
+        rgba(245, 158, 11, 0.04) 50%,
+        rgba(217, 119, 6, 0.04) 100%
     );
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -422,45 +422,43 @@
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(240, 180, 41, 0.5),
-        rgba(21, 101, 192, 0.5),
+        rgba(251, 191, 36, 0.5),
+        rgba(245, 158, 11, 0.5),
         transparent
     );
 }
 
 /* ================================================
-   DARK SECTION BACKGROUNDS
+   LIGHT SECTION BACKGROUNDS
    ================================================ */
-.section-dark {
+.section-light {
     background: linear-gradient(
         180deg,
-        rgba(15, 32, 39, 0.95) 0%,
-        rgba(20, 40, 50, 0.95) 50%,
-        rgba(15, 32, 39, 0.95) 100%
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(245, 247, 250, 0.98) 50%,
+        rgba(255, 255, 255, 0.98) 100%
     );
-    color: #ffffff;
 }
 
-.section-dark .section-title {
-    color: #ffffff;
+.section-light .section-title {
+    color: var(--text-primary);
 }
 
-.section-dark .section-subtitle {
-    color: rgba(255, 255, 255, 0.7);
+.section-light .section-subtitle {
+    color: var(--text-secondary);
 }
 
-.section-dark .card {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+.section-light .card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: var(--border);
 }
 
-.section-dark .card-title {
-    color: #ffffff;
+.section-light .card-title {
+    color: var(--text-primary);
 }
 
-.section-dark .card-text {
-    color: rgba(255, 255, 255, 0.7);
+.section-light .card-text {
+    color: var(--text-secondary);
 }
 
 /* ================================================

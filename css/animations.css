@@ -412,3 +412,271 @@
     height: 50px;
     border-color: var(--accent);
 }
+
+/* ================================================
+   CLIP-PATH REVEAL ANIMATIONS
+   ================================================ */
+.clip-reveal-top {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+    transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+}
+
+.clip-reveal-top.revealed {
+    clip-path: inset(0 0 0% 0);
+    opacity: 1;
+}
+
+.clip-reveal-bottom {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+    transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+}
+
+.clip-reveal-bottom.revealed {
+    clip-path: inset(0% 0 0 0);
+    opacity: 1;
+}
+
+.clip-reveal-left {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+    transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+}
+
+.clip-reveal-left.revealed {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+}
+
+.clip-reveal-right {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+    transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+}
+
+.clip-reveal-right.revealed {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+}
+
+/* ================================================
+   MAGNETIC BUTTON EFFECT
+   ================================================ */
+.magnetic {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+}
+
+/* ================================================
+   TEXT SPLIT ANIMATION
+   ================================================ */
+.split-text-line {
+    overflow: hidden;
+    display: block;
+}
+
+.split-text-word {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.4s ease;
+}
+
+.split-text-word.animate {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Letter-level animation */
+.split-char {
+    display: inline-block;
+    transform: translateY(120%) rotate(10deg);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+}
+
+.split-char.animate {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+}
+
+/* ================================================
+   STAGGER ANIMATION CLASSES
+   ================================================ */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.stagger-item.animate {
+    animation: staggerReveal 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes staggerReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger delays */
+.stagger-delay-1 { animation-delay: 0.1s; }
+.stagger-delay-2 { animation-delay: 0.2s; }
+.stagger-delay-3 { animation-delay: 0.3s; }
+.stagger-delay-4 { animation-delay: 0.4s; }
+.stagger-delay-5 { animation-delay: 0.5s; }
+.stagger-delay-6 { animation-delay: 0.6s; }
+
+/* ================================================
+   GLOW PULSE ANIMATION
+   ================================================ */
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(240, 180, 41, 0.3), 0 0 40px rgba(240, 180, 41, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(240, 180, 41, 0.5), 0 0 80px rgba(240, 180, 41, 0.2);
+    }
+}
+
+.glow-pulse {
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* ================================================
+   BORDER DRAW ANIMATION
+   ================================================ */
+.border-draw {
+    position: relative;
+}
+
+.border-draw::before,
+.border-draw::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-accent);
+    transition: width 0.4s ease;
+}
+
+.border-draw::before {
+    top: 0;
+    left: 0;
+}
+
+.border-draw::after {
+    bottom: 0;
+    right: 0;
+}
+
+.border-draw:hover::before,
+.border-draw:hover::after {
+    width: 100%;
+}
+
+/* ================================================
+   FLOATING SHADOW
+   ================================================ */
+@keyframes floatShadow {
+    0%, 100% {
+        transform: translateY(0);
+        filter: blur(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+        filter: blur(10px);
+    }
+}
+
+.float-shadow {
+    position: relative;
+}
+
+.float-shadow::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 20px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.3) 0%, transparent 70%);
+    animation: floatShadow 3s ease-in-out infinite;
+}
+
+/* ================================================
+   WAVE ANIMATION
+   ================================================ */
+@keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-5px) rotate(2deg); }
+    75% { transform: translateY(5px) rotate(-2deg); }
+}
+
+.wave {
+    display: inline-block;
+    animation: wave 2s ease-in-out infinite;
+}
+
+/* ================================================
+   SPIN IN ANIMATION
+   ================================================ */
+@keyframes spinIn {
+    0% {
+        transform: rotate(-180deg) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+.spin-in {
+    animation: spinIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* ================================================
+   BOUNCE IN ANIMATION
+   ================================================ */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.bounce-in {
+    animation: bounceIn 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* ================================================
+   RUBBER BAND ANIMATION
+   ================================================ */
+@keyframes rubberBand {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.25, 0.75); }
+    40% { transform: scale(0.75, 1.25); }
+    50% { transform: scale(1.15, 0.85); }
+    65% { transform: scale(0.95, 1.05); }
+    75% { transform: scale(1.05, 0.95); }
+    100% { transform: scale(1); }
+}
+
+.rubber-band {
+    animation: rubberBand 1s ease forwards;
+}
