@@ -1,72 +1,97 @@
 /**
  * ================================================
- * BACKGROUND3D.JS - EDS Edificaciones Inteligentes
- * Sistema de fondos 3D con Three.js avanzado
+ * BACKGROUND3D.JS — EDS Edificaciones Inteligentes
+ * Fondo 3D "Blueprint de Construcción" con Three.js
+ * Canvas TRANSPARENTE sobre fondo blanco
+ * Inspirado en: planos técnicos de ingeniería,
+ *   threejs.org/examples (lines, points, geometry)
  * ================================================
  */
 
-(function() {
+(function () {
     'use strict';
 
     var Background3D = {
         scene: null,
         camera: null,
         renderer: null,
-        particles: null,
-        geometries: [],
-        orbitalRings: [],
+        clock: null,
+        isMobile: false,
+        isVisible: true,
+        animationId: null,
+
         mouseX: 0,
         mouseY: 0,
         targetMouseX: 0,
         targetMouseY: 0,
-        animationId: null,
-        isMobile: false,
-        isVisible: true,
-        clock: null,
 
-        init: function() {
-            if (typeof THREE === 'undefined') {
-                console.warn('Three.js not loaded');
-                return;
-            }
+        // Grupos de objetos
+        gridGroup: null,
+        buildingGroup: null,
+        particleSystem: null,
+        connectionLines: [],
+        buildingEdges: [],
+        pulseRings: [],
+        scanLines: [],
 
+        // Colores EDS — visibles sobre fondo blanco
+        C_BLUE:      new THREE.Color(0x1565c0),
+        C_BLUE_L:    new THREE.Color(0x1e88e5),
+        C_YELLOW:    new THREE.Color(0xf0b429),
+        C_CYAN:      new THREE.Color(0x00838f),
+        C_BLUE_D:    new THREE.Color(0x0d47a1),
+
+        init: function () {
+            if (typeof THREE === 'undefined') return;
             this.isMobile = window.innerWidth < 768;
             this.clock = new THREE.Clock();
             this.setupScene();
             this.setupCamera();
             this.setupRenderer();
-            this.createAdvancedParticles();
-            this.createOrbitalRings();
-            this.createGeometries();
-            this.createFloatingShapes();
+
+            // Construir el mundo 3D progresivamente
+            this.createBlueprintGrid();
+            this.createBuildingWireframes();
+            this.createConstructionParticles();
+            this.createPulseRings();
+            this.createScanLines();
+            if (!this.isMobile) {
+                this.createConnectionNetwork();
+            }
+
             this.setupEvents();
             this.animate();
         },
 
-        setupScene: function() {
+        // ===================================================
+        // ESCENA Y CÁMARA
+        // ===================================================
+        setupScene: function () {
             this.scene = new THREE.Scene();
-            this.scene.fog = new THREE.FogExp2(0xffffff, 0.002);
+            // Sin fog — canvas transparente sobre fondo blanco
         },
 
-        setupCamera: function() {
+        setupCamera: function () {
             this.camera = new THREE.PerspectiveCamera(
-                75,
+                65,
                 window.innerWidth / window.innerHeight,
                 0.1,
-                1000
+                800
             );
-            this.camera.position.z = 50;
+            this.camera.position.set(0, 8, 60);
+            this.camera.lookAt(0, 0, 0);
         },
 
-        setupRenderer: function() {
+        setupRenderer: function () {
             this.renderer = new THREE.WebGLRenderer({
                 alpha: true,
                 antialias: !this.isMobile,
                 powerPreference: 'high-performance'
             });
             this.renderer.setSize(window.innerWidth, window.innerHeight);
-            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, this.isMobile ? 1 : 2));
-            this.renderer.setClearColor(0xffffff, 0);
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            // TRANSPARENTE — fondo blanco de la página visible debajo
+            this.renderer.setClearColor(0x000000, 0);
 
             var canvas = this.renderer.domElement;
             canvas.id = 'three-bg-canvas';
@@ -80,343 +105,454 @@
             document.body.insertBefore(canvas, document.body.firstChild);
         },
 
-        createAdvancedParticles: function() {
-            var particleCount = this.isMobile ? 300 : 800;
-            var colors = [
-                new THREE.Color(0xfbbf24),
-                new THREE.Color(0xf59e0b),
-                new THREE.Color(0xd97706),
-                new THREE.Color(0xb45309),
-                new THREE.Color(0x92400e),
-                new THREE.Color(0x78350f)
-            ];
+        // ===================================================
+        // GRID BLUEPRINT — cuadrícula técnica animada de plano
+        // Inspirado en planos de ingeniería y AutoCAD
+        // ===================================================
+        createBlueprintGrid: function () {
+            this.gridGroup = new THREE.Group();
 
-            var geometry = new THREE.BufferGeometry();
-            var positions = new Float32Array(particleCount * 3);
-            var colorArray = new Float32Array(particleCount * 3);
-            var sizes = new Float32Array(particleCount);
-            var velocities = new Float32Array(particleCount * 3);
-
-            for (var i = 0; i < particleCount; i++) {
-                var i3 = i * 3;
-
-                positions[i3] = (Math.random() - 0.5) * 150;
-                positions[i3 + 1] = (Math.random() - 0.5) * 150;
-                positions[i3 + 2] = (Math.random() - 0.5) * 80;
-
-                var color = colors[Math.floor(Math.random() * colors.length)];
-                colorArray[i3] = color.r;
-                colorArray[i3 + 1] = color.g;
-                colorArray[i3 + 2] = color.b;
-
-                sizes[i] = Math.random() * 3 + 0.5;
-
-                velocities[i3] = (Math.random() - 0.5) * 0.02;
-                velocities[i3 + 1] = (Math.random() - 0.5) * 0.02;
-                velocities[i3 + 2] = (Math.random() - 0.5) * 0.01;
-            }
-
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            geometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
-            geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-            geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
-
-            var vertexShader = [
-                'attribute float size;',
-                'varying vec3 vColor;',
-                'void main() {',
-                '    vColor = color;',
-                '    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);',
-                '    gl_PointSize = size * (250.0 / -mvPosition.z);',
-                '    gl_Position = projectionMatrix * mvPosition;',
-                '}'
-            ].join('\n');
-
-            var fragmentShader = [
-                'varying vec3 vColor;',
-                'void main() {',
-                '    float dist = length(gl_PointCoord - vec2(0.5));',
-                '    if (dist > 0.5) discard;',
-                '    float alpha = smoothstep(0.5, 0.0, dist);',
-                '    gl_FragColor = vec4(vColor, alpha * 0.4);',
-                '}'
-            ].join('\n');
-
-            var material = new THREE.ShaderMaterial({
-                vertexShader: vertexShader,
-                fragmentShader: fragmentShader,
-                vertexColors: true,
+            var gridMat = new THREE.LineBasicMaterial({
+                color: 0x1565c0,
                 transparent: true,
-                depthWrite: false,
-                blending: THREE.AdditiveBlending
+                opacity: this.isMobile ? 0.06 : 0.09
             });
 
-            this.particles = new THREE.Points(geometry, material);
-            this.scene.add(this.particles);
-        },
+            var step = 5;
+            var extent = 90;
 
-        createOrbitalRings: function() {
-            if (this.isMobile) return;
-
-            var ringColors = [0xfbbf24, 0xf59e0b, 0xd97706];
-
-            for (var r = 0; r < 3; r++) {
-                var ringGeometry = new THREE.TorusGeometry(
-                    15 + r * 8,
-                    0.3,
-                    16,
-                    100
-                );
-
-                var ringMaterial = new THREE.MeshBasicMaterial({
-                    color: ringColors[r],
-                    wireframe: true,
-                    transparent: true,
-                    opacity: 0.15
-                });
-
-                var ring = new THREE.Mesh(ringGeometry, ringMaterial);
-                ring.position.set(
-                    (Math.random() - 0.5) * 40,
-                    (Math.random() - 0.5) * 30,
-                    -20 - r * 10
-                );
-                ring.userData = {
-                    rotationSpeed: {
-                        x: (Math.random() - 0.5) * 0.003,
-                        y: (Math.random() - 0.5) * 0.005,
-                        z: (Math.random() - 0.5) * 0.002
-                    },
-                    orbitSpeed: 0.0005 + r * 0.0002,
-                    orbitRadius: 20 + r * 10,
-                    orbitAngle: Math.random() * Math.PI * 2,
-                    initialX: ring.position.x,
-                    initialY: ring.position.y
-                };
-
-                this.scene.add(ring);
-                this.orbitalRings.push(ring);
+            // Líneas horizontales del grid
+            for (var z = -extent; z <= extent; z += step) {
+                var pts = [
+                    new THREE.Vector3(-extent, -15, z),
+                    new THREE.Vector3(extent, -15, z)
+                ];
+                var geo = new THREE.BufferGeometry().setFromPoints(pts);
+                var line = new THREE.Line(geo, gridMat.clone());
+                line.userData = { baseOpacity: this.isMobile ? 0.06 : 0.09, phase: Math.random() * Math.PI * 2 };
+                this.gridGroup.add(line);
             }
-        },
 
-        createGeometries: function() {
-            if (this.isMobile) return;
-
-            var wireframeMaterial = function(color, opacity) {
-                return new THREE.MeshBasicMaterial({
-                    color: color,
-                    wireframe: true,
-                    transparent: true,
-                    opacity: opacity
-                });
-            };
-
-            var dodecahedron = new THREE.Mesh(
-                new THREE.DodecahedronGeometry(5, 0),
-                wireframeMaterial(0xf59e0b, 0.12)
-            );
-            dodecahedron.position.set(-30, 20, -25);
-            dodecahedron.userData = {
-                rotSpeed: { x: 0.003, y: 0.004, z: 0.002 },
-                floatSpeed: 0.001,
-                floatOffset: Math.random() * Math.PI * 2
-            };
-            this.scene.add(dodecahedron);
-            this.geometries.push(dodecahedron);
-
-            var icosahedron = new THREE.Mesh(
-                new THREE.IcosahedronGeometry(6, 1),
-                wireframeMaterial(0xfbbf24, 0.1)
-            );
-            icosahedron.position.set(35, -15, -20);
-            icosahedron.userData = {
-                rotSpeed: { x: 0.002, y: 0.003, z: 0.001 },
-                floatSpeed: 0.0008,
-                floatOffset: Math.random() * Math.PI * 2
-            };
-            this.scene.add(icosahedron);
-            this.geometries.push(icosahedron);
-
-            var octahedron = new THREE.Mesh(
-                new THREE.OctahedronGeometry(4, 0),
-                wireframeMaterial(0xd97706, 0.1)
-            );
-            octahedron.position.set(-20, -25, -30);
-            octahedron.userData = {
-                rotSpeed: { x: 0.004, y: 0.002, z: 0.003 },
-                floatSpeed: 0.0012,
-                floatOffset: Math.random() * Math.PI * 2
-            };
-            this.scene.add(octahedron);
-            this.geometries.push(octahedron);
-
-            var torusKnot = new THREE.Mesh(
-                new THREE.TorusKnotGeometry(4, 1.2, 100, 16),
-                wireframeMaterial(0xb45309, 0.08)
-            );
-            torusKnot.position.set(25, 30, -35);
-            torusKnot.userData = {
-                rotSpeed: { x: 0.001, y: 0.002, z: 0.001 },
-                floatSpeed: 0.0009,
-                floatOffset: Math.random() * Math.PI * 2
-            };
-            this.scene.add(torusKnot);
-            this.geometries.push(torusKnot);
-
-            var ring = new THREE.Mesh(
-                new THREE.TorusGeometry(10, 0.4, 8, 50),
-                wireframeMaterial(0xf59e0b, 0.09)
-            );
-            ring.position.set(0, 0, -40);
-            ring.userData = {
-                rotSpeed: { x: 0.002, y: 0.005, z: 0.001 },
-                floatSpeed: 0.0007,
-                floatOffset: Math.random() * Math.PI * 2
-            };
-            this.scene.add(ring);
-            this.geometries.push(ring);
-        },
-
-        createFloatingShapes: function() {
-            if (this.isMobile) return;
-
-            var glowColors = [0xfbbf24, 0xf59e0b, 0xd97706];
-            
-            for (var i = 0; i < 15; i++) {
-                var size = Math.random() * 1.5 + 0.5;
-                var geometry = new THREE.SphereGeometry(size, 8, 8);
-                var material = new THREE.MeshBasicMaterial({
-                    color: glowColors[Math.floor(Math.random() * glowColors.length)],
-                    transparent: true,
-                    opacity: 0.15 + Math.random() * 0.15
-                });
-
-                var shape = new THREE.Mesh(geometry, material);
-                shape.position.set(
-                    (Math.random() - 0.5) * 100,
-                    (Math.random() - 0.5) * 80,
-                    (Math.random() - 0.5) * 40 - 10
-                );
-                shape.userData = {
-                    pulseSpeed: 0.5 + Math.random() * 1.5,
-                    pulseOffset: Math.random() * Math.PI * 2,
-                    originalOpacity: material.opacity
-                };
-
-                this.scene.add(shape);
-                this.geometries.push(shape);
+            // Líneas verticales del grid
+            for (var x = -extent; x <= extent; x += step) {
+                var pts2 = [
+                    new THREE.Vector3(x, -15, -extent),
+                    new THREE.Vector3(x, -15, extent)
+                ];
+                var geo2 = new THREE.BufferGeometry().setFromPoints(pts2);
+                var line2 = new THREE.Line(geo2, gridMat.clone());
+                line2.userData = { baseOpacity: this.isMobile ? 0.06 : 0.09, phase: Math.random() * Math.PI * 2 };
+                this.gridGroup.add(line2);
             }
+
+            // Líneas de perspectiva (convergen hacia el horizonte)
+            var perspMat = new THREE.LineBasicMaterial({
+                color: 0x1565c0,
+                transparent: true,
+                opacity: 0.07
+            });
+
+            var origins = [
+                [-60, -15, -60], [60, -15, -60],
+                [-60, -15, 60],  [60, -15, 60]
+            ];
+            var vanish = [0, -15, 0];
+
+            origins.forEach(function (o) {
+                var pts3 = [
+                    new THREE.Vector3(o[0], o[1], o[2]),
+                    new THREE.Vector3(vanish[0], vanish[1], vanish[2])
+                ];
+                var geo3 = new THREE.BufferGeometry().setFromPoints(pts3);
+                var pLine = new THREE.Line(geo3, perspMat.clone());
+                pLine.userData = { baseOpacity: 0.07, phase: Math.random() * Math.PI * 2 };
+                this.gridGroup.add(pLine);
+            }, this);
+
+            this.scene.add(this.gridGroup);
         },
 
-        setupEvents: function() {
+        // ===================================================
+        // BUILDING WIREFRAMES — edificios 3D en wireframe
+        // Animación de "construcción" progresiva (autodibujo)
+        // ===================================================
+        createBuildingWireframes: function () {
+            this.buildingGroup = new THREE.Group();
             var self = this;
 
-            document.addEventListener('mousemove', function(e) {
-                self.targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            // Definir edificios con posición, tamaño y retraso de animación
+            var buildings = [
+                { x: -35, z: -20, w: 8,  h: 18, d: 8,  color: 0x1565c0, delay: 0.0,  opacity: 0.18 },
+                { x:  28, z: -25, w: 10, h: 28, d: 10, color: 0x0d47a1, delay: 0.8,  opacity: 0.14 },
+                { x: -18, z: -35, w: 6,  h: 12, d: 6,  color: 0x1e88e5, delay: 1.5,  opacity: 0.12 },
+                { x:  10, z: -30, w: 7,  h: 22, d: 7,  color: 0x1565c0, delay: 2.2,  opacity: 0.16 },
+                { x: -50, z: -15, w: 9,  h: 14, d: 9,  color: 0x00838f, delay: 3.0,  opacity: 0.1  },
+                { x:  48, z: -18, w: 8,  h: 16, d: 8,  color: 0xf0b429, delay: 0.5,  opacity: 0.12 },
+                { x:   0, z: -45, w: 14, h: 32, d: 14, color: 0x1565c0, delay: 1.2,  opacity: 0.15 }
+            ];
+
+            buildings.forEach(function (b) {
+                var geo = new THREE.BoxGeometry(b.w, b.h, b.d);
+                var edges = new THREE.EdgesGeometry(geo);
+                var mat = new THREE.LineBasicMaterial({
+                    color: b.color,
+                    transparent: true,
+                    opacity: 0.0   // Empieza invisible, se construye animando
+                });
+                var mesh = new THREE.LineSegments(edges, mat);
+                mesh.position.set(b.x, b.h / 2 - 15, b.z);
+                mesh.userData = {
+                    targetOpacity: b.opacity,
+                    buildDelay: b.delay,
+                    buildDuration: 2.5,
+                    built: false,
+                    rotSpeed: (Math.random() - 0.5) * 0.0008,
+                    floatAmp: 0.02 + Math.random() * 0.03,
+                    floatPhase: Math.random() * Math.PI * 2,
+                    initY: b.h / 2 - 15
+                };
+                self.buildingGroup.add(mesh);
+                self.buildingEdges.push(mesh);
+            });
+
+            this.scene.add(this.buildingGroup);
+        },
+
+        // ===================================================
+        // PARTÍCULAS DE CONSTRUCCIÓN
+        // Partículas que viajan a lo largo de rutas
+        // ===================================================
+        createConstructionParticles: function () {
+            var count = this.isMobile ? 60 : 160;
+            var geo = new THREE.BufferGeometry();
+            var positions = new Float32Array(count * 3);
+            var colors    = new Float32Array(count * 3);
+            var sizes     = new Float32Array(count);
+            var speeds    = new Float32Array(count * 3);
+
+            var palColors = [this.C_BLUE, this.C_BLUE_L, this.C_YELLOW, this.C_CYAN, this.C_BLUE_D];
+
+            for (var i = 0; i < count; i++) {
+                var i3 = i * 3;
+                positions[i3]     = (Math.random() - 0.5) * 120;
+                positions[i3 + 1] = (Math.random() - 0.5) * 40;
+                positions[i3 + 2] = (Math.random() - 0.5) * 60 - 10;
+
+                speeds[i3]     = (Math.random() - 0.5) * 0.04;
+                speeds[i3 + 1] = (Math.random() - 0.5) * 0.02;
+                speeds[i3 + 2] = (Math.random() - 0.5) * 0.02;
+
+                var c = palColors[Math.floor(Math.random() * palColors.length)];
+                colors[i3] = c.r; colors[i3+1] = c.g; colors[i3+2] = c.b;
+                sizes[i] = Math.random() * 2.5 + 0.8;
+            }
+
+            geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geo.setAttribute('color',    new THREE.BufferAttribute(colors, 3));
+            geo.setAttribute('size',     new THREE.BufferAttribute(sizes, 1));
+            geo.setAttribute('velocity', new THREE.BufferAttribute(speeds, 3));
+
+            var vShader = [
+                'attribute float size;',
+                'attribute vec3 velocity;',
+                'varying vec3 vColor;',
+                'void main() {',
+                '  vColor = color;',
+                '  vec4 mvPos = modelViewMatrix * vec4(position, 1.0);',
+                '  gl_PointSize = size * (220.0 / -mvPos.z);',
+                '  gl_Position = projectionMatrix * mvPos;',
+                '}'
+            ].join('\n');
+
+            var fShader = [
+                'varying vec3 vColor;',
+                'void main() {',
+                '  float d = length(gl_PointCoord - vec2(0.5));',
+                '  if (d > 0.5) discard;',
+                '  float a = smoothstep(0.5, 0.0, d) * 0.75;',
+                '  gl_FragColor = vec4(vColor, a);',
+                '}'
+            ].join('\n');
+
+            var mat = new THREE.ShaderMaterial({
+                vertexShader: vShader,
+                fragmentShader: fShader,
+                vertexColors: true,
+                transparent: true,
+                depthWrite: false
+            });
+
+            this.particleSystem = new THREE.Points(geo, mat);
+            this.scene.add(this.particleSystem);
+        },
+
+        // ===================================================
+        // PULSE RINGS — marcos circulares que pulsan
+        // Efecto de señal de radar / detección de terreno
+        // ===================================================
+        createPulseRings: function () {
+            if (this.isMobile) return;
+            var positions = [
+                { x: -35, z: -20, color: 0x1565c0 },
+                { x:  28, z: -25, color: 0xf0b429 },
+                { x:   0, z: -45, color: 0x1565c0 }
+            ];
+
+            positions.forEach(function (p) {
+                var mat = new THREE.MeshBasicMaterial({
+                    color: p.color,
+                    transparent: true,
+                    opacity: 0.0,
+                    side: THREE.DoubleSide,
+                    wireframe: false
+                });
+                var ring = new THREE.Mesh(
+                    new THREE.RingGeometry(0.5, 1.2, 32),
+                    mat
+                );
+                ring.position.set(p.x, -14.8, p.z);
+                ring.rotation.x = -Math.PI / 2;
+                ring.userData = {
+                    phase: Math.random() * Math.PI * 2,
+                    speed: 0.8 + Math.random() * 0.5,
+                    maxR: 12 + Math.random() * 8
+                };
+                this.pulseRings.push(ring);
+                this.scene.add(ring);
+            }, this);
+        },
+
+        // ===================================================
+        // SCAN LINES — líneas de escaneo horizontales
+        // Efecto de lectura láser / medición
+        // ===================================================
+        createScanLines: function () {
+            if (this.isMobile) return;
+
+            for (var s = 0; s < 2; s++) {
+                var mat = new THREE.LineBasicMaterial({
+                    color: s === 0 ? 0x1565c0 : 0xf0b429,
+                    transparent: true,
+                    opacity: 0.0
+                });
+                var pts = [
+                    new THREE.Vector3(-80, 0, 0),
+                    new THREE.Vector3(80,  0, 0)
+                ];
+                var geo = new THREE.BufferGeometry().setFromPoints(pts);
+                var line = new THREE.Line(geo, mat);
+                line.userData = {
+                    phase: s * Math.PI,
+                    speed: 0.6 + s * 0.3,
+                    yMin: -16,
+                    yMax:  30
+                };
+                this.scanLines.push(line);
+                this.scene.add(line);
+            }
+        },
+
+        // ===================================================
+        // CONNECTION NETWORK — red de nodos conectados
+        // Representa la infraestructura de red EDS
+        // ===================================================
+        createConnectionNetwork: function () {
+            var nodeCount = 30;
+            var spread = 100;
+            var nodePositions = [];
+
+            for (var i = 0; i < nodeCount; i++) {
+                nodePositions.push({
+                    x: (Math.random() - 0.5) * spread,
+                    y: (Math.random() - 0.5) * 30,
+                    z: (Math.random() - 0.5) * 50 - 10
+                });
+            }
+
+            var linePts = [];
+            var lineColors = [];
+
+            for (var a = 0; a < nodeCount; a++) {
+                for (var b = a + 1; b < nodeCount; b++) {
+                    var dx = nodePositions[a].x - nodePositions[b].x;
+                    var dy = nodePositions[a].y - nodePositions[b].y;
+                    var dz = nodePositions[a].z - nodePositions[b].z;
+                    var dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+
+                    if (dist < 28) {
+                        linePts.push(
+                            nodePositions[a].x, nodePositions[a].y, nodePositions[a].z,
+                            nodePositions[b].x, nodePositions[b].y, nodePositions[b].z
+                        );
+                        var t = dist / 28; // 0 = cerca (azul), 1 = lejos (amarillo)
+                        if ((a + b) % 3 === 0) {
+                            lineColors.push(0.09, 0.51, 0.56, 0.09, 0.51, 0.56); // cian
+                        } else {
+                            lineColors.push(0.082, 0.396, 0.753, 0.082, 0.396, 0.753); // azul
+                        }
+                    }
+                }
+            }
+
+            if (linePts.length === 0) return;
+
+            var lineGeo = new THREE.BufferGeometry();
+            lineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(linePts), 3));
+            lineGeo.setAttribute('color',    new THREE.BufferAttribute(new Float32Array(lineColors), 3));
+
+            var netMat = new THREE.LineBasicMaterial({
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.18,
+                depthWrite: false
+            });
+
+            var netLines = new THREE.LineSegments(lineGeo, netMat);
+            netLines.userData = { type: 'network', initOpacity: 0.18 };
+            this.scene.add(netLines);
+            this.connectionLines.push(netLines);
+        },
+
+        // ===================================================
+        // EVENTOS
+        // ===================================================
+        setupEvents: function () {
+            var self = this;
+            document.addEventListener('mousemove', function (e) {
+                self.targetMouseX = (e.clientX / window.innerWidth  - 0.5) * 2;
                 self.targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
             });
-
-            window.addEventListener('resize', function() {
-                self.onResize();
-            });
-
-            document.addEventListener('visibilitychange', function() {
+            window.addEventListener('resize', function () { self.onResize(); });
+            document.addEventListener('visibilitychange', function () {
                 self.isVisible = !document.hidden;
-                if (self.isVisible && !self.animationId) {
-                    self.animate();
-                }
+                if (self.isVisible && !self.animationId) self.animate();
             });
         },
 
-        onResize: function() {
+        onResize: function () {
             this.camera.aspect = window.innerWidth / window.innerHeight;
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(window.innerWidth, window.innerHeight);
         },
 
-        animate: function() {
-            if (!this.isVisible) {
-                this.animationId = null;
-                return;
-            }
-
+        // ===================================================
+        // LOOP DE ANIMACIÓN
+        // ===================================================
+        animate: function () {
+            if (!this.isVisible) { this.animationId = null; return; }
             var self = this;
-            this.animationId = requestAnimationFrame(function() {
-                self.animate();
-            });
+            this.animationId = requestAnimationFrame(function () { self.animate(); });
 
             var time = this.clock.getElapsedTime();
+            var delta = this.clock.getDelta ? 0.016 : 0.016;
 
-            this.mouseX += (this.targetMouseX - this.mouseX) * 0.04;
-            this.mouseY += (this.targetMouseY - this.mouseY) * 0.04;
+            // Suavizar mouse
+            this.mouseX += (this.targetMouseX - this.mouseX) * 0.03;
+            this.mouseY += (this.targetMouseY - this.mouseY) * 0.03;
 
-            if (this.particles) {
-                this.particles.rotation.y += 0.0004;
-                this.particles.rotation.x += 0.0002;
-
-                this.particles.position.x = this.mouseX * 4;
-                this.particles.position.y = -this.mouseY * 4;
-
-                var positions = this.particles.geometry.attributes.position.array;
-                var velocities = this.particles.geometry.attributes.velocity.array;
-                for (var i = 0; i < positions.length; i += 3) {
-                    positions[i] += velocities[i];
-                    positions[i + 1] += velocities[i + 1];
-                    positions[i + 2] += velocities[i + 2];
-
-                    if (Math.abs(positions[i]) > 75) velocities[i] *= -1;
-                    if (Math.abs(positions[i + 1]) > 75) velocities[i + 1] *= -1;
-                    if (Math.abs(positions[i + 2]) > 40) velocities[i + 2] *= -1;
-                }
-                this.particles.geometry.attributes.position.needsUpdate = true;
+            // ---- Grid: pulso de opacidad (como plano que "respira") ----
+            if (this.gridGroup) {
+                this.gridGroup.children.forEach(function (line) {
+                    var ud = line.userData;
+                    var pulse = Math.sin(time * 0.4 + ud.phase) * 0.5 + 0.5;
+                    line.material.opacity = ud.baseOpacity * (0.6 + pulse * 0.4);
+                });
+                // Leve rotación del grid completo con el mouse
+                this.gridGroup.rotation.y = this.mouseX * 0.04;
+                this.gridGroup.rotation.x = this.mouseY * 0.02;
             }
 
-            for (var r = 0; r < this.orbitalRings.length; r++) {
-                var ring = this.orbitalRings[r];
-                var data = ring.userData;
+            // ---- Edificios: animación de construcción progresiva ----
+            this.buildingEdges.forEach(function (b) {
+                var ud = b.userData;
+                // Esperar el delay antes de empezar a construir
+                var adjustedTime = time - ud.buildDelay;
+                if (adjustedTime > 0) {
+                    var progress = Math.min(adjustedTime / ud.buildDuration, 1.0);
+                    // Ease in-out cúbico
+                    var eased = progress < 0.5
+                        ? 4 * progress * progress * progress
+                        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                    b.material.opacity = eased * ud.targetOpacity;
 
-                ring.rotation.x += data.rotationSpeed.x;
-                ring.rotation.y += data.rotationSpeed.y;
-                ring.rotation.z += data.rotationSpeed.z;
+                    // Escalar de abajo hacia arriba mientras se construye
+                    if (!ud.built) {
+                        b.scale.y = 0.3 + eased * 0.7;
+                        b.position.y = ud.initY - (1 - eased) * 5;
+                        if (progress >= 1.0) ud.built = true;
+                    }
+                }
 
-                data.orbitAngle += data.orbitSpeed;
-                ring.position.x = data.initialX + Math.cos(data.orbitAngle) * 10;
-                ring.position.y = data.initialY + Math.sin(data.orbitAngle) * 8;
+                // Rotación orbital muy lenta + flotación
+                b.rotation.y += ud.rotSpeed;
+                b.position.y += Math.sin(time * 1.2 + ud.floatPhase) * ud.floatAmp;
+
+                // Parpadeo periódico (escáner pasando)
+                var flicker = Math.sin(time * 3.0 + ud.floatPhase * 2) * 0.5 + 0.5;
+                b.material.opacity *= (0.85 + flicker * 0.15);
+            });
+
+            // ---- Partículas: movimiento suave ----
+            if (this.particleSystem) {
+                var pos = this.particleSystem.geometry.attributes.position.array;
+                var vel = this.particleSystem.geometry.attributes.velocity.array;
+                var count = pos.length / 3;
+
+                for (var i = 0; i < count; i++) {
+                    var i3 = i * 3;
+                    pos[i3]     += vel[i3];
+                    pos[i3 + 1] += vel[i3 + 1];
+                    pos[i3 + 2] += vel[i3 + 2];
+
+                    // Rebotar en límites
+                    if (Math.abs(pos[i3])     > 60) vel[i3]     *= -1;
+                    if (Math.abs(pos[i3 + 1]) > 22) vel[i3 + 1] *= -1;
+                    if (Math.abs(pos[i3 + 2]) > 32) vel[i3 + 2] *= -1;
+                }
+                this.particleSystem.geometry.attributes.position.needsUpdate = true;
+                this.particleSystem.position.x = this.mouseX * 2;
+                this.particleSystem.position.y = -this.mouseY * 2;
             }
 
-            for (var g = 0; g < this.geometries.length; g++) {
-                var geo = this.geometries[g];
-                
-                if (geo.userData.rotSpeed) {
-                    geo.rotation.x += geo.userData.rotSpeed.x;
-                    geo.rotation.y += geo.userData.rotSpeed.y;
-                    geo.rotation.z += geo.userData.rotSpeed.z;
-                }
+            // ---- Pulse Rings: radar de construcción ----
+            this.pulseRings.forEach(function (ring) {
+                var ud = ring.userData;
+                var phase = (time * ud.speed + ud.phase) % (Math.PI * 2);
+                var t = phase / (Math.PI * 2); // 0 → 1
 
-                if (geo.userData.floatSpeed) {
-                    geo.position.y += Math.sin(time * 2 + geo.userData.floatOffset) * 0.02;
-                }
+                // Expandir radio del ring
+                var scale = 1 + t * ud.maxR;
+                ring.scale.set(scale, scale, scale);
+                ring.material.opacity = (1 - t) * 0.25;
+            });
 
-                if (geo.userData.pulseSpeed) {
-                    var pulse = Math.sin(time * geo.userData.pulseSpeed + geo.userData.pulseOffset);
-                    geo.material.opacity = geo.userData.originalOpacity * (0.5 + pulse * 0.5);
-                }
+            // ---- Scan Lines: líneas de escaneo (travesía) ----
+            this.scanLines.forEach(function (line) {
+                var ud = line.userData;
+                var t = (Math.sin(time * ud.speed + ud.phase) * 0.5 + 0.5);
+                var y = ud.yMin + t * (ud.yMax - ud.yMin);
+                line.position.y = y;
+                // Pulsar opacidad — más visible en el medio del recorrido
+                var midFade = Math.sin(Math.PI * t) * 0.35;
+                line.material.opacity = midFade;
+            });
 
-                geo.position.x += this.mouseX * 0.2;
-                geo.position.y -= this.mouseY * 0.2;
-            }
+            // ---- Network lines: pulso de opacidad ----
+            this.connectionLines.forEach(function (net) {
+                var pulse = Math.sin(time * 0.5) * 0.5 + 0.5;
+                net.material.opacity = net.userData.initOpacity * (0.6 + pulse * 0.4);
+            });
 
-            this.camera.position.x += (this.mouseX * 2 - this.camera.position.x) * 0.015;
-            this.camera.position.y += (-this.mouseY * 2 - this.camera.position.y) * 0.015;
-            this.camera.lookAt(this.scene.position);
+            // ---- Parallax de cámara con mouse ----
+            this.camera.position.x += (this.mouseX * 4 - this.camera.position.x) * 0.01;
+            this.camera.position.y += (-this.mouseY * 3 + 8 - this.camera.position.y) * 0.01;
+            this.camera.lookAt(0, 0, 0);
 
             this.renderer.render(this.scene, this.camera);
         },
 
-        destroy: function() {
-            if (this.animationId) {
-                cancelAnimationFrame(this.animationId);
-            }
+        destroy: function () {
+            if (this.animationId) cancelAnimationFrame(this.animationId);
             if (this.renderer) {
                 this.renderer.dispose();
                 var canvas = document.getElementById('three-bg-canvas');
