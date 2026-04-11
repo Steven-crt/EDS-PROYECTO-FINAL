@@ -52,6 +52,7 @@
             // Construir el mundo 3D progresivamente
             this.createBlueprintGrid();
             this.createBuildingWireframes();
+            this.createEDSTextAndLogo();
             this.createConstructionParticles();
             this.createPulseRings();
             this.createScanLines();
@@ -113,13 +114,13 @@
             this.gridGroup = new THREE.Group();
 
             var gridMat = new THREE.LineBasicMaterial({
-                color: 0x1565c0,
+                color: 0x1565c0, // Blueprint corporate blue
                 transparent: true,
-                opacity: this.isMobile ? 0.06 : 0.09
+                opacity: this.isMobile ? 0.12 : 0.22
             });
 
-            var step = 5;
-            var extent = 90;
+            var step = 8;
+            var extent = 180;
 
             // Líneas horizontales del grid
             for (var z = -extent; z <= extent; z += step) {
@@ -129,7 +130,7 @@
                 ];
                 var geo = new THREE.BufferGeometry().setFromPoints(pts);
                 var line = new THREE.Line(geo, gridMat.clone());
-                line.userData = { baseOpacity: this.isMobile ? 0.06 : 0.09, phase: Math.random() * Math.PI * 2 };
+                line.userData = { baseOpacity: this.isMobile ? 0.12 : 0.18, phase: Math.random() * Math.PI * 2 };
                 this.gridGroup.add(line);
             }
 
@@ -141,20 +142,20 @@
                 ];
                 var geo2 = new THREE.BufferGeometry().setFromPoints(pts2);
                 var line2 = new THREE.Line(geo2, gridMat.clone());
-                line2.userData = { baseOpacity: this.isMobile ? 0.06 : 0.09, phase: Math.random() * Math.PI * 2 };
+                line2.userData = { baseOpacity: this.isMobile ? 0.12 : 0.18, phase: Math.random() * Math.PI * 2 };
                 this.gridGroup.add(line2);
             }
 
             // Líneas de perspectiva (convergen hacia el horizonte)
             var perspMat = new THREE.LineBasicMaterial({
-                color: 0x1565c0,
+                color: 0x1565c0, // Corporate blue perspective
                 transparent: true,
-                opacity: 0.07
+                opacity: 0.16
             });
 
             var origins = [
-                [-60, -15, -60], [60, -15, -60],
-                [-60, -15, 60],  [60, -15, 60]
+                [-120, -15, -120], [120, -15, -120],
+                [-120, -15, 120],  [120, -15, 120]
             ];
             var vanish = [0, -15, 0];
 
@@ -165,7 +166,7 @@
                 ];
                 var geo3 = new THREE.BufferGeometry().setFromPoints(pts3);
                 var pLine = new THREE.Line(geo3, perspMat.clone());
-                pLine.userData = { baseOpacity: 0.07, phase: Math.random() * Math.PI * 2 };
+                pLine.userData = { baseOpacity: 0.14, phase: Math.random() * Math.PI * 2 };
                 this.gridGroup.add(pLine);
             }, this);
 
@@ -180,15 +181,15 @@
             this.buildingGroup = new THREE.Group();
             var self = this;
 
-            // Definir edificios con posición, tamaño y retraso de animación
+            // Definir edificios expansivos con colores de Blueprint (Azul Empresa)
             var buildings = [
-                { x: -35, z: -20, w: 8,  h: 18, d: 8,  color: 0x1565c0, delay: 0.0,  opacity: 0.18 },
-                { x:  28, z: -25, w: 10, h: 28, d: 10, color: 0x0d47a1, delay: 0.8,  opacity: 0.14 },
-                { x: -18, z: -35, w: 6,  h: 12, d: 6,  color: 0x1e88e5, delay: 1.5,  opacity: 0.12 },
-                { x:  10, z: -30, w: 7,  h: 22, d: 7,  color: 0x1565c0, delay: 2.2,  opacity: 0.16 },
-                { x: -50, z: -15, w: 9,  h: 14, d: 9,  color: 0x00838f, delay: 3.0,  opacity: 0.1  },
-                { x:  48, z: -18, w: 8,  h: 16, d: 8,  color: 0xf0b429, delay: 0.5,  opacity: 0.12 },
-                { x:   0, z: -45, w: 14, h: 32, d: 14, color: 0x1565c0, delay: 1.2,  opacity: 0.15 }
+                { x: -75, z: -45, w: 8,  h: 18, d: 8,  color: 0x1565c0, delay: 0.0,  opacity: 0.28 },
+                { x:  68, z: -50, w: 10, h: 28, d: 10, color: 0x0d47a1, delay: 0.4,  opacity: 0.24 },
+                { x: -48, z: -70, w: 6,  h: 12, d: 6,  color: 0x1e88e5, delay: 0.8,  opacity: 0.22 },
+                { x:  42, z: -65, w: 7,  h: 22, d: 7,  color: 0x1565c0, delay: 1.2,  opacity: 0.26 },
+                { x: -95, z: -40, w: 9,  h: 14, d: 9,  color: 0x00838f, delay: 1.6,  opacity: 0.20 },
+                { x:  95, z: -43, w: 8,  h: 16, d: 8,  color: 0xf0b429, delay: 0.3,  opacity: 0.22 },
+                { x:   0, z: -90, w: 14, h: 32, d: 14, color: 0x1565c0, delay: 0.7,  opacity: 0.25 }
             ];
 
             buildings.forEach(function (b) {
@@ -204,9 +205,9 @@
                 mesh.userData = {
                     targetOpacity: b.opacity,
                     buildDelay: b.delay,
-                    buildDuration: 2.5,
+                    buildDuration: 1.8,
                     built: false,
-                    rotSpeed: (Math.random() - 0.5) * 0.0008,
+                    rotSpeed: (Math.random() - 0.5) * 0.0015,
                     floatAmp: 0.02 + Math.random() * 0.03,
                     floatPhase: Math.random() * Math.PI * 2,
                     initY: b.h / 2 - 15
@@ -216,6 +217,80 @@
             });
 
             this.scene.add(this.buildingGroup);
+        },
+
+        // ===================================================
+        // TEXTO EDS Y LOGO
+        // Creados como wireframes que se animan con la misma lógica
+        // ===================================================
+        createEDSTextAndLogo: function () {
+            this.edsGroup = new THREE.Group();
+            var self = this;
+
+            var edsBlocks = [];
+            
+            // Función para crear bloques de un tamaño y posición
+            function addBlock(bx, by, bz, bw, bh, bd, delay, color) {
+                edsBlocks.push({ x: bx, y: by, z: bz, w: bw, h: bh, d: bd, delay: delay, color: color });
+            }
+
+            // Ubicamos el texto centrado para "EDS" solamente
+            var startX = -12;
+            var zPos = -12; // Al frente de los edificios
+            var cBlue = 0x00ffff;   // Neon Cyan
+            var cYellow = 0xffff00; // Neon Yellow
+
+            // --- LETRA E ---
+            addBlock(startX, -10, zPos, 1.5, 10, 1.5, 1.0, cBlue);       // barra vertical
+            addBlock(startX+2.5, -5.75, zPos, 4, 1.5, 1.5, 1.2, cBlue);  // top
+            addBlock(startX+2.0, -10, zPos, 3, 1.5, 1.5, 1.3, cBlue);    // centro
+            addBlock(startX+2.5, -14.25, zPos, 4, 1.5, 1.5, 1.1, cBlue); // bottom
+
+            // --- LETRA D ---
+            var dx = startX + 7;
+            addBlock(dx, -10, zPos, 1.5, 10, 1.5, 1.4, cBlue);         // barra vertical
+            addBlock(dx+2, -5.75, zPos, 3, 1.5, 1.5, 1.5, cBlue);      // top
+            addBlock(dx+2, -14.25, zPos, 3, 1.5, 1.5, 1.4, cBlue);     // bottom
+            addBlock(dx+3.5, -10, zPos, 1.5, 7, 1.5, 1.6, cBlue);      // curva derecha (barra vert)
+
+            // --- LETRA S ---
+            var sx = dx + 7;
+            addBlock(sx+2, -5.75, zPos, 4, 1.5, 1.5, 1.7, cBlue);      // top
+            addBlock(sx+0.5, -8, zPos, 1.5, 4, 1.5, 1.8, cBlue);       // upper left vert
+            addBlock(sx+2, -10, zPos, 4, 1.5, 1.5, 1.9, cBlue);        // mid
+            addBlock(sx+3.5, -12, zPos, 1.5, 4, 1.5, 2.0, cBlue);      // lower right vert
+            addBlock(sx+2, -14.25, zPos, 4, 1.5, 1.5, 1.8, cBlue);     // bottom
+
+            edsBlocks.forEach(function (b) {
+                var geo = new THREE.BoxGeometry(b.w, b.h, b.d);
+                var edges = new THREE.EdgesGeometry(geo);
+                var mat = new THREE.LineBasicMaterial({
+                    color: b.color,
+                    transparent: true,
+                    opacity: 0.0 // empieza invisible
+                });
+                var mesh = new THREE.LineSegments(edges, mat);
+                // Posicionar relativo al grupo (o al mundo, ya que el grupo está en el centro)
+                mesh.position.set(b.x, b.y, b.z);
+                
+                mesh.userData = {
+                    targetOpacity: 0.45, // bien visible
+                    buildDelay: b.delay,
+                    buildDuration: 2.0,
+                    built: false,
+                    rotSpeed: 0, // Las letras no giran individualmente para no desarmar el texto
+                    floatAmp: 0.015,
+                    floatPhase: Math.random() * Math.PI * 2,
+                    initY: b.y
+                };
+                self.edsGroup.add(mesh);
+                // Lo agregamos a buildingEdges para animación unificada
+                self.buildingEdges.push(mesh);
+            });
+
+            // Le damos una leve inclinación inicial para mayor profundidad
+            this.edsGroup.rotation.y = -0.05;
+            this.scene.add(this.edsGroup);
         },
 
         // ===================================================
@@ -238,13 +313,13 @@
                 positions[i3 + 1] = (Math.random() - 0.5) * 40;
                 positions[i3 + 2] = (Math.random() - 0.5) * 60 - 10;
 
-                speeds[i3]     = (Math.random() - 0.5) * 0.04;
-                speeds[i3 + 1] = (Math.random() - 0.5) * 0.02;
-                speeds[i3 + 2] = (Math.random() - 0.5) * 0.02;
+                speeds[i3]     = (Math.random() - 0.5) * 0.08;
+                speeds[i3 + 1] = (Math.random() - 0.5) * 0.05;
+                speeds[i3 + 2] = (Math.random() - 0.5) * 0.05;
 
                 var c = palColors[Math.floor(Math.random() * palColors.length)];
                 colors[i3] = c.r; colors[i3+1] = c.g; colors[i3+2] = c.b;
-                sizes[i] = Math.random() * 2.5 + 0.8;
+                sizes[i] = Math.random() * 4.0 + 1.2;
             }
 
             geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -314,8 +389,8 @@
                 ring.rotation.x = -Math.PI / 2;
                 ring.userData = {
                     phase: Math.random() * Math.PI * 2,
-                    speed: 0.8 + Math.random() * 0.5,
-                    maxR: 12 + Math.random() * 8
+                    speed: 1.5 + Math.random() * 0.8,
+                    maxR: 18 + Math.random() * 8
                 };
                 this.pulseRings.push(ring);
                 this.scene.add(ring);
@@ -343,7 +418,7 @@
                 var line = new THREE.Line(geo, mat);
                 line.userData = {
                     phase: s * Math.PI,
-                    speed: 0.6 + s * 0.3,
+                    speed: 1.2 + s * 0.5,
                     yMin: -16,
                     yMax:  30
                 };
@@ -537,15 +612,22 @@
                 line.material.opacity = midFade;
             });
 
-            // ---- Network lines: pulso de opacidad ----
+            // ---- Redes: pulso de opacidad ----
             this.connectionLines.forEach(function (net) {
                 var pulse = Math.sin(time * 0.5) * 0.5 + 0.5;
                 net.material.opacity = net.userData.initOpacity * (0.6 + pulse * 0.4);
             });
 
+            // ---- Parallax y flotación de Grupo EDS ----
+            if (this.edsGroup) {
+                this.edsGroup.position.y = Math.sin(time * 1.5) * 1.5;
+                this.edsGroup.rotation.y = -0.05 + this.mouseX * 0.15;
+                this.edsGroup.rotation.x = this.mouseY * 0.08;
+            }
+
             // ---- Parallax de cámara con mouse ----
-            this.camera.position.x += (this.mouseX * 4 - this.camera.position.x) * 0.01;
-            this.camera.position.y += (-this.mouseY * 3 + 8 - this.camera.position.y) * 0.01;
+            this.camera.position.x += (this.mouseX * 6 - this.camera.position.x) * 0.02;
+            this.camera.position.y += (-this.mouseY * 5 + 8 - this.camera.position.y) * 0.02;
             this.camera.lookAt(0, 0, 0);
 
             this.renderer.render(this.scene, this.camera);
