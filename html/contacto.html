@@ -16,6 +16,7 @@
 
     <!-- Hoja de estilos principal del sitio -->
     <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/pages-enhanced.css" />
     <!-- Librería de iconos Font Awesome v6.4.0 (íconos de WhatsApp, teléfono, etc.) -->
     <link
       rel="stylesheet"
@@ -44,7 +45,7 @@
         width: 200%;
         height: 200%;
         background: 
-          radial-gradient(circle at 20% 50%, rgba(21, 101, 192, 0.06) 0%, transparent 50%),
+          radial-gradient(circle at 20% 50%, rgba(13, 148, 136, 0.08) 0%, transparent 50%),
           radial-gradient(circle at 80% 20%, rgba(240, 180, 41, 0.05) 0%, transparent 50%),
           radial-gradient(circle at 40% 80%, rgba(229, 57, 53, 0.03) 0%, transparent 50%);
         animation: contactBgShift 12s ease-in-out infinite;
@@ -77,7 +78,7 @@
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, #1565c0, #f0b429, #e53935, #1565c0);
+        background: linear-gradient(90deg, #0d9488, #f0b429, #e53935, #0d9488);
         background-size: 300% 100%;
         animation: gradientMove 4s linear infinite;
       }
@@ -94,7 +95,7 @@
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, #f0b429, #1565c0, #f0b429);
+        background: linear-gradient(90deg, #f0b429, #0d9488, #f0b429);
         background-size: 200% 100%;
         animation: gradientMove 3s linear infinite;
       }
@@ -104,13 +105,26 @@
         100% { background-position: 300% 50%; }
       }
 
-      .contact-page .page-header {
-        background:
-          linear-gradient(145deg, rgba(20, 20, 18, 0.97), rgba(49, 41, 32, 0.92) 52%, rgba(143, 98, 18, 0.56) 100%);
+.contact-page .page-header {
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0d9488 100%);
       }
 
-      .contact-page .page-header::before {
+.contact-page .page-header::before {
         opacity: 0.92;
+        background:
+          radial-gradient(circle at 20% 80%, rgba(13, 148, 136, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(30, 58, 95, 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      }
+
+      .contact-page .page-header::after {
+        content: '';
+        position: absolute;
+        inset: auto 0 -100px 0 0;
+        height: 200px;
+        background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 40%, #cbd5e1 70%, #94a3b8 100%);
+        transform: skewY(-3deg);
+        pointer-events: none;
       }
 
       .contact-page .contact-section-wrapper::after {
@@ -125,10 +139,10 @@
         z-index: 0;
       }
 
-      .contact-page .contact-info,
+.contact-page .contact-info,
       .contact-page .contact-form {
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(245, 248, 251, 0.99));
-        border: 1px solid rgba(21, 101, 192, 0.08);
+        border: 1px solid rgba(13, 148, 136, 0.1);
         border-radius: 26px;
         box-shadow: 0 26px 64px rgba(15, 23, 42, 0.08);
       }
@@ -144,9 +158,9 @@
         box-shadow: 0 12px 24px rgba(240, 180, 41, 0.18);
       }
 
-      .contact-page .footer-social a {
-        background: rgba(21, 101, 192, 0.06);
-        border: 1px solid rgba(21, 101, 192, 0.08);
+.contact-page .footer-social a {
+        background: rgba(13, 148, 136, 0.08);
+        border: 1px solid rgba(13, 148, 136, 0.12);
       }
 
       .contact-page .location-strip {
@@ -239,8 +253,10 @@
 
     <!-- ====== BREADCRUMB Y TÍTULO DE PÁGINA ====== -->
     <section class="page-header">
+      <div class="page-header-orb orb-a"></div>
+      <div class="page-header-orb orb-b"></div>
+      <div class="grid-bg"></div>
       <div class="container">
-        <!-- Miga de pan (breadcrumb): indica la ubicación del usuario dentro del sitio -->
         <div class="breadcrumb">
           <a href="../index.html">Inicio</a>
           <span>/</span>
@@ -252,7 +268,7 @@
     </section>
 
     <!-- ====== SECCIÓN DE CONTACTO: Información de contacto + Formulario ====== -->
-    <section class="section contact-section-wrapper section-alt-bg">
+    <section class="section contact-section-wrapper">
       <div class="container">
         <!-- Grid de dos columnas: izquierda = info contacto, derecha = formulario -->
         <div class="contact-grid">
@@ -463,10 +479,11 @@
     </section>
 
     <!-- ====== SECCIÓN DE UBICACIONES: Muestra las sedes y oficinas en distintas ciudades ====== -->
-    <section
-      class="section location-strip section-alt-bg"
-      style="background: var(--bg-secondary); padding: 60px 0"
+<section
+      class="section location-strip"
+      style="background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 50%, #99f6e6 100%); padding: 60px 0; position: relative;"
     >
+    <div style="position: absolute; inset: 0; background: radial-gradient(circle at 30% 70%, rgba(13,148,136,0.08) 0%, transparent 50%); pointer-events: none;"></div>
       <div class="container">
         <div class="section-title" data-aos="fade-up" style="font-size: 2rem">
           Nuestras <span class="highlight">Ubicaciones</span>
@@ -585,11 +602,15 @@
     </section>
 
     <!-- ====== CTA (CALL TO ACTION): Invitación para contactar por WhatsApp ====== -->
-    <section class="section cta">
-      <div class="container">
-        <div class="cta-content" data-aos="zoom-in">
-          <h2>¿Prefieres una atención más rápida?</h2>
-          <p>
+    <section class="section" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0d9488 100%); position: relative; padding: 80px 0; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: radial-gradient(circle at 20% 80%, rgba(240,180,41,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(20,184,166,0.15) 0%, transparent 50%); pointer-events: none;"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <div class="cta-content text-center" data-aos="zoom-in" style="max-width: 600px; margin: 0 auto;">
+          <div style="width: 90px; height: 90px; margin: 0 auto 30px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(240,180,41,0.4);">
+            <i class="fab fa-whatsapp" style="font-size: 2.5rem; color: #25d366;"></i>
+          </div>
+          <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: white; margin-bottom: 15px;">¿Prefieres una atención más rápida?</h2>
+          <p style="color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 30px;">
             Escríbenos directamente por WhatsApp y te responderemos en minutos.
           </p>
           <div class="cta-buttons">
@@ -597,7 +618,7 @@
               href="https://wa.me/51950313642"
               target="_blank"
               class="btn btn-whatsapp btn-lg"
-            >
+              style="padding: 16px 40px; font-size: 1.1rem;">
               <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
             </a>
           </div>
@@ -741,5 +762,6 @@
     <script src="../js/animations.js"></script>
     <script src="../js/scroll-animations.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/pages-enhanced.js"></script>
   </body>
 </html>

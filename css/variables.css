@@ -11,8 +11,8 @@
     --bg-card: #fafbfc;
 
     /* Colores EDS - Paleta Completa: colores principales, acentos y estados (peligro, éxito, info) */
-    --primary: #1565c0;
-    --primary-light: #1e88e5;
+    --primary: #0d9488;
+    --primary-light: #14b8a6;
     --accent: #f0b429;
     --accent-light: #f5c842;
     --accent-dark: #d4a017;
@@ -35,7 +35,7 @@
     --border-hover: rgba(0, 0, 0, 0.2);
     --panel: rgba(255, 255, 255, 0.9);
     --grid: rgba(0, 0, 0, 0.04);
-    --tint-primary: rgba(21, 101, 192, 0.08);
+    --tint-primary: rgba(13, 148, 136, 0.1);
     --tint-accent: rgba(240, 180, 41, 0.1);
     --tint-danger: rgba(229, 57, 53, 0.08);
 
@@ -45,10 +45,10 @@
     --gradient-danger: linear-gradient(135deg, var(--danger), #ff5252);
     --gradient-success: linear-gradient(135deg, var(--success), #66bb6a);
     --gradient-gold: linear-gradient(135deg, var(--accent-dark), var(--accent), var(--accent-light));
-    --gradient-sunrise: linear-gradient(135deg, rgba(21, 101, 192, 0.14), rgba(240, 180, 41, 0.18), rgba(229, 57, 53, 0.12));
+--gradient-sunrise: linear-gradient(135deg, rgba(13, 148, 136, 0.14), rgba(240, 180, 41, 0.18), rgba(229, 57, 53, 0.12));
     --gradient-dark: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
-    --gradient-hero: linear-gradient(135deg, rgba(240, 180, 41, 0.05), rgba(21, 101, 192, 0.05), rgba(229, 57, 53, 0.05));
-    --gradient-construction: linear-gradient(135deg, rgba(15, 33, 52, 0.96), rgba(21, 101, 192, 0.86), rgba(240, 180, 41, 0.52));
+    --gradient-hero: linear-gradient(135deg, rgba(240, 180, 41, 0.05), rgba(13, 148, 136, 0.05), rgba(229, 57, 53, 0.05));
+    --gradient-construction: linear-gradient(135deg, rgba(15, 33, 52, 0.96), rgba(13, 148, 136, 0.86), rgba(240, 180, 41, 0.52));
 
     /* Sombras con colores: niveles de profundidad (sm, md, lg) y sombras con brillo para acentos */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -93,8 +93,8 @@ body {
     background-color: var(--bg-primary);
     background-image:
         radial-gradient(circle at 14% 18%, rgba(240, 180, 41, 0.07), transparent 24%),
-        radial-gradient(circle at 82% 16%, rgba(21, 101, 192, 0.06), transparent 26%),
-        linear-gradient(135deg, rgba(21, 101, 192, 0.028), rgba(240, 180, 41, 0.022)),
+        radial-gradient(circle at 82% 16%, rgba(13, 148, 136, 0.06), transparent 26%),
+        linear-gradient(135deg, rgba(13, 148, 136, 0.028), rgba(240, 180, 41, 0.022)),
         linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(244, 247, 250, 0.99));
     color: var(--text-primary);
     line-height: 1.6;
@@ -109,8 +109,8 @@ body::before {
     inset: 0;
     background-image: 
         linear-gradient(rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.26)),
-        repeating-linear-gradient(0deg, rgba(21, 101, 192, 0.038) 0 1px, transparent 1px 36px),
-        repeating-linear-gradient(90deg, rgba(21, 101, 192, 0.03) 0 1px, transparent 1px 36px),
+        repeating-linear-gradient(0deg, rgba(13, 148, 136, 0.038) 0 1px, transparent 1px 36px),
+        repeating-linear-gradient(90deg, rgba(13, 148, 136, 0.03) 0 1px, transparent 1px 36px),
         repeating-linear-gradient(0deg, rgba(240, 180, 41, 0.022) 0 1px, transparent 1px 180px),
         repeating-linear-gradient(90deg, rgba(240, 180, 41, 0.018) 0 1px, transparent 1px 180px);
     opacity: 0.42;
@@ -126,7 +126,7 @@ body::after {
     inset: -30% -10% 10% -10%;
     background: 
         radial-gradient(circle at 16% 18%, rgba(240, 180, 41, 0.09), transparent 42%),
-        radial-gradient(circle at 84% 24%, rgba(21, 101, 192, 0.08), transparent 44%),
+        radial-gradient(circle at 84% 24%, rgba(13, 148, 136, 0.08), transparent 44%),
         radial-gradient(circle at 50% 82%, rgba(0, 131, 143, 0.045), transparent 44%),
         radial-gradient(circle at 38% 52%, rgba(229, 57, 53, 0.03), transparent 34%);
     background-size: 100% 100%, 100% 100%, 100% 100%, 120% 120%;

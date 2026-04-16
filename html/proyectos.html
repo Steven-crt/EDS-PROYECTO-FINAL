@@ -12,6 +12,7 @@
 
     <!-- Hojas de estilos: CSS principal e íconos de Font Awesome -->
     <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/pages-enhanced.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -78,6 +79,9 @@
 
     <!-- Breadcrumb y título de la página: ruta de navegación y encabezado de sección -->
     <section class="page-header">
+      <div class="page-header-orb orb-a"></div>
+      <div class="page-header-orb orb-b"></div>
+      <div class="grid-bg"></div>
       <div class="container">
         <div class="breadcrumb">
           <a href="../index.html">Inicio</a>
@@ -86,20 +90,22 @@
         </div>
         <h1>Nuestros <span class="highlight">Proyectos</span></h1>
         <p>
-          Conocé los proyectos más destacados que hemos ejecutado en el sur del
-          Perú
+          Conoce los proyectos más destacados que hemos ejecutado en el sur del Perú
         </p>
       </div>
     </section>
 
-    <!-- Sección principal de proyectos: carrusel 3D con animaciones -->
+    <!-- Sección principal de proyectos: carrusel moderno -->
     <section class="section projects-page">
       <div class="container">
-        <!-- Carrusel de proyectos estilo Airpods Animation -->
+        <h2 class="section-title">Proyectos <span class="highlight">Destacados</span></h2>
+        <p class="section-subtitle">Conoce los proyectos más importante ejecutados en el sur del Perú</p>
+        
+        <!-- Carrusel de proyectos moderno -->
         <div class="project-carousel">
           <div class="carousel-list">
             <!-- Proyecto 1: Centro de Seguridad Ciudadana -->
-            <div class="carousel-item">
+            <div class="carousel-item active">
               <img src="../assets/eds_useful_images/centro_monitoreo2.jpg" alt="Centro de Seguridad Ciudadana" />
               <div class="item-introduce">
                 <span class="badge badge-success">Concluido</span>
@@ -596,39 +602,27 @@
     </section>
 
     <!-- Sección de llamamiento a la acción (CTA) -->
-    <section class="section" style="padding: 40px 0;">
-      <div class="container">
-        <!-- Llamada a la acción: invitación a contactar por WhatsApp o correo electrónico -->
-        <div class="text-center" data-aos="fade-up">
-          <div
-            class="card"
-            style="padding: 40px; max-width: 600px; margin: 0 auto"
-          >
-            <h3
-              style="
-                font-family: &quot;Bebas Neue&quot;, sans-serif;
-                font-size: 1.8rem;
-                margin-bottom: 15px;
-              "
-            >
-              ¿Tienes un proyecto en mente?
-            </h3>
-            <p style="color: var(--text-secondary); margin-bottom: 25px">
-              Contáctanos y te ayudamos a hacer realidad tu próxima obra con
-              tecnología de vanguardia.
-            </p>
-            <div class="flex gap-md flex-center">
-              <a
-                href="https://wa.me/51950313642"
-                target="_blank"
-                class="btn btn-whatsapp"
-              >
-                <i class="fab fa-whatsapp"></i> Chatear Ahora
-              </a>
-              <a href="contacto.html" class="btn btn-outline">
-                <i class="fas fa-envelope"></i> Enviar Correo
-              </a>
-            </div>
+    <section class="section" style="padding: 80px 0; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); position: relative; overflow: hidden;">
+      <div style="position: absolute; top: -150px; left: -100px; width: 400px; height: 400px; background: rgba(240,180,41,0.1); border-radius: 50%; filter: blur(100px);"></div>
+      <div style="position: absolute; bottom: -100px; right: -50px; width: 300px; height: 300px; background: rgba(13,148,136,0.1); border-radius: 50%; filter: blur(80px);"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <div class="cta-content">
+          <div style="width: 80px; height: 80px; margin: 0 auto 30px; background: linear-gradient(135deg, #f0b429, #d4a017); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(240,180,41,0.3);">
+            <i class="fas fa-lightbulb" style="font-size: 2rem; color: #0f172a;"></i>
+          </div>
+          <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: white; margin-bottom: 15px; letter-spacing: 2px;">
+            ¿Tienes un proyecto en mente?
+          </h2>
+          <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-bottom: 35px; max-width: 500px; margin-left: auto; margin-right: auto;">
+            Contáctanos y te ayudamos a hacer realidad tu próxima obra con tecnología de vanguardia.
+          </p>
+          <div class="cta-buttons">
+            <a href="https://wa.me/51950313642" target="_blank" class="btn btn-whatsapp">
+              <i class="fab fa-whatsapp"></i> Chatear Ahora
+            </a>
+            <a href="contacto.html" class="btn" style="padding: 14px 30px; border: 2px solid white; color: white; border-radius: 10px; font-weight: 700;">
+              <i class="fas fa-envelope"></i> Enviar Correo
+            </a>
           </div>
         </div>
       </div>
@@ -735,5 +729,6 @@
     <script src="../js/animations.js"></script>
     <script src="../js/scroll-animations.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/pages-enhanced.js"></script>
   </body>
 </html>
