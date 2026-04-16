@@ -125,14 +125,14 @@
             if (heroCard) {
                 tl.fromTo(
                     heroCard,
-                    { opacity: 0, x: -80, scale: 0.92, rotateY: -8 },
+                    { opacity: 0, x: -42, scale: 0.97, rotateY: -4 },
                     {
                         opacity: 1,
                         x: 0,
                         scale: 1,
                         rotateY: 0,
-                        duration: 1.4,
-                        ease: 'power4.out'
+                        duration: 1.1,
+                        ease: 'power3.out'
                     }
                 );
 
@@ -142,8 +142,8 @@
                 var desc = heroCard.querySelector('.hero-description');
                 var btns = heroCard.querySelector('.hero-buttons');
 
-                if (badge) tl.fromTo(badge, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.8');
-                if (title) tl.fromTo(title, { opacity: 0, y: 30, clipPath: 'inset(100% 0 0 0)' }, { opacity: 1, y: 0, clipPath: 'inset(0% 0 0 0)', duration: 0.8, ease: 'power3.out' }, '-=0.5');
+                if (badge) tl.fromTo(badge, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, '-=0.75');
+                if (title) tl.fromTo(title, { opacity: 0, y: 22, clipPath: 'inset(100% 0 0 0)' }, { opacity: 1, y: 0, clipPath: 'inset(0% 0 0 0)', duration: 0.7, ease: 'power3.out' }, '-=0.42');
                 if (desc) tl.fromTo(desc, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4');
                 if (btns) tl.fromTo(btns, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3');
             }
@@ -153,14 +153,14 @@
             floatingBadges.forEach(function (badge, i) {
                 tl.fromTo(
                     badge,
-                    { opacity: 0, x: 60, scale: 0.8, rotateZ: 5 },
+                    { opacity: 0, x: 30, scale: 0.92, rotateZ: 2 },
                     {
                         opacity: 1,
                         x: 0,
                         scale: 1,
                         rotateZ: 0,
-                        duration: 0.9,
-                        ease: 'back.out(2.2)'
+                        duration: 0.7,
+                        ease: 'power3.out'
                     },
                     0.6 + i * 0.25
                 );
@@ -226,7 +226,7 @@
             if (!cards.length) return;
 
             // Ocultar inicialmente via GSAP (overrides AOS para estos)
-            gsap.set(cards, { opacity: 0, y: 60, scale: 0.92, rotateX: 10 });
+            gsap.set(cards, { opacity: 0, y: 36, scale: 0.97, rotateX: 4 });
 
             ScrollTrigger.create({
                 trigger: grid,
@@ -238,7 +238,7 @@
                         y: 0,
                         scale: 1,
                         rotateX: 0,
-                        duration: 0.75,
+                        duration: 0.68,
                         ease: 'power3.out',
                         stagger: {
                             each: 0.08,
@@ -252,7 +252,7 @@
             if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
                 cards.forEach(function (card) {
                     card.addEventListener('mouseenter', function () {
-                        gsap.to(card, { scale: 1.04, boxShadow: '0 25px 50px rgba(21,101,192,0.2)', duration: 0.3, ease: 'power2.out' });
+                        gsap.to(card, { scale: 1.02, boxShadow: '0 24px 44px rgba(21,101,192,0.16)', duration: 0.28, ease: 'power2.out' });
                     });
                     card.addEventListener('mouseleave', function () {
                         gsap.to(card, { scale: 1, boxShadow: '', duration: 0.4, ease: 'power2.out' });

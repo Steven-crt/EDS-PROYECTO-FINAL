@@ -168,11 +168,11 @@ const Animations = {
 
         // Orbes animados flotando estilo 3D
         gsap.to(".gradient-orb", {
-            y: "random(-80, 80)",
-            x: "random(-80, 80)",
-            rotationZ: "random(-45, 45)",
-            scale: "random(0.8, 1.2)",
-            duration: "random(6, 10)",
+            y: "random(-42, 42)",
+            x: "random(-36, 36)",
+            rotationZ: "random(-18, 18)",
+            scale: "random(0.92, 1.08)",
+            duration: "random(9, 13)",
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut"
