@@ -1,146 +1,52 @@
-<!-- Declaración del tipo de documento y apertura del HTML con idioma español -->
 <!doctype html>
 <html lang="es">
-  <!-- ====== HEAD: Metadatos, estilos y favicon ====== -->
   <head>
-    <!-- Codificación de caracteres UTF-8 para soportar tildes y caracteres especiales -->
     <meta charset="UTF-8" />
-    <!-- Meta viewport para diseño responsivo en dispositivos móviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Meta descripción para SEO: resume el propósito de la página de contacto -->
-    <meta
-      name="description"
-      content="Contáctanos - EDS Edificaciones Inteligentes. WhatsApp, teléfono y email para cotizaciones y consultas."
-    />
+    <meta name="description" content="Contáctanos - EDS Edificaciones Inteligentes. WhatsApp, teléfono y email para cotizaciones y consultas." />
     <title>Contacto | EDS Edificaciones Inteligentes</title>
 
-    <!-- Hoja de estilos principal del sitio -->
     <link rel="stylesheet" href="../css/main.css" />
-    <!-- Librería de iconos Font Awesome v6.4.0 (íconos de WhatsApp, teléfono, etc.) -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-
-    <!-- Favicon: ícono que aparece en la pestaña del navegador -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="icon" type="image/png" href="../assets/eds_useful_images/logo.png" />
 
-    <!-- Three.js, GSAP + ScrollTrigger para fondos 3D y animaciones -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <style>
-      .contact-section-wrapper {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .contact-section-wrapper::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: 
-          radial-gradient(circle at 20% 50%, rgba(21, 101, 192, 0.06) 0%, transparent 50%),
-          radial-gradient(circle at 80% 20%, rgba(240, 180, 41, 0.05) 0%, transparent 50%),
-          radial-gradient(circle at 40% 80%, rgba(229, 57, 53, 0.03) 0%, transparent 50%);
-        animation: contactBgShift 12s ease-in-out infinite;
-        background-size: 150% 150%;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      .contact-section-wrapper .container {
-        position: relative;
-        z-index: 1;
-      }
-
-      @keyframes contactBgShift {
-        0%, 100% { background-position: 0% 50%; }
-        25% { background-position: 100% 0%; }
-        50% { background-position: 100% 100%; }
-        75% { background-position: 0% 100%; }
-      }
-
-      .contact-info {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .contact-info::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #1565c0, #f0b429, #e53935, #1565c0);
-        background-size: 300% 100%;
-        animation: gradientMove 4s linear infinite;
-      }
-
-      .contact-form {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .contact-form::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #f0b429, #1565c0, #f0b429);
-        background-size: 200% 100%;
-        animation: gradientMove 3s linear infinite;
-      }
-
-      @keyframes gradientMove {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 300% 50%; }
-      }
-    </style>
   </head>
   <body>
-    <!-- ====== PRELOADER: Pantalla de carga animada con las letras E, D, S en SVG ====== -->
+
+    <!-- PRELOADER -->
     <div id="preloader" class="preloader">
-        <div class="intro-panel">
-            <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
-            <div class="intro-loaders">
-                <div class="loader loader--e">
-                    <svg viewBox="0 0 80 80"><path d="M60 12 H22 V68 H60 M22 40 H52"></path></svg>
-                </div>
-                <div class="loader loader--d">
-                    <svg viewBox="0 0 80 80"><path d="M22 12 V68 H50 Q62 68 62 56 V24 Q62 12 50 12 H22"></path></svg>
-                </div>
-                <div class="loader loader--s">
-                    <svg viewBox="0 0 80 80"><path d="M52 16 H28 Q16 16 16 28 Q16 40 28 40 H52 Q64 40 64 52 Q64 64 52 64 H28 Q16 64 16 52"></path></svg>
-                </div>
-            </div>
-            <div class="intro-status">
-                <span class="status-dot"></span>
-                <span>Cargando...</span>
-            </div>
+      <div class="intro-panel">
+        <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
+        <div class="intro-loaders">
+          <div class="loader loader--e">
+            <svg viewBox="0 0 80 80"><path d="M60 12 H22 V68 H60 M22 40 H52"></path></svg>
+          </div>
+          <div class="loader loader--d">
+            <svg viewBox="0 0 80 80"><path d="M22 12 V68 H50 Q62 68 62 56 V24 Q62 12 50 12 H22"></path></svg>
+          </div>
+          <div class="loader loader--s">
+            <svg viewBox="0 0 80 80"><path d="M52 16 H28 Q16 16 16 28 Q16 40 28 40 H52 Q64 40 64 52 Q64 64 52 64 H28 Q16 64 16 52"></path></svg>
+          </div>
         </div>
+        <div class="intro-status">
+          <span class="status-dot"></span>
+          <span>Cargando...</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Efecto de seguimiento del cursor personalizado -->
     <div class="cursor-follower"></div>
 
-    <!-- ====== HEADER: Barra de navegación con logo y menú de enlaces ====== -->
+    <!-- HEADER -->
     <header class="header">
       <div class="container header-container">
-        <!-- Logo de la empresa con enlace a la página de inicio -->
         <a href="../index.html" class="logo">
           <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" class="logo-img" />
           <span class="logo-text">EDS <span>INTELIGENTES</span></span>
         </a>
-
-        <!-- Menú de navegación: enlaces a las secciones principales del sitio -->
         <nav class="nav-menu">
           <a href="../index.html" class="nav-link">Inicio</a>
           <a href="../index.html#nosotros" class="nav-link">Nosotros</a>
@@ -150,51 +56,50 @@
           <a href="socios.html" class="nav-link">Socios</a>
           <a href="contacto.html" class="nav-link active">Contacto</a>
         </nav>
-
-        <!-- Botón de menú hamburguesa para vista móvil (muestra/oculta el menú) -->
         <button class="menu-toggle" aria-label="Abrir menú">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
       </div>
     </header>
 
-    <!-- ====== BREADCRUMB Y TÍTULO DE PÁGINA ====== -->
+    <!-- PAGE HERO HEADER -->
     <section class="page-header">
       <div class="container">
-        <!-- Miga de pan (breadcrumb): indica la ubicación del usuario dentro del sitio -->
         <div class="breadcrumb">
           <a href="../index.html">Inicio</a>
           <span>/</span>
           <span>Contacto</span>
         </div>
-        <h1>Contáctanos</h1>
-        <p>Estamos listos para ayudarte con tu próximo proyecto</p>
+        <div class="page-header-kicker">Estamos para ayudarte</div>
+        <h1>Contáctanos <span class="highlight">Hoy</span></h1>
+        <p>Cuéntanos sobre tu proyecto y te responderemos a la brevedad. Nuestro equipo está listo para brindarte la mejor solución tecnológica.</p>
       </div>
     </section>
 
-    <!-- ====== SECCIÓN DE CONTACTO: Información de contacto + Formulario ====== -->
-    <section class="section contact-section-wrapper">
+    <!-- MAIN CONTACT SECTION -->
+    <section class="contact-page-wrapper">
       <div class="container">
-        <!-- Grid de dos columnas: izquierda = info contacto, derecha = formulario -->
         <div class="contact-grid">
-          <!-- TARJETA IZQUIERDA: Datos de contacto (WhatsApp, teléfonos, emails, horarios, dirección) -->
-          <div class="card contact-info" data-aos="fade-right">
-            <h3>Información de Contacto</h3>
+
+          <!-- LEFT: INFO CARD -->
+          <div class="contact-info-card">
+            <h2 class="contact-info-title">Información de Contacto</h2>
+            <p class="contact-info-subtitle">Múltiples canales de comunicación para atenderte de la mejor manera.</p>
 
             <div class="contact-item">
-              <i class="fab fa-whatsapp"></i>
+              <div class="contact-item-icon accent">
+                <i class="fab fa-whatsapp"></i>
+              </div>
               <div>
                 <h4>WhatsApp</h4>
-                <a href="https://wa.me/51950313642" target="_blank"
-                  >950 313 642</a
-                >
+                <a href="https://wa.me/51950313642" target="_blank">+51 950 313 642</a>
               </div>
             </div>
 
             <div class="contact-item">
-              <i class="fas fa-phone-alt"></i>
+              <div class="contact-item-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
               <div>
                 <h4>Teléfonos</h4>
                 <a href="tel:+51950313642">950 313 642</a><br />
@@ -204,361 +109,211 @@
             </div>
 
             <div class="contact-item">
-              <i class="fas fa-envelope"></i>
+              <div class="contact-item-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
               <div>
                 <h4>Correos Electrónicos</h4>
-                <a href="mailto:rocio.jara@edin-tel.com"
-                  >rocio.jara@edin-tel.com</a
-                ><br />
-                <a href="mailto:oscar.jara@edin-tel.com"
-                  >oscar.jara@edin-tel.com</a
-                >
+                <a href="mailto:rocio.jara@edin-tel.com">rocio.jara@edin-tel.com</a><br />
+                <a href="mailto:oscar.jara@edin-tel.com">oscar.jara@edin-tel.com</a>
               </div>
             </div>
 
             <div class="contact-item">
-              <i class="fas fa-clock"></i>
+              <div class="contact-item-icon success">
+                <i class="fas fa-clock"></i>
+              </div>
               <div>
                 <h4>Horario de Atención</h4>
-                <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-                <p>Sábados: 8:00 AM - 1:00 PM</p>
+                <p>Lun – Vie: 8:00 AM – 6:00 PM</p>
+                <p>Sáb: 8:00 AM – 1:00 PM</p>
               </div>
             </div>
 
             <div class="contact-item">
-              <i class="fas fa-map-marker-alt"></i>
+              <div class="contact-item-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
               <div>
                 <h4>Sede Principal</h4>
                 <p>Urb. Las Peñas A-35<br />Sachaca, Arequipa, Perú</p>
               </div>
             </div>
 
-            <!-- Botón principal de WhatsApp para contacto directo -->
-            <div class="mt-3">
-              <a
-                href="https://wa.me/51950313642?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20servicios."
-                target="_blank"
-                class="btn btn-whatsapp btn-lg"
-                style="width: 100%"
-              >
-                <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
-              </a>
-            </div>
-
-            <!-- Enlaces a redes sociales (Facebook, LinkedIn, Instagram, WhatsApp) -->
-            <div class="mt-2">
-              <div class="footer-social" style="justify-content: center">
-                <a href="#" aria-label="Facebook"
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-                <a href="#" aria-label="LinkedIn"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-                <a href="#" aria-label="Instagram"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a href="https://wa.me/51950313642" aria-label="WhatsApp"
-                  ><i class="fab fa-whatsapp"></i
-                ></a>
+            <div class="contact-social-section">
+              <p class="contact-social-label">Síguenos en redes sociales</p>
+              <div class="contact-social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/51950313642" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
               </div>
             </div>
           </div>
 
-          <!-- TARJETA DERECHA: Formulario de contacto (envía datos por WhatsApp) -->
-          <div class="card contact-form" data-aos="fade-left">
-            <h3>Envíanos un Mensaje</h3>
+          <!-- RIGHT: FORM CARD -->
+          <div class="contact-form-card">
+            <h2 class="contact-form-title">Envíanos un Mensaje</h2>
+            <p class="contact-form-subtitle">Completa el formulario y te contactaremos a la brevedad posible.</p>
 
-            <!-- Formulario con campos de nombre, empresa, email, teléfono, servicio, ciudad y mensaje -->
             <form id="contactForm">
-              <div class="grid grid-2">
+              <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label" for="nombre"
-                    >Nombre Completo *</label
-                  >
-                  <input
-                    type="text"
-                    id="nombre"
-                    class="form-input"
-                    placeholder="Tu nombre"
-                    required
-                  />
+                  <label class="form-label" for="nombre">Nombre Completo *</label>
+                  <input type="text" id="nombre" class="form-input" placeholder="Tu nombre completo" required />
                 </div>
-
                 <div class="form-group">
                   <label class="form-label" for="empresa">Empresa</label>
-                  <input
-                    type="text"
-                    id="empresa"
-                    class="form-input"
-                    placeholder="Nombre de tu empresa"
-                  />
+                  <input type="text" id="empresa" class="form-input" placeholder="Nombre de la empresa" />
                 </div>
               </div>
 
-              <div class="grid grid-2">
+              <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label" for="email"
-                    >Correo Electrónico *</label
-                  >
-                  <input
-                    type="email"
-                    id="email"
-                    class="form-input"
-                    placeholder="tu@email.com"
-                    required
-                  />
+                  <label class="form-label" for="email">Correo Electrónico *</label>
+                  <input type="email" id="email" class="form-input" placeholder="tu@email.com" required />
                 </div>
-
                 <div class="form-group">
                   <label class="form-label" for="telefono">Teléfono</label>
-                  <input
-                    type="tel"
-                    id="telefono"
-                    class="form-input"
-                    placeholder="+51 999 999 999"
-                  />
+                  <input type="tel" id="telefono" class="form-input" placeholder="+51 999 999 999" />
                 </div>
               </div>
 
-              <!-- Selector de servicio: lista desplegable con los 12 servicios ofrecidos -->
-              <div class="form-group">
-                <label class="form-label" for="servicio"
-                  >Servicio de Interés</label
-                >
-                <select id="servicio" class="form-select">
-                  <option value="">Seleccionar servicio...</option>
-                  <option value="construccion">Construcciones Civiles</option>
-                  <option value="radio">Radio Comunicación Digital</option>
-                  <option value="videovigilancia">
-                    Video Vigilancia Industrial
-                  </option>
-                  <option value="redes">Redes Inalámbricas</option>
-                  <option value="telefonia">
-                    Telefonía IP y Video Conferencia
-                  </option>
-                  <option value="cableado">Cableado Estructurado</option>
-                  <option value="alarmas">Centrales de Alarma</option>
-                  <option value="extincion">Sistemas de Extinción</option>
-                  <option value="accesos">Control de Accesos</option>
-                  <option value="electrica">Infraestructura Eléctrica</option>
-                  <option value="energia">Energía Renovable</option>
-                  <option value="audio">Sistemas de Audio y Video</option>
-                  <option value="otro">Otro</option>
-                </select>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="servicio">Servicio de Interés</label>
+                  <select id="servicio" class="form-select">
+                    <option value="">Seleccionar servicio...</option>
+                    <option value="construccion">Construcciones Civiles</option>
+                    <option value="radio">Radio Comunicación Digital</option>
+                    <option value="videovigilancia">Video Vigilancia Industrial</option>
+                    <option value="redes">Redes Inalámbricas</option>
+                    <option value="telefonia">Telefonía IP y Video Conferencia</option>
+                    <option value="cableado">Cableado Estructurado</option>
+                    <option value="alarmas">Centrales de Alarma</option>
+                    <option value="extincion">Sistemas de Extinción</option>
+                    <option value="accesos">Control de Accesos</option>
+                    <option value="electrica">Infraestructura Eléctrica</option>
+                    <option value="energia">Energía Renovable</option>
+                    <option value="audio">Sistemas de Audio y Video</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="ciudad">Ciudad</label>
+                  <select id="ciudad" class="form-select">
+                    <option value="">Seleccionar ciudad...</option>
+                    <option value="arequipa">Arequipa</option>
+                    <option value="tacna">Tacna</option>
+                    <option value="juliaca">Juliaca</option>
+                    <option value="cusco">Cusco</option>
+                    <option value="otro">Otra</option>
+                  </select>
+                </div>
               </div>
 
-              <!-- Selector de ciudad: permite al usuario elegir su ubicación geográfica -->
-              <div class="form-group">
-                <label class="form-label" for="ciudad">Ciudad</label>
-                <select id="ciudad" class="form-select">
-                  <option value="">Seleccionar ciudad...</option>
-                  <option value="arequipa">Arequipa</option>
-                  <option value="tacna">Tacna</option>
-                  <option value="juliaca">Juliaca</option>
-                  <option value="cusco">Cusco</option>
-                  <option value="otro">Otra</option>
-                </select>
-              </div>
-
-              <!-- Campo de texto largo para que el usuario describa su proyecto o consulta -->
               <div class="form-group">
                 <label class="form-label" for="mensaje">Mensaje *</label>
-                <textarea
-                  id="mensaje"
-                  class="form-textarea"
-                  placeholder="Describe tu proyecto o consulta..."
-                  required
-                ></textarea>
+                <textarea id="mensaje" class="form-textarea" placeholder="Describe tu proyecto o consulta con el mayor detalle posible..." required></textarea>
               </div>
 
-              <!-- Botón de envío del formulario -->
-              <button
-                type="submit"
-                class="btn btn-primary btn-lg"
-                style="width: 100%"
-              >
+              <button type="submit" class="contact-submit-btn">
                 <i class="fas fa-paper-plane"></i> Enviar Mensaje
               </button>
             </form>
+
+            <a href="https://wa.me/51950313642?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20servicios." target="_blank" class="contact-whasapp-btn">
+              <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
+            </a>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ====== SECCIÓN DE UBICACIONES: Muestra las sedes y oficinas en distintas ciudades ====== -->
-    <section
-      class="section"
-      style="background: var(--bg-secondary); padding: 60px 0"
-    >
+    <!-- LOCATIONS SECTION -->
+    <section class="contact-locations-section">
       <div class="container">
-        <div class="section-title" data-aos="fade-up" style="font-size: 2rem">
-          Nuestras <span class="highlight">Ubicaciones</span>
+        <div class="section-title" style="font-size: 2.2rem; margin-bottom: 0.5rem;">
+          Nuestras <span class="highlight">Sedes</span>
         </div>
+        <p class="section-subtitle">Presencia en las principales ciudades del sur del Perú</p>
 
-        <div class="grid grid-2 mt-4">
-          <div
-            class="card"
-            data-aos="fade-up"
-            data-aos-delay="100"
-            style="text-align: center; padding: 40px"
-          >
-            <div class="coverage-icon" style="margin: 0 auto 20px">
+        <div class="grid grid-4 mt-4">
+          <div class="location-card">
+            <div class="location-icon primary">
               <i class="fas fa-building"></i>
             </div>
-            <h3
-              style="
-                font-family: &quot;Rajdhani&quot;, sans-serif;
-                font-size: 1.4rem;
-                margin-bottom: 10px;
-              "
-            >
-              Sede Principal - Arequipa
-            </h3>
-            <p style="color: var(--text-secondary); margin-bottom: 5px">
-              Urb. Las Peñas A-35, Sachaca
-            </p>
-            <p style="color: var(--text-secondary); margin-bottom: 5px">
-              Teléfono: (054) 123-456
-            </p>
-            <span class="badge badge-primary mt-2">Central</span>
+            <div class="location-city">Arequipa</div>
+            <div class="location-type">Sede Principal</div>
+            <p class="location-address">Urb. Las Peñas A-35<br />Sachaca, Arequipa</p>
           </div>
 
-          <div
-            class="card"
-            data-aos="fade-up"
-            data-aos-delay="150"
-            style="text-align: center; padding: 40px"
-          >
-            <div class="coverage-icon" style="margin: 0 auto 20px">
+          <div class="location-card">
+            <div class="location-icon secondary">
               <i class="fas fa-tools"></i>
             </div>
-            <h3
-              style="
-                font-family: &quot;Rajdhani&quot;, sans-serif;
-                font-size: 1.4rem;
-                margin-bottom: 10px;
-              "
-            >
-              Oficina de Soporte - Tacna
-            </h3>
-            <p style="color: var(--text-secondary); margin-bottom: 5px">
-              Av. Industrial N° 456
-            </p>
-            <p style="color: var(--text-secondary); margin-bottom: 5px">
-              Teléfono: (052) 123-456
-            </p>
-            <span class="badge badge-accent mt-2">Soporte</span>
+            <div class="location-city">Tacna</div>
+            <div class="location-type">Oficina de Soporte</div>
+            <p class="location-address">Av. Industrial N° 456<br />Tacna, Perú</p>
           </div>
 
-          <div
-            class="card"
-            data-aos="fade-up"
-            data-aos-delay="200"
-            style="text-align: center; padding: 40px"
-          >
-            <div class="coverage-icon" style="margin: 0 auto 20px">
+          <div class="location-card">
+            <div class="location-icon secondary">
               <i class="fas fa-tools"></i>
             </div>
-            <h3
-              style="
-                font-family: &quot;Rajdhani&quot;, sans-serif;
-                font-size: 1.4rem;
-                margin-bottom: 10px;
-              "
-            >
-              Oficina de Soporte - Juliaca
-            </h3>
-            <p style="color: var(--text-secondary); margin-bottom: 5px">
-              Jr. Arequipa N° 789
-            </p>
-            <p style="color: var(--text-secondary); margin-bottom: 5px">
-              Teléfono: (051) 123-456
-            </p>
-            <span class="badge badge-accent mt-2">Soporte</span>
+            <div class="location-city">Juliaca</div>
+            <div class="location-type">Oficina de Soporte</div>
+            <p class="location-address">Jr. Arequipa N° 789<br />Juliaca, Puno</p>
           </div>
 
-          <div
-            class="card"
-            data-aos="fade-up"
-            data-aos-delay="250"
-            style="text-align: center; padding: 40px"
-          >
-            <div class="coverage-icon" style="margin: 0 auto 20px">
+          <div class="location-card">
+            <div class="location-icon secondary">
               <i class="fas fa-tools"></i>
             </div>
-            <h3
-              style="
-                font-family: &quot;Rajdhani&quot;, sans-serif;
-                font-size: 1.4rem;
-                margin-bottom: 10px;
-              "
-            >
-              Oficina de Soporte - Cusco
-            </h3>
-            <p style="color: var(--text-secondary); margin-bottom: 5px">
-              Av. El Sol N° 234
-            </p>
-            <p style="color: var(--text-secondary); margin-bottom: 5px">
-              Teléfono: (084) 123-456
-            </p>
-            <span class="badge badge-accent mt-2">Soporte</span>
+            <div class="location-city">Cusco</div>
+            <div class="location-type">Oficina de Soporte</div>
+            <p class="location-address">Av. El Sol N° 234<br />Cusco, Perú</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ====== CTA (CALL TO ACTION): Invitación para contactar por WhatsApp ====== -->
+    <!-- CTA -->
     <section class="section cta">
       <div class="container">
-        <div class="cta-content" data-aos="zoom-in">
+        <div class="cta-content">
           <h2>¿Prefieres una atención más rápida?</h2>
-          <p>
-            Escríbenos directamente por WhatsApp y te responderemos en minutos.
-          </p>
+          <p>Escríbenos directamente por WhatsApp y te responderemos en minutos.</p>
           <div class="cta-buttons">
-            <a
-              href="https://wa.me/51950313642"
-              target="_blank"
-              class="btn btn-whatsapp btn-lg"
-            >
+            <a href="https://wa.me/51950313642" target="_blank" class="btn btn-whatsapp btn-lg">
               <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
+            </a>
+            <a href="tel:+51950313642" class="btn btn-outline btn-lg">
+              <i class="fas fa-phone-alt"></i> Llamar Ahora
             </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ====== FOOTER: Pie de página con marca, navegación, servicios, contacto y derechos ====== -->
+    <!-- FOOTER -->
     <footer class="footer">
       <div class="container">
         <div class="footer-grid">
-          <!-- Columna de marca: logo, descripción de la empresa y enlaces a redes sociales -->
           <div class="footer-brand">
             <a href="../index.html" class="logo" style="display: block; margin-bottom: 20px;">
               <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" style="max-width: 200px; height: auto;" />
             </a>
-            <p>
-              Somos la empresa líder en edificaciones inteligentes en el sur del
-              Perú, ofreciendo soluciones tecnológicas integrales para la
-              construcción.
-            </p>
+            <p>Somos la empresa líder en edificaciones inteligentes en el sur del Perú, ofreciendo soluciones tecnológicas integrales para la construcción.</p>
             <div class="footer-social">
-              <a href="#" aria-label="Facebook" data-social="facebook"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="#" aria-label="LinkedIn" data-social="linkedin"
-                ><i class="fab fa-linkedin-in"></i
-              ></a>
-              <a href="#" aria-label="Instagram" data-social="instagram"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="https://wa.me/51950313642" aria-label="WhatsApp" data-social="whatsapp"
-                ><i class="fab fa-whatsapp"></i
-              ></a>
+              <a href="#" aria-label="Facebook" data-social="facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="LinkedIn" data-social="linkedin"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram" data-social="instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/51950313642" aria-label="WhatsApp" data-social="whatsapp"><i class="fab fa-whatsapp"></i></a>
             </div>
           </div>
 
-          <!-- Columna de navegación del footer: enlaces a secciones del sitio -->
           <div class="footer-links-col">
             <h4 class="footer-title">Navegación</h4>
             <ul class="footer-links">
@@ -572,7 +327,6 @@
             </ul>
           </div>
 
-          <!-- Columna de servicios del footer: acceso rápido a los servicios ofrecidos -->
           <div class="footer-links-col">
             <h4 class="footer-title">Servicios</h4>
             <ul class="footer-links">
@@ -585,7 +339,6 @@
             </ul>
           </div>
 
-          <!-- Columna de contacto del footer: WhatsApp, email y dirección física -->
           <div class="footer-contact-col">
             <h4 class="footer-title">Contacto</h4>
             <ul class="footer-contact">
@@ -600,9 +353,7 @@
                 <i class="fas fa-envelope"></i>
                 <div>
                   <p><strong>Email:</strong></p>
-                  <a href="mailto:rocio.jara@edin-tel.com"
-                    >rocio.jara@edin-tel.com</a
-                  >
+                  <a href="mailto:rocio.jara@edin-tel.com">rocio.jara@edin-tel.com</a>
                 </div>
               </li>
               <li>
@@ -616,53 +367,37 @@
           </div>
         </div>
 
-          <!-- Parte inferior del footer: derechos de autor y número de RUC -->
-          <div class="footer-bottom">
-          <p>
-            &copy; 2024
-            <a href="../index.html">EDS Edificaciones Inteligentes SAC</a>. Todos
-            los derechos reservados.
-          </p>
+        <div class="footer-bottom">
+          <p>&copy; 2024 <a href="../index.html">EDS Edificaciones Inteligentes SAC</a>. Todos los derechos reservados.</p>
           <p>RUC: 20608965765</p>
         </div>
       </div>
     </footer>
 
-    <!-- ====== SCRIPTS: Archivos JavaScript del sitio ====== -->
-    <!-- Script principal: maneja menú móvil, preloader, animaciones y efectos del cursor -->
-    <script type="module" src="../js/main.js"></script>
-
-    <!-- Script de envío por WhatsApp: intercepta el formulario y abre WhatsApp con los datos del usuario -->
-    <script>
-      // Captura el evento "submit" del formulario, extrae los datos y los envía como mensaje a WhatsApp
-      document
-        .getElementById("contactForm")
-        .addEventListener("submit", function (e) {
-          // Evita el envío tradicional del formulario (no recarga la página)
-          e.preventDefault();
-
-          // Obtiene los valores de los campos del formulario
-          const nombre = document.getElementById("nombre").value;
-          const email = document.getElementById("email").value;
-          const mensaje = document.getElementById("mensaje").value;
-          const servicio = document.getElementById("servicio").value;
-
-          // Construye el mensaje formateado para WhatsApp con los datos del usuario
-          const text = encodeURIComponent(
-            `Hola, mi nombre es ${nombre}.\n\n` +
-              `Correo: ${email}\n` +
-              `Servicio de interés: ${servicio || "No especificado"}\n\n` +
-              `Mensaje: ${mensaje}`,
-          );
-
-          // Abre WhatsApp Web/Mobile en una nueva pestaña con el mensaje pre-llenado
-          window.open(`https://wa.me/51950313642?text=${text}`, "_blank");
-        });
-    </script>
-    <!-- Scripts: Three.js background, GSAP animations, y lógica principal -->
     <script src="../js/background3d.js"></script>
     <script src="../js/animations.js"></script>
     <script src="../js/scroll-animations.js"></script>
     <script src="../js/main.js"></script>
+
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var nombre = document.getElementById('nombre').value;
+        var email = document.getElementById('email').value;
+        var mensaje = document.getElementById('mensaje').value;
+        var servicio = document.getElementById('servicio').value;
+        var ciudad = document.getElementById('ciudad').value;
+
+        var text = encodeURIComponent(
+          'Hola, mi nombre es ' + nombre + '.\n\n' +
+          'Correo: ' + email + '\n' +
+          'Servicio de interés: ' + (servicio || 'No especificado') + '\n' +
+          'Ciudad: ' + (ciudad || 'No especificada') + '\n\n' +
+          'Mensaje: ' + mensaje
+        );
+
+        window.open('https://wa.me/51950313642?text=' + text, '_blank');
+      });
+    </script>
   </body>
 </html>
