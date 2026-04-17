@@ -1,16 +1,11 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- Metadatos básicos: codificación UTF-8, viewport responsivo y descripción SEO -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Proyectos destacados de EDS Edificaciones Inteligentes - Construcción inteligente, seguridad electrónica y soluciones tecnológicas en el sur del Perú."
-    />
+    <meta name="description" content="Proyectos destacados de EDS Edificaciones Inteligentes - Construcción inteligente, seguridad electrónica y soluciones tecnológicas en el sur del Perú." />
     <title>Proyectos | EDS Edificaciones Inteligentes</title>
 
-    <!-- Hojas de estilos: CSS principal e íconos de Font Awesome -->
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/pages-enhanced.css" />
     <link
@@ -18,47 +13,378 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="icon" type="image/png" href="../assets/eds_useful_images/logo.png" />
 
-    <!-- Three.js, GSAP + ScrollTrigger para fondos 3D y animaciones -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      .projects-hero {
+        padding: 160px 0 90px;
+        background: linear-gradient(135deg, #0a1628 0%, #0d2040 40%, #0f1f3d 100%);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+      .projects-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse at 20% 60%, rgba(21, 101, 192, 0.3), transparent 50%),
+          radial-gradient(ellipse at 80% 30%, rgba(240, 180, 41, 0.15), transparent 40%),
+          radial-gradient(ellipse at 50% 100%, rgba(21, 101, 192, 0.15), transparent 50%);
+      }
+      .projects-hero::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #1565c0, #f0b429, #e53935, #1565c0);
+        background-size: 300% 100%;
+        animation: gradientShift 4s linear infinite;
+      }
+      .projects-hero .container { position: relative; z-index: 2; }
+      .projects-hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(240, 180, 41, 0.3);
+        color: #f0b429;
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        backdrop-filter: blur(10px);
+      }
+      .projects-hero-kicker::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background: #f0b429;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(240, 180, 41, 0.6);
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      .projects-hero h1 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        color: white;
+        letter-spacing: 2px;
+        margin-bottom: 18px;
+        text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      }
+      .projects-hero h1 span { color: #f0b429; text-shadow: 0 0 30px rgba(240, 180, 41, 0.4); }
+      .projects-hero p {
+        color: rgba(255,255,255,0.72);
+        font-size: 1.15rem;
+        max-width: 600px;
+        margin: 0 auto 40px;
+        line-height: 1.7;
+      }
+      .projects-hero-stats { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
+      .projects-hero-stat { text-align: center; }
+      .projects-hero-stat-number {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2.8rem;
+        color: #f0b429;
+        line-height: 1;
+        display: block;
+      }
+      .projects-hero-stat-label {
+        color: rgba(255,255,255,0.55);
+        font-size: 0.85rem;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .projects-filter-section {
+        padding: 25px 0;
+        background: white;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        position: sticky;
+        top: 70px;
+        z-index: 100;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      }
+      .projects-filter-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .filter-label {
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #6b7280;
+        white-space: nowrap;
+      }
+      .filter-chips { display: flex; gap: 10px; flex-wrap: wrap; }
+      .filter-chip {
+        padding: 9px 20px;
+        border-radius: 50px;
+        border: 1.5px solid #e2e8f0;
+        background: transparent;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #4b5563;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .filter-chip i { font-size: 0.85rem; }
+      .filter-chip:hover { border-color: #1565c0; color: #1565c0; background: rgba(21, 101, 192, 0.05); transform: translateY(-1px); }
+      .filter-chip.active { background: linear-gradient(135deg, #1565c0, #1e88e5); border-color: transparent; color: white; box-shadow: 0 4px 15px rgba(21, 101, 192, 0.35); }
+      .filter-count { font-size: 0.78rem; padding: 2px 8px; border-radius: 20px; font-weight: 700; }
+      .filter-chip.active .filter-count { background: rgba(255,255,255,0.25); }
+      .filter-chip:not(.active) .filter-count { background: #f1f5f9; color: #6b7280; }
+
+      .projects-main-section { padding: 70px 0 100px; background: #f8fafc; }
+      .projects-section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 45px;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .projects-section-title-group h2 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+        color: #1f2937;
+      }
+      .projects-section-title-group p { color: #6b7280; font-size: 0.95rem; margin-top: 4px; }
+
+      .projects-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+
+      .proj-card {
+        background: white;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.07);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+      }
+      .proj-card:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(21, 101, 192, 0.15); border-color: rgba(21, 101, 192, 0.2); }
+      .proj-card.featured { grid-column: span 2; }
+
+      .proj-card-image { position: relative; overflow: hidden; aspect-ratio: 16/9; flex-shrink: 0; }
+      .proj-card.featured .proj-card-image { aspect-ratio: 16/8; }
+      .proj-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+      .proj-card:hover .proj-card-image img { transform: scale(1.07); }
+
+      .proj-card-badge {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        backdrop-filter: blur(10px);
+      }
+      .proj-card-badge.concluido { background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: #16a34a; }
+      .proj-card-badge.ejecucion { background: rgba(240, 180, 41, 0.25); border: 1px solid rgba(240, 180, 41, 0.5); color: #d4a017; }
+
+      .proj-card-category-tag {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: rgba(0,0,0,0.55);
+        backdrop-filter: blur(10px);
+        color: rgba(255,255,255,0.85);
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .proj-card-body { padding: 26px 28px 28px; flex: 1; display: flex; flex-direction: column; }
+      .proj-card-client {
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #1565c0;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .proj-card-client::before { content: ''; width: 18px; height: 2px; background: #1565c0; border-radius: 2px; display: inline-block; }
+      .proj-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; color: #1f2937; margin-bottom: 10px; line-height: 1.15; }
+      .proj-card.featured .proj-card-title { font-size: 2rem; }
+      .proj-card-desc { color: #6b7280; font-size: 0.9rem; line-height: 1.65; flex: 1; margin-bottom: 20px; }
+
+      .proj-card-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 18px;
+        border-top: 1px solid #f1f5f9;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .proj-card-investment {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.5rem;
+        color: #f0b429;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+      }
+      .proj-card-investment span { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 700; color: #9ca3af; letter-spacing: 1px; text-transform: uppercase; }
+      .proj-card-partners { display: flex; gap: 6px; flex-wrap: wrap; }
+      .proj-partner-pill { padding: 4px 10px; background: #f1f5f9; border-radius: 20px; font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; font-weight: 700; color: #4b5563; letter-spacing: 0.5px; }
+
+      .proj-card-action {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #1565c0;
+        margin-top: 16px;
+        transition: gap 0.2s ease;
+      }
+      .proj-card:hover .proj-card-action { gap: 10px; }
+      .proj-card-action i { font-size: 0.75rem; transition: transform 0.2s ease; }
+      .proj-card:hover .proj-card-action i { transform: translateX(3px); }
+
+      .projects-cta {
+        padding: 90px 0;
+        background: linear-gradient(135deg, #0a1628, #0d2040);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+      .projects-cta::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse at 30% 50%, rgba(21, 101, 192, 0.25), transparent 50%),
+          radial-gradient(ellipse at 70% 50%, rgba(240, 180, 41, 0.1), transparent 50%);
+      }
+      .projects-cta .container { position: relative; z-index: 2; }
+      .projects-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 2px; color: white; margin-bottom: 15px; }
+      .projects-cta h2 span { color: #f0b429; }
+      .projects-cta p { color: rgba(255,255,255,0.7); font-size: 1.1rem; max-width: 550px; margin: 0 auto 35px; line-height: 1.7; }
+
+      .cta-btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+      .cta-btn-primary {
+        padding: 16px 36px;
+        background: #f0b429;
+        color: #0a1628;
+        border: none;
+        border-radius: 14px;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(240, 180, 41, 0.4);
+      }
+      .cta-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 35px rgba(240, 180, 41, 0.5); background: #f5c842; color: #0a1628; }
+      .cta-btn-secondary {
+        padding: 16px 36px;
+        background: transparent;
+        color: white;
+        border: 1.5px solid rgba(255,255,255,0.3);
+        border-radius: 14px;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .cta-btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); color: white; transform: translateY(-3px); }
+
+      @media (max-width: 1024px) {
+        .projects-masonry { grid-template-columns: repeat(2, 1fr); }
+        .proj-card.featured { grid-column: span 2; }
+      }
+      @media (max-width: 768px) {
+        .projects-masonry { grid-template-columns: 1fr; }
+        .proj-card.featured { grid-column: span 1; }
+        .projects-filter-section { position: static; }
+        .projects-filter-inner { flex-direction: column; align-items: flex-start; }
+        .proj-card.featured .proj-card-title { font-size: 1.7rem; }
+      }
+      @media (max-width: 600px) {
+        .projects-hero-stats { gap: 30px; }
+        .projects-hero h1 { font-size: 2.8rem; }
+      }
+    </style>
   </head>
   <body>
-    <!-- Preloader: pantalla de carga animada con el logo SVG de EDS -->
     <div id="preloader" class="preloader">
-        <div class="intro-panel">
-            <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
-            <div class="intro-loaders">
-                <div class="loader loader--e">
-                    <svg viewBox="0 0 80 80"><path d="M60 12 H22 V68 H60 M22 40 H52"></path></svg>
-                </div>
-                <div class="loader loader--d">
-                    <svg viewBox="0 0 80 80"><path d="M22 12 V68 H50 Q62 68 62 56 V24 Q62 12 50 12 H22"></path></svg>
-                </div>
-                <div class="loader loader--s">
-                    <svg viewBox="0 0 80 80"><path d="M52 16 H28 Q16 16 16 28 Q16 40 28 40 H52 Q64 40 64 52 Q64 64 52 64 H28 Q16 64 16 52"></path></svg>
-                </div>
-            </div>
-            <div class="intro-status">
-                <span class="status-dot"></span>
-                <span>Cargando...</span>
-            </div>
+      <div class="intro-panel">
+        <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
+        <div class="intro-loaders">
+          <div class="loader loader--e"><svg viewBox="0 0 80 80"><path d="M60 12 H22 V68 H60 M22 40 H52"></path></svg></div>
+          <div class="loader loader--d"><svg viewBox="0 0 80 80"><path d="M22 12 V68 H50 Q62 68 62 56 V24 Q62 12 50 12 H22"></path></svg></div>
+          <div class="loader loader--s"><svg viewBox="0 0 80 80"><path d="M52 16 H28 Q16 16 16 28 Q16 40 28 40 H52 Q64 40 64 52 Q64 64 52 64 H28 Q16 64 16 52"></path></svg></div>
         </div>
+        <div class="intro-status"><span class="status-dot"></span><span>Cargando...</span></div>
+      </div>
     </div>
 
-    <!-- Cursor personalizado: seguimiento del mouse con efecto visual -->
     <div class="cursor-follower"></div>
 
-    <!-- Encabezado principal: logo de EDS, navegación y botón de menú móvil -->
     <header class="header">
       <div class="container header-container">
         <a href="../index.html" class="logo">
           <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" class="logo-img" />
           <span class="logo-text">EDS <span>INTELIGENTES</span></span>
         </a>
-
         <nav class="nav-menu">
           <a href="../index.html" class="nav-link">Inicio</a>
           <a href="../index.html#nosotros" class="nav-link">Nosotros</a>
@@ -68,12 +394,7 @@
           <a href="socios.html" class="nav-link">Socios</a>
           <a href="contacto.html" class="nav-link">Contacto</a>
         </nav>
-
-        <button class="menu-toggle" aria-label="Abrir menú">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <button class="menu-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
       </div>
     </header>
 
@@ -83,10 +404,26 @@
       <div class="page-header-orb orb-b"></div>
       <div class="grid-bg"></div>
       <div class="container">
-        <div class="breadcrumb">
-          <a href="../index.html">Inicio</a>
-          <span>/</span>
-          <span>Proyectos</span>
+        <div class="projects-hero-kicker">Portafolio de Obra</div>
+        <h1>Nuestros <span>Proyectos</span></h1>
+        <p>Conoce los proyectos más destacados ejecutados en el sur del Perú con tecnología de vanguardia y los mejores socios estratégicos.</p>
+        <div class="projects-hero-stats">
+          <div class="projects-hero-stat">
+            <span class="projects-hero-stat-number">50+</span>
+            <span class="projects-hero-stat-label">Proyectos</span>
+          </div>
+          <div class="projects-hero-stat">
+            <span class="projects-hero-stat-number">4</span>
+            <span class="projects-hero-stat-label">Ciudades</span>
+          </div>
+          <div class="projects-hero-stat">
+            <span class="projects-hero-stat-number">S/ 60M+</span>
+            <span class="projects-hero-stat-label">En Obra</span>
+          </div>
+          <div class="projects-hero-stat">
+            <span class="projects-hero-stat-number">10+</span>
+            <span class="projects-hero-stat-label">Años</span>
+          </div>
         </div>
         <h1>Nuestros <span class="highlight">Proyectos</span></h1>
         <p>
@@ -106,497 +443,313 @@
           <div class="carousel-list">
             <!-- Proyecto 1: Centro de Seguridad Ciudadana -->
             <div class="carousel-item active">
+      </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div class="projects-filter-section">
+      <div class="container">
+        <div class="projects-filter-inner">
+          <span class="filter-label">Filtrar por:</span>
+          <div class="filter-chips">
+            <button class="filter-chip active" data-filter="all"><i class="fas fa-th"></i> Todos <span class="filter-count">13</span></button>
+            <button class="filter-chip" data-filter="seguridad"><i class="fas fa-shield-alt"></i> Seguridad <span class="filter-count">5</span></button>
+            <button class="filter-chip" data-filter="comunicacion"><i class="fas fa-broadcast-tower"></i> Comunicación <span class="filter-count">3</span></button>
+            <button class="filter-chip" data-filter="construccion"><i class="fas fa-building"></i> Construcción <span class="filter-count">3</span></button>
+            <button class="filter-chip" data-filter="energia"><i class="fas fa-solar-panel"></i> Energía/AV <span class="filter-count">2</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN PROJECTS -->
+    <section class="projects-main-section">
+      <div class="container">
+        <div class="projects-section-header">
+          <div class="projects-section-title-group">
+            <h2>Proyectos Ejecutados</h2>
+            <p>Mostrando <strong id="visible-count">13</strong> proyectos</p>
+          </div>
+        </div>
+
+        <div class="projects-masonry" id="projectsGrid">
+
+          <div class="proj-card featured" data-category="seguridad">
+            <div class="proj-card-image">
               <img src="../assets/eds_useful_images/centro_monitoreo2.jpg" alt="Centro de Seguridad Ciudadana" />
-              <div class="item-introduce">
-                <span class="badge badge-success">Concluido</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Centro de Seguridad Ciudadana</div>
-                <div class="item-des">Sistema integral de monitoreo con 120 cámaras de alta definición y centro de control avanzado para la Municipalidad Provincial de Melgar.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Centro de Seguridad Ciudadana</div>
-                <div class="detail-client">Municipalidad Provincial de Melgar</div>
-                <div class="detail-investment">S/ 4.2 Millones</div>
-                <div class="detail-des">Implementación completa de un centro de monitoreo con tecnología de punta para la vigilancia urbana, incluyendo sala de control, 120 cámaras PTZ y fijas, y software de gestión avanzado.</div>
-                <div class="detail-specs">
-                  <div>
-                    <p>Cámaras</p>
-                    <p>120 unidades</p>
-                  </div>
-                  <div>
-                    <p>Monitores</p>
-                    <p>15 pantallas</p>
-                  </div>
-                  <div>
-                    <p>Almacenamiento</p>
-                    <p>90 días</p>
-                  </div>
-                  <div>
-                    <p>Cobertura</p>
-                    <p>Urbana total</p>
-                  </div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron la obra</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">Hikvision</span>
-                    <span class="partner-pill">Dahua</span>
-                    <span class="partner-pill">FibraTel</span>
-                  </div>
-                </div>
-              </div>
+              <span class="proj-card-badge concluido">Concluido</span>
+              <span class="proj-card-category-tag">Seguridad</span>
             </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Municipalidad Provincial de Melgar</p>
+              <h3 class="proj-card-title">Centro de Seguridad Ciudadana</h3>
+              <p class="proj-card-desc">Sistema integral de monitoreo con 120 cámaras de alta definición y centro de control avanzado para la vigilancia urbana total, incluyendo sala de control y software de gestión avanzado.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 4.2M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">Hikvision</span>
+                  <span class="proj-partner-pill">Dahua</span>
+                  <span class="proj-partner-pill">FibraTel</span>
+                </div>
+              </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
+            </div>
+          </div>
 
-            <!-- Proyecto 2: Semáforos Inteligentes -->
-            <div class="carousel-item">
+          <div class="proj-card" data-category="comunicacion">
+            <div class="proj-card-image">
               <img src="../assets/eds_useful_images/control_vehiculos.jpg" alt="Semáforos Inteligentes" />
-              <div class="item-introduce">
-                <span class="badge badge-success">Concluido</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Semáforos Inteligentes</div>
-                <div class="item-des">Sistema de semafórico inteligente con control centralizado para 15 intersecciones principales del distrito de J.L. Bustamante y Rivero.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Semáforos Inteligentes</div>
-                <div class="detail-client">Distrito de J.L. Bustamante y Rivero</div>
-                <div class="detail-investment">S/ 8.5 Millones</div>
-                <div class="detail-des">Modernización del sistema de semáforos con tecnología de adaptación en tiempo real, reduciendo tiempos de espera y mejorando el flujo vehicular.</div>
-                <div class="detail-specs">
-                  <div>
-                    <p>Intersecciones</p>
-                    <p>15 puntos</p>
-                  </div>
-                  <div>
-                    <p>Sistema</p>
-                    <p>Centralizado</p>
-                  </div>
-                  <div>
-                    <p>Sensores</p>
-                    <p>45 unidades</p>
-                  </div>
-                  <div>
-                    <p>Reducción</p>
-                    <p>35% tráfico</p>
-                  </div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron la obra</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">Siemens</span>
-                    <span class="partner-pill">Sice</span>
-                    <span class="partner-pill">Cisco</span>
-                  </div>
-                </div>
-              </div>
+              <span class="proj-card-badge concluido">Concluido</span>
+              <span class="proj-card-category-tag">Comunicación</span>
             </div>
-
-            <!-- Proyecto 3: Radio Base de Comunicaciones -->
-            <div class="carousel-item">
-              <img src="../assets/eds_useful_images/motorola_radio2.jpg" alt="Radio Base de Comunicaciones" />
-              <div class="item-introduce">
-                <span class="badge badge-accent">En Ejecución</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Radio Base de Comunicaciones</div>
-                <div class="item-des">Instalación de torre de comunicaciones y sistema de radio base para mejorar la cobertura en zonas remotas de Iquitos, Loreto.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Radio Base de Comunicaciones</div>
-                <div class="detail-client">Iquitos, Loreto</div>
-                <div class="detail-investment">S/ 6.8 Millones</div>
-                <div class="detail-des">Proyecto de infraestructura de comunicaciones para zonas de difícil acceso, garantizando conectividad en emergencias y operaciones de campo.</div>
-                <div class="detail-specs">
-                  <div>
-                    <p>Torre</p>
-                    <p>45 metros</p>
-                  </div>
-                  <div>
-                    <p>Alcance</p>
-                    <p>50 km</p>
-                  </div>
-                  <div>
-                    <p>Frecuencias</p>
-                    <p>VHF/UHF</p>
-                  </div>
-                  <div>
-                    <p>Respaldo</p>
-                    <p>72 horas</p>
-                  </div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron la obra</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">Motorola</span>
-                    <span class="partner-pill">Hytera</span>
-                    <span class="partner-pill">TowerCom</span>
-                  </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Dist. J.L. Bustamante y Rivero</p>
+              <h3 class="proj-card-title">Semáforos Inteligentes</h3>
+              <p class="proj-card-desc">Sistema semafórico con control centralizado para 15 intersecciones principales y reducción del 35% en tiempos de espera.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 8.5M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">Siemens</span>
+                  <span class="proj-partner-pill">Sice</span>
                 </div>
               </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
             </div>
+          </div>
 
-            <!-- Proyecto 4: I.E. Nº 40208 -->
-            <div class="carousel-item">
-              <img src="../assets/eds_useful_images/auditorio.jpg" alt="I.E. Nº 40208" />
-              <div class="item-introduce">
-                <span class="badge badge-success">Concluido</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">I.E. Nº 40208</div>
-                <div class="item-des">Construcción de infraestructura educativa moderna con 18 aulas y capacidad para 900 alumnos en la UGEL Arequipa Norte.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">I.E. Nº 40208</div>
-                <div class="detail-client">UGEL Arequipa Norte</div>
-                <div class="detail-investment">S/ 5.1 Millones</div>
-                <div class="detail-des">Edificación de centro educativo con estándares antisísmicos, laboratorios equipados y áreas recreativas para la comunidad estudiantil.</div>
-                <div class="detail-specs">
-                  <div>
-                    <p>Aulas</p>
-                    <p>18 unidades</p>
-                  </div>
-                  <div>
-                    <p>Capacidad</p>
-                    <p>900 alumnos</p>
-                  </div>
-                  <div>
-                    <p>Área</p>
-                    <p>3,200 m²</p>
-                  </div>
-                  <div>
-                    <p>Pisos</p>
-                    <p>3 niveles</p>
-                  </div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron la obra</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">Sika</span>
-                    <span class="partner-pill">Cemento Yura</span>
-                    <span class="partner-pill">Ferreyros</span>
-                  </div>
-                </div>
-              </div>
+          <div class="proj-card" data-category="comunicacion">
+            <div class="proj-card-image">
+              <img src="../assets/eds_useful_images/motorola_radio2.jpg" alt="Radio Base" />
+              <span class="proj-card-badge ejecucion">En Ejecución</span>
+              <span class="proj-card-category-tag">Comunicación</span>
             </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Iquitos, Loreto</p>
+              <h3 class="proj-card-title">Radio Base de Comunicaciones</h3>
+              <p class="proj-card-desc">Torre 45m con cobertura 50km para zonas remotas, frecuencias VHF/UHF y respaldo 72 horas continuas.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 6.8M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">Motorola</span>
+                  <span class="proj-partner-pill">Hytera</span>
+                </div>
+              </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
+            </div>
+          </div>
 
-            <!-- Proyecto 5: Video Vigilancia Industrial -->
-            <div class="carousel-item">
+          <div class="proj-card" data-category="construccion">
+            <div class="proj-card-image">
+              <img src="../assets/eds_useful_images/auditorio.jpg" alt="IE 40208" />
+              <span class="proj-card-badge concluido">Concluido</span>
+              <span class="proj-card-category-tag">Construcción</span>
+            </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">UGEL Arequipa Norte</p>
+              <h3 class="proj-card-title">I.E. Nº 40208</h3>
+              <p class="proj-card-desc">18 aulas antisísmicas, 3 niveles, laboratorios equipados y áreas recreativas para 900 alumnos.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 5.1M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">Sika</span>
+                  <span class="proj-partner-pill">Cemento Yura</span>
+                </div>
+              </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
+            </div>
+          </div>
+
+          <div class="proj-card" data-category="seguridad">
+            <div class="proj-card-image">
               <img src="../assets/eds_useful_images/camara_analisis.jpg" alt="Video Vigilancia Industrial" />
-              <div class="item-introduce">
-                <span class="badge badge-success">Concluido</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Video Vigilancia Industrial</div>
-                <div class="item-des">Sistema de videovigilancia avanzado con 200 cámaras IP y análisis inteligente para el Complejo Industrial de Arequipa.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Video Vigilancia Industrial</div>
-                <div class="detail-client">Complejo Industrial Arequipa</div>
-                <div class="detail-investment">S/ 2.8 Millones</div>
-                <div class="detail-des">Solución integral de seguridad con cámaras de última generación, detección de movimiento y reconocimiento facial para protección industrial.</div>
-                <div class="detail-specs">
-                  <div>
-                    <p>Cámaras IP</p>
-                    <p>200 unidades</p>
-                  </div>
-                  <div>
-                    <p>Resolución</p>
-                    <p>4K Ultra HD</p>
-                  </div>
-                  <div>
-                    <p>Análisis</p>
-                    <p>IA integrada</p>
-                  </div>
-                  <div>
-                    <p>Grabación</p>
-                    <p>120 días</p>
-                  </div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron la obra</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">Axis</span>
-                    <span class="partner-pill">Avigilon</span>
-                    <span class="partner-pill">LenelS2</span>
-                  </div>
-                </div>
-              </div>
+              <span class="proj-card-badge concluido">Concluido</span>
+              <span class="proj-card-category-tag">Seguridad</span>
             </div>
-
-            <!-- Proyecto 6: Cableado Hospital Regional -->
-            <div class="carousel-item">
-              <img src="../assets/eds_useful_images/cableado1.jpg" alt="Cableado Hospital Regional" />
-              <div class="item-introduce">
-                <span class="badge badge-success">Concluido</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Cableado Hospital Regional</div>
-                <div class="item-des">Infraestructura de cableado estructurado de alta disponibilidad para el Hospital Regional de Arequipa.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Cableado Hospital Regional</div>
-                <div class="detail-client">Hospital Regional de Arequipa</div>
-                <div class="detail-investment">S/ 3.5 Millones</div>
-                <div class="detail-des">Implementación de red de cableado categoría 6A con redundancia, UPS y sistemas de monitoreo para garantizar la continuidad operativa hospitalaria.</div>
-                <div class="detail-specs">
-                  <div>
-                    <p>Puntos</p>
-                    <p>2,500+</p>
-                  </div>
-                  <div>
-                    <p>Categoría</p>
-                    <p>Cat 6A</p>
-                  </div>
-                  <div>
-                    <p>Switches</p>
-                    <p>48 puertos</p>
-                  </div>
-                  <div>
-                    <p>Uptime</p>
-                    <p>99.99%</p>
-                  </div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron la obra</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">Panduit</span>
-                    <span class="partner-pill">Legrand</span>
-                    <span class="partner-pill">APC</span>
-                  </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Complejo Industrial Arequipa</p>
+              <h3 class="proj-card-title">Video Vigilancia Industrial</h3>
+              <p class="proj-card-desc">200 cámaras IP 4K con IA integrada, detección de movimiento y reconocimiento facial. Grabación 120 días.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 2.8M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">Axis</span>
+                  <span class="proj-partner-pill">Avigilon</span>
                 </div>
               </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
             </div>
+          </div>
 
-            <!-- Proyecto 7: Alcaldía Municipal -->
-            <div class="carousel-item">
+          <div class="proj-card featured" data-category="construccion">
+            <div class="proj-card-image">
+              <img src="../assets/eds_useful_images/cableado1.jpg" alt="Cableado Hospital" />
+              <span class="proj-card-badge concluido">Concluido</span>
+              <span class="proj-card-category-tag">Construcción</span>
+            </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Hospital Regional de Arequipa</p>
+              <h3 class="proj-card-title">Cableado Estructurado Hospital Regional</h3>
+              <p class="proj-card-desc">+2,500 puntos Cat 6A con redundancia, UPS y sistemas de monitoreo para garantizar 99.99% de uptime en operaciones hospitalarias críticas y sistemas de emergencia.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 3.5M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">Panduit</span>
+                  <span class="proj-partner-pill">Legrand</span>
+                  <span class="proj-partner-pill">APC</span>
+                </div>
+              </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
+            </div>
+          </div>
+
+          <div class="proj-card" data-category="seguridad">
+            <div class="proj-card-image">
               <img src="../assets/eds_useful_images/alarma_control_building.png" alt="Alcaldía Municipal" />
-              <div class="item-introduce">
-                <span class="badge badge-success">Concluido</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Alcaldía Municipal</div>
-                <div class="item-des">Sistema de alarma contra incendios y control integral del edificio.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Alcaldía Municipal</div>
-                <div class="detail-client">Municipalidad Local</div>
-                <div class="detail-investment">S/ 1.3 Millones</div>
-                <div class="detail-des">Modernización completa de los sistemas de prevención con central de monitoreo.</div>
-                <div class="detail-specs">
-                  <div><p>Sensores</p><p>50+ unid.</p></div>
-                  <div><p>Sistema</p><p>Integrado</p></div>
-                  <div><p>Sirenas</p><p>30 estrobos</p></div>
-                  <div><p>Zonas</p><p>12 áreas</p></div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">Honeywell</span>
-                    <span class="partner-pill">Bosch</span>
-                  </div>
-                </div>
-              </div>
+              <span class="proj-card-badge concluido">Concluido</span>
+              <span class="proj-card-category-tag">Seguridad</span>
             </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Municipalidad Local</p>
+              <h3 class="proj-card-title">Alcaldía Municipal — Incendios</h3>
+              <p class="proj-card-desc">50+ sensores, 30 estrobos, 12 zonas de detección con central de monitoreo integrada y respuesta automática.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 1.3M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">Honeywell</span>
+                  <span class="proj-partner-pill">Bosch</span>
+                </div>
+              </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
+            </div>
+          </div>
 
-            <!-- Proyecto 8: Centro Empresarial -->
-            <div class="carousel-item">
+          <div class="proj-card" data-category="construccion">
+            <div class="proj-card-image">
               <img src="../assets/eds_useful_images/sala_control.jpg" alt="Centro Empresarial" />
-              <div class="item-introduce">
-                <span class="badge badge-success">Concluido</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Centro Empresarial</div>
-                <div class="item-des">Central de automatización y diseño corporativo de telecomunicaciones.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Centro Empresarial</div>
-                <div class="detail-client">Centro de Negocios Sur</div>
-                <div class="detail-investment">S/ 2.1 Millones</div>
-                <div class="detail-des">Implementación del Cuarto de Equipos (MDF) con alta disponibilidad y redundancia de datos.</div>
-                <div class="detail-specs">
-                  <div><p>Fibra</p><p>FTTH 10G</p></div>
-                  <div><p>Conexión</p><p>Cat 6A</p></div>
-                  <div><p>UPS</p><p>Respaldo 48h</p></div>
-                  <div><p>Mantenimiento</p><p>Preventivo</p></div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">Cisco</span>
-                    <span class="partner-pill">APC</span>
-                  </div>
-                </div>
-              </div>
+              <span class="proj-card-badge concluido">Concluido</span>
+              <span class="proj-card-category-tag">Construcción</span>
             </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Centro de Negocios Sur</p>
+              <h3 class="proj-card-title">Centro Empresarial — Telecomunicaciones</h3>
+              <p class="proj-card-desc">MDF con FTTH 10G, Cat 6A, UPS respaldo 48h y plan de mantenimiento preventivo anual garantizado.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 2.1M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">Cisco</span>
+                  <span class="proj-partner-pill">APC</span>
+                </div>
+              </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
+            </div>
+          </div>
 
-            <!-- Proyecto 9: Planta Solar -->
-            <div class="carousel-item">
+          <div class="proj-card" data-category="energia">
+            <div class="proj-card-image">
               <img src="../assets/eds_useful_images/iot_industrial.jpg" alt="Planta Solar" />
-              <div class="item-introduce">
-                <span class="badge badge-accent">En Ejecución</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Planta Solar Joya</div>
-                <div class="item-des">Supervisión IoT industrial e infraestructura para generación renovable.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Planta Solar</div>
-                <div class="detail-client">Consorcio Energético</div>
-                <div class="detail-investment">S/ 12 Millones</div>
-                <div class="detail-des">Sistema remoto de adquisición de datos en tiempo real para optimización de paneles.</div>
-                <div class="detail-specs">
-                  <div><p>Sensores</p><p>IoT Data</p></div>
-                  <div><p>Energía</p><p>Renovable</p></div>
-                  <div><p>Telemetry</p><p>99.9% Up</p></div>
-                  <div><p>Control</p><p>SCADA</p></div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">Siemens</span>
-                    <span class="partner-pill">Schneider</span>
-                  </div>
-                </div>
-              </div>
+              <span class="proj-card-badge ejecucion">En Ejecución</span>
+              <span class="proj-card-category-tag">Energía</span>
             </div>
-
-            <!-- Proyecto 10: Universidad -->
-            <div class="carousel-item">
-              <img src="../assets/eds_useful_images/comunicacion_seguridad.jpg" alt="Universidad" />
-              <div class="item-introduce">
-                <span class="badge badge-success">Concluido</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Campus Universitario</div>
-                <div class="item-des">Despliegue de red inalámbrica de alta densidad para 10,000 alumnos simultáneos.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Campus Universitario</div>
-                <div class="detail-client">Universidad Privada</div>
-                <div class="detail-investment">S/ 4.7 Millones</div>
-                <div class="detail-des">Anillos de seguridad perimetral y cobertura WiFi al 100% de las instalaciones con firewall.</div>
-                <div class="detail-specs">
-                  <div><p>Access Points</p><p>Radio Móvil</p></div>
-                  <div><p>Tecnología</p><p>WiFi 6</p></div>
-                  <div><p>Firewall</p><p>NGFW</p></div>
-                  <div><p>Alumnos</p><p>10k+</p></div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">Aruba</span>
-                    <span class="partner-pill">Palo Alto</span>
-                  </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Consorcio Energético</p>
+              <h3 class="proj-card-title">Planta Solar Joya — IoT Industrial</h3>
+              <p class="proj-card-desc">Supervisión SCADA con telemetría 99.9% uptime y adquisición de datos en tiempo real para optimización de paneles fotovoltaicos.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 12M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">Siemens</span>
+                  <span class="proj-partner-pill">Schneider</span>
                 </div>
               </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
             </div>
+          </div>
 
-            <!-- Proyecto 11: Obras Viales -->
-            <div class="carousel-item">
+          <div class="proj-card" data-category="comunicacion">
+            <div class="proj-card-image">
+              <img src="../assets/eds_useful_images/comunicacion_seguridad.jpg" alt="Campus Universitario" />
+              <span class="proj-card-badge concluido">Concluido</span>
+              <span class="proj-card-category-tag">Comunicación</span>
+            </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Universidad Privada</p>
+              <h3 class="proj-card-title">Campus Universitario — WiFi 6</h3>
+              <p class="proj-card-desc">Red inalámbrica WiFi 6 con cobertura 100% del campus, firewall NGFW y capacidad para 10,000+ alumnos simultáneos.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 4.7M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">Aruba</span>
+                  <span class="proj-partner-pill">Palo Alto</span>
+                </div>
+              </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
+            </div>
+          </div>
+
+          <div class="proj-card" data-category="seguridad">
+            <div class="proj-card-image">
               <img src="../assets/eds_useful_images/camara_poste.jpg" alt="Obras Viales" />
-              <div class="item-introduce">
-                <span class="badge badge-success">Concluido</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Obras Viales e Iluminación</div>
-                <div class="item-des">Automatización e instalación de cámaras de videovigilancia en autopistas principales.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Vigilancia en Obras Viales</div>
-                <div class="detail-client">Gobierno Regional</div>
-                <div class="detail-investment">S/ 6.5 Millones</div>
-                <div class="detail-des">Integración de cámaras PTZ con tendido de fibra óptica a red metropolitana de monitoreo.</div>
-                <div class="detail-specs">
-                  <div><p>Cámaras</p><p>PTZ Alta res.</p></div>
-                  <div><p>Fibra</p><p>Anillo óptico</p></div>
-                  <div><p>Vehículos</p><p>LPR</p></div>
-                  <div><p>Integración</p><p>Policía Nal.</p></div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">Axis</span>
-                    <span class="partner-pill">Motorola</span>
-                  </div>
-                </div>
-              </div>
+              <span class="proj-card-badge concluido">Concluido</span>
+              <span class="proj-card-category-tag">Seguridad</span>
             </div>
-
-            <!-- Proyecto 12: Control Accesos -->
-            <div class="carousel-item">
-              <img src="../assets/eds_useful_images/control_acceso1.jpg" alt="Control Accesos" />
-              <div class="item-introduce">
-                <span class="badge badge-success">Concluido</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Control de Accesos Automático</div>
-                <div class="item-des">Reconocimiento biométrico y apertura automática para conjunto residencial.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Control de Accesos</div>
-                <div class="detail-client">Condominio Premium</div>
-                <div class="detail-investment">S/ 0.8 Millones</div>
-                <div class="detail-des">Cerraduras vehiculares y peatonales de ultra alta frecuencia para acceso sin contacto a propietarios.</div>
-                <div class="detail-specs">
-                  <div><p>Molinete</p><p>Doble carril</p></div>
-                  <div><p>Biometría</p><p>Facial/Huella</p></div>
-                  <div><p>UHF</p><p>Lector vehicular</p></div>
-                  <div><p>Software</p><p>App central</p></div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">ZKTeco</span>
-                    <span class="partner-pill">Hikvision</span>
-                  </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Gobierno Regional</p>
+              <h3 class="proj-card-title">Obras Viales — Videovigilancia</h3>
+              <p class="proj-card-desc">Cámaras PTZ con fibra óptica, sistema LPR vehicular integrado a la red de monitoreo de la Policía Nacional.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 6.5M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">Axis</span>
+                  <span class="proj-partner-pill">Motorola</span>
                 </div>
               </div>
-            </div>
-
-            <!-- Proyecto 13: Pantallas Publicitarias Digitales -->
-            <div class="carousel-item">
-              <img src="../assets/eds_useful_images/jose luis bustamante y rivero/WhatsApp Image 2026-04-01 at 1.53.32 PM (1).jpeg" alt="Pantallas Publicitarias Digitales" />
-              <div class="item-introduce">
-                <span class="badge badge-success">Concluido</span>
-                <div class="item-title">Proyecto Destacado</div>
-                <div class="item-topic">Pantallas Publicitarias Digitales</div>
-                <div class="item-des">Sistema de cartelería digital con pantallas LED de alta resolución para difusión de anuncios y promociones en el distrito de J.L. Bustamante y Rivero.</div>
-                <button class="seeMore">VER DETALLES &#8599;</button>
-              </div>
-              <div class="item-detail">
-                <div class="detail-title">Pantallas Publicitarias Digitales</div>
-                <div class="detail-client">Municipalidad Distrital de J.L. Bustamante y Rivero</div>
-                <div class="detail-investment">S/ 7.3 Millones</div>
-                <div class="detail-des">Implementación de sistema integral de digital signage con pantallas LED 4K de gran formato, sistema de audio integrado y plataforma de gestión de contenido centralizada para comunicación municipal y publicidad.</div>
-                <div class="detail-specs">
-                  <div><p>Pantallas</p><p>6 unidades 4K</p></div>
-                  <div><p>Audio</p><p>JBL Harman</p></div>
-                  <div><p>Red</p><p>Transmisión IP</p></div>
-                  <div><p>Gestión</p><p>Centralizada</p></div>
-                </div>
-                <div class="detail-partners">
-                  <p class="partners-label">Socios que apoyaron la obra</p>
-                  <div class="partners-list">
-                    <span class="partner-pill">LG</span>
-                    <span class="partner-pill">JBL Harman</span>
-                    <span class="partner-pill">Cisco</span>
-                  </div>
-                </div>
-              </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
             </div>
           </div>
 
-          <!-- Controles de navegación del carrusel -->
-          <div class="carousel-arrows">
-            <button id="carousel-prev" class="carousel-arrow" aria-label="Anterior">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <button id="carousel-next" class="carousel-arrow" aria-label="Siguiente">
-              <i class="fas fa-chevron-right"></i>
-            </button>
-            <button id="carousel-back" class="carousel-back">Ver Todos &#8599;</button>
+          <div class="proj-card" data-category="seguridad">
+            <div class="proj-card-image">
+              <img src="../assets/eds_useful_images/control_acceso1.jpg" alt="Control de Accesos" />
+              <span class="proj-card-badge concluido">Concluido</span>
+              <span class="proj-card-category-tag">Seguridad</span>
+            </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Condominio Premium</p>
+              <h3 class="proj-card-title">Control de Accesos Biométrico</h3>
+              <p class="proj-card-desc">Reconocimiento facial, huella dactilar y UHF vehicular con molinete doble carril y app de gestión centralizada.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 0.8M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">ZKTeco</span>
+                  <span class="proj-partner-pill">Hikvision</span>
+                </div>
+              </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
+            </div>
           </div>
+
+          <div class="proj-card featured" data-category="energia">
+            <div class="proj-card-image">
+              <img src="../assets/eds_useful_images/jose luis bustamante y rivero/WhatsApp Image 2026-04-01 at 1.53.32 PM (1).jpeg" alt="Pantallas Digitales" />
+              <span class="proj-card-badge concluido">Concluido</span>
+              <span class="proj-card-category-tag">Audio/Video</span>
+            </div>
+            <div class="proj-card-body">
+              <p class="proj-card-client">Municipalidad Distrital J.L. Bustamante y Rivero</p>
+              <h3 class="proj-card-title">Pantallas Publicitarias Digitales</h3>
+              <p class="proj-card-desc">6 pantallas LED 4K de gran formato con sistema de audio JBL Harman integrado y plataforma de gestión de contenido centralizada para comunicación municipal y publicidad digital.</p>
+              <div class="proj-card-meta">
+                <div class="proj-card-investment">S/ 7.3M <span>Inversión</span></div>
+                <div class="proj-card-partners">
+                  <span class="proj-partner-pill">LG</span>
+                  <span class="proj-partner-pill">JBL Harman</span>
+                  <span class="proj-partner-pill">Cisco</span>
+                </div>
+              </div>
+              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -624,11 +777,22 @@
               <i class="fas fa-envelope"></i> Enviar Correo
             </a>
           </div>
+    <!-- CTA -->
+    <section class="projects-cta">
+      <div class="container">
+        <h2>¿Tienes un proyecto en <span>mente</span>?</h2>
+        <p>Contáctanos y te ayudamos a hacer realidad tu próxima obra con tecnología de vanguardia y los mejores socios estratégicos del mercado.</p>
+        <div class="cta-btn-group">
+          <a href="https://wa.me/51950313642" target="_blank" class="cta-btn-primary">
+            <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
+          </a>
+          <a href="contacto.html" class="cta-btn-secondary">
+            <i class="fas fa-envelope"></i> Enviar Correo
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Pie de página: marca, navegación, lista de servicios y datos de contacto -->
     <footer class="footer">
       <div class="container">
         <div class="footer-grid">
@@ -636,27 +800,14 @@
             <a href="../index.html" class="logo" style="display: block; margin-bottom: 20px;">
               <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" style="max-width: 200px; height: auto;" />
             </a>
-            <p>
-              Somos la empresa líder en edificaciones inteligentes en el sur del
-              Perú, ofreciendo soluciones tecnológicas integrales para la
-              construcción.
-            </p>
+            <p>Somos la empresa líder en edificaciones inteligentes en el sur del Perú, ofreciendo soluciones tecnológicas integrales para la construcción.</p>
             <div class="footer-social">
-              <a href="#" aria-label="Facebook"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="#" aria-label="LinkedIn"
-                ><i class="fab fa-linkedin-in"></i
-              ></a>
-              <a href="#" aria-label="Instagram"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="https://wa.me/51950313642" aria-label="WhatsApp"
-                ><i class="fab fa-whatsapp"></i
-              ></a>
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/51950313642" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
           </div>
-
           <div class="footer-links-col">
             <h4 class="footer-title">Navegación</h4>
             <ul class="footer-links">
@@ -669,7 +820,6 @@
               <li><a href="contacto.html">Contacto</a></li>
             </ul>
           </div>
-
           <div class="footer-links-col">
             <h4 class="footer-title">Servicios</h4>
             <ul class="footer-links">
@@ -681,7 +831,6 @@
               <li><a href="../index.html#servicios">Cableado Estructurado</a></li>
             </ul>
           </div>
-
           <div class="footer-contact-col">
             <h4 class="footer-title">Contacto</h4>
             <ul class="footer-contact">
@@ -696,9 +845,7 @@
                 <i class="fas fa-envelope"></i>
                 <div>
                   <p><strong>Email:</strong></p>
-                  <a href="mailto:rocio.jara@edin-tel.com"
-                    >rocio.jara@edin-tel.com</a
-                  >
+                  <a href="mailto:rocio.jara@edin-tel.com">rocio.jara@edin-tel.com</a>
                 </div>
               </li>
               <li>
@@ -711,24 +858,52 @@
             </ul>
           </div>
         </div>
-
-        <!-- Copyright y datos legales de la empresa -->
         <div class="footer-bottom">
-          <p>
-            &copy; 2024
-            <a href="../index.html">EDS Edificaciones Inteligentes SAC</a>. Todos
-            los derechos reservados.
-          </p>
+          <p>&copy; 2024 <a href="../index.html">EDS Edificaciones Inteligentes SAC</a>. Todos los derechos reservados.</p>
           <p>RUC: 20608965765</p>
         </div>
       </div>
     </footer>
 
-    <!-- Scripts: Three.js background, GSAP animations, y lógica principal -->
     <script src="../js/background3d.js"></script>
     <script src="../js/animations.js"></script>
     <script src="../js/scroll-animations.js"></script>
     <script src="../js/main.js"></script>
-    <script src="../js/pages-enhanced.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var chips = document.querySelectorAll('.filter-chip');
+        var cards = document.querySelectorAll('.proj-card');
+        var countEl = document.getElementById('visible-count');
+
+        chips.forEach(function(chip) {
+          chip.addEventListener('click', function() {
+            chips.forEach(function(c) { c.classList.remove('active'); });
+            chip.classList.add('active');
+            var filter = chip.dataset.filter;
+            var visible = 0;
+            cards.forEach(function(card) {
+              var match = filter === 'all' || card.dataset.category === filter;
+              if (match) {
+                card.style.display = 'flex';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(function() {
+                  card.style.transition = 'all 0.4s ease';
+                  card.style.opacity = '1';
+                  card.style.transform = 'translateY(0)';
+                }, 50);
+                visible++;
+              } else {
+                card.style.transition = 'all 0.3s ease';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(10px)';
+                setTimeout(function() { card.style.display = 'none'; }, 300);
+              }
+            });
+            if (countEl) countEl.textContent = visible;
+          });
+        });
+      });
+    </script>
   </body>
 </html>
