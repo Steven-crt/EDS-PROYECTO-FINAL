@@ -16,22 +16,11 @@
     var shouldSkipPreloaderForSection = isHomePage && instantSectionHashes.indexOf(window.location.hash) !== -1;
     var introDone = urlParams.get('intro') === '1';
 
-/* ============================================
-   SECCIÓN 2: CONFIGURACIÓN GENERAL DE LA APP
-   ============================================
-   El inicio principal muestra primero la bienvenida (`intro.html`).
-   Si el usuario entra directo a una sección del home, se omite la
-   carga para llevarlo de frente al bloque solicitado.
-   ============================================ */
-
     if (!isIntroPage && isHomePage && !introDone && !shouldSkipPreloaderForSection) {
         window.location.replace('intro.html');
         return;
     }
 
-    /* ============================================
-       OBJETO PRINCIPAL DE LA APLICACIÓN
-       ============================================ */
     var App = {
         particlesInstance: null,
 
@@ -408,9 +397,6 @@
         }
     };
 
-    /* ============================================
-       INICIALIZACIÓN AL CARGAR EL DOM
-       ============================================ */
     document.addEventListener('DOMContentLoaded', function() {
         App.init();
 

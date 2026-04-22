@@ -265,6 +265,15 @@
     color: white;
 }
 
+.hero-title {
+    min-height: 1.2em;
+}
+
+.hero-title .typing-text {
+    color: white;
+    text-shadow: 0 0 30px rgba(240, 180, 41, 0.5);
+}
+
 .glass-badge {
     display: inline-flex;
     align-items: center;
@@ -741,6 +750,34 @@
 /* ================================================
    SERVICES SECTION
    ================================================ */
+.service-card-3d {
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+    transition: transform 0.1s ease-out;
+}
+
+.coverage-card-3d {
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+    transition: transform 0.1s ease-out;
+}
+
+.card-3d-enhanced {
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    transform: perspective(1500px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateZ(0);
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.card-3d-enhanced:hover {
+    box-shadow: 
+        20px 20px 60px rgba(0, 0, 0, 0.15),
+        -5px -5px 20px rgba(255, 255, 255, 0.8),
+        0 0 40px rgba(21, 101, 192, 0.1);
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1825,17 +1862,33 @@
 
 
 /* ================================================
-   COVERAGE SECTION
+   SERVICES SECTION
    ================================================ */
-.coverage-grid {
+.services-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+}
+
+/* ================================================
+   3D CARD ENHANCED EFFECTS
+   ================================================ */
+.card-3d-enhanced {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.card-3d-enhanced:hover {
+    box-shadow: 
+        15px 15px 40px rgba(0, 0, 0, 0.12),
+        -3px -3px 15px rgba(255, 255, 255, 0.7),
+        0 0 30px rgba(21, 101, 192, 0.08);
 }
 
 .coverage-card {
     text-align: center;
-    padding: 40px 20px;
+    padding: 25px 15px;
     transition: var(--transition-normal);
     position: relative;
     overflow: hidden;
@@ -1886,17 +1939,17 @@
 }
 
 .coverage-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 15px;
     background: linear-gradient(135deg, var(--accent), var(--accent-dark));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1.4rem;
     color: var(--bg-primary);
-    box-shadow: 0 10px 30px rgba(240, 180, 41, 0.3);
+    box-shadow: 0 8px 25px rgba(240, 180, 41, 0.3);
 }
 
 .coverage-card.primary .coverage-icon {
@@ -1912,18 +1965,55 @@
 
 .coverage-card p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+.coverage-card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
 @media (max-width: 968px) {
     .coverage-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+    
+    .coverage-card {
+        padding: 20px 10px;
+    }
+    
+    .coverage-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .coverage-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 }
 
 @media (max-width: 480px) {
     .coverage-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .coverage-card {
+        padding: 15px 8px;
     }
 }
 

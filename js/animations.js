@@ -8,23 +8,272 @@
  * efecto parallax y tarjetas 3D interactivas.
  */
 
+// ================================================
+// TYPOGRAPHER - Typing Effect con colores alternados
+// ================================================
+const Typographer = {
+    elements: [],
+    queue: [],
+    isTyping: false,
+    
+    init() {
+        this.elements = document.querySelectorAll('[data-type]');
+        if (!this.elements.length) return;
+        
+        this.elements.forEach(el => {
+            const texts = el.dataset.type.split('|');
+            const speed = parseInt(el.dataset.typeSpeed) || 80;
+            const delay = parseInt(el.dataset.typeDelay) || 0;
+            el._texts = texts;
+            el._speed = speed;
+            el._index = 0;
+            el._charIndex = 0;
+            el._isDeleting = false;
+            el._fullText = '';
+            
+            if (delay > 0) {
+                setTimeout(() => this.queueType(el), delay);
+            } else {
+                this.queueType(el);
+            }
+        });
+    },
+    
+    queueType(el) {
+        this.queue.push(el);
+        if (!this.isTyping) this.processQueue();
+    },
+    
+    processQueue() {
+        if (this.queue.length === 0) {
+            this.isTyping = false;
+            return;
+        }
+        
+        this.isTyping = true;
+        const el = this.queue.shift();
+        this.typeText(el);
+    },
+    
+    typeText(el) {
+        const texts = el._texts;
+        const currentIndex = el._index;
+        const currentText = texts[currentIndex];
+        const isDeleting = el._isDeleting;
+        const speed = el._speed;
+        
+        if (isDeleting) {
+            el.textContent = currentText.substring(0, el._charIndex - 1);
+            el._charIndex--;
+        } else {
+            el.textContent = currentText.substring(0, el._charIndex + 1);
+            el._charIndex++;
+        }
+        
+        let typeSpeed = speed;
+        if (isDeleting) typeSpeed /= 2;
+        
+        if (!isDeleting && el._charIndex === currentText.length) {
+            if (el._index < texts.length - 1) {
+                typeSpeed = 2000;
+                el._isDeleting = true;
+            } else {
+                this.finalizeText(el);
+                this.processQueue();
+                return;
+            }
+        }
+        
+        if (isDeleting && el._charIndex === 0) {
+            el._isDeleting = false;
+            el._index++;
+            if (el._index >= texts.length) {
+                el._index = 0;
+                this.finalizeText(el);
+                this.processQueue();
+                return;
+            }
+            typeSpeed = 500;
+        }
+        
+        setTimeout(() => this.typeText(el), typeSpeed);
+    },
+    
+    finalizeText(el) {
+        const texts = el._texts;
+        el.innerHTML = texts.map((phrase, i) => {
+            const isEven = i % 2 === 0;
+            return `<span class="phrase-${i}" style="color: ${isEven ? 'white' : '#f0b429'}">${phrase}</span>`;
+        }).join(' ');
+    }
+};
+
+// ================================================
+// FLOATING PHYSICS - Elementos con física simulada
+// ================================================
+const FloatingPhysics = {
+    items: [],
+    mouse: { x: 0, y: 0 },
+    rafId: null,
+    
+    init() {
+        const items = document.querySelectorAll('.floating-physics');
+        if (!items.length) return;
+        
+        items.forEach(item => {
+            const rect = item.getBoundingClientRect();
+            this.items.push({
+                el: item,
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2,
+                vx: 0,
+                vy: 0,
+                targetX: rect.left + rect.width / 2,
+                targetY: rect.top + rect.height / 2,
+                friction: 0.92,
+                spring: 0.08,
+                maxSpeed: 8,
+                offsetY: Math.random() * 40 - 20,
+                speedY: 0.02 + Math.random() * 0.02,
+                phase: Math.random() * Math.PI * 2
+            });
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            this.mouse.x = e.clientX;
+            this.mouse.y = e.clientY;
+        });
+        
+        this.animate();
+    },
+    
+    animate() {
+        const time = performance.now() * 0.001;
+        
+        this.items.forEach(item => {
+            const dx = this.mouse.x - item.x;
+            const dy = this.mouse.y - item.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            if (dist < 200) {
+                const force = (200 - dist) / 200 * 0.02;
+                item.vx -= dx * force;
+                item.vy -= dy * force;
+            }
+            
+            item.vy += Math.sin(time * item.speedY + item.phase) * 0.3;
+            
+            item.vx *= item.friction;
+            item.vy *= item.friction;
+            
+            const speed = Math.sqrt(item.vx * item.vx + item.vy * item.vy);
+            if (speed > item.maxSpeed) {
+                item.vx = (item.vx / speed) * item.maxSpeed;
+                item.vy = (item.vy / speed) * item.maxSpeed;
+            }
+            
+            item.x += item.vx;
+            item.y += item.vy;
+            
+            item.el.style.transform = `translate(${item.x - item.targetX}px, ${item.y - item.targetY + Math.sin(time + item.phase) * item.offsetY}px)`;
+        });
+        
+        this.rafId = requestAnimationFrame(() => this.animate());
+    }
+};
+
 // Módulo principal que gestiona todas las animaciones de la página
 const Animations = {
     // Verifica si el usuario prefiere movimiento reducido (accesibilidad)
     prefersReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
 
-    // Inicializa todas las funcionalidades de animación disponibles
+// Inicializa todas las funcionalidades de animación disponibles
     // Este método es el punto de entrada principal que se llama desde el código
     init() {
         this.initAOS();        // Inicializa animaciones al hacer scroll
         this.initCounters();   // Inicializa contadores animados
+        try { this.initTypographer(); } catch(e) { console.warn('Typographer error:', e); }
         if (!this.prefersReducedMotion) {
             this.initParallax();   // Inicializa efecto parallax (omitir si prefiere movimiento reducido)
             this.init3DCards();    // Inicializa efecto 3D en tarjetas
             this.initSectionParallax(); // Parallax por sección
             this.initGSAP3D();     // Inicializa animaciones 3D avanzadas con GSAP
+            try { this.initFloatingPhysics(); } catch(e) { console.warn('FloatingPhysics error:', e); }
         }
         this.initScrollReveal(); // Inicializa revelado progresivo al scroll
+    },
+
+    initTypographer() {
+        if (typeof Typographer !== 'undefined') {
+            Typographer.init();
+        }
+    },
+
+    initFloatingPhysics() {
+        if (typeof FloatingPhysics !== 'undefined') {
+            FloatingPhysics.init();
+        }
+    },
+
+    /**
+     * Contadores Animados Mejorados
+     */
+    initCounters() {
+        const counters = document.querySelectorAll('.counter');
+        
+        if (!counters.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                    entry.target.classList.add('counted');
+                    this.animateCounterEnhanced(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => observer.observe(counter));
+    },
+
+    animateCounterEnhanced(element) {
+        const target = parseInt(element.dataset.target);
+        const suffix = element.dataset.suffix || '';
+        const prefix = element.dataset.prefix || '';
+        const duration = 2500;
+        const frameRate = 60;
+        const frames = duration / 1000 * frameRate;
+        let current = 0;
+        let frame = 0;
+        const easeOut = t => 1 - Math.pow(1 - t, 4);
+        
+        const update = () => {
+            frame++;
+            const progress = Math.min(frame / frames, 1);
+            const easedProgress = easeOut(progress);
+            current = Math.floor(easedProgress * target);
+            
+            const formattedValue = this.formatCounterValue(current);
+            element.textContent = prefix + formattedValue + suffix;
+            
+            if (frame < frames) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = prefix + this.formatCounterValue(target) + suffix;
+                element.classList.add('counter-complete');
+            }
+        };
+        
+        requestAnimationFrame(update);
+    },
+
+    formatCounterValue(value) {
+        if (value >= 1000000) {
+            return (value / 1000000).toFixed(1).replace('.0', '') + 'M';
+        }
+        if (value >= 1000) {
+            return value.toLocaleString('es-ES');
+        }
+        return value.toString();
     },
 
     /**

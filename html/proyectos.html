@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="icon" type="image/png" href="../assets/eds_useful_images/logo.png" />
 
+    <style>
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes gradientShift{0%{background-position:0 0}100%{background-position:300% 0}}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -360,14 +364,19 @@
   </head>
   <body>
     <div id="preloader" class="preloader">
-      <div class="intro-panel">
-        <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
-        <div class="intro-loaders">
-          <div class="loader loader--e"><svg viewBox="0 0 80 80"><path d="M60 12 H22 V68 H60 M22 40 H52"></path></svg></div>
-          <div class="loader loader--d"><svg viewBox="0 0 80 80"><path d="M22 12 V68 H50 Q62 68 62 56 V24 Q62 12 50 12 H22"></path></svg></div>
-          <div class="loader loader--s"><svg viewBox="0 0 80 80"><path d="M52 16 H28 Q16 16 16 28 Q16 40 28 40 H52 Q64 40 64 52 Q64 64 52 64 H28 Q16 64 16 52"></path></svg></div>
+      <div class="intro-panel" style="max-width:600px;text-align:center;">
+        <div style="width:100px;height:100px;margin:0 auto 25px;background:linear-gradient(135deg,#1565c0,#f0b429);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 15px 50px rgba(21,101,192,0.4);">
+          <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" style="width:65px;height:auto;" />
         </div>
-        <div class="intro-status"><span class="status-dot"></span><span>Cargando...</span></div>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#fff;letter-spacing:3px;margin-bottom:8px;">EDS EDIFICACIONES INTELIGENTES</p>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.8);margin-bottom:15px;line-height:1.6;">Desarrollamos proyectos de construcciones inteligentes con enfoque tecnológico, sistemas de comunicación, seguridad electrónica e Internet de las cosas.</p>
+        <div style="display:inline-block;padding:8px 20px;background:rgba(240,180,41,0.2);border:1px solid #f0b429;border-radius:30px;margin-bottom:30px;">
+          <span style="color:#f0b429;font-weight:700;font-size:0.9rem;">+10 AÑOS DE EXPERIENCIA</span>
+        </div>
+        <div style="display:flex;gap:30px;justify-content:center;">
+          <div class="loader" style="width:35px;height:35px;border:3px solid rgba(21,101,192,0.3);border-top-color:#1565c0;border-radius:50%;animation:spin 1s linear infinite;"></div>
+        </div>
+        <p style="margin-top:18px;font-size:0.8rem;color:rgba(255,255,255,0.5);">Cargando proyectos...</p>
       </div>
     </div>
 
@@ -456,7 +465,7 @@
             <div class="proj-card-body">
               <p class="proj-card-client">Municipalidad Provincial de Melgar</p>
               <h3 class="proj-card-title">Centro de Seguridad Ciudadana</h3>
-              <p class="proj-card-desc">Sistema integral de monitoreo con 120 cámaras de alta definición y centro de control avanzado para la vigilancia urbana total, incluyendo sala de control y software de gestión avanzado.</p>
+              <p class="proj-card-desc">Sistema integral de videovigilancia con 120 cámaras HD, centro de control y software de gestión en tiempo real.</p>
               <div class="proj-card-meta">
                 <div class="proj-card-investment">S/ 4.2M <span>Inversión</span></div>
                 <div class="proj-card-partners">
@@ -478,7 +487,7 @@
             <div class="proj-card-body">
               <p class="proj-card-client">Dist. J.L. Bustamante y Rivero</p>
               <h3 class="proj-card-title">Semáforos Inteligentes</h3>
-              <p class="proj-card-desc">Sistema semafórico con control centralizado para 15 intersecciones principales y reducción del 35% en tiempos de espera.</p>
+              <p class="proj-card-desc">Sistema semafórico inteligentes con control centralizado para 15 intersecciones con reducción del 35% en tiempos de espera.</p>
               <div class="proj-card-meta">
                 <div class="proj-card-investment">S/ 8.5M <span>Inversión</span></div>
                 <div class="proj-card-partners">
@@ -499,7 +508,7 @@
             <div class="proj-card-body">
               <p class="proj-card-client">Iquitos, Loreto</p>
               <h3 class="proj-card-title">Radio Base de Comunicaciones</h3>
-              <p class="proj-card-desc">Torre 45m con cobertura 50km para zonas remotas, frecuencias VHF/UHF y respaldo 72 horas continuas.</p>
+              <p class="proj-card-desc">Torre de telecomunicaciones de 45m con cobertura de 50km para zonas remotas con respaldo de energía de 72h.</p>
               <div class="proj-card-meta">
                 <div class="proj-card-investment">S/ 6.8M <span>Inversión</span></div>
                 <div class="proj-card-partners">
@@ -520,7 +529,7 @@
             <div class="proj-card-body">
               <p class="proj-card-client">UGEL Arequipa Norte</p>
               <h3 class="proj-card-title">I.E. Nº 40208</h3>
-              <p class="proj-card-desc">18 aulas antisísmicas, 3 niveles, laboratorios equipados y áreas recreativas para 900 alumnos.</p>
+              <p class="proj-card-desc">Institución educativa de 3 niveles con 18 aulas antisísmicas, laboratorios y áreas recreativas para 900 alumnos.</p>
               <div class="proj-card-meta">
                 <div class="proj-card-investment">S/ 5.1M <span>Inversión</span></div>
                 <div class="proj-card-partners">
@@ -541,7 +550,7 @@
             <div class="proj-card-body">
               <p class="proj-card-client">Complejo Industrial Arequipa</p>
               <h3 class="proj-card-title">Video Vigilancia Industrial</h3>
-              <p class="proj-card-desc">200 cámaras IP 4K con IA integrada, detección de movimiento y reconocimiento facial. Grabación 120 días.</p>
+              <p class="proj-card-desc">Sistema de videovigilancia industrial con 200 cámaras IP 4K con inteligencia artificial y análisis en tiempo real.</p>
               <div class="proj-card-meta">
                 <div class="proj-card-investment">S/ 2.8M <span>Inversión</span></div>
                 <div class="proj-card-partners">
@@ -743,74 +752,75 @@
       </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" style="background:linear-gradient(135deg, #0f172a 0%, #1e293b 100%);padding:60px 0 30px;">
       <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <a href="../index.html" class="logo" style="display: block; margin-bottom: 20px;">
-              <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" style="max-width: 200px; height: auto;" />
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px;align-items:start;">
+          <div style="grid-column:span 1;">
+            <a href="../index.html" style="display:block;margin-bottom:15px;">
+              <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" style="max-width:180px;height:auto;" />
             </a>
-            <p>Somos la empresa líder en edificaciones inteligentes en el sur del Perú, ofreciendo soluciones tecnológicas integrales para la construcción.</p>
-            <div class="footer-social">
-              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-              <a href="https://wa.me/51950313642" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#fff;letter-spacing:1px;margin-bottom:12px;">CONSTRUYENDO EL <span style="color:#f0b429;">FUTURO CON TECNOLOGÍA</span></h3>
+            <p style="color:rgba(255,255,255,0.75);font-size:0.9rem;line-height:1.6;margin-bottom:15px;max-width:300px;">Líderes en seguridad electrónica, comunicaciones, automatización IoT, cableado estructurado y energía renovable.</p>
+            <div style="display:inline-block;padding:8px 16px;background:rgba(240,180,41,0.15);border:1px solid #f0b429;border-radius:30px;">
+              <span style="color:#f0b429;font-weight:700;font-size:0.8rem;">+10 AÑOS DE EXPERIENCIA</span>
             </div>
           </div>
-          <div class="footer-links-col">
-            <h4 class="footer-title">Navegación</h4>
-            <ul class="footer-links">
-              <li><a href="../index.html">Inicio</a></li>
-              <li><a href="../index.html#nosotros">Nosotros</a></li>
-              <li><a href="../index.html#servicios">Servicios</a></li>
-              <li><a href="../index.html#cobertura">Cobertura</a></li>
-              <li><a href="proyectos.html">Proyectos</a></li>
-              <li><a href="socios.html">Socios</a></li>
-              <li><a href="contacto.html">Contacto</a></li>
+          </div>
+          <div style="grid-column:span 1;">
+            <h4 style="color:#f0b429;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:15px;">Navegación</h4>
+            <ul style="list-style:none;padding:0;margin:0;">
+              <li style="margin-bottom:10px;"><a href="../index.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Inicio</a></li>
+              <li style="margin-bottom:10px;"><a href="../index.html#nosotros" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Nosotros</a></li>
+              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Servicios</a></li>
+              <li style="margin-bottom:10px;"><a href="../index.html#cobertura" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Cobertura</a></li>
+              <li style="margin-bottom:10px;"><a href="proyectos.html" style="color:#f0b429;font-size:0.9rem;">Proyectos</a></li>
+              <li style="margin-bottom:10px;"><a href="socios.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Socios</a></li>
+              <li style="margin-bottom:10px;"><a href="contacto.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Contacto</a></li>
             </ul>
           </div>
-          <div class="footer-links-col">
-            <h4 class="footer-title">Servicios</h4>
-            <ul class="footer-links">
-              <li><a href="../index.html#servicios">Construcción Civil</a></li>
-              <li><a href="../index.html#servicios">Video Vigilancia</a></li>
-              <li><a href="../index.html#servicios">Redes y Telecom</a></li>
-              <li><a href="../index.html#servicios">Control de Accesos</a></li>
-              <li><a href="../index.html#servicios">Energía Renovable</a></li>
-              <li><a href="../index.html#servicios">Cableado Estructurado</a></li>
+          <div style="grid-column:span 1;">
+            <h4 style="color:#f0b429;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;">Síguenos</h4>
+            <div style="display:flex;gap:12px;">
+              <a href="#" style="width:44px;height:44px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" style="width:44px;height:44px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" style="width:44px;height:44px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/51950313642" style="width:44px;height:44px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+          <div style="grid-column:span 1;">
+            <h4 style="color:#f0b429;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:15px;">Servicios</h4>
+            <ul style="list-style:none;padding:0;margin:0;">
+              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Construcción Civil</a></li>
+              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Video Vigilancia</a></li>
+              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Redes y Telecom</a></li>
+              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Control de Accesos</a></li>
+              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Energía Renovable</a></li>
+              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Cableado Estructurado</a></li>
             </ul>
           </div>
-          <div class="footer-contact-col">
-            <h4 class="footer-title">Contacto</h4>
-            <ul class="footer-contact">
-              <li>
-                <i class="fas fa-phone"></i>
-                <div>
-                  <p><strong>WhatsApp:</strong></p>
-                  <a href="https://wa.me/51950313642">950 313 642</a>
-                </div>
+          <div style="grid-column:span 1;">
+            <h4 style="color:#f0b429;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:15px;">Contacto</h4>
+            <ul style="list-style:none;padding:0;margin:0;">
+              <li style="margin-bottom:15px;display:flex;align-items:center;gap:10px;">
+                <i class="fab fa-whatsapp" style="color:#25D366;"></i>
+                <a href="https://wa.me/51950313642" style="color:#fff;font-size:0.95rem;">950 313 642</a>
               </li>
-              <li>
-                <i class="fas fa-envelope"></i>
-                <div>
-                  <p><strong>Email:</strong></p>
-                  <a href="mailto:rocio.jara@edin-tel.com">rocio.jara@edin-tel.com</a>
-                </div>
+              <li style="margin-bottom:15px;display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-envelope" style="color:#f0b429;"></i>
+                <a href="mailto:rocio.jara@edin-tel.com" style="color:#fff;font-size:0.95rem;">rocio.jara@edin-tel.com</a>
               </li>
-              <li>
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                  <p><strong>Dirección:</strong></p>
-                  <p>Urb. Las Peñas A-35, Sachaca, Arequipa</p>
-                </div>
+              <li style="margin-bottom:15px;display:flex;align-items:flex-start;gap:10px;">
+                <i class="fas fa-map-marker-alt" style="color:#f0b429;margin-top:3px;"></i>
+                <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin:0;">Urb. Las Peñas A-35<br/>Sachaca, Arequipa</p>
               </li>
             </ul>
           </div>
         </div>
-        <div class="footer-bottom">
-          <p>&copy; 2024 <a href="../index.html">EDS Edificaciones Inteligentes SAC</a>. Todos los derechos reservados.</p>
-          <p>RUC: 20608965765</p>
+          </div>
+        </div>
+        </div>
+        <div style="text-align:center;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);margin-top:30px;">
+          <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;">&copy; 2024 <a href="../index.html" style="color:#f0b429;">EDS Edificaciones Inteligentes SAC</a>. Todos los derechos reservados. | RUC: 20608965765</p>
         </div>
       </div>
     </footer>
