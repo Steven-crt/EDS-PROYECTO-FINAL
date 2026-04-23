@@ -303,7 +303,7 @@
 
 .floating-badge {
     position: absolute;
-    background: rgba(21, 101, 192, 0.6); /* Primary Blue based */
+    background: rgba(21, 101, 192, 0.6);
     backdrop-filter: blur(12px);
     padding: 1rem 1.5rem;
     border-radius: 16px;
@@ -314,11 +314,57 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-badge:hover {
+    transform: translateY(-15px) scale(1.1);
+    background: rgba(21, 101, 192, 0.9);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 40px rgba(255,193,7,0.4);
+    border-color: rgba(255, 193, 7, 0.7);
+}
+
+.floating-badge:hover i {
+    animation: iconPulse 0.6s ease-in-out infinite;
 }
 
 .floating-badge i {
     font-size: 1.5rem;
-    color: var(--accent); /* Yellow accent */
+    color: var(--accent);
+    transition: transform 0.3s ease;
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-3px) rotate(-5deg); }
+    50% { transform: translateY(-5px) rotate(5deg); }
+    75% { transform: translateY(-3px) rotate(-3deg); }
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+.float-anim-1 { 
+    animation: floatAnim1 6s ease-in-out infinite, badgeGlow 3s ease-in-out infinite; 
+}
+.float-anim-2 { 
+    animation: floatAnim2 7s ease-in-out infinite; animation-delay: 1s; 
+}
+.float-anim-3 { 
+    animation: floatAnim3 5s ease-in-out infinite; animation-delay: 2s; 
+}
+
+@keyframes badgeGlow {
+    0%, 100% { box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 15px rgba(255,193,7,0.1); }
+    50% { box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 25px rgba(255,193,7,0.3); }
 }
 
 .badge-1 { top: 15%; right: 5%; }
@@ -326,16 +372,21 @@
 .badge-3 { top: 75%; right: 10%; }
 
 @keyframes floatAnim1 {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-20px) rotate(2deg); }
+    50% { transform: translateY(-10px) rotate(-1deg); }
+    75% { transform: translateY(-25px) rotate(1deg); }
 }
 @keyframes floatAnim2 {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-15px) rotate(3deg); }
+    66% { transform: translateY(-20px) rotate(-2deg); }
 }
 @keyframes floatAnim3 {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-25px); }
+    0%, 100% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-25px) scale(1.02); }
+    50% { transform: translateY(-15px) scale(0.98); }
+    75% { transform: translateY(-30px) scale(1.01); }
 }
 
 .float-anim-1 { animation: floatAnim1 6s ease-in-out infinite; }

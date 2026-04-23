@@ -102,8 +102,8 @@ const Typographer = {
     finalizeText(el) {
         const texts = el._texts;
         el.innerHTML = texts.map((phrase, i) => {
-            const isEven = i % 2 === 0;
-            return `<span class="phrase-${i}" style="color: ${isEven ? 'white' : '#f0b429'}">${phrase}</span>`;
+            const isWhite = i % 2 === 0; // Alternar entre blanco y dorado (accent)
+            return `<span class="phrase-${i}" style="color: ${isWhite ? '#ffffff' : 'var(--accent)'}">${phrase}</span>`;
         }).join(' ');
     }
 };
@@ -596,4 +596,3 @@ const Particles = {
         }
     }
 };
-

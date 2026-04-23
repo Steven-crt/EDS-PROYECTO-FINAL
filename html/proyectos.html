@@ -10,377 +10,465 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="icon" type="image/png" href="../assets/eds_useful_images/logo.png" />
 
-    <style>
-    @keyframes spin{to{transform:rotate(360deg)}}
-    @keyframes gradientShift{0%{background-position:0 0}100%{background-position:300% 0}}
+<style>
+      @keyframes gradientShift{0%{background-position:0 0}100%{background-position:300% 0}}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+      </style>
 
-    <style>
-      .projects-hero {
-        padding: 160px 0 90px;
-        background: linear-gradient(135deg, #0a1628 0%, #0d2040 40%, #0f1f3d 100%);
-        position: relative;
-        overflow: hidden;
-        text-align: center;
-      }
-      .projects-hero::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(ellipse at 20% 60%, rgba(21, 101, 192, 0.3), transparent 50%),
-          radial-gradient(ellipse at 80% 30%, rgba(240, 180, 41, 0.15), transparent 40%),
-          radial-gradient(ellipse at 50% 100%, rgba(21, 101, 192, 0.15), transparent 50%);
-      }
-      .projects-hero::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: linear-gradient(90deg, #1565c0, #f0b429, #e53935, #1565c0);
-        background-size: 300% 100%;
-        animation: gradientShift 4s linear infinite;
-      }
-      .projects-hero .container { position: relative; z-index: 2; }
-      .projects-hero-kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: rgba(255,255,255,0.07);
-        border: 1px solid rgba(240, 180, 41, 0.3);
-        color: #f0b429;
-        padding: 8px 20px;
-        border-radius: 50px;
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 0.85rem;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 20px;
-        backdrop-filter: blur(10px);
-      }
-      .projects-hero-kicker::before {
-        content: '';
-        width: 8px;
-        height: 8px;
-        background: #f0b429;
-        border-radius: 50%;
-        box-shadow: 0 0 10px rgba(240, 180, 41, 0.6);
-        animation: pulse 1.5s ease-in-out infinite;
-      }
-      .projects-hero h1 {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: clamp(2.8rem, 6vw, 5rem);
-        color: white;
-        letter-spacing: 2px;
-        margin-bottom: 18px;
-        text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      }
-      .projects-hero h1 span { color: #f0b429; text-shadow: 0 0 30px rgba(240, 180, 41, 0.4); }
-      .projects-hero p {
-        color: rgba(255,255,255,0.72);
-        font-size: 1.15rem;
-        max-width: 600px;
-        margin: 0 auto 40px;
-        line-height: 1.7;
-      }
-      .projects-hero-stats { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
-      .projects-hero-stat { text-align: center; }
-      .projects-hero-stat-number {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 2.8rem;
-        color: #f0b429;
-        line-height: 1;
-        display: block;
-      }
-      .projects-hero-stat-label {
-        color: rgba(255,255,255,0.55);
-        font-size: 0.85rem;
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-      }
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-      .projects-filter-section {
-        padding: 25px 0;
-        background: white;
-        border-bottom: 1px solid rgba(0,0,0,0.08);
-        position: sticky;
-        top: 70px;
-        z-index: 100;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-      }
-      .projects-filter-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 16px;
-      }
-      .filter-label {
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 0.85rem;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: #6b7280;
-        white-space: nowrap;
-      }
-      .filter-chips { display: flex; gap: 10px; flex-wrap: wrap; }
-      .filter-chip {
-        padding: 9px 20px;
-        border-radius: 50px;
-        border: 1.5px solid #e2e8f0;
-        background: transparent;
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 0.88rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #4b5563;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        display: flex;
-        align-items: center;
-        gap: 7px;
-      }
-      .filter-chip i { font-size: 0.85rem; }
-      .filter-chip:hover { border-color: #1565c0; color: #1565c0; background: rgba(21, 101, 192, 0.05); transform: translateY(-1px); }
-      .filter-chip.active { background: linear-gradient(135deg, #1565c0, #1e88e5); border-color: transparent; color: white; box-shadow: 0 4px 15px rgba(21, 101, 192, 0.35); }
-      .filter-count { font-size: 0.78rem; padding: 2px 8px; border-radius: 20px; font-weight: 700; }
-      .filter-chip.active .filter-count { background: rgba(255,255,255,0.25); }
-      .filter-chip:not(.active) .filter-count { background: #f1f5f9; color: #6b7280; }
+     <style>
+       /* ========== HERO SECTION ========== */
+       .projects-hero {
+         padding: 160px 0 90px;
+         background: linear-gradient(135deg, #0a1628 0%, #0d2040 40%, #0f1f3d 100%);
+         position: relative;
+         overflow: hidden;
+         text-align: center;
+       }
+       .projects-hero::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         background:
+           radial-gradient(ellipse at 20% 60%, rgba(21, 101, 192, 0.3), transparent 50%),
+           radial-gradient(ellipse at 80% 30%, rgba(240, 180, 41, 0.15), transparent 40%),
+           radial-gradient(ellipse at 50% 100%, rgba(21, 101, 192, 0.15), transparent 50%);
+       }
+       .projects-hero::after {
+         content: '';
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         width: 100%;
+         height: 4px;
+         background: linear-gradient(90deg, #1565c0, #f0b429, #e53935, #1565c0);
+         background-size: 300% 100%;
+         animation: gradientShift 4s linear infinite;
+       }
+       .projects-hero .container { position: relative; z-index: 2; }
+       .projects-hero-kicker {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         background: rgba(255,255,255,0.07);
+         border: 1px solid rgba(240, 180, 41, 0.3);
+         color: #f0b429;
+         padding: 8px 20px;
+         border-radius: 50px;
+         font-family: 'Rajdhani', sans-serif;
+         font-size: 0.85rem;
+         font-weight: 700;
+         letter-spacing: 2px;
+         text-transform: uppercase;
+         margin-bottom: 20px;
+         backdrop-filter: blur(10px);
+       }
+       .projects-hero-kicker::before {
+         content: '';
+         width: 8px;
+         height: 8px;
+         background: #f0b429;
+         border-radius: 50%;
+         box-shadow: 0 0 10px rgba(240, 180, 41, 0.6);
+         animation: pulse 1.5s ease-in-out infinite;
+       }
+       .projects-hero h1 {
+         font-family: 'Bebas Neue', sans-serif;
+         font-size: clamp(2.8rem, 6vw, 5rem);
+         color: white;
+         letter-spacing: 2px;
+         margin-bottom: 18px;
+         text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+       }
+       .projects-hero h1 span { color: #f0b429; text-shadow: 0 0 30px rgba(240, 180, 41, 0.4); }
+       .projects-hero p {
+         color: rgba(255,255,255,0.72);
+         font-size: 1.15rem;
+         max-width: 600px;
+         margin: 0 auto 40px;
+         line-height: 1.7;
+       }
+       .projects-hero-stats { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
+       .projects-hero-stat { text-align: center; }
+       .projects-hero-stat-number {
+         font-family: 'Bebas Neue', sans-serif;
+         font-size: 2.8rem;
+         color: #f0b429;
+         line-height: 1;
+         display: block;
+       }
+       .projects-hero-stat-label {
+         color: rgba(255,255,255,0.55);
+         font-size: 0.85rem;
+         font-family: 'Rajdhani', sans-serif;
+         font-weight: 600;
+         letter-spacing: 1px;
+         text-transform: uppercase;
+       }
 
-      .projects-main-section { padding: 70px 0 100px; background: #f8fafc; }
-      .projects-section-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 45px;
-        flex-wrap: wrap;
-        gap: 20px;
-      }
-      .projects-section-title-group h2 {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 2.5rem;
-        letter-spacing: 2px;
-        color: #1f2937;
-      }
-      .projects-section-title-group p { color: #6b7280; font-size: 0.95rem; margin-top: 4px; }
+       /* ========== FILTER SECTION ========== */
+       .projects-filter-section {
+         padding: 25px 0;
+         background: white;
+         border-bottom: 1px solid rgba(0,0,0,0.08);
+         position: sticky;
+         top: 70px;
+         z-index: 100;
+         box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+       }
+       .projects-filter-inner {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         flex-wrap: wrap;
+         gap: 16px;
+       }
+       .filter-label {
+         font-family: 'Rajdhani', sans-serif;
+         font-size: 0.85rem;
+         font-weight: 700;
+         letter-spacing: 2px;
+         text-transform: uppercase;
+         color: #6b7280;
+         white-space: nowrap;
+       }
+       .filter-chips { display: flex; gap: 10px; flex-wrap: wrap; }
+       .filter-chip {
+         padding: 9px 20px;
+         border-radius: 50px;
+         border: 1.5px solid #e2e8f0;
+         background: transparent;
+         font-family: 'Rajdhani', sans-serif;
+         font-size: 0.88rem;
+         font-weight: 700;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         color: #4b5563;
+         cursor: pointer;
+         transition: all 0.25s ease;
+         display: flex;
+         align-items: center;
+         gap: 7px;
+       }
+       .filter-chip i { font-size: 0.85rem; }
+       .filter-chip:hover { border-color: #1565c0; color: #1565c0; background: rgba(21, 101, 192, 0.05); transform: translateY(-1px); }
+       .filter-chip.active { background: linear-gradient(135deg, #1565c0, #1e88e5); border-color: transparent; color: white; box-shadow: 0 4px 15px rgba(21, 101, 192, 0.35); }
+       .filter-count { font-size: 0.78rem; padding: 2px 8px; border-radius: 20px; font-weight: 700; }
+       .filter-chip.active .filter-count { background: rgba(255,255,255,0.25); }
+       .filter-chip:not(.active) .filter-count { background: #f1f5f9; color: #6b7280; }
 
-      .projects-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+       /* ========== MAIN SECTION ========== */
+       .projects-main-section { padding: 70px 0 100px; background: #f8fafc; }
+       .projects-section-header {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         margin-bottom: 45px;
+         flex-wrap: wrap;
+         gap: 20px;
+       }
+       .projects-section-title-group h2 {
+         font-family: 'Bebas Neue', sans-serif;
+         font-size: 2.5rem;
+         letter-spacing: 2px;
+         color: #1f2937;
+       }
+       .projects-section-title-group p { color: #6b7280; font-size: 0.95rem; margin-top: 4px; }
 
-      .proj-card {
-        background: white;
-        border-radius: 22px;
-        overflow: hidden;
-        border: 1px solid rgba(0,0,0,0.07);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-      }
-      .proj-card:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(21, 101, 192, 0.15); border-color: rgba(21, 101, 192, 0.2); }
-      .proj-card.featured { grid-column: span 2; }
+       .projects-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 
-      .proj-card-image { position: relative; overflow: hidden; aspect-ratio: 16/9; flex-shrink: 0; }
-      .proj-card.featured .proj-card-image { aspect-ratio: 16/8; }
-      .proj-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-      .proj-card:hover .proj-card-image img { transform: scale(1.07); }
+       /* ========== PROJECT CARD ========== */
+       .proj-card {
+         background: white;
+         border-radius: 22px;
+         overflow: hidden;
+         border: 1px solid rgba(0,0,0,0.07);
+         box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+         transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+         cursor: pointer;
+         display: flex;
+         flex-direction: column;
+         position: relative;
+       }
+       .proj-card::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         height: 4px;
+         background: linear-gradient(90deg, #1565c0, #f0b429);
+         transform: scaleX(0);
+         transform-origin: left;
+         transition: transform 0.5s ease;
+         z-index: 2;
+       }
+       .proj-card:hover::before { transform: scaleX(1); }
+       .proj-card:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(21, 101, 192, 0.15); border-color: rgba(21, 101, 192, 0.2); }
+       .proj-card.featured { grid-column: span 2; }
 
-      .proj-card-badge {
-        position: absolute;
-        top: 16px;
-        left: 16px;
-        padding: 6px 14px;
-        border-radius: 50px;
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        backdrop-filter: blur(10px);
-      }
-      .proj-card-badge.concluido { background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: #16a34a; }
-      .proj-card-badge.ejecucion { background: rgba(240, 180, 41, 0.25); border: 1px solid rgba(240, 180, 41, 0.5); color: #d4a017; }
+       .proj-card-image { position: relative; overflow: hidden; aspect-ratio: 16/9; flex-shrink: 0; }
+       .proj-card.featured .proj-card-image { aspect-ratio: 16/8; }
+       .proj-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+       .proj-card:hover .proj-card-image img { transform: scale(1.07); }
 
-      .proj-card-category-tag {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        background: rgba(0,0,0,0.55);
-        backdrop-filter: blur(10px);
-        color: rgba(255,255,255,0.85);
-        padding: 5px 12px;
-        border-radius: 50px;
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-      }
+       .proj-card-badge {
+         position: absolute;
+         top: 16px;
+         left: 16px;
+         padding: 6px 14px;
+         border-radius: 50px;
+         font-family: 'Rajdhani', sans-serif;
+         font-size: 0.75rem;
+         font-weight: 700;
+         letter-spacing: 1px;
+         text-transform: uppercase;
+         backdrop-filter: blur(10px);
+       }
+       .proj-card-badge.concluido { background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: #16a34a; }
+       .proj-card-badge.ejecucion { background: rgba(240, 180, 41, 0.25); border: 1px solid rgba(240, 180, 41, 0.5); color: #d4a017; }
 
-      .proj-card-body { padding: 26px 28px 28px; flex: 1; display: flex; flex-direction: column; }
-      .proj-card-client {
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        color: #1565c0;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-      .proj-card-client::before { content: ''; width: 18px; height: 2px; background: #1565c0; border-radius: 2px; display: inline-block; }
-      .proj-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; color: #1f2937; margin-bottom: 10px; line-height: 1.15; }
-      .proj-card.featured .proj-card-title { font-size: 2rem; }
-      .proj-card-desc { color: #6b7280; font-size: 0.9rem; line-height: 1.65; flex: 1; margin-bottom: 20px; }
+       .proj-card-category-tag {
+         position: absolute;
+         top: 16px;
+         right: 16px;
+         background: rgba(0,0,0,0.55);
+         backdrop-filter: blur(10px);
+         color: rgba(255,255,255,0.85);
+         padding: 5px 12px;
+         border-radius: 50px;
+         font-family: 'Rajdhani', sans-serif;
+         font-size: 0.72rem;
+         font-weight: 700;
+         letter-spacing: 1px;
+         text-transform: uppercase;
+       }
 
-      .proj-card-meta {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 18px;
-        border-top: 1px solid #f1f5f9;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-      .proj-card-investment {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 1.5rem;
-        color: #f0b429;
-        letter-spacing: 1px;
-        display: flex;
-        align-items: baseline;
-        gap: 4px;
-      }
-      .proj-card-investment span { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 700; color: #9ca3af; letter-spacing: 1px; text-transform: uppercase; }
-      .proj-card-partners { display: flex; gap: 6px; flex-wrap: wrap; }
-      .proj-partner-pill { padding: 4px 10px; background: #f1f5f9; border-radius: 20px; font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; font-weight: 700; color: #4b5563; letter-spacing: 0.5px; }
+       .proj-card-body { padding: 26px 28px 28px; flex: 1; display: flex; flex-direction: column; }
+       .proj-card-client {
+         font-family: 'Rajdhani', sans-serif;
+         font-size: 0.78rem;
+         font-weight: 700;
+         letter-spacing: 1.5px;
+         text-transform: uppercase;
+         color: #1565c0;
+         margin-bottom: 8px;
+         display: flex;
+         align-items: center;
+         gap: 6px;
+       }
+       .proj-card-client::before { content: ''; width: 18px; height: 2px; background: #1565c0; border-radius: 2px; display: inline-block; }
+       .proj-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; color: #1f2937; margin-bottom: 10px; line-height: 1.15; }
+       .proj-card.featured .proj-card-title { font-size: 2rem; }
+       .proj-card-desc { color: #6b7280; font-size: 0.9rem; line-height: 1.65; flex: 1; margin-bottom: 20px; }
 
-      .proj-card-action {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 0.82rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: #1565c0;
-        margin-top: 16px;
-        transition: gap 0.2s ease;
-      }
-      .proj-card:hover .proj-card-action { gap: 10px; }
-      .proj-card-action i { font-size: 0.75rem; transition: transform 0.2s ease; }
-      .proj-card:hover .proj-card-action i { transform: translateX(3px); }
+       .proj-card-meta {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         padding-top: 18px;
+         border-top: 1px solid #f1f5f9;
+         flex-wrap: wrap;
+         gap: 12px;
+       }
+       .proj-card-investment {
+         font-family: 'Bebas Neue', sans-serif;
+         font-size: 1.5rem;
+         color: #f0b429;
+         letter-spacing: 1px;
+         display: flex;
+         align-items: baseline;
+         gap: 4px;
+       }
+       .proj-card-investment span { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 700; color: #9ca3af; letter-spacing: 1px; text-transform: uppercase; }
+       .proj-card-partners { display: flex; gap: 6px; flex-wrap: wrap; }
+       .proj-partner-pill { padding: 4px 10px; background: #f1f5f9; border-radius: 20px; font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; font-weight: 700; color: #4b5563; letter-spacing: 0.5px; }
 
-      .projects-cta {
-        padding: 90px 0;
-        background: linear-gradient(135deg, #0a1628, #0d2040);
-        position: relative;
-        overflow: hidden;
-        text-align: center;
-      }
-      .projects-cta::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(ellipse at 30% 50%, rgba(21, 101, 192, 0.25), transparent 50%),
-          radial-gradient(ellipse at 70% 50%, rgba(240, 180, 41, 0.1), transparent 50%);
-      }
-      .projects-cta .container { position: relative; z-index: 2; }
-      .projects-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 2px; color: white; margin-bottom: 15px; }
-      .projects-cta h2 span { color: #f0b429; }
-      .projects-cta p { color: rgba(255,255,255,0.7); font-size: 1.1rem; max-width: 550px; margin: 0 auto 35px; line-height: 1.7; }
+       .proj-card-action {
+         display: flex;
+         align-items: center;
+         gap: 6px;
+         font-family: 'Rajdhani', sans-serif;
+         font-size: 0.82rem;
+         font-weight: 700;
+         letter-spacing: 1px;
+         text-transform: uppercase;
+         color: #1565c0;
+         margin-top: 16px;
+         transition: gap 0.2s ease;
+       }
+       .proj-card:hover .proj-card-action { gap: 10px; }
+       .proj-card-action i { font-size: 0.75rem; transition: transform 0.2s ease; }
+       .proj-card:hover .proj-card-action i { transform: translateX(3px); }
 
-      .cta-btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-      .cta-btn-primary {
-        padding: 16px 36px;
-        background: #f0b429;
-        color: #0a1628;
-        border: none;
-        border-radius: 14px;
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 1rem;
-        font-weight: 800;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 8px 25px rgba(240, 180, 41, 0.4);
-      }
-      .cta-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 35px rgba(240, 180, 41, 0.5); background: #f5c842; color: #0a1628; }
-      .cta-btn-secondary {
-        padding: 16px 36px;
-        background: transparent;
-        color: white;
-        border: 1.5px solid rgba(255,255,255,0.3);
-        border-radius: 14px;
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 1rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-      }
-      .cta-btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); color: white; transform: translateY(-3px); }
+       /* ========== CTA SECTION ========== */
+       .projects-cta {
+         padding: 90px 0;
+         background: linear-gradient(135deg, #0a1628, #0d2040);
+         position: relative;
+         overflow: hidden;
+         text-align: center;
+       }
+       .projects-cta::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         background:
+           radial-gradient(ellipse at 30% 50%, rgba(21, 101, 192, 0.25), transparent 50%),
+           radial-gradient(ellipse at 70% 50%, rgba(240, 180, 41, 0.1), transparent 50%);
+       }
+       .projects-cta .container { position: relative; z-index: 2; }
+       .projects-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 2px; color: white; margin-bottom: 15px; }
+       .projects-cta h2 span { color: #f0b429; }
+       .projects-cta p { color: rgba(255,255,255,0.7); font-size: 1.1rem; max-width: 550px; margin: 0 auto 35px; line-height: 1.7; }
 
-      @media (max-width: 1024px) {
-        .projects-masonry { grid-template-columns: repeat(2, 1fr); }
-        .proj-card.featured { grid-column: span 2; }
-      }
-      @media (max-width: 768px) {
-        .projects-masonry { grid-template-columns: 1fr; }
-        .proj-card.featured { grid-column: span 1; }
-        .projects-filter-section { position: static; }
-        .projects-filter-inner { flex-direction: column; align-items: flex-start; }
-        .proj-card.featured .proj-card-title { font-size: 1.7rem; }
-      }
-      @media (max-width: 600px) {
-        .projects-hero-stats { gap: 30px; }
-        .projects-hero h1 { font-size: 2.8rem; }
-      }
-    </style>
+       .cta-btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+       .cta-btn-primary {
+         padding: 16px 36px;
+         background: #f0b429;
+         color: #0a1628;
+         border: none;
+         border-radius: 14px;
+         font-family: 'Rajdhani', sans-serif;
+         font-size: 1rem;
+         font-weight: 800;
+         letter-spacing: 1px;
+         text-transform: uppercase;
+         cursor: pointer;
+         display: inline-flex;
+         align-items: center;
+         gap: 10px;
+         text-decoration: none;
+         transition: all 0.3s ease;
+         box-shadow: 0 8px 25px rgba(240, 180, 41, 0.4);
+       }
+       .cta-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 35px rgba(240, 180, 41, 0.5); background: #f5c842; color: #0a1628; }
+       .cta-btn-secondary {
+         padding: 16px 36px;
+         background: transparent;
+         color: white;
+         border: 1.5px solid rgba(255,255,255,0.3);
+         border-radius: 14px;
+         font-family: 'Rajdhani', sans-serif;
+         font-size: 1rem;
+         font-weight: 700;
+         letter-spacing: 1px;
+         text-transform: uppercase;
+         cursor: pointer;
+         display: inline-flex;
+         align-items: center;
+         gap: 10px;
+         text-decoration: none;
+         transition: all 0.3s ease;
+       }
+       .cta-btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); color: white; transform: translateY(-3px); }
+
+       /* ========== STATS BAR ========== */
+       .stats-bar {
+         background: white;
+         border-radius: 20px;
+         padding: 40px;
+         margin: 60px auto;
+         max-width: 1200px;
+         box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+         gap: 40px;
+         text-align: center;
+         position: relative;
+         overflow: hidden;
+       }
+       .stats-bar::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         height: 5px;
+         background: linear-gradient(90deg, #1565c0, #f0b429, #ff8a00);
+       }
+       .stat-item {
+         padding: 25px;
+         position: relative;
+       }
+       .stat-item::after {
+         content: '';
+         position: absolute;
+         right: 0;
+         top: 20%;
+         height: 60%;
+         width: 1px;
+         background: linear-gradient(180deg, transparent, rgba(0,0,0,0.05), transparent);
+       }
+       .stat-item:last-child::after { display: none; }
+       .stat-number {
+         font-size: 3rem;
+         font-weight: 800;
+         background: linear-gradient(135deg, #1565c0, #0d47a1);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         margin-bottom: 12px;
+         line-height: 1;
+         font-family: 'Bebas Neue', sans-serif;
+       }
+       .stat-label {
+         color: #5a6c7d;
+         font-weight: 600;
+         font-size: 1rem;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+         font-family: 'Rajdhani', sans-serif;
+       }
+
+       /* ========== RESPONSIVE ========== */
+       @media (max-width: 1024px) {
+         .projects-masonry { grid-template-columns: repeat(2, 1fr); }
+         .proj-card.featured { grid-column: span 2; }
+       }
+       @media (max-width: 768px) {
+         .projects-masonry { grid-template-columns: 1fr; }
+         .proj-card.featured { grid-column: span 1; }
+         .projects-filter-section { position: static; }
+         .projects-filter-inner { flex-direction: column; align-items: flex-start; }
+         .proj-card.featured .proj-card-title { font-size: 1.7rem; }
+       }
+       @media (max-width: 600px) {
+         .projects-hero-stats { gap: 30px; }
+         .projects-hero h1 { font-size: 2.8rem; }
+         .stats-bar { grid-template-columns: 1fr; }
+         .stat-item::after { display: none; }
+       }
+     </style>
   </head>
   <body>
     <div id="preloader" class="preloader">
-      <div class="intro-panel" style="max-width:600px;text-align:center;">
-        <div style="width:100px;height:100px;margin:0 auto 25px;background:linear-gradient(135deg,#1565c0,#f0b429);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 15px 50px rgba(21,101,192,0.4);">
-          <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" style="width:65px;height:auto;" />
+      <div class="intro-panel">
+        <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
+        <div class="intro-loaders">
+          <div class="loader loader--e">
+            <svg viewBox="0 0 80 80"><path d="M60 12 H22 V68 H60 M22 40 H52"></path></svg>
+          </div>
+          <div class="loader loader--d">
+            <svg viewBox="0 0 80 80"><path d="M22 12 V68 H50 Q62 68 62 56 V24 Q62 12 50 12 H22"></path></svg>
+          </div>
+          <div class="loader loader--s">
+            <svg viewBox="0 0 80 80"><path d="M52 16 H28 Q16 16 16 28 Q16 40 28 40 H52 Q64 40 64 52 Q64 64 52 64 H28 Q16 64 16 52"></path></svg>
+          </div>
         </div>
-        <p style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#fff;letter-spacing:3px;margin-bottom:8px;">EDS EDIFICACIONES INTELIGENTES</p>
-        <p style="font-size:1rem;color:rgba(255,255,255,0.8);margin-bottom:15px;line-height:1.6;">Desarrollamos proyectos de construcciones inteligentes con enfoque tecnológico, sistemas de comunicación, seguridad electrónica e Internet de las cosas.</p>
-        <div style="display:inline-block;padding:8px 20px;background:rgba(240,180,41,0.2);border:1px solid #f0b429;border-radius:30px;margin-bottom:30px;">
-          <span style="color:#f0b429;font-weight:700;font-size:0.9rem;">+10 AÑOS DE EXPERIENCIA</span>
+        <div class="intro-status">
+          <span class="status-dot"></span>
+          <span>Cargando...</span>
         </div>
-        <div style="display:flex;gap:30px;justify-content:center;">
-          <div class="loader" style="width:35px;height:35px;border:3px solid rgba(21,101,192,0.3);border-top-color:#1565c0;border-radius:50%;animation:spin 1s linear infinite;"></div>
-        </div>
-        <p style="margin-top:18px;font-size:0.8rem;color:rgba(255,255,255,0.5);">Cargando proyectos...</p>
       </div>
     </div>
-
-    <div class="cursor-follower"></div>
 
     <header class="header">
       <div class="container header-container">
@@ -434,7 +522,7 @@
         <div class="projects-filter-inner">
           <span class="filter-label">Filtrar por:</span>
           <div class="filter-chips">
-            <button class="filter-chip active" data-filter="all"><i class="fas fa-th"></i> Todos <span class="filter-count">13</span></button>
+             <button class="filter-chip active" data-filter="all"><i class="fas fa-th"></i> Todos <span class="filter-count">13</span></button>
             <button class="filter-chip" data-filter="seguridad"><i class="fas fa-shield-alt"></i> Seguridad <span class="filter-count">5</span></button>
             <button class="filter-chip" data-filter="comunicacion"><i class="fas fa-broadcast-tower"></i> Comunicación <span class="filter-count">3</span></button>
             <button class="filter-chip" data-filter="construccion"><i class="fas fa-building"></i> Construcción <span class="filter-count">3</span></button>
@@ -444,294 +532,42 @@
       </div>
     </div>
 
+    <!-- STATS BAR -->
+    <section class="projects-main-section" style="padding-bottom:0;">
+      <div class="container">
+        <div class="stats-bar" data-aos="fade-up">
+          <div class="stat-item">
+            <div class="stat-number">13</div>
+            <div class="stat-label">Proyectos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Categorías</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">S/ 60M+</div>
+            <div class="stat-label">Inversión</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Años</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- MAIN PROJECTS -->
     <section class="projects-main-section">
       <div class="container">
         <div class="projects-section-header">
           <div class="projects-section-title-group">
             <h2>Proyectos Ejecutados</h2>
-            <p>Mostrando <strong id="visible-count">13</strong> proyectos</p>
+            <p>Mostrando <strong id="visible-count">14</strong> proyectos</p>
           </div>
         </div>
 
         <div class="projects-masonry" id="projectsGrid">
-
-          <div class="proj-card featured" data-category="seguridad">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/centro_monitoreo2.jpg" alt="Centro de Seguridad Ciudadana" />
-              <span class="proj-card-badge concluido">Concluido</span>
-              <span class="proj-card-category-tag">Seguridad</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Municipalidad Provincial de Melgar</p>
-              <h3 class="proj-card-title">Centro de Seguridad Ciudadana</h3>
-              <p class="proj-card-desc">Sistema integral de videovigilancia con 120 cámaras HD, centro de control y software de gestión en tiempo real.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 4.2M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">Hikvision</span>
-                  <span class="proj-partner-pill">Dahua</span>
-                  <span class="proj-partner-pill">FibraTel</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card" data-category="comunicacion">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/control_vehiculos.jpg" alt="Semáforos Inteligentes" />
-              <span class="proj-card-badge concluido">Concluido</span>
-              <span class="proj-card-category-tag">Comunicación</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Dist. J.L. Bustamante y Rivero</p>
-              <h3 class="proj-card-title">Semáforos Inteligentes</h3>
-              <p class="proj-card-desc">Sistema semafórico inteligentes con control centralizado para 15 intersecciones con reducción del 35% en tiempos de espera.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 8.5M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">Siemens</span>
-                  <span class="proj-partner-pill">Sice</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card" data-category="comunicacion">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/motorola_radio2.jpg" alt="Radio Base" />
-              <span class="proj-card-badge ejecucion">En Ejecución</span>
-              <span class="proj-card-category-tag">Comunicación</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Iquitos, Loreto</p>
-              <h3 class="proj-card-title">Radio Base de Comunicaciones</h3>
-              <p class="proj-card-desc">Torre de telecomunicaciones de 45m con cobertura de 50km para zonas remotas con respaldo de energía de 72h.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 6.8M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">Motorola</span>
-                  <span class="proj-partner-pill">Hytera</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card" data-category="construccion">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/auditorio.jpg" alt="IE 40208" />
-              <span class="proj-card-badge concluido">Concluido</span>
-              <span class="proj-card-category-tag">Construcción</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">UGEL Arequipa Norte</p>
-              <h3 class="proj-card-title">I.E. Nº 40208</h3>
-              <p class="proj-card-desc">Institución educativa de 3 niveles con 18 aulas antisísmicas, laboratorios y áreas recreativas para 900 alumnos.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 5.1M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">Sika</span>
-                  <span class="proj-partner-pill">Cemento Yura</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card" data-category="seguridad">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/camara_analisis.jpg" alt="Video Vigilancia Industrial" />
-              <span class="proj-card-badge concluido">Concluido</span>
-              <span class="proj-card-category-tag">Seguridad</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Complejo Industrial Arequipa</p>
-              <h3 class="proj-card-title">Video Vigilancia Industrial</h3>
-              <p class="proj-card-desc">Sistema de videovigilancia industrial con 200 cámaras IP 4K con inteligencia artificial y análisis en tiempo real.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 2.8M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">Axis</span>
-                  <span class="proj-partner-pill">Avigilon</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card featured" data-category="construccion">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/cableado1.jpg" alt="Cableado Hospital" />
-              <span class="proj-card-badge concluido">Concluido</span>
-              <span class="proj-card-category-tag">Construcción</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Hospital Regional de Arequipa</p>
-              <h3 class="proj-card-title">Cableado Estructurado Hospital Regional</h3>
-              <p class="proj-card-desc">+2,500 puntos Cat 6A con redundancia, UPS y sistemas de monitoreo para garantizar 99.99% de uptime en operaciones hospitalarias críticas y sistemas de emergencia.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 3.5M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">Panduit</span>
-                  <span class="proj-partner-pill">Legrand</span>
-                  <span class="proj-partner-pill">APC</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card" data-category="seguridad">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/alarma_control_building.png" alt="Alcaldía Municipal" />
-              <span class="proj-card-badge concluido">Concluido</span>
-              <span class="proj-card-category-tag">Seguridad</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Municipalidad Local</p>
-              <h3 class="proj-card-title">Alcaldía Municipal — Incendios</h3>
-              <p class="proj-card-desc">50+ sensores, 30 estrobos, 12 zonas de detección con central de monitoreo integrada y respuesta automática.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 1.3M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">Honeywell</span>
-                  <span class="proj-partner-pill">Bosch</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card" data-category="construccion">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/sala_control.jpg" alt="Centro Empresarial" />
-              <span class="proj-card-badge concluido">Concluido</span>
-              <span class="proj-card-category-tag">Construcción</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Centro de Negocios Sur</p>
-              <h3 class="proj-card-title">Centro Empresarial — Telecomunicaciones</h3>
-              <p class="proj-card-desc">MDF con FTTH 10G, Cat 6A, UPS respaldo 48h y plan de mantenimiento preventivo anual garantizado.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 2.1M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">Cisco</span>
-                  <span class="proj-partner-pill">APC</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card" data-category="energia">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/iot_industrial.jpg" alt="Planta Solar" />
-              <span class="proj-card-badge ejecucion">En Ejecución</span>
-              <span class="proj-card-category-tag">Energía</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Consorcio Energético</p>
-              <h3 class="proj-card-title">Planta Solar Joya — IoT Industrial</h3>
-              <p class="proj-card-desc">Supervisión SCADA con telemetría 99.9% uptime y adquisición de datos en tiempo real para optimización de paneles fotovoltaicos.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 12M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">Siemens</span>
-                  <span class="proj-partner-pill">Schneider</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card" data-category="comunicacion">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/comunicacion_seguridad.jpg" alt="Campus Universitario" />
-              <span class="proj-card-badge concluido">Concluido</span>
-              <span class="proj-card-category-tag">Comunicación</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Universidad Privada</p>
-              <h3 class="proj-card-title">Campus Universitario — WiFi 6</h3>
-              <p class="proj-card-desc">Red inalámbrica WiFi 6 con cobertura 100% del campus, firewall NGFW y capacidad para 10,000+ alumnos simultáneos.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 4.7M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">Aruba</span>
-                  <span class="proj-partner-pill">Palo Alto</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card" data-category="seguridad">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/camara_poste.jpg" alt="Obras Viales" />
-              <span class="proj-card-badge concluido">Concluido</span>
-              <span class="proj-card-category-tag">Seguridad</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Gobierno Regional</p>
-              <h3 class="proj-card-title">Obras Viales — Videovigilancia</h3>
-              <p class="proj-card-desc">Cámaras PTZ con fibra óptica, sistema LPR vehicular integrado a la red de monitoreo de la Policía Nacional.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 6.5M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">Axis</span>
-                  <span class="proj-partner-pill">Motorola</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card" data-category="seguridad">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/control_acceso1.jpg" alt="Control de Accesos" />
-              <span class="proj-card-badge concluido">Concluido</span>
-              <span class="proj-card-category-tag">Seguridad</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Condominio Premium</p>
-              <h3 class="proj-card-title">Control de Accesos Biométrico</h3>
-              <p class="proj-card-desc">Reconocimiento facial, huella dactilar y UHF vehicular con molinete doble carril y app de gestión centralizada.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 0.8M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">ZKTeco</span>
-                  <span class="proj-partner-pill">Hikvision</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
-          <div class="proj-card featured" data-category="energia">
-            <div class="proj-card-image">
-              <img src="../assets/eds_useful_images/jose luis bustamante y rivero/WhatsApp Image 2026-04-01 at 1.53.32 PM (1).jpeg" alt="Pantallas Digitales" />
-              <span class="proj-card-badge concluido">Concluido</span>
-              <span class="proj-card-category-tag">Audio/Video</span>
-            </div>
-            <div class="proj-card-body">
-              <p class="proj-card-client">Municipalidad Distrital J.L. Bustamante y Rivero</p>
-              <h3 class="proj-card-title">Pantallas Publicitarias Digitales</h3>
-              <p class="proj-card-desc">6 pantallas LED 4K de gran formato con sistema de audio JBL Harman integrado y plataforma de gestión de contenido centralizada para comunicación municipal y publicidad digital.</p>
-              <div class="proj-card-meta">
-                <div class="proj-card-investment">S/ 7.3M <span>Inversión</span></div>
-                <div class="proj-card-partners">
-                  <span class="proj-partner-pill">LG</span>
-                  <span class="proj-partner-pill">JBL Harman</span>
-                  <span class="proj-partner-pill">Cisco</span>
-                </div>
-              </div>
-              <div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>
-            </div>
-          </div>
-
+          <!-- Los proyectos se cargarán dinámicamente con JavaScript -->
         </div>
       </div>
     </section>
@@ -752,75 +588,77 @@
       </div>
     </section>
 
-    <footer class="footer" style="background:linear-gradient(135deg, #0f172a 0%, #1e293b 100%);padding:60px 0 30px;">
+    <footer class="footer">
       <div class="container">
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px;align-items:start;">
-          <div style="grid-column:span 1;">
-            <a href="../index.html" style="display:block;margin-bottom:15px;">
-              <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" style="max-width:180px;height:auto;" />
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="../index.html" class="logo" style="display:block;margin-bottom:20px;">
+              <img src="../assets/eds_useful_images/logo.png" alt="EDS Logo" style="max-width:200px;height:auto;" />
             </a>
-            <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#fff;letter-spacing:1px;margin-bottom:12px;">CONSTRUYENDO EL <span style="color:#f0b429;">FUTURO CON TECNOLOGÍA</span></h3>
-            <p style="color:rgba(255,255,255,0.75);font-size:0.9rem;line-height:1.6;margin-bottom:15px;max-width:300px;">Líderes en seguridad electrónica, comunicaciones, automatización IoT, cableado estructurado y energía renovable.</p>
-            <div style="display:inline-block;padding:8px 16px;background:rgba(240,180,41,0.15);border:1px solid #f0b429;border-radius:30px;">
-              <span style="color:#f0b429;font-weight:700;font-size:0.8rem;">+10 AÑOS DE EXPERIENCIA</span>
+            <p>Somos la empresa líder en edificaciones inteligentes en el sur del Perú, ofreciendo soluciones tecnológicas integrales para la construcción.</p>
+            <div class="footer-social">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/51950313642" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
           </div>
-          </div>
-          <div style="grid-column:span 1;">
-            <h4 style="color:#f0b429;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:15px;">Navegación</h4>
-            <ul style="list-style:none;padding:0;margin:0;">
-              <li style="margin-bottom:10px;"><a href="../index.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Inicio</a></li>
-              <li style="margin-bottom:10px;"><a href="../index.html#nosotros" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Nosotros</a></li>
-              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Servicios</a></li>
-              <li style="margin-bottom:10px;"><a href="../index.html#cobertura" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Cobertura</a></li>
-              <li style="margin-bottom:10px;"><a href="proyectos.html" style="color:#f0b429;font-size:0.9rem;">Proyectos</a></li>
-              <li style="margin-bottom:10px;"><a href="socios.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Socios</a></li>
-              <li style="margin-bottom:10px;"><a href="contacto.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Contacto</a></li>
+
+          <div class="footer-links-col">
+            <h4 class="footer-title">Navegación</h4>
+            <ul class="footer-links">
+              <li><a href="../index.html">Inicio</a></li>
+              <li><a href="../index.html#nosotros">Nosotros</a></li>
+              <li><a href="../index.html#servicios">Servicios</a></li>
+              <li><a href="../index.html#cobertura">Cobertura</a></li>
+              <li><a href="proyectos.html">Proyectos</a></li>
+              <li><a href="socios.html">Socios</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
             </ul>
           </div>
-          <div style="grid-column:span 1;">
-            <h4 style="color:#f0b429;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;">Síguenos</h4>
-            <div style="display:flex;gap:12px;">
-              <a href="#" style="width:44px;height:44px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" style="width:44px;height:44px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" style="width:44px;height:44px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;"><i class="fab fa-instagram"></i></a>
-              <a href="https://wa.me/51950313642" style="width:44px;height:44px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-          <div style="grid-column:span 1;">
-            <h4 style="color:#f0b429;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:15px;">Servicios</h4>
-            <ul style="list-style:none;padding:0;margin:0;">
-              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Construcción Civil</a></li>
-              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Video Vigilancia</a></li>
-              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Redes y Telecom</a></li>
-              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Control de Accesos</a></li>
-              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Energía Renovable</a></li>
-              <li style="margin-bottom:10px;"><a href="../index.html#servicios" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;">Cableado Estructurado</a></li>
+
+          <div class="footer-links-col">
+            <h4 class="footer-title">Servicios</h4>
+            <ul class="footer-links">
+              <li><a href="../index.html#servicios">Construcción Civil</a></li>
+              <li><a href="../index.html#servicios">Video Vigilancia</a></li>
+              <li><a href="../index.html#servicios">Redes y Telecom</a></li>
+              <li><a href="../index.html#servicios">Control de Accesos</a></li>
+              <li><a href="../index.html#servicios">Energía Renovable</a></li>
+              <li><a href="../index.html#servicios">Cableado Estructurado</a></li>
             </ul>
           </div>
-          <div style="grid-column:span 1;">
-            <h4 style="color:#f0b429;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:15px;">Contacto</h4>
-            <ul style="list-style:none;padding:0;margin:0;">
-              <li style="margin-bottom:15px;display:flex;align-items:center;gap:10px;">
-                <i class="fab fa-whatsapp" style="color:#25D366;"></i>
-                <a href="https://wa.me/51950313642" style="color:#fff;font-size:0.95rem;">950 313 642</a>
+
+          <div class="footer-contact-col">
+            <h4 class="footer-title">Contacto</h4>
+            <ul class="footer-contact">
+              <li>
+                <i class="fas fa-phone"></i>
+                <div>
+                  <p><strong>WhatsApp:</strong></p>
+                  <a href="https://wa.me/51950313642">950 313 642</a>
+                </div>
               </li>
-              <li style="margin-bottom:15px;display:flex;align-items:center;gap:10px;">
-                <i class="fas fa-envelope" style="color:#f0b429;"></i>
-                <a href="mailto:rocio.jara@edin-tel.com" style="color:#fff;font-size:0.95rem;">rocio.jara@edin-tel.com</a>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <p><strong>Email:</strong></p>
+                  <a href="mailto:rocio.jara@edin-tel.com">rocio.jara@edin-tel.com</a>
+                </div>
               </li>
-              <li style="margin-bottom:15px;display:flex;align-items:flex-start;gap:10px;">
-                <i class="fas fa-map-marker-alt" style="color:#f0b429;margin-top:3px;"></i>
-                <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin:0;">Urb. Las Peñas A-35<br/>Sachaca, Arequipa</p>
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <p><strong>Dirección:</strong></p>
+                  <p>Urb. Las Peñas A-35<br/>Sachaca, Arequipa</p>
+                </div>
               </li>
             </ul>
           </div>
         </div>
-          </div>
-        </div>
-        </div>
-        <div style="text-align:center;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);margin-top:30px;">
-          <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;">&copy; 2024 <a href="../index.html" style="color:#f0b429;">EDS Edificaciones Inteligentes SAC</a>. Todos los derechos reservados. | RUC: 20608965765</p>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 <a href="../index.html">EDS Edificaciones Inteligentes SAC</a>. Todos los derechos reservados. | RUC: 20608965765</p>
         </div>
       </div>
     </footer>
@@ -830,39 +668,273 @@
     <script src="../js/scroll-animations.js"></script>
     <script src="../js/main.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var chips = document.querySelectorAll('.filter-chip');
-        var cards = document.querySelectorAll('.proj-card');
-        var countEl = document.getElementById('visible-count');
+      // Datos de los proyectos
+      var proyectos = [
+        {
+          nombre: "Centro de Seguridad Ciudadana",
+          cliente: "Municipalidad Provincial de Melgar",
+          categoria: "seguridad",
+          imagen: "../assets/eds_useful_images/centro_monitoreo2.jpg",
+          badge: "concluido",
+          badgeText: "Concluido",
+          categoriaText: "Seguridad",
+          descripcion: "Sistema integral de videovigilancia con 120 cámaras HD, centro de control y software de gestión en tiempo real.",
+          inversion: "S/ 4.2M",
+          partners: ["Hikvision", "Dahua", "FibraTel"],
+          featured: true
+        },
+        {
+          nombre: "Semáforos Inteligentes",
+          cliente: "Dist. J.L. Bustamante y Rivero",
+          categoria: "comunicacion",
+          imagen: "../assets/eds_useful_images/control_vehiculos.jpg",
+          badge: "concluido",
+          badgeText: "Concluido",
+          categoriaText: "Comunicación",
+          descripcion: "Sistema semafórico inteligentes con control centralizado para 15 intersecciones con reducción del 35% en tiempos de espera.",
+          inversion: "S/ 8.5M",
+          partners: ["Siemens", "Sice"],
+          featured: false
+        },
+        {
+          nombre: "Radio Base de Comunicaciones",
+          cliente: "Iquitos, Loreto",
+          categoria: "comunicacion",
+          imagen: "../assets/eds_useful_images/motorola_radio2.jpg",
+          badge: "ejecucion",
+          badgeText: "En Ejecución",
+          categoriaText: "Comunicación",
+          descripcion: "Torre de telecomunicaciones de 45m con cobertura de 50km para zonas remotas con respaldo de energía de 72h.",
+          inversion: "S/ 6.8M",
+          partners: ["Motorola", "Hytera"],
+          featured: false
+        },
+        {
+          nombre: "I.E. Nº 40208",
+          cliente: "UGEL Arequipa Norte",
+          categoria: "construccion",
+          imagen: "../assets/eds_useful_images/auditorio.jpg",
+          badge: "concluido",
+          badgeText: "Concluido",
+          categoriaText: "Construcción",
+          descripcion: "Institución educativa de 3 niveles con 18 aulas antisísmicas, laboratorios y áreas recreativas para 900 alumnos.",
+          inversion: "S/ 5.1M",
+          partners: ["Sika", "Cemento Yura"],
+          featured: false
+        },
+        {
+          nombre: "Video Vigilancia Industrial",
+          cliente: "Complejo Industrial Arequipa",
+          categoria: "seguridad",
+          imagen: "../assets/eds_useful_images/camara_analisis.jpg",
+          badge: "concluido",
+          badgeText: "Concluido",
+          categoriaText: "Seguridad",
+          descripcion: "Sistema de videovigilancia industrial con 200 cámaras IP 4K con inteligencia artificial y análisis en tiempo real.",
+          inversion: "S/ 2.8M",
+          partners: ["Axis", "Avigilon"],
+          featured: false
+        },
+        {
+          nombre: "Cableado Estructurado Hospital Regional",
+          cliente: "Hospital Regional de Arequipa",
+          categoria: "construccion",
+          imagen: "../assets/eds_useful_images/cableado1.jpg",
+          badge: "concluido",
+          badgeText: "Concluido",
+          categoriaText: "Construcción",
+          descripcion: "+2,500 puntos Cat 6A con redundancia, UPS y sistemas de monitoreo para garantizar 99.99% de uptime en operaciones hospitalarias críticas y sistemas de emergencia.",
+          inversion: "S/ 3.5M",
+          partners: ["Panduit", "Legrand", "APC"],
+          featured: true
+        },
+        {
+          nombre: "Alcaldía Municipal — Incendios",
+          cliente: "Municipalidad Local",
+          categoria: "seguridad",
+          imagen: "../assets/eds_useful_images/alarma_control_building.png",
+          badge: "concluido",
+          badgeText: "Concluido",
+          categoriaText: "Seguridad",
+          descripcion: "50+ sensores, 30 estrobos, 12 zonas de detección con central de monitoreo integrada y respuesta automática.",
+          inversion: "S/ 1.3M",
+          partners: ["Honeywell", "Bosch"],
+          featured: false
+        },
+        {
+          nombre: "Centro Empresarial — Telecomunicaciones",
+          cliente: "Centro de Negocios Sur",
+          categoria: "construccion",
+          imagen: "../assets/eds_useful_images/sala_control.jpg",
+          badge: "concluido",
+          badgeText: "Concluido",
+          categoriaText: "Construcción",
+          descripcion: "MDF con FTTH 10G, Cat 6A, UPS respaldo 48h y plan de mantenimiento preventivo anual garantizado.",
+          inversion: "S/ 2.1M",
+          partners: ["Cisco", "APC"],
+          featured: false
+        },
+        {
+          nombre: "Planta Solar Joya — IoT Industrial",
+          cliente: "Consorcio Energético",
+          categoria: "energia",
+          imagen: "../assets/eds_useful_images/iot_industrial.jpg",
+          badge: "ejecucion",
+          badgeText: "En Ejecución",
+          categoriaText: "Energía",
+          descripcion: "Supervisión SCADA con telemetría 99.9% uptime y adquisición de datos en tiempo real para optimización de paneles fotovoltaicos.",
+          inversion: "S/ 12M",
+          partners: ["Siemens", "Schneider"],
+          featured: false
+        },
+        {
+          nombre: "Campus Universitario — WiFi 6",
+          cliente: "Universidad Privada",
+          categoria: "comunicacion",
+          imagen: "../assets/eds_useful_images/comunicacion_seguridad.jpg",
+          badge: "concluido",
+          badgeText: "Concluido",
+          categoriaText: "Comunicación",
+          descripcion: "Red inalámbrica WiFi 6 con cobertura 100% del campus, firewall NGFW y capacidad para 10,000+ alumnos simultáneos.",
+          inversion: "S/ 4.7M",
+          partners: ["Aruba", "Palo Alto"],
+          featured: false
+        },
+        {
+          nombre: "Obras Viales — Videovigilancia",
+          cliente: "Gobierno Regional",
+          categoria: "seguridad",
+          imagen: "../assets/eds_useful_images/camara_poste.jpg",
+          badge: "concluido",
+          badgeText: "Concluido",
+          categoriaText: "Seguridad",
+          descripcion: "Cámaras PTZ con fibra óptica, sistema LPR vehicular integrado a la red de monitoreo de la Policía Nacional.",
+          inversion: "S/ 6.5M",
+          partners: ["Axis", "Motorola"],
+          featured: false
+        },
+        {
+          nombre: "Control de Accesos Biométrico",
+          cliente: "Condominio Premium",
+          categoria: "seguridad",
+          imagen: "../assets/eds_useful_images/control_acceso1.jpg",
+          badge: "concluido",
+          badgeText: "Concluido",
+          categoriaText: "Seguridad",
+          descripcion: "Reconocimiento facial, huella dactilar y UHF vehicular con molinete doble carril y app de gestión centralizada.",
+          inversion: "S/ 0.8M",
+          partners: ["ZKTeco", "Hikvision"],
+          featured: false
+        },
+        {
+          nombre: "Pantallas Publicitarias Digitales",
+          cliente: "Municipalidad Distrital J.L. Bustamante y Rivero",
+          categoria: "energia",
+          imagen: "../assets/eds_useful_images/jose luis bustamante y rivero/WhatsApp Image 2026-04-01 at 1.53.32 PM (1).jpeg",
+          badge: "concluido",
+          badgeText: "Concluido",
+          categoriaText: "Audio/Video",
+          descripcion: "6 pantallas LED 4K de gran formato con sistema de audio JBL Harman integrado y plataforma de gestión de contenido centralizada para comunicación municipal y publicidad digital.",
+          inversion: "S/ 7.3M",
+          partners: ["LG", "JBL Harman", "Cisco"],
+          featured: true
+        }
+      ];
 
+      // Renderizar proyectos
+      function renderProyectos(filtro) {
+        if (!filtro) filtro = 'all';
+        var grid = document.getElementById('projectsGrid');
+        var countEl = document.getElementById('visible-count');
+        if (!grid) return;
+
+        // Limpiar grid
+        grid.innerHTML = '';
+
+        // Filtrar proyectos
+        var proyectosFiltrados = filtro === 'all'
+          ? proyectos
+          : proyectos.filter(function(p) { return p.categoria === filtro; });
+
+        // Actualizar contador
+        if (countEl) countEl.textContent = proyectosFiltrados.length;
+
+        // Si no hay proyectos, mostrar mensaje
+        if (proyectosFiltrados.length === 0) {
+          grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#6b7280;font-family:Rajdhani,sans-serif;font-size:1.1rem;">No hay proyectos en esta categoría</div>';
+          return;
+        }
+
+        // Renderizar cada proyecto
+        proyectosFiltrados.forEach(function(proyecto, index) {
+          var card = document.createElement('div');
+          card.className = 'proj-card' + (proyecto.featured ? ' featured' : '');
+          card.dataset.category = proyecto.categoria;
+
+          // Animación de entrada
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(30px)';
+          card.style.transition = 'all 0.5s ease';
+
+          var partnersHTML = '';
+          proyecto.partners.forEach(function(p) {
+            partnersHTML += '<span class="proj-partner-pill">' + p + '</span>';
+          });
+
+          card.innerHTML = '<div class="proj-card-image">' +
+            '<img src="' + proyecto.imagen + '" alt="' + proyecto.nombre + '" loading="lazy" />' +
+            '<span class="proj-card-badge ' + proyecto.badge + '">' + proyecto.badgeText + '</span>' +
+            '<span class="proj-card-category-tag">' + proyecto.categoriaText + '</span>' +
+            '</div>' +
+            '<div class="proj-card-body">' +
+            '<p class="proj-card-client">' + proyecto.cliente + '</p>' +
+            '<h3 class="proj-card-title">' + proyecto.nombre + '</h3>' +
+            '<p class="proj-card-desc">' + proyecto.descripcion + '</p>' +
+            '<div class="proj-card-meta">' +
+            '<div class="proj-card-investment">' + proyecto.inversion + ' <span>Inversión</span></div>' +
+            '<div class="proj-card-partners">' + partnersHTML + '</div>' +
+            '</div>' +
+            '<div class="proj-card-action">Ver detalles <i class="fas fa-arrow-right"></i></div>' +
+            '</div>';
+
+          grid.appendChild(card);
+
+          // Animar entrada con delay
+          (function(card, idx) {
+            setTimeout(function() {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, idx * 100);
+          })(card, index);
+        });
+      }
+
+      // Event listeners para filtros
+      document.addEventListener('DOMContentLoaded', function() {
+        // Renderizar todos los proyectos inicialmente
+        renderProyectos('all');
+
+        // Configurar filtros
+        var chips = document.querySelectorAll('.filter-chip');
         chips.forEach(function(chip) {
           chip.addEventListener('click', function() {
             chips.forEach(function(c) { c.classList.remove('active'); });
             chip.classList.add('active');
             var filter = chip.dataset.filter;
-            var visible = 0;
-            cards.forEach(function(card) {
-              var match = filter === 'all' || card.dataset.category === filter;
-              if (match) {
-                card.style.display = 'flex';
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(function() {
-                  card.style.transition = 'all 0.4s ease';
-                  card.style.opacity = '1';
-                  card.style.transform = 'translateY(0)';
-                }, 50);
-                visible++;
-              } else {
-                card.style.transition = 'all 0.3s ease';
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(10px)';
-                setTimeout(function() { card.style.display = 'none'; }, 300);
-              }
-            });
-            if (countEl) countEl.textContent = visible;
+            renderProyectos(filter);
           });
         });
+
+        // Ocultar preloader cuando la página esté lista
+        setTimeout(function() {
+          var preloader = document.getElementById('preloader');
+          if (preloader) {
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+              preloader.style.display = 'none';
+            }, 500);
+          }
+        }, 1500);
       });
     </script>
   </body>

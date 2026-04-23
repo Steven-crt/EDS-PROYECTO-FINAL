@@ -48,6 +48,7 @@
     --gradient-sunrise: linear-gradient(135deg, rgba(21, 101, 192, 0.14), rgba(240, 180, 41, 0.18), rgba(229, 57, 53, 0.12));
     --gradient-dark: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
     --gradient-hero: linear-gradient(135deg, rgba(240, 180, 41, 0.05), rgba(21, 101, 192, 0.05), rgba(229, 57, 53, 0.05));
+    --glass-effect: blur(12px) saturate(180%);
 
     /* Sombras con colores: niveles de profundidad (sm, md, lg) y sombras con brillo para acentos */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -207,7 +208,7 @@ input, textarea, select {
 /* Título de sección: fuente Bebas Neue, tamaño responsive con clamp, centrado y espaciado de letras */
 .section-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(3.5rem, 9vw, 6.5rem); /* Aumentado sustancialmente para impacto inicial */
     letter-spacing: 2px;
     margin-bottom: 1rem;
     text-align: center;
@@ -216,6 +217,7 @@ input, textarea, select {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Sombra para legibilidad del blanco en fondo claro */
 }
 
 /* Línea decorativa bajo títulos: barra degradada (primary -> accent -> danger) centrada debajo del título */
