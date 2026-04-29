@@ -1,0 +1,1119 @@
+/* ================================================
+   KEYFRAME ANIMATIONS
+   ================================================ */
+
+/* ================================================
+   FLOATING ANIMATION
+   ================================================ */
+/* Animaciones de flotación: hacen que los elementos se muevan suavemente arriba y abajo */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes floatSlow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Clases reutilizables para aplicar animaciones de flotación a elementos HTML */
+.float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.float-slow {
+    animation: float 8s ease-in-out infinite;
+}
+
+/* ================================================
+   PULSE / GLOW ANIMATIONS
+   ================================================ */
+/* Animaciones de pulso y brillo: controlan opacidad y efectos de sombra animados */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(21, 101, 192, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(21, 101, 192, 0.6);
+    }
+}
+
+@keyframes glowAccent {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(240, 180, 41, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(240, 180, 41, 0.6);
+    }
+}
+
+/* Clases para aplicar animaciones de pulso y brillo a elementos */
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* ================================================
+   ROTATE ANIMATIONS
+   ================================================ */
+/* Animaciones de rotación continua en sentido horario y antihorario */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotateReverse {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+/* Clases para aplicar rotación a elementos, con velocidades diferentes */
+.rotate {
+    animation: rotate 20s linear infinite;
+}
+
+.rotate-reverse {
+    animation: rotateReverse 25s linear infinite;
+}
+
+/* ================================================
+   SCROLL ANIMATIONS (AOS-like)
+   ================================================ */
+/* Sistema de animaciones al hacer scroll (similar a AOS): fade, zoom y flip */
+[data-aos="fade-up"] {
+    transform: translateY(40px);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+[data-aos="fade-up"].aos-animate {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+[data-aos="fade-down"] {
+    transform: translateY(-40px);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+[data-aos="fade-down"].aos-animate {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+[data-aos="fade-left"] {
+    transform: translateX(40px);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+[data-aos="fade-left"].aos-animate {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+[data-aos="fade-right"] {
+    transform: translateX(-40px);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+[data-aos="fade-right"].aos-animate {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+[data-aos="zoom-in"] {
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+[data-aos="zoom-in"].aos-animate {
+    transform: scale(1);
+    opacity: 1;
+}
+
+[data-aos="flip-up"] {
+    transform: perspective(2500px) rotateX(-100deg);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+[data-aos="flip-up"].aos-animate {
+    transform: perspective(2500px) rotateX(0);
+    opacity: 1;
+}
+
+/* ================================================
+   HOVER EFFECTS
+   ================================================ */
+/* Efectos de interacción al pasar el mouse: elevación, escala, brillo y borde animado */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.hover-glow:hover {
+    box-shadow: var(--shadow-glow);
+}
+
+.hover-border {
+    position: relative;
+}
+
+.hover-border::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-accent);
+    transition: width 0.3s ease;
+}
+
+.hover-border:hover::after {
+    width: 100%;
+}
+
+/* ================================================
+   BACKGROUND ANIMATIONS
+   ================================================ */
+/* Animación de desplazamiento de posición de fondo para gradientes */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Clase para animar fondos con degradado */
+.gradient-animate {
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+}
+
+/* ================================================
+   MARQUEE / SCROLL TEXT
+   ================================================ */
+/* Animación de texto en movimiento horizontal continuo (marquesina) */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Clases del componente marquesina: contenedor con overflow oculto y contenido animado */
+.marquee {
+    overflow: hidden;
+}
+
+.marquee-content {
+    display: flex;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+/* ================================================
+   PARTICLES CONTAINER
+   ================================================ */
+/* Contenedor de partículas decorativas flotantes con posicionamiento absoluto */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Estilo individual de cada partícula: pequeño círculo semitransparente */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+/* ================================================
+   COUNTER ANIMATION
+   ================================================ */
+/* Estilos para contadores numéricos con fuente display y sufijo dinámico */
+.counter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.counter::after {
+    content: attr(data-suffix);
+    font-size: 2rem;
+    color: var(--accent);
+}
+
+/* ================================================
+   LOADING SPINNER
+   ================================================ */
+/* Animación de rotación para indicador de carga (spinner) */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Estilo del spinner: círculo con borde parcialmente coloreado que rota */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--bg-tertiary);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+/* Animación de texto en movimiento horizontal continuo (marquesina) */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Clases del componente marquesina: contenedor con overflow oculto y contenido animado */
+.marquee {
+    overflow: hidden;
+}
+
+.marquee-content {
+    display: flex;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+/* ================================================
+   PARTICLES CONTAINER
+   ================================================ */
+/* Contenedor de partículas decorativas flotantes con posicionamiento absoluto */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Estilo individual de cada partícula: pequeño círculo semitransparente */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+/* ================================================
+   COUNTER ANIMATION
+   ================================================ */
+/* Estilos para contadores numéricos con fuente display y sufijo dinámico */
+.counter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.counter::after {
+    content: attr(data-suffix);
+    font-size: 2rem;
+    color: var(--accent);
+}
+
+/* ================================================
+   MARQUEE / SCROLL TEXT
+   ================================================ */
+/* Animación de dibujo progresivo de líneas SVG usando stroke-dashoffset */
+@keyframes drawLine {
+    from { stroke-dashoffset: 1000; }
+    to { stroke-dashoffset: 0; }
+}
+
+/* Clase para aplicar animación de dibujo a líneas SVG */
+.svg-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawLine 3s ease forwards;
+}
+
+/* ================================================
+   LOADING SPINNER
+   ================================================ */
+/* Animación de rotación para indicador de carga (spinner) */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Estilo del spinner: círculo con borde parcialmente coloreado que rota */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--bg-tertiary);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* ================================================
+   CURSOR FOLLOWER
+   ================================================ */
+/* Cursor personalizado que sigue al mouse con efecto de mezcla de colores */
+.cursor-follower {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    pointer-events: none;
+    transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+
+/* Estado del cursor personalizado al pasar sobre elementos interactivos */
+.cursor-follower.hover {
+    width: 50px;
+    height: 50px;
+    border-color: var(--accent);
+}
+
+/* ================================================
+   CLIP-PATH REVEAL ANIMATIONS
+   ================================================ */
+.clip-reveal-top {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+    transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+}
+
+.clip-reveal-top.revealed {
+    clip-path: inset(0 0 0% 0);
+    opacity: 1;
+}
+
+.clip-reveal-bottom {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+    transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+}
+
+.clip-reveal-bottom.revealed {
+    clip-path: inset(0% 0 0 0);
+    opacity: 1;
+}
+
+.clip-reveal-left {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+    transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+}
+
+.clip-reveal-left.revealed {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+}
+
+.clip-reveal-right {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+    transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+}
+
+.clip-reveal-right.revealed {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+}
+
+/* ================================================
+   MAGNETIC BUTTON EFFECT
+   ================================================ */
+.magnetic {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+}
+
+/* ================================================
+   TEXT SPLIT ANIMATION
+   ================================================ */
+.split-text-line {
+    overflow: hidden;
+    display: block;
+}
+
+.split-text-word {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.4s ease;
+}
+
+.split-text-word.animate {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Letter-level animation */
+.split-char {
+    display: inline-block;
+    transform: translateY(120%) rotate(10deg);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+}
+
+.split-char.animate {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+}
+
+/* ================================================
+   STAGGER ANIMATION CLASSES
+   ================================================ */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.stagger-item.animate {
+    animation: staggerReveal 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes staggerReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger delays */
+.stagger-delay-1 { animation-delay: 0.1s; }
+.stagger-delay-2 { animation-delay: 0.2s; }
+.stagger-delay-3 { animation-delay: 0.3s; }
+.stagger-delay-4 { animation-delay: 0.4s; }
+.stagger-delay-5 { animation-delay: 0.5s; }
+.stagger-delay-6 { animation-delay: 0.6s; }
+
+/* ================================================
+   GLOW PULSE ANIMATION
+   ================================================ */
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(240, 180, 41, 0.3), 0 0 40px rgba(240, 180, 41, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(240, 180, 41, 0.5), 0 0 80px rgba(240, 180, 41, 0.2);
+    }
+}
+
+.glow-pulse {
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* ================================================
+   BORDER DRAW ANIMATION
+   ================================================ */
+.border-draw {
+    position: relative;
+}
+
+.border-draw::before,
+.border-draw::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-accent);
+    transition: width 0.4s ease;
+}
+
+.border-draw::before {
+    top: 0;
+    left: 0;
+}
+
+.border-draw::after {
+    bottom: 0;
+    right: 0;
+}
+
+.border-draw:hover::before,
+.border-draw:hover::after {
+    width: 100%;
+}
+
+/* ================================================
+   FLOATING SHADOW
+   ================================================ */
+@keyframes floatShadow {
+    0%, 100% {
+        transform: translateY(0);
+        filter: blur(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+        filter: blur(10px);
+    }
+}
+
+.float-shadow {
+    position: relative;
+}
+
+.float-shadow::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 20px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.3) 0%, transparent 70%);
+    animation: floatShadow 3s ease-in-out infinite;
+}
+
+/* ================================================
+   WAVE ANIMATION
+   ================================================ */
+@keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-5px) rotate(2deg); }
+    75% { transform: translateY(5px) rotate(-2deg); }
+}
+
+.wave {
+    display: inline-block;
+    animation: wave 2s ease-in-out infinite;
+}
+
+/* ================================================
+   SPIN IN ANIMATION
+   ================================================ */
+@keyframes spinIn {
+    0% {
+        transform: rotate(-180deg) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+.spin-in {
+    animation: spinIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* ================================================
+   BOUNCE IN ANIMATION
+   ================================================ */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.bounce-in {
+    animation: bounceIn 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* ================================================
+   RUBBER BAND ANIMATION
+   ================================================ */
+@keyframes rubberBand {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.25, 0.75); }
+    40% { transform: scale(0.75, 1.25); }
+    50% { transform: scale(1.15, 0.85); }
+    65% { transform: scale(0.95, 1.05); }
+    75% { transform: scale(1.05, 0.95); }
+    100% { transform: scale(1); }
+}
+
+.rubber-band {
+    animation: rubberBand 1s ease forwards;
+}
+
+/* ================================================
+   TYPOGRAPHY EFFECT STYLES
+   ================================================ */
+.typing-text {
+    display: inline-block;
+    position: relative;
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.typing-text .highlight {
+    color: var(--accent);
+}
+
+.hero-title .typing-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+@keyframes typingCursor {
+    50% { opacity: 0; }
+}
+
+/* ================================================
+   ENHANCED COUNTER STYLES
+   ================================================ */
+.counter {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.counter-complete {
+    animation: counterPulse 0.5s ease-out;
+}
+
+@keyframes counterPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); color: var(--accent); }
+    100% { transform: scale(1); }
+}
+
+/* ================================================
+   TYPOGRAPHY EFFECT STYLES
+   ================================================ */
+.typing-text {
+    font-family: 'Bebas Neue', sans-serif;
+    display: inline-block;
+    border-right: 3px solid var(--accent);
+    padding-right: 5px;
+    margin-right: 5px;
+}
+
+.typing-text::after {
+    content: '|';
+    animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* ================================================
+   HOLOGRAPHIC EFFECT STYLES
+   ================================================ */
+.hologram-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.hologram-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.hologram-element {
+    position: relative;
+}
+
+.hologram-element::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(
+        45deg,
+        transparent 40%,
+        rgba(21, 101, 192, 0.3) 45%,
+        rgba(21, 101, 192, 0.5) 50%,
+        rgba(21, 101, 192, 0.3) 55%,
+        transparent 60%
+    );
+    background-size: 200% 200%;
+    animation: hologramSweep 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes hologramSweep {
+    0% { background-position: 200% 200%; }
+    100% { background-position: -200% -200%; }
+}
+
+/* ================================================
+   FLOATING PHYSICS STYLES
+   ================================================ */
+.floating-physics {
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+}
+
+.float-orbit {
+    animation: orbit 20s linear infinite;
+}
+
+@keyframes orbit {
+    from { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+}
+
+/* ================================================
+   COUNTER COMPLETE EFFECT
+   ================================================ */
+.counter-complete {
+    animation: counterPulse 0.5s ease-out;
+}
+
+@keyframes counterPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* ================================================
+   3D SERVICE CONFIGURATOR STYLES
+   ================================================ */
+.service-configurator {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.9));
+    border-radius: 24px;
+    padding: 40px;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+}
+
+.configurator-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+@media (max-width: 968px) {
+    .configurator-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.config-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.config-title i {
+    color: var(--accent);
+}
+
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.service-option {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.service-option:hover {
+    border-color: var(--accent);
+    transform: translateX(5px);
+}
+
+.service-option.selected {
+    background: linear-gradient(135deg, rgba(21, 101, 192, 0.1), rgba(240, 180, 41, 0.05));
+    border-color: var(--accent);
+}
+
+.service-option.selected .service-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.service-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+
+.service-check i {
+    color: var(--bg-primary);
+    font-size: 0.8rem;
+}
+
+.service-option.selected .service-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.service-icon {
+    font-size: 1.5rem;
+}
+
+.service-info {
+    flex: 1;
+}
+
+.service-info h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.service-info p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.service-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+.configurator-preview {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+    border-radius: 16px;
+    padding: 30px;
+    min-height: 300px;
+}
+
+.preview-building {
+    position: relative;
+    width: 150px;
+    height: 200px;
+    margin-bottom: 30px;
+}
+
+.building-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: corePulse 2s ease-in-out infinite;
+}
+
+@keyframes corePulse {
+    0%, 100% {
+        box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent);
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px var(--accent), 0 0 80px var(--accent);
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+.building-modules {
+    position: absolute;
+    inset: 0;
+}
+
+.module {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: var(--color, var(--primary));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: moduleFloat 3s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+}
+
+.module:nth-child(1) { transform: translate(-150%, -200%); }
+.module:nth-child(2) { transform: translate(50%, -200%); }
+.module:nth-child(3) { transform: translate(-150%, 50%); }
+.module:nth-child(4) { transform: translate(50%, 50%); }
+.module:nth-child(5) { transform: translate(-200%, -50%); }
+.module:nth-child(6) { transform: translate(100%, -50%); }
+
+.module i {
+    color: white;
+    font-size: 1rem;
+}
+
+@keyframes moduleFloat {
+    0%, 100% { transform: translate(var(--tx, 0), var(--ty, 0)) translateY(0); }
+    50% { transform: translate(var(--tx, 0), var(--ty, 0)) translateY(-10px); }
+}
+
+.building-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(240, 180, 41, 0.2), transparent 70%);
+    animation: glowRotate 10s linear infinite;
+}
+
+@keyframes glowRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.preview-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.preview-stats .stat {
+    text-align: center;
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+}
+
+.preview-stats .stat-value {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+.preview-stats .stat-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.preview-stats .stat.total .stat-value {
+    color: var(--accent);
+}
+
+.configurator-cta {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.configurator-cta .btn {
+    min-width: 250px;
+}
+
+.configurator-cta .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ================================================
+   SERVICE PREVIEW 3D CANVAS
+   ================================================ */
+.service-preview-3d {
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* ================================================
+   CONFIGURATOR SECTION RESPONSIVE
+   ================================================ */
+@media (max-width: 768px) {
+    .service-configurator {
+        padding: 20px;
+    }
+    
+    .configurator-layout {
+        gap: 20px;
+    }
+    
+    .service-option {
+        padding: 12px 15px;
+    }
+    
+    .service-info h4 {
+        font-size: 1rem;
+    }
+    
+    .preview-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

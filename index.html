@@ -1,0 +1,982 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Configuración de caracteres y viewport para responsividad -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Meta tags SEO para mejorar posicionamiento en buscadores -->
+    <meta
+      name="description"
+      content="EDS Edificaciones Inteligentes SAC - Proveedor líder en integración de soluciones tecnológicas (IoT, BMS, Seguridad Electrónica, Comunicaciones Unificadas) para infraestructuras críticas y smart buildings en el sur del Perú."
+    />
+    <meta
+      name="keywords"
+      content="edificaciones inteligentes, construcción, tecnología, IoT, video vigilancia, redes, Arequipa, domótica, automatización edilicia, sistemas SCADA, protocol MQTT, Zigbee, Z-Wave, integración de sistemas, building management system, BMS, ciudades inteligentes, smart buildings, infraestructura crítica, redes corporativas, cableado estructurado categoría 6A, fibra óptica OM3 OM4, sistemas de videovigilancia IP, NVR, protocolo ONVIF, seguridad electrónica, control de accesos, biometría, RFID, NFC, sistemas contra incendios, detección de humo, rociadores automáticos, sprinkler, sistemas de extinciónFM-200, Novec 1230, energía renovable, paneles fotovoltaicos, inversores solares, strings inverters, microinversores, sistemas eólicos, turbinas eólicas, almacenamiento energético, baterías de litio, litium-ion, BMS baterías, generación distribuida, autoconsumo, net metering, radio comunicación, tetra, dmr, digital mobile radio, trunking, sistemas p25, infraestructura de telecomunicaciones, centrales telefónicas, VoIP, SIP, Asterisk, comunicaciones unificadas, UC, unified communications, video conferencia, sistemas AV, sonido profesional, Line array, sistemas de audio distribuir, Dante, AES67, control de iluminación, DMX512, Lutron, KNX, domótica, Haus bus, climatización inteligente, HVAC, sistemas VRF, fancoils, chillers, automatización de edificios, BAS, building automation"
+    />
+    <meta name="author" content="EDS Edificaciones Inteligentes" />
+
+    <!-- Meta tags Open Graph para redes sociales -->
+    <meta
+      property="og:title"
+      content="EDS Edificaciones Inteligentes - Soluciones Tecnológicas para Construcción"
+    />
+    <meta
+      property="og:description"
+      content="Construcción con enfoque tecnológico, sistemas de comunicación, seguridad electrónica e IoT."
+    />
+    <meta property="og:type" content="website" />
+
+    <title>
+      EDS Edificaciones Inteligentes | Ingeniería y Soluciones Tecnológicas (BMS
+      & IoT)
+    </title>
+
+    <!-- Hojas de estilos principales y Font Awesome para iconos -->
+    <link rel="stylesheet" href="css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/eds_useful_images/logo.png"
+    />
+
+    <!-- Three.js, GSAP + ScrollTrigger para fondos 3D y animaciones -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- SVG Filter for Electric Border Effect -->
+    <svg
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+      aria-hidden="true"
+    >
+      <defs>
+        <filter id="electric-glow">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.015"
+            numOctaves="3"
+            result="noise"
+            seed="2"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="8"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </defs>
+    </svg>
+  </head>
+  <body>
+    <div id="preloader" class="preloader">
+      <div class="intro-panel">
+        <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
+        <div class="intro-loaders">
+          <div class="loader loader--e">
+            <svg viewBox="0 0 80 80">
+              <path d="M60 12 H22 V68 H60 M22 40 H52"></path>
+            </svg>
+          </div>
+          <div class="loader loader--d">
+            <svg viewBox="0 0 80 80">
+              <path d="M22 12 V68 H50 Q62 68 62 56 V24 Q62 12 50 12 H22"></path>
+            </svg>
+          </div>
+          <div class="loader loader--s">
+            <svg viewBox="0 0 80 80">
+              <path
+                d="M52 16 H28 Q16 16 16 28 Q16 40 28 40 H52 Q64 40 64 52 Q64 64 52 64 H28 Q16 64 16 52"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="intro-status">
+          <span class="status-dot"></span>
+          <span>Cargando...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== HEADER CON NAVEGACIÓN ========== -->
+    <header class="header">
+      <div class="container header-container">
+        <!-- Logo de la empresa con enlace al inicio -->
+        <a href="#" class="logo">
+          <img
+            src="assets/eds_useful_images/logo.png"
+            alt="EDS Logo"
+            class="logo-img"
+          />
+          <span class="logo-text">EDS <span>INTELIGENTE</span></span>
+        </a>
+
+        <!-- Menú de navegación principal -->
+        <nav class="nav-menu">
+          <a href="#inicio" class="nav-link active">Inicio</a>
+          <a href="#nosotros" class="nav-link">Nosotros</a>
+          <a href="#servicios" class="nav-link">Servicios</a>
+          <a href="#cobertura" class="nav-link">Cobertura</a>
+          <a href="proyectos.html" class="nav-link">Proyectos</a>
+          <a href="socios.html" class="nav-link">Socios</a>
+          <a href="contacto.html" class="nav-link">Contacto</a>
+        </nav>
+
+        <!-- Botón hamburguesa para menú móvil -->
+        <button class="menu-toggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ========== SECCIÓN HERO - Banner principal ========== -->
+    <section id="inicio" class="hero hero-3d">
+      <!-- Imagen de fondo del hero -->
+      <div class="hero-bg">
+        <img
+          src="assets/eds_useful_images/hero_portada.jpg"
+          alt="Construcción moderna"
+        />
+      </div>
+      <!-- Overlay semitransparente sobre la imagen -->
+      <div class="hero-overlay glass-overlay"></div>
+
+      <!-- Canvas para animación de partículas -->
+      <canvas id="particles"></canvas>
+
+      <!-- Contenedor del Hero modificado con Glassmorphism -->
+      <div class="container hero-glass-container">
+        <!-- Glassmorphism content card -->
+        <div class="hero-glass-card" data-aos="fade-right">
+          <div class="glass-badge bounce">
+            <i class="fas fa-microchip"></i> Partner Tecnológico & Integrador
+            Tier-1
+          </div>
+
+          <h1 class="hero-title">
+            <span
+              class="typing-text"
+              data-type="Construye tu futuro tecnológico corporativo"
+              data-type-speed="100"
+              data-type-delay="500"
+            ></span>
+          </h1>
+
+          <p class="hero-description">
+            Diseñamos e integramos infraestructuras tecnológicas de misión
+            crítica. Soluciones integrales en telecomunicaciones, seguridad
+            electrónica e IoT mediante arquitecturas BMS (Building Management
+            System) con protocolos BACnet, Modbus y KNX.
+          </p>
+
+          <div class="hero-buttons">
+            <a
+              href="https://wa.me/51950313642"
+              target="_blank"
+              class="btn btn-whatsapp shine-effect"
+            >
+              <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
+            </a>
+            <a
+              href="#servicios"
+              class="btn btn-outline"
+              style="color: white; border-color: rgba(255, 255, 255, 0.5)"
+            >
+              <i class="fas fa-cogs"></i> Nuestros Servicios
+            </a>
+          </div>
+        </div>
+
+        <!-- Floating Elements para simular high-tech asimetrico -->
+        <div
+          class="hero-floating-elements"
+          data-aos="fade-left"
+          data-aos-delay="300"
+        >
+          <div class="floating-badge badge-1 float-anim-1">
+            <i class="fas fa-shield-alt"></i> Seguridad y Ciberseguridad
+          </div>
+          <div class="floating-badge badge-2 float-anim-2">
+            <i class="fas fa-network-wired"></i> Redes Corporativas y BMS
+          </div>
+          <div class="floating-badge badge-3 float-anim-3">
+            <i class="fas fa-headset"></i> Monitoreo Continuo 24/7
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECCIÓN NOSOTROS - Información sobre la empresa ========== -->
+    <section id="nosotros" class="section about section-3d-bg">
+      <!-- Orbes de gradiente animado -->
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="container">
+        <div class="about-grid">
+          <!-- Imagen representativa del equipo -->
+          <div class="about-image" data-aos="fade-right">
+            <img
+              src="assets/eds_useful_images/sala_conferencias.jpg"
+              alt="Equipo EDS"
+            />
+            <div class="about-tech-box">
+              <i
+                class="fas fa-microchip"
+                style="color: var(--accent); font-size: 1.8rem"
+              ></i>
+              <div>
+                <h4
+                  style="
+                    font-family: &quot;Rajdhani&quot;;
+                    font-weight: 700;
+                    font-size: 1.1rem;
+                    margin-bottom: 2px;
+                  "
+                >
+                  Arquitectura Escalable
+                </h4>
+                <p
+                  style="
+                    font-size: 0.8rem;
+                    color: #6b7280;
+                    margin: 0;
+                    line-height: 1.2;
+                  "
+                >
+                  Diseño Future-Proof
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido descriptivo de la empresa -->
+          <div class="about-content" data-aos="fade-left">
+            <span class="badge badge-primary">
+              <i class="fas fa-building"></i> Desde 2014
+            </span>
+
+            <h2>
+              Somos <span class="highlight">EDS</span> Edificaciones
+              Inteligentes
+            </h2>
+
+            <!-- Descripción de la empresa resumida -->
+            <p>
+              <strong
+                >Líderes en infraestructura tecnológica en la macrorregión sur
+                del Perú.</strong
+              ><br /><br />
+              Diseñamos y ejecutamos proyectos de automatización edilicia
+              (BAS/BMS), integración IoT bajo arquitecturas escalables, redes
+              corporativas (LAN/WAN) y seguridad de misión crítica. Garantizamos
+              fiabilidad operativa con certificaciones de marcas Tier-1 (Huawei,
+              Cisco, Motorola).
+            </p>
+
+            <p>
+              Liderados por <strong>Rocío Jara Monteagudo</strong>, nuestro
+              equipo de ingenieros certificados (PMP, CCNA, CISSP) está
+              comprometido con la excelencia e innovación en cada obra,
+              aplicando metodologías BIM y estándares ISO.
+            </p>
+
+            <!-- Características destacadas de la empresa -->
+            <div class="about-features">
+              <div class="about-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Ingeniería Certificada</span>
+              </div>
+              <div class="about-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Partners Tecnológicos Tier-1</span>
+              </div>
+              <div class="about-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Soporte Técnico (SLA)</span>
+              </div>
+              <div class="about-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Despliegue a Nivel Nacional</span>
+              </div>
+            </div>
+
+            <!-- Botón para ver proyectos -->
+            <a href="proyectos.html" class="btn btn-primary mt-3">
+              Ver Nuestros Proyectos
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECCIÓN MISIÓN, VISIÓN Y VALORES ========== -->
+    <section class="section mv section-3d-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-3"></div>
+      <div class="container">
+        <!-- Título y subtítulo de la sección -->
+        <div class="section-title" data-aos="fade-up">
+          Nuestros <span class="highlight">Pilares</span>
+        </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Principios que guían cada proyecto que ejecutamos
+        </p>
+
+        <!-- Grid con las tres tarjetas: Misión, Visión, Valores -->
+        <div class="mv-grid">
+          <!-- Tarjeta de Misión -->
+          <div
+            class="card mv-card card-3d-enhanced"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
+            <i class="fas fa-bullseye"></i>
+            <h3>Misión</h3>
+            <p>
+              Proveer servicios de ingeniería e integración tecnológica para la
+              modernización de infraestructuras corporativas. Desplegamos
+              soluciones de telecomunicaciones, seguridad electrónica e IoT bajo
+              protocolos abiertos (BACnet, Modbus, KNX), asegurando un alto
+              estándar de calidad (QoS) y eficiencia operativa para nuestros
+              clientes institucionales mediante metodologías PMP.
+            </p>
+          </div>
+
+          <!-- Tarjeta de Visión -->
+          <div class="card mv-card" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-eye"></i>
+            <h3>Visión</h3>
+            <p>
+              Consolidarnos como la principal integradora de tecnología y
+              telecomunicaciones en el sur del Perú, siendo el referente
+              indiscutible en el diseño y despliegue de soluciones para Smart
+              Buildings, Smart Cities y la gestión de infraestructuras de misión
+              crítica bajo estándares IEEE y TIA.
+            </p>
+          </div>
+
+          <!-- Tarjeta de Valores -->
+          <div class="card mv-card" data-aos="fade-up" data-aos-delay="250">
+            <i class="fas fa-heart"></i>
+            <h3>Valores</h3>
+            <p>
+              Innovación tecnológica continua mediante R&D, fiabilidad técnica
+              (High Availability), compliance normativo bajo estándares
+              internacionales (ISO 9001, ISO 27001, IEC 62443), y alianzas
+              estratégicas con Tier-1 Vendors para garantizar el ciclo de vida
+              óptimo de cada proyecto bajo SLAs estrictos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECCIÓN DE SERVICIOS - 12 servicios tecnológicos ========== -->
+    <section id="servicios" class="section services section-3d-bg">
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+      <div class="container">
+        <!-- Título y subtítulo de la sección -->
+        <div class="section-title" data-aos="fade-up">
+          Nuestros <span class="highlight">Servicios</span>
+        </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Soluciones tecnológicas integrales para todo tipo de proyectos
+        </p>
+
+        <!-- Grid de tarjetas de servicios -->
+        <div class="services-grid">
+          <!-- Servicio 1: Construcciones Civiles -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
+            <span class="service-number">01</span>
+            <div class="card-icon">
+              <i class="fas fa-building"></i>
+            </div>
+            <h3 class="card-title">Infraestructura Civil Inteligente</h3>
+            <p class="card-text">
+              Diseño y ejecución de proyectos de infraestructura física
+              integrando ecosistemas IoT bajo arquitecturas IPv6, domótica
+              avanzada via KNX/DALI y automatización edilicia (BMS/BAS) para la
+              consolidación de Smart Buildings con protocolos Modbus TCP/IP.
+            </p>
+          </div>
+
+          <!-- Servicio 2: Radio Comunicación Digital -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <span class="service-number">02</span>
+            <div class="card-icon">
+              <i class="fas fa-broadcast-tower"></i>
+            </div>
+            <h3 class="card-title">Sistemas de Radiocomunicación (LMR)</h3>
+            <p class="card-text">
+              Despliegue de redes troncalizadas de radiocomunicación (DMR Tier
+              III, TETRA, APCO P25) enfocadas en misión crítica, garantizando
+              resilencia operativa, topologías de alta disponibilidad (HA) y
+              cifrado end-to-end (AES-256) con encriptación sobre canales de
+              control.
+            </p>
+          </div>
+
+          <!-- Servicio 3: Video Vigilancia Industrial -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
+            <span class="service-number">03</span>
+            <div class="card-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <h3 class="card-title">Videovigilancia Analítica (CCTV/IP)</h3>
+            <p class="card-text">
+              Arquitecturas de videovigilancia IP de alta resolución (VMS) sobre
+              protocolo ONVIF Profile S/G/T. Implementación de analítica de
+              video basada en Edge AI (IVA), reconocimiento facial (LPR/ANPR),
+              mapas de calor y metadatos en tiempo real para análisis forense.
+            </p>
+          </div>
+
+          <!-- Servicio 4: Redes Inalámbricas -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <span class="service-number">04</span>
+            <div class="card-icon">
+              <i class="fas fa-wifi"></i>
+            </div>
+            <h3 class="card-title">Redes Inalámbricas y Enlaces RF</h3>
+            <p class="card-text">
+              Desarrollo de topologías de red Wireless Carrier-Grade. Despliegue
+              de radioenlaces de microondas (PtP/PtMP) en bandas licenciadas,
+              soluciones WLAN corporativas bajo estándares Wi-Fi 6/6E (802.11ax)
+              y ecosistemas Mesh Networks con roaming seamless.
+            </p>
+          </div>
+
+          <!-- Servicio 5: Telefonía IP y Video Conferencia -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="350"
+          >
+            <span class="service-number">05</span>
+            <div class="card-icon">
+              <i class="fas fa-phone-volume"></i>
+            </div>
+            <h3 class="card-title">Comunicaciones Unificadas (UC&C)</h3>
+            <p class="card-text">
+              Integración de plataformas de Comunicaciones Unificadas y
+              Colaboración (UCaaS/CPaaS). Despliegue de centralitas IP-PBX, SIP
+              Trunking, gateways VoIP y sistemas de telepresencia inmersiva en
+              resolución 4K para entornos corporativos con QoS estricto.
+            </p>
+          </div>
+
+          <!-- Servicio 6: Cableado Estructurado -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <span class="service-number">06</span>
+            <div class="card-icon">
+              <i class="fas fa-ethernet"></i>
+            </div>
+            <h3 class="card-title">Infraestructura Física de Redes (IT/OT)</h3>
+            <p class="card-text">
+              Diseño y tendido de cableado estructurado bajo normativas
+              ANSI/TIA-568.2-D e ISO/IEC 11801. Despliegue y fusión de fibra
+              óptica (Backbone OS2/OM4) y cobre de alta densidad (CAT6A/CAT7A)
+              con certificación con Fluke Networks DSX2-8000.
+            </p>
+          </div>
+
+          <!-- Servicio 7: Centrales de Alarma -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="450"
+          >
+            <span class="service-number">07</span>
+            <div class="card-icon">
+              <i class="fas fa-bell"></i>
+            </div>
+            <h3 class="card-title">Sistemas de Intrusión (IDS)</h3>
+            <p class="card-text">
+              Ingeniería en sistemas de detección de intrusos perimetrales e
+              interiores (IDS). Integración multitecnología (PIR, microondas,
+              sísmicos) con plataformas de gestión unificada (PSIM) y
+              transmisión cifrada vía VPN hacia centros de monitoreo SOC/NOC.
+            </p>
+          </div>
+
+          <!-- Servicio 8: Sistemas de Extinción -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <span class="service-number">08</span>
+            <div class="card-icon">
+              <i class="fas fa-fire-extinguisher"></i>
+            </div>
+            <h3 class="card-title">Protección Contra Incendios (PCI)</h3>
+            <p class="card-text">
+              Sistemas de detección temprana direccionable (FAS) y supresión de
+              incendios bajo normativas NFPA 72/101. Implementación de sistemas
+              de aspiración (VESDA), sprinklers pre-acción y extinción por
+              agentes limpios (FM-200, Novec 1230) para Datacenters con rating
+              Tier III.
+            </p>
+          </div>
+
+          <!-- Servicio 9: Control de Accesos -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="550"
+          >
+            <span class="service-number">09</span>
+            <div class="card-icon">
+              <i class="fas fa-fingerprint"></i>
+            </div>
+            <h3 class="card-title">Control de Accesos y Biometría</h3>
+            <p class="card-text">
+              Arquitecturas de control de acceso físico (PACS) multisucursal.
+              Integración de terminales biométricos (reconocimiento facial 3D,
+              iris), lectura de credenciales cifradas (MIFARE DESFire/NFC) con
+              encriptación AES-128, esclusas de seguridad y lógicas
+              anti-passback.
+            </p>
+          </div>
+
+          <!-- Servicio 10: Infraestructura Eléctrica -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <span class="service-number">10</span>
+            <div class="card-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="card-title">Calidad de Energía y Respaldo (UPS)</h3>
+            <p class="card-text">
+              Acondicionamiento eléctrico en baja/media tensión (LV/MV) para
+              cargas críticas. Implementación de sistemas ininterrumpidos de
+              potencia (UPS) con topología doble conversión, transferencia
+              automática (ATS/STS), supresores de transientes (TVSS/SPD) y
+              tableros de distribución estabilizados.
+            </p>
+          </div>
+
+          <!-- Servicio 11: Energía Renovable -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="650"
+          >
+            <span class="service-number">11</span>
+            <div class="card-icon">
+              <i class="fas fa-solar-panel"></i>
+            </div>
+            <h3 class="card-title">Microrredes y Energía Renovable</h3>
+            <p class="card-text">
+              Integración de sistemas de generación distribuida (BESS,
+              fotovoltaica y eólica) en topologías on-grid y off-grid. Uso de
+              inversores inteligentes con MPPT, almacenamiento en celdas LiFePO4
+              y telemetría de eficiencia energética vía sistemas SCADA bajo
+              protocolo IEC 61850.
+            </p>
+          </div>
+
+          <!-- Servicio 12: Sistemas de Audio y Video -->
+          <div
+            class="card service-card card-3d card-3d-enhanced service-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="700"
+          >
+            <span class="service-number">12</span>
+            <div class="card-icon">
+              <i class="fas fa-volume-up"></i>
+            </div>
+            <h3 class="card-title">Integración Audiovisual (Pro AV)</h3>
+            <p class="card-text">
+              Despliegue de tecnologías Audiovisuales Profesionales. Matrices de
+              video sobre IP (AVoIP) con conmutación 4K, sonorización ambiental,
+              sistemas Line Array, transporte de audio digital (Dante, AES67),
+              displays LED de alto pitch y automatización mediante procesadores
+              DSP/Crestron.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECCIÓN DE ESTADÍSTICAS - Contadores animados ========== -->
+    <section class="section stats section-3d-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="container">
+        <div class="stats-grid">
+          <!-- Contador: Años de experiencia -->
+          <div
+            class="stat-item stat-item-3d"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="stat-number counter" data-target="10" data-suffix="+">
+              0
+            </div>
+            <div class="stat-label">Años de Expertise en TI</div>
+          </div>
+          <!-- Contador: Proyectos ejecutados -->
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-number counter" data-target="50" data-suffix="+">
+              0
+            </div>
+            <div class="stat-label">Proyectos de Misión Crítica</div>
+          </div>
+          <!-- Contador: Ciudades con soporte -->
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-number counter" data-target="4" data-suffix="">
+              0
+            </div>
+            <div class="stat-label">Hubs de Soporte Técnico</div>
+          </div>
+          <!-- Contador: Fabricantes certificados -->
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+            <div class="stat-number counter" data-target="50" data-suffix="+">
+              0
+            </div>
+            <div class="stat-label">Alianzas OEM Certificadas</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECCIÓN COBERTURA - Ciudades de soporte ========== -->
+    <section id="cobertura" class="section coverage section-3d-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="container">
+        <!-- Título y subtítulo -->
+        <div class="section-title" data-aos="fade-up">
+          Nuestra <span class="highlight">Cobertura</span>
+        </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Brindamos soporte técnico en las principales ciudades del sur del Perú
+        </p>
+
+        <!-- Grid de tarjetas de cobertura por ciudad -->
+        <div class="coverage-grid">
+          <!-- Arequipa - Sede Principal -->
+          <div
+            class="card coverage-card primary coverage-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
+            <div class="coverage-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Arequipa</h3>
+            <p>Headquarters & Centro de Operaciones</p>
+            <p class="mt-2">Urb. Las Peñas A-35, Sachaca</p>
+          </div>
+
+          <!-- Tacna - Oficina de soporte -->
+          <div
+            class="card coverage-card coverage-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="coverage-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Tacna</h3>
+            <p>NOC & Soporte Técnico Avanzado</p>
+            <p class="mt-2">Mantenimiento Preventivo / Correctivo (SLA)</p>
+          </div>
+
+          <!-- Juliaca - Oficina de soporte -->
+          <div
+            class="card coverage-card coverage-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="250"
+          >
+            <div class="coverage-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Juliaca</h3>
+            <p>NOC & Soporte Técnico Avanzado</p>
+            <p class="mt-2">Mantenimiento Preventivo / Correctivo (SLA)</p>
+          </div>
+
+          <!-- Cusco - Oficina de soporte -->
+          <div
+            class="card coverage-card coverage-card-3d"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="coverage-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Cusco</h3>
+            <p>NOC & Soporte Técnico Avanzado</p>
+            <p class="mt-2">Mantenimiento Preventivo / Correctivo (SLA)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECCIÓN CTA - Llamada a la acción ========== -->
+    <section class="section cta section-3d-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-3"></div>
+      <div class="container">
+        <div class="cta-content" data-aos="zoom-in">
+          <!-- Título y descripción del CTA -->
+          <h2>¿Listo para transformar la infraestructura de su proyecto?</h2>
+          <p>
+            Agende una consultoría técnica con nuestros ingenieros certificados
+            y potencie la infraestructura de su proyecto con soluciones de
+            vanguardia bajo arquitecturas escalables y estándares IEEE/TIA.
+          </p>
+          <!-- Botones de acción -->
+          <div class="cta-buttons">
+            <a
+              href="https://wa.me/51950313642"
+              target="_blank"
+              class="btn btn-whatsapp btn-lg"
+            >
+              <i class="fab fa-whatsapp"></i> Chatear Ahora
+            </a>
+            <a href="contacto.html" class="btn btn-outline btn-lg">
+              <i class="fas fa-envelope"></i> Enviar Correo
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER - Pie de página ========== -->
+    <footer class="footer">
+      <!-- Cubos decorativos -->
+      <div class="footer-cubes">
+        <div class="footer-cube blue cube-1">
+          <div class="cube-face cube-front"></div>
+          <div class="cube-face cube-back"></div>
+          <div class="cube-face cube-right"></div>
+          <div class="cube-face cube-left"></div>
+          <div class="cube-face cube-top"></div>
+          <div class="cube-face cube-bottom"></div>
+        </div>
+        <div class="footer-cube yellow cube-2">
+          <div class="cube-face cube-front"></div>
+          <div class="cube-face cube-back"></div>
+          <div class="cube-face cube-right"></div>
+          <div class="cube-face cube-left"></div>
+          <div class="cube-face cube-top"></div>
+          <div class="cube-face cube-bottom"></div>
+        </div>
+        <div class="footer-cube mixed cube-3">
+          <div class="cube-face cube-front"></div>
+          <div class="cube-face cube-back"></div>
+          <div class="cube-face cube-right"></div>
+          <div class="cube-face cube-left"></div>
+          <div class="cube-face cube-top"></div>
+          <div class="cube-face cube-bottom"></div>
+        </div>
+        <div class="footer-cube blue cube-4">
+          <div class="cube-face cube-front"></div>
+          <div class="cube-face cube-back"></div>
+          <div class="cube-face cube-right"></div>
+          <div class="cube-face cube-left"></div>
+          <div class="cube-face cube-top"></div>
+          <div class="cube-face cube-bottom"></div>
+        </div>
+        <div class="footer-cube yellow cube-5">
+          <div class="cube-face cube-front"></div>
+          <div class="cube-face cube-back"></div>
+          <div class="cube-face cube-right"></div>
+          <div class="cube-face cube-left"></div>
+          <div class="cube-face cube-top"></div>
+          <div class="cube-face cube-bottom"></div>
+        </div>
+        <div class="footer-cube mixed cube-6">
+          <div class="cube-face cube-front"></div>
+          <div class="cube-face cube-back"></div>
+          <div class="cube-face cube-right"></div>
+          <div class="cube-face cube-left"></div>
+          <div class="cube-face cube-top"></div>
+          <div class="cube-face cube-bottom"></div>
+        </div>
+        <div class="footer-cube blue cube-7">
+          <div class="cube-face cube-front"></div>
+          <div class="cube-face cube-back"></div>
+          <div class="cube-face cube-right"></div>
+          <div class="cube-face cube-left"></div>
+          <div class="cube-face cube-top"></div>
+          <div class="cube-face cube-bottom"></div>
+        </div>
+        <div class="footer-cube yellow cube-8">
+          <div class="cube-face cube-front"></div>
+          <div class="cube-face cube-back"></div>
+          <div class="cube-face cube-right"></div>
+          <div class="cube-face cube-left"></div>
+          <div class="cube-face cube-top"></div>
+          <div class="cube-face cube-bottom"></div>
+        </div>
+      </div>
+      <!-- Logo de fondo decorativo -->
+      <img
+        src="assets/eds_useful_images/logo.png"
+        alt=""
+        class="footer-bg-logo"
+        aria-hidden="true"
+      />
+      <div class="container">
+        <!-- Grid principal del footer -->
+        <div class="footer-grid">
+          <!-- Columna de marca y redes sociales -->
+          <div class="footer-brand">
+            <a
+              href="#"
+              class="logo"
+              style="display: block; margin-bottom: 20px"
+            >
+              <img
+                src="assets/eds_useful_images/logo.png"
+                alt="EDS Logo"
+                style="max-width: 200px; height: auto"
+              />
+            </a>
+            <p>
+              Somos la empresa líder en edificaciones inteligentes en el sur del
+              Perú, ofreciendo soluciones tecnológicas integrales para la
+              infraestructura corporativa bajo estándares internacionales.
+            </p>
+            <!-- Iconos de redes sociales -->
+            <div class="footer-social">
+              <a href="#" aria-label="Facebook" data-social="facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" aria-label="LinkedIn" data-social="linkedin"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a href="#" aria-label="Instagram" data-social="instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://wa.me/51950313642"
+                aria-label="WhatsApp"
+                data-social="whatsapp"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Columna de navegación -->
+          <div class="footer-links-col">
+            <h4 class="footer-title">Navegación</h4>
+            <ul class="footer-links">
+              <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#nosotros">Nosotros</a></li>
+              <li><a href="#servicios">Servicios</a></li>
+              <li><a href="#cobertura">Cobertura</a></li>
+              <li><a href="proyectos.html">Proyectos</a></li>
+              <li><a href="socios.html">Socios</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- Columna de servicios -->
+          <div class="footer-links-col">
+            <h4 class="footer-title">Servicios</h4>
+            <ul class="footer-links">
+              <li><a href="#servicios">Construcción Civil</a></li>
+              <li><a href="#servicios">Video Vigilancia</a></li>
+              <li><a href="#servicios">Redes y Telecom</a></li>
+              <li><a href="#servicios">Control de Accesos</a></li>
+              <li><a href="#servicios">Energía Renovable</a></li>
+              <li><a href="#servicios">Cableado Estructurado</a></li>
+            </ul>
+          </div>
+
+          <!-- Columna de información de contacto -->
+          <div class="footer-contact-col">
+            <h4 class="footer-title">Contacto</h4>
+            <ul class="footer-contact">
+              <li>
+                <i class="fas fa-phone"></i>
+                <div>
+                  <p><strong>WhatsApp:</strong></p>
+                  <a href="https://wa.me/51950313642">950 313 642</a>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-phone"></i>
+                <div>
+                  <p><strong>Teléfono:</strong></p>
+                  <a href="tel:+51951277576">951 277 576</a>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <p><strong>Email:</strong></p>
+                  <a href="mailto:rocio.jara@edin-tel.com"
+                    >rocio.jara@edin-tel.com</a
+                  >
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <p><strong>Dirección:</strong></p>
+                  <p>Urb. Las Peñas A-35, Sachaca, Arequipa</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Barra inferior del footer con copyright y RUC -->
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 <a href="#">EDS Edificaciones Inteligentes SAC</a>.
+            Todos los derechos reservados.
+          </p>
+          <p>RUC: 20608965765</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts: Three.js background, GSAP animations, y lógica principal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="js/background3d.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/holographic-effects.js"></script>
+    <script src="js/scroll-animations.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

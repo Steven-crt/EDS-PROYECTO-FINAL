@@ -1,0 +1,560 @@
+/* ================================================
+    EDS EDIFICACIONES INTELIGENTES
+    3D Background Stylesheet v3.0 — Light Mode
+    ================================================
+    Canvas Three.js transparente sobre fondo blanco.
+    Overlays muy sutiles con colores EDS.
+    Secciones con efecto blueprint técnico.
+    ================================================ */
+
+/* ========== EFECTO BLUEPRINT TÉCNICO ========== */
+/* Líneas de plano técnico en los bordes de secciones */
+
+/* Borde blueprint en secciones */
+.section-3d-bg,
+.section.blueprint {
+    position: relative;
+}
+
+/* Borde técnico izq - línea vertical azul */
+.section-3d-bg::before,
+.section.blueprint::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        var(--primary, #29b6f6) 20%,
+        var(--primary, #29b6f6) 80%,
+        transparent 100%
+    );
+    opacity: 0.6;
+}
+
+/* Borde técnico der - línea vertical */
+.section-3d-bg::after,
+.section.blueprint::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        var(--accent, #ffc107) 20%,
+        var(--accent, #ffc107) 80%,
+        transparent 100%
+    );
+    opacity: 0.6;
+}
+
+/* ========== GRID TÉCNICO OVERLAY ========== */
+/* Grid sutil superpuesto en secciones */
+.section-3d-bg,
+.section.blueprint {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Grid técnico en el fondo de las secciones */
+.section-3d-bg .container::before,
+.section.blueprint .container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(41, 182, 246, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(41, 182, 246, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+    animation: gridPulse 8s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ================================================
+    CANVAS THREE.JS — Fondo 3D global transparente
+    ================================================ */
+#three-bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2 !important;
+    pointer-events: none;
+}
+
+/* ================================================
+    SECCIONES CON FONDO 3D
+    ================================================ */
+.section-3d-bg {
+    position: relative;
+    overflow: hidden;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-3d-bg .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ================================================
+   ORBES DE GRADIENTE EDS — sobre fondo claro
+   ================================================ */
+.section-3d-bg .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    pointer-events: none;
+    animation: orbFloat 20s ease-in-out infinite;
+}
+
+.section-3d-bg .gradient-orb.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(21, 101, 192, 0.15), transparent 70%);
+    top: -10%;
+    left: -8%;
+    animation-delay: 0s;
+}
+
+.section-3d-bg .gradient-orb.orb-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(240, 180, 41, 0.12), transparent 70%);
+    bottom: -10%;
+    right: -5%;
+    animation-delay: -6s;
+}
+
+.section-3d-bg .gradient-orb.orb-3 {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(0, 131, 143, 0.1), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -12s;
+}
+
+@keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25%       { transform: translate(28px, -20px) scale(1.08); }
+    50%       { transform: translate(-16px, 26px) scale(0.96); }
+    75%       { transform: translate(20px, 16px) scale(1.04); }
+}
+
+/* ================================================
+   BLUEPRINT PATTERN CSS — patrón de plano técnico
+   Aparece en secciones especiales como fondo sutil
+   ================================================ */
+.blueprint-bg {
+    position: relative;
+}
+
+.blueprint-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(21, 101, 192, 0.03) 0px,
+            rgba(21, 101, 192, 0.03) 1px,
+            transparent 1px,
+            transparent 40px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(21, 101, 192, 0.03) 0px,
+            rgba(21, 101, 192, 0.03) 1px,
+            transparent 1px,
+            transparent 40px
+        );
+    pointer-events: none;
+    z-index: 0;
+    animation: blueprintFade 8s ease-in-out infinite;
+}
+
+@keyframes blueprintFade {
+    0%, 100% { opacity: 0.6; }
+    50%       { opacity: 1.0; }
+}
+
+/* ================================================
+   LÍNEAS DE CONSTRUCCIÓN CSS ANIMADAS
+   Se dibujan progresivamente como trazos de plano
+   ================================================ */
+.construction-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* Línea horizontal que aparece de izquierda a derecha */
+.construction-lines::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(21, 101, 192, 0.25) 20%,
+        rgba(240, 180, 41, 0.35) 50%,
+        rgba(21, 101, 192, 0.25) 80%,
+        transparent
+    );
+    animation: drawLineH 6s 1s ease-in-out infinite;
+}
+
+/* Línea vertical que aparece de arriba a abajo */
+.construction-lines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40%;
+    width: 1px;
+    height: 0;
+    background: linear-gradient(180deg,
+        transparent,
+        rgba(21, 101, 192, 0.2) 30%,
+        rgba(21, 101, 192, 0.2) 70%,
+        transparent
+    );
+    animation: drawLineV 5s 2s ease-in-out infinite;
+}
+
+@keyframes drawLineH {
+    0%   { width: 0;    left: 0;   opacity: 0; }
+    15%  { opacity: 1; }
+    50%  { width: 100%; left: 0;   opacity: 1; }
+    85%  { opacity: 1; }
+    100% { width: 100%; left: 0;   opacity: 0; }
+}
+
+@keyframes drawLineV {
+    0%   { height: 0;    top: 0;   opacity: 0; }
+    15%  { opacity: 1; }
+    50%  { height: 100%; top: 0;   opacity: 1; }
+    85%  { opacity: 1; }
+    100% { height: 100%; top: 0;   opacity: 0; }
+}
+
+/* ================================================
+   TARJETAS 3D ENHANCED — versión clara
+   ================================================ */
+.card-3d-enhanced {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.card-3d-enhanced:hover {
+    transform: perspective(1000px)
+               rotateX(var(--rotate-x, 0deg))
+               rotateY(var(--rotate-y, 0deg))
+               translateY(-8px);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.08),
+        0 8px 16px rgba(21, 101, 192, 0.12);
+    border-color: rgba(21, 101, 192, 0.22) !important;
+}
+
+.card-3d-enhanced .card-content-3d {
+    transition: transform 0.3s ease;
+}
+
+.card-3d-enhanced:hover .card-content-3d {
+    transform: translateZ(20px);
+}
+
+/* Sombra dinámica de luz siguiendo el cursor */
+.card-3d-enhanced::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+        rgba(21, 101, 192, 0.08),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.card-3d-enhanced:hover::after {
+    opacity: 1;
+}
+
+/* ================================================
+   PROJECT CARDS 3D
+   ================================================ */
+.project-card-3d img {
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.project-card-3d:hover img {
+    transform: scale(1.04);
+    filter: brightness(0.75);
+}
+
+/* ================================================
+   SERVICE CARDS 3D
+   ================================================ */
+.service-card-3d {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card-3d::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(21, 101, 192, 0.04) 0%,
+        rgba(240, 180, 41, 0.03) 50%,
+        rgba(21, 101, 192, 0.04) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.service-card-3d:hover::before {
+    opacity: 1;
+}
+
+.service-card-3d .card-icon {
+    transition: transform 0.3s ease;
+}
+
+.service-card-3d:hover .card-icon {
+    transform: scale(1.1) translateY(-3px);
+}
+
+/* ================================================
+   COVERAGE CARDS 3D
+   ================================================ */
+.coverage-card-3d .coverage-icon {
+    transition: transform 0.3s ease;
+}
+
+.coverage-card-3d:hover .coverage-icon {
+    transform: scale(1.12) translateY(-4px);
+}
+
+/* ================================================
+   STATS 3D
+   ================================================ */
+.stat-item-3d {
+    transition: transform 0.3s ease;
+}
+
+.stat-item-3d:hover {
+    transform: translateY(-6px);
+}
+
+.stat-item-3d .stat-number {
+    text-shadow: 0 0 20px rgba(21, 101, 192, 0.2);
+}
+
+/* ================================================
+   REVEAL ANIMATIONS
+   ================================================ */
+.reveal-from-bottom {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-from-bottom.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-from-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-from-left.reveal-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-from-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-from-right.reveal-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-scale.reveal-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ================================================
+   HERO 3D
+   ================================================ */
+.hero-3d {
+    position: relative;
+}
+
+.hero-3d #particles {
+    z-index: 0;
+}
+
+/* ================================================
+   PAGE LOAD ANIMATIONS
+   ================================================ */
+.page-loaded .hero-glass-card {
+    animation: heroCardIn 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes heroCardIn {
+    from { opacity: 0; transform: translateX(-30px) translateY(15px); }
+    to   { opacity: 1; transform: translateX(0) translateY(0); }
+}
+
+.page-loaded .floating-badge {
+    opacity: 0;
+    animation: badgeIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.page-loaded .badge-1 { animation-delay: 0.4s; }
+.page-loaded .badge-2 { animation-delay: 0.6s; }
+.page-loaded .badge-3 { animation-delay: 0.8s; }
+
+@keyframes badgeIn {
+    from { opacity: 0; transform: translateX(25px) scale(0.9); }
+    to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* ================================================
+   PARALLAX
+   ================================================ */
+.parallax-layer {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+/* ================================================
+   SECTION LIGHT
+   ================================================ */
+.section-light {
+    background: linear-gradient(
+        180deg,
+        rgba(244, 246, 249, 0.92) 0%,
+        rgba(255, 255, 255, 0.96) 50%,
+        rgba(244, 246, 249, 0.92) 100%
+    );
+}
+
+/* ================================================
+   DIVIDER
+   ================================================ */
+.section-divider {
+    position: relative;
+    height: 60px;
+    overflow: hidden;
+}
+
+.section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(21, 101, 192, 0.4),
+        rgba(240, 180, 41, 0.4),
+        transparent
+    );
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+@media (max-width: 768px) {
+    .section-3d-bg .gradient-orb {
+        width: 180px;
+        height: 180px;
+        filter: blur(60px);
+        opacity: 0.25;
+    }
+
+    .card-3d-enhanced:hover { transform: none; }
+    .service-card-3d .card-icon,
+    .service-card-3d:hover .card-icon { transform: none; }
+    .coverage-card-3d:hover .coverage-icon { transform: none; }
+    .project-card-3d:hover img { transform: scale(1.02); }
+}
+
+/* ================================================
+   EDS TEXT BACKGROUND — Texto gigante decorativo
+   z-index muy bajo, detrás de todo
+   ================================================ */
+#eds-background-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', 'Rajdhani', sans-serif;
+    font-size: 35vw;
+    font-weight: bold;
+    color: #1a237e;
+    opacity: 0.05;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    z-index: -3;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    user-select: none;
+    will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #eds-background-text {
+        animation: none;
+    }
+}

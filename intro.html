@@ -1,0 +1,986 @@
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- ESTRUCTURA HTML BASE                                       -->
+<!-- Declaración del tipo de documento, configuración de        -->
+<!-- codificación UTF-8, viewport responsivo, título de la      -->
+<!-- pestaña y favicon de la empresa.                           -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EDS - Cargando...</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/eds_useful_images/logo.png"
+    />
+
+    <!-- ESTILOS CSS INLINE                                         -->
+    <!-- Todos los estilos están definidos internamente. Incluyen:  -->
+    <!-- variables CSS (colores, fondos), reset universal, estilos  -->
+    <!-- del body con gradientes radiales, canvas de partículas,    -->
+    <!-- rejilla decorativa, efecto glow animado, el panel central  -->
+    <!-- de intro con su sombra y borde, la barra gradiente         -->
+    <!-- animada en la parte superior del panel, estilos del logo,  -->
+    <!-- título, descripción, badges de características, loaders    -->
+    <!-- SVG animados, indicador de estado, barra de progreso,     -->
+    <!-- botón de "saltar intro", todas las keyframes de animación  -->
+    <!-- y media queries para dispositivos móviles.                -->
+    <style>
+      /* Importación de tipografías: Bebas Neue (títulos) y Rajdhani (cuerpo) */
+      @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;600&display=swap");
+
+      /* ── Variables CSS globales ── */
+      /* Paleta de colores corporativa, fondos, bordes y colores de texto */
+      :root {
+        --bg-0: #ffffff;
+        --bg-1: #f3f4f6;
+        --eds-orange: #1565c0;
+        --eds-blue: #1e88e5;
+        --eds-green: #f0b429;
+        --eds-gold: #d4a017;
+        --eds-red: #e53935;
+        --text: #1f2937;
+        --muted: #4b5563;
+        --panel: rgba(255, 255, 255, 0.9);
+        --border: rgba(0, 0, 0, 0.08);
+        --grid: rgba(0, 0, 0, 0.03);
+      }
+
+      /* ── Reset universal ── */
+      /* Elimina márgenes y paddings por defecto, usa border-box en todo */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Altura completa del viewport */
+      html,
+      body {
+        height: 100%;
+      }
+
+      /* ── Estilos del body ── */
+      /* Fondo con múltiples gradientes radiales de colores corporativos */
+      /* (dorado, rojo, azul) superuestos sobre un gradiente lineal.    */
+      /* overflow:hidden evita barras de desplazamiento durante la intro */
+      body {
+        font-family: "Rajdhani", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at 15% 20%,
+            rgba(240, 180, 41, 0.1),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 85% 10%,
+            rgba(229, 57, 53, 0.08),
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 50% 80%,
+            rgba(21, 101, 192, 0.06),
+            transparent 50%
+          ),
+          linear-gradient(130deg, var(--bg-0), var(--bg-1) 50%, #e5e7eb);
+        overflow: hidden;
+      }
+
+      /* ── Canvas de partículas ── */
+      /* Capa de fondo donde se dibujan las partículas animadas con JS. */
+      /* Posición fija que cubre todo el viewport, z-index 0 (capa base) */
+      #particles-canvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      /* ── Rejilla decorativa de fondo ── */
+      /* Pseudo-elemento ::before que crea una cuadrícula sutil con     */
+      /* líneas cada 6px. Opacidad baja para no distraer. z-index 1.  */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          repeating-linear-gradient(
+            0deg,
+            var(--grid),
+            var(--grid) 1px,
+            transparent 1px,
+            transparent 6px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            var(--grid),
+            var(--grid) 1px,
+            transparent 1px,
+            transparent 6px
+          );
+        opacity: 0.22;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* ── Efecto glow flotante ── */
+      /* Pseudo-elemento ::after con un gradiente radial dorado que se */
+      /* desplaza suavemente con la animación glowShift (8s).          */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: -30% -10% 10% -10%;
+        background: radial-gradient(
+          circle,
+          rgba(240, 180, 41, 0.18),
+          transparent 60%
+        );
+        animation: glowShift 8s ease-in-out infinite;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* ── Contenedor principal de la intro ── */
+      /* Flexbox centrado que ocupa toda la pantalla. z-index 2       */
+      /* para estar por encima del canvas y los pseudo-elementos.     */
+      .intro-container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* ── Panel central de la intro ── */
+      /* Tarjeta semitransparente con bordes redondeados, sombra       */
+      /* pronunciada y animación de entrada (panelIn).                 */
+      .intro-panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 50px 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+        animation: panelIn 1s ease-out both;
+        max-width: 700px;
+      }
+
+      /* ── Gradientes decorativos internos del panel ── */
+      /* Pseudo-elemento ::before con tres gradientes radiales         */
+      /* (dorado, rojo, azul) que dan profundidad visual al panel.    */
+      .intro-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 20% -10%,
+            rgba(240, 180, 41, 0.25),
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 80% 0%,
+            rgba(229, 57, 53, 0.18),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 50% 100%,
+            rgba(21, 101, 192, 0.15),
+            transparent 40%
+          );
+        opacity: 0.8;
+        pointer-events: none;
+      }
+
+      /* ── Barra gradiente animada superior del panel ── */
+      /* Pseudo-elemento ::after con una línea de 3px que cicla       */
+      /* entre los colores corporativos (dorado, azul, rojo).        */
+      .intro-panel::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--eds-green),
+          var(--eds-orange),
+          var(--eds-red),
+          var(--eds-green)
+        );
+        background-size: 300% 100%;
+        animation: gradientMove 3s linear infinite;
+      }
+
+      /* ── Texto kicker (subtítulo superior) ── */
+      /* Pequeño texto en mayúsculas con espaciado amplio que dice     */
+      /* "EDS Edificaciones Inteligentes" en color dorado.            */
+      .intro-kicker {
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.4em;
+        color: var(--eds-green);
+        margin-bottom: 15px;
+      }
+
+      /* ── Logo de la empresa ── */
+      /* Imagen centrada con efecto glow dorado/rojo, animaciones de  */
+      /* flotación y brillo pulsante. Al hacer hover se agranda y el  */
+      /* brillo se intensifica. Al hacer clic ejecuta skipIntro().    */
+      .intro-logo {
+        height: 180px;
+        width: auto;
+        margin: 10px auto 20px;
+        filter: drop-shadow(0 0 15px rgba(240, 180, 41, 0.5))
+          drop-shadow(0 0 30px rgba(229, 57, 53, 0.3));
+        animation:
+          logoGlow 3s ease-in-out infinite,
+          logoFloat 4s ease-in-out infinite;
+        cursor: pointer;
+        transition: transform 0.4s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .intro-logo:hover {
+        transform: scale(1.1) translateY(-8px);
+        filter: drop-shadow(0 0 20px rgba(240, 180, 41, 0.7))
+          drop-shadow(0 0 40px rgba(229, 57, 53, 0.5));
+      }
+
+      /* ── Título principal ── */
+      /* "Edificaciones Inteligentes" con tipografía Bebas Neue,      */
+      /* tamaño responsivo (clamp), efecto de texto con gradiente     */
+      /* de color usando background-clip.                             */
+      .intro-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, var(--text), var(--eds-green));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: none;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── Descripción de la empresa ── */
+      /* Párrafo descriptivo centrado con ancho máximo, color         */
+      /* apagado y interlineado cómodo para lectura.                  */
+      .intro-description {
+        font-size: 1rem;
+        max-width: 580px;
+        margin: 0 auto 30px;
+        color: var(--muted);
+        line-height: 1.7;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── Sección de características destacadas ── */
+      /* Contenedor flex con badges: "+10 Años", "+50 Proyectos",     */
+      /* "4 Ciudades". Cada badge tiene un icono de check dorado.    */
+      .intro-features {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      .intro-feature {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .intro-feature i {
+        color: var(--eds-green);
+        font-size: 1.1rem;
+      }
+
+      /* ── Loaders SVG animados (E, D, S) ── */
+      /* Contenedor flex centrado con tres loaders que representan   */
+      /* las letras E, D, S del logo. Cada uno tiene un punto que   */
+      /* orbita sobre el trazado SVG y un trazado animado (stroke). */
+      .intro-loaders {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 25px 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Estilo base de cada loader: tamaño, sombra, flotación */
+      .loader {
+        --path-color: rgba(255, 255, 255, 0.8);
+        --dot-color: var(--eds-green);
+        --duration: 2.8s;
+        width: 50px;
+        height: 50px;
+        position: relative;
+        filter: drop-shadow(0 0 8px rgba(240, 180, 41, 0.4));
+        animation: float 4s ease-in-out infinite;
+      }
+
+      /* Punto orbital que recorre el contorno de la letra SVG */
+      .loader::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        position: absolute;
+        background: var(--dot-color);
+        top: 50%;
+        left: 50%;
+        transform: translate(-15px, 14px);
+        animation: dotOrbit var(--duration)
+          cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+        box-shadow: 0 0 10px var(--dot-color);
+      }
+
+      .loader svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Trazo SVG animado: dasharray crea el efecto de "dibujado" */
+      .loader svg path {
+        fill: none;
+        stroke: var(--path-color);
+        stroke-width: 5px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 120 70;
+        stroke-dashoffset: 0;
+        animation: letterTrace var(--duration)
+          cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+      }
+
+      /* Retraso escalonado para que las letras no estén sincronizadas */
+      .loader:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+      .loader:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+
+      /* Colores y duraciones específicas para cada letra */
+      .loader--d {
+        --dot-color: var(--eds-orange);
+        --duration: 3.1s;
+      }
+      .loader--s {
+        --dot-color: var(--eds-red);
+        --duration: 2.5s;
+      }
+
+      /* ── Squid Game Loaders ── */
+      .squid-loaders {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin: 20px 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .squid-loader {
+        --squid-path: #1565c0;
+        --squid-dot: #f0b429;
+        --squid-duration: 3s;
+        width: 44px;
+        height: 44px;
+        position: relative;
+        filter: drop-shadow(0 0 8px rgba(240, 180, 41, 0.3));
+        animation: float 4s ease-in-out infinite;
+      }
+
+      .squid-loader:before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        position: absolute;
+        display: block;
+        background: var(--squid-dot);
+        top: 37px;
+        left: 19px;
+        transform: translate(-18px, -18px);
+        animation: dotRect var(--squid-duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+        box-shadow: 0 0 10px var(--squid-dot);
+      }
+
+      .squid-loader svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .squid-loader svg rect,
+      .squid-loader svg polygon,
+      .squid-loader svg circle {
+        fill: none;
+        stroke: var(--squid-path);
+        stroke-width: 5px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+
+      .squid-loader svg polygon {
+        stroke-dasharray: 145 76 145 76;
+        stroke-dashoffset: 0;
+        animation: pathTriangle var(--squid-duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+      }
+
+      .squid-loader svg rect {
+        stroke-dasharray: 192 64 192 64;
+        stroke-dashoffset: 0;
+        animation: pathRect 3s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+      }
+
+      .squid-loader svg circle {
+        stroke-dasharray: 150 50 150 50;
+        stroke-dashoffset: 75;
+        animation: pathCircle var(--squid-duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+      }
+
+      .squid-loader.triangle {
+        width: 48px;
+      }
+
+      .squid-loader.triangle:before {
+        left: 21px;
+        transform: translate(-10px, -18px);
+        animation: dotTriangle var(--squid-duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+      }
+
+      @keyframes pathTriangle {
+        33% { stroke-dashoffset: 74; }
+        66% { stroke-dashoffset: 147; }
+        100% { stroke-dashoffset: 221; }
+      }
+
+      @keyframes dotTriangle {
+        33% { transform: translate(0, 0); }
+        66% { transform: translate(10px, -18px); }
+        100% { transform: translate(-10px, -18px); }
+      }
+
+      @keyframes pathRect {
+        25% { stroke-dashoffset: 64; }
+        50% { stroke-dashoffset: 128; }
+        75% { stroke-dashoffset: 192; }
+        100% { stroke-dashoffset: 256; }
+      }
+
+      @keyframes dotRect {
+        25% { transform: translate(0, 0); }
+        50% { transform: translate(18px, -18px); }
+        75% { transform: translate(0, -36px); }
+        100% { transform: translate(-18px, -18px); }
+      }
+
+      @keyframes pathCircle {
+        25% { stroke-dashoffset: 125; }
+        50% { stroke-dashoffset: 175; }
+        75% { stroke-dashoffset: 225; }
+        100% { stroke-dashoffset: 275; }
+      }
+
+      /* ── Indicador de estado del sistema ── */
+      /* Texto "Inicializando sistema..." con un punto pulsante verde */
+      .intro-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        color: var(--muted);
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Punto de estado con animación de pulso */
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--eds-green);
+        box-shadow: 0 0 12px var(--eds-green);
+        animation: pulse 1.2s ease-in-out infinite;
+      }
+
+      /* ── Barra de progreso ── */
+      /* Barra horizontal delgada que se llena de 0% a 100% en 8s    */
+      /* con gradiente dorado→azul, indicando el tiempo de carga.    */
+      .intro-progress {
+        width: 100%;
+        max-width: 300px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        margin: 20px auto 0;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+      }
+
+      .intro-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--eds-green), var(--eds-orange));
+        border-radius: 3px;
+        animation: progressFill 8s ease-out forwards;
+      }
+
+      /* ── Botón "Saltar intro" ── */
+      /* Enlace flotante en la esquina inferior derecha que permite   */
+      /* omitir la animación de carga y navegar directamente.         */
+      .intro-skip {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        font-size: 0.75rem;
+        color: var(--muted);
+        cursor: pointer;
+        opacity: 0.7;
+        transition:
+          opacity 0.3s,
+          color 0.3s;
+        z-index: 3;
+      }
+
+      .intro-skip:hover {
+        opacity: 1;
+        color: var(--eds-green);
+      }
+
+      /* ══════════════════════════════════════════════════════════════ */
+      /* KEYFRAMES DE ANIMACIÓN                                     */
+      /* Todas las animaciones CSS utilizadas en esta página:       */
+      /* entrada del panel, flotación/brillo del logo, desplazamiento*/
+      /* del glow, pulso del punto de estado, flotación de loaders, */
+      /* trazado de letras SVG, órbita del punto, movimiento del    */
+      /* gradiente, llenado de la barra de progreso y fade-out.     */
+      /* ══════════════════════════════════════════════════════════════ */
+
+      /* Entrada del panel: aparece desde abajo con escala */
+      @keyframes panelIn {
+        0% {
+          opacity: 0;
+          transform: translateY(30px) scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* Flotación vertical del logo */
+      @keyframes logoFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Brillo pulsante del logo (intensifica sombras dorada y roja) */
+      @keyframes logoGlow {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 15px rgba(240, 180, 41, 0.5))
+            drop-shadow(0 0 30px rgba(229, 57, 53, 0.3));
+        }
+        50% {
+          filter: drop-shadow(0 0 25px rgba(240, 180, 41, 0.7))
+            drop-shadow(0 0 45px rgba(229, 57, 53, 0.5));
+        }
+      }
+
+      /* Desplazamiento suave del efecto glow de fondo */
+      @keyframes glowShift {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0);
+        }
+        50% {
+          transform: translate3d(50px, -20px, 0);
+        }
+      }
+
+      /* Pulso del punto de estado (escala + opacidad) */
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(0.9);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      /* Flotación vertical de los loaders SVG */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      /* Trazado animado del path SVG (efecto de "dibujado") */
+      @keyframes letterTrace {
+        0% {
+          stroke-dashoffset: 0;
+        }
+        50% {
+          stroke-dashoffset: -100;
+        }
+        100% {
+          stroke-dashoffset: -200;
+        }
+      }
+
+      /* Órbita del punto que recorre el contorno de cada letra */
+      @keyframes dotOrbit {
+        0% {
+          transform: translate(-15px, 14px);
+          opacity: 0.5;
+        }
+        25% {
+          transform: translate(15px, 14px);
+          opacity: 1;
+        }
+        50% {
+          transform: translate(15px, -14px);
+          opacity: 0.6;
+        }
+        75% {
+          transform: translate(-15px, -14px);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-15px, 14px);
+          opacity: 0.5;
+        }
+      }
+
+      /* Movimiento cíclico del gradiente de la barra superior del panel */
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 300% 50%;
+        }
+      }
+      
+      /* Llenado progresivo de la barra de carga (0% → 100% en 8s) */
+      @keyframes progressFill {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      /* Clase aplicada al body para la transición de salida */
+      body.fade-out {
+        animation: fadeOut 1s forwards;
+      }
+
+      /* Desvanecimiento total de la página al finalizar la intro */
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      /* ── Media query para dispositivos móviles (≤768px) ── */
+      /* Reduce paddings, tamaños de logo/loaders y ajusta espacios */
+      @media (max-width: 768px) {
+        .intro-panel {
+          padding: 40px 30px;
+          margin: 20px;
+        }
+
+        .intro-logo {
+          height: 140px;
+        }
+
+        .intro-loaders {
+          gap: 15px;
+        }
+
+        .loader {
+          width: 40px;
+          height: 40px;
+        }
+
+        .intro-features {
+          gap: 15px;
+        }
+
+        .intro-skip {
+          bottom: 20px;
+          right: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- CANVAS DE PARTÍCULAS                                        -->
+    <!-- Elemento <canvas> donde se dibujan las partículas flotantes  -->
+    <!-- y sus conexiones mediante JavaScript.                        -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- CONTENEDOR PRINCIPAL DE LA INTRO                            -->
+    <!-- Incluye: logo, título, descripción, badges de logros,       -->
+    <!-- loaders SVG animados (E, D, S), indicador de estado y       -->
+    <!-- barra de progreso de carga.                                 -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <div class="intro-container">
+      <div class="intro-panel">
+        <!-- Subtítulo de la marca -->
+        <p class="intro-kicker">EDS Edificaciones Inteligentes</p>
+
+        <!-- Logo de la empresa (clickeable para saltar intro) -->
+        <img
+          src="assets/eds_useful_images/logo_empresa-Photoroom.png"
+          alt="EDS Logo"
+          class="intro-logo"
+          onclick="skipIntro()"
+        />
+
+        <!-- Título principal -->
+        <h1 class="intro-title">Edificaciones Inteligentes</h1>
+
+        <!-- Descripción de la empresa -->
+        <p class="intro-description">
+          Empresa dedicada al despliegue de infraestructuras tecnológicas con
+          enfoque en BMS/IoT, sistemas de radiocomunicaciones LMR, seguridad
+          electrónica CCTV/IP y automatización bajo protocolos BACnet/Modbus.
+          Más de una década transformando el sur del Perú con estándares
+          ANSI/TIA e ISO.
+        </p>
+
+        <!-- Badges de logros: años, proyectos, ciudades -->
+        <div class="intro-features">
+          <div class="intro-feature">
+            <i class="fas fa-check-circle"></i>
+            <span>+10 Años</span>
+          </div>
+          <div class="intro-feature">
+            <i class="fas fa-check-circle"></i>
+            <span>+50 Proyectos</span>
+          </div>
+          <div class="intro-feature">
+            <i class="fas fa-check-circle"></i>
+            <span>4 Ciudades</span>
+          </div>
+        </div>
+
+        <!-- Loaders SVG animados: letras E, D, S -->
+        <div class="intro-loaders">
+          <div class="loader loader--e">
+            <svg viewBox="0 0 80 80">
+              <path d="M60 12 H22 V68 H60 M22 40 H52"></path>
+            </svg>
+          </div>
+          <div class="loader loader--d">
+            <svg viewBox="0 0 80 80">
+              <path d="M22 12 V68 H50 Q62 68 62 56 V24 Q62 12 50 12 H22"></path>
+            </svg>
+          </div>
+          <div class="loader loader--s">
+            <svg viewBox="0 0 80 80">
+              <path
+                d="M52 16 H28 Q16 16 16 28 Q16 40 28 40 H52 Q64 40 64 52 Q64 64 52 64 H28 Q16 64 16 52"
+              ></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Indicador de estado: punto pulsante + texto -->
+        <div class="intro-status">
+          <span class="status-dot"></span>
+          <span>Inicializando sistema...</span>
+        </div>
+
+        <!-- Barra de progreso de carga -->
+        <div class="intro-progress">
+          <div class="intro-progress-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- BOTÓN "SALTAR INTRO"                                        -->
+    <!-- Enlace flotante en la esquina inferior derecha para omitir  -->
+    <!-- la animación y navegar directamente a index.html.           -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <div class="intro-skip" onclick="skipIntro()">
+      <i class="fas fa-forward"></i> Saltar intro
+    </div>
+
+    <!-- Font Awesome 6.4 (iconos de check y forward) cargado al final del body -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- JAVASCRIPT - Lógica de la intro                             -->
+    <!-- Contiene: (1) Motor de partículas con canvas que dibuja     -->
+    <!-- puntos flotantes y líneas de conexión entre ellos, y        -->
+    <!-- (2) Control de temporización: skipIntro() para saltar,      -->
+    <!-- redirección automática a index.html después de 8.5s.        -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <script>
+      /* ── Motor de partículas ── */
+      /* Referencias al canvas y contexto 2D para dibujar */
+      const canvas = document.getElementById("particles-canvas");
+      const ctx = canvas.getContext("2d");
+      let particles = [];
+
+      /* Redimensiona el canvas al tamaño de la ventana */
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      /* Crea partículas aleatorias: cantidad proporcional al área de la */
+      /* pantalla. Cada partícula tiene posición, tamaño, velocidad,     */
+      /* color (dorado, azul o rojo) y opacidad variables.              */
+      function createParticles() {
+        particles = [];
+        const count = Math.floor((canvas.width * canvas.height) / 12000);
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 3 + 1,
+            speedX: (Math.random() - 0.5) * 0.6,
+            speedY: (Math.random() - 0.5) * 0.6,
+            color: ["#f0b429", "#1565c0", "#e53935"][
+              Math.floor(Math.random() * 3)
+            ],
+            opacity: Math.random() * 0.4 + 0.2,
+          });
+        }
+      }
+
+      /* Bucle de animación: limpia el canvas, mueve cada partícula,   */
+      /* rebota en los bordes, dibuja los círculos y luego dibuja      */
+      /* líneas de conexión entre partículas cercanas (< 120px).       */
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach((p) => {
+          p.x += p.speedX;
+          p.y += p.speedY;
+
+          /* Rebote en los bordes del canvas */
+          if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+          /* Dibuja el círculo de la partícula */
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.opacity;
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        });
+
+        /* Dibuja líneas de conexión entre partículas cercanas */
+        /* La opacidad disminuye cuanto mayor es la distancia  */
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 120) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(240, 180, 41, ${0.15 * (1 - dist / 120)})`;
+              ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      /* Inicializa el sistema de partículas */
+      resize();
+      createParticles();
+      animate();
+
+      /* Recrea las partículas si la ventana cambia de tamaño */
+      window.addEventListener("resize", () => {
+        resize();
+        createParticles();
+      });
+
+      /* ── Control de temporización de la intro ── */
+
+      /* skipIntro(): marca la intro como vista en sessionStorage,  */
+      /* aplica la clase fade-out y redirige a index.html tras 800ms */
+      function skipIntro() {
+        sessionStorage.setItem("edsIntroSeen", "true");
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+          window.location.href = "index.html?intro=1";
+        }, 800);
+      }
+
+      /* A los 7.5 segundos: inicia el desvanecimiento de la página */
+      setTimeout(() => {
+        sessionStorage.setItem("edsIntroSeen", "true");
+        document.body.classList.add("fade-out");
+      }, 7500);
+
+      /* A los 8.5 segundos: redirige automáticamente a index.html */
+      setTimeout(() => {
+        window.location.href = "index.html?intro=1";
+      }, 8500);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,308 @@
+/* ==========================================================================
+   VARIABLES CSS PERSONALIZADAS (Custom Properties)
+   Define todos los valores reutilizables del proyecto: colores, fondos,
+   efectos, tipografía, sombras, espaciado, transiciones y niveles de apilamiento.
+   ========================================================================== */
+:root {
+    /* Fondos Claros - Colores base para fondos de página, cards y áreas secundarias */
+    --bg-primary: #fbfbfc;
+    --bg-secondary: #f4f6f9;
+    --bg-tertiary: #eff1f5;
+    --bg-card: #fafbfc;
+
+    /* Colores EDS - Paleta Actualizada - Más vibrante igual que el fondo 3D */
+    --primary: #29b6f6;      /* Azul vibrante igual al fondo */
+    --primary-light: #4fc3f7;
+    --accent: #ffc107;       /* Dorado brillante */
+    --accent-light: #ffca28;
+    --accent-dark: #ff8f00;
+    --danger: #e53935;
+    --success: #43a047;
+    --info: #26c6da;
+
+    /* Efectos de brillo: colores semitransparentes para resaltar elementos interactivos y estados */
+    --accent-glow: rgba(240, 180, 41, 0.2);
+    --danger-glow: rgba(229, 57, 53, 0.2);
+    --success-glow: rgba(67, 160, 71, 0.2);
+
+    /* Texto: colores para jerarquía tipográfica (primario, secundario y atenuado) */
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --text-muted: #6b7280;
+
+    /* Bordes y paneles: valores para bordes, fondos de paneles, cuadrícula y tintes de color */
+    --border: rgba(0, 0, 0, 0.1);
+    --border-hover: rgba(0, 0, 0, 0.2);
+    --panel: rgba(255, 255, 255, 0.9);
+    --grid: rgba(0, 0, 0, 0.04);
+    --tint-primary: rgba(21, 101, 192, 0.08);
+    --tint-accent: rgba(240, 180, 41, 0.1);
+    --tint-danger: rgba(229, 57, 53, 0.08);
+
+    /* Gradientes: combinaciones de colores para fondos, botones, héroes y efectos decorativos */
+    --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-light));
+    --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-light));
+    --gradient-danger: linear-gradient(135deg, var(--danger), #ff5252);
+    --gradient-success: linear-gradient(135deg, var(--success), #66bb6a);
+    --gradient-gold: linear-gradient(135deg, var(--accent-dark), var(--accent), var(--accent-light));
+    --gradient-sunrise: linear-gradient(135deg, rgba(21, 101, 192, 0.14), rgba(240, 180, 41, 0.18), rgba(229, 57, 53, 0.12));
+    --gradient-dark: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
+    --gradient-hero: linear-gradient(135deg, rgba(240, 180, 41, 0.05), rgba(21, 101, 192, 0.05), rgba(229, 57, 53, 0.05));
+    --glass-effect: blur(12px) saturate(180%);
+
+    /* Sombras con colores: niveles de profundidad (sm, md, lg) y sombras con brillo para acentos */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 0 30px rgba(240, 180, 41, 0.15);
+    --shadow-accent: 0 0 20px rgba(240, 180, 41, 0.2);
+    --shadow-danger: 0 0 20px rgba(229, 57, 53, 0.2);
+
+    /* Espaciado: padding de secciones, ancho máximo del contenedor y radio de bordes global */
+    --section-padding: 100px 0;
+    --container-max: 1200px;
+    --border-radius: 12px;
+
+    /* Transiciones: duración y curva de animación para interacciones rápidas, normales y lentas */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Z-index: niveles de apilamiento para navegación, modales y tooltips */
+    --z-nav: 1000;
+    --z-modal: 2000;
+    --z-tooltip: 3000;
+}
+
+/* Reset global: elimina márgenes, paddings y establece box-sizing border-box en todos los elementos */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configuración base del documento: scroll suave y tamaño de fuente raíz de 16px */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+/* Estilos del body: tipografía Questrial, fondo con degradado sutil, color de texto y sin scroll horizontal */
+body {
+    font-family: 'Questrial', sans-serif;
+    background-color: var(--bg-primary);
+    background-image:
+        linear-gradient(135deg, rgba(21, 101, 192, 0.02), rgba(240, 180, 41, 0.02)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 249, 250, 0.98));
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Overlay de cuadrícula animada: crea un patrón de rejilla sutil que se mueve suavemente */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: 
+        repeating-linear-gradient(0deg, var(--grid), var(--grid) 1px, transparent 1px, transparent 6px),
+        repeating-linear-gradient(90deg, var(--grid), var(--grid) 1px, transparent 1px, transparent 6px);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: -1;
+    animation: gridDrift 28s linear infinite;
+}
+
+/* Fondos radiales difuminados: manchas de color animadas que aportan profundidad visual al fondo */
+body::after {
+    content: "";
+    position: fixed;
+    inset: -30% -10% 10% -10%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(240, 180, 41, 0.08), transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(229, 57, 53, 0.06), transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(21, 101, 192, 0.05), transparent 50%),
+        radial-gradient(circle at 35% 55%, rgba(21, 101, 192, 0.04), transparent 40%);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 120% 120%;
+    animation: backgroundShift 20s ease-in-out infinite, gradientShift 24s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Capas principales: asegura que secciones, héroe, header y footer estén sobre los overlays del body */
+main,
+.section,
+.hero,
+.page-header,
+.footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* Animación de la cuadrícula: desplazamiento cíclico muy sutil del patrón de rejilla */
+@keyframes gridDrift {
+    0% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(6px, 4px, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+}
+
+/* Animación del fondo: movimiento lento de las manchas de color radial */
+@keyframes backgroundShift {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(20px, -10px); }
+    50% { transform: translate(-10px, 20px); }
+    75% { transform: translate(-20px, -20px); }
+}
+
+/* Reset de enlaces: sin subrayado, hereda color y transición rápida al hacer hover */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+/* Reset de listas: elimina los marcadores de lista predeterminados */
+ul, ol {
+    list-style: none;
+}
+
+/* Reset de imágenes: responsive por defecto y sin espacio extra debajo */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Reset de botones: hereda tipografía, cursor pointer y sin borde ni contorno */
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+/* Reset de formularios: hereda tipografía y tamaño de fuente del body */
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Contenedor principal: centra el contenido con ancho máximo de 1200px y padding lateral */
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Sección genérica: aplica padding vertical definido en variables y posición sobre overlays */
+.section {
+    padding: var(--section-padding);
+    position: relative;
+    z-index: 2;
+}
+
+/* Título de sección: fuente Bebas Neue, tamaño responsive con clamp, centrado y espaciado de letras */
+.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 6.5rem); /* Aumentado sustancialmente para impacto inicial */
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    text-align: center;
+    position: relative;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Sombra para legibilidad del blanco en fondo claro */
+}
+
+/* Línea decorativa bajo títulos: barra degradada (primary -> accent -> danger) centrada debajo del título */
+.section-title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 88px;
+    height: 4px;
+    border-radius: 999px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--danger));
+    opacity: 0.8;
+}
+
+/* Subtítulo de sección: fuente Rajdhani, texto secundario, centrado con ancho máximo de 600px */
+.section-subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+/* Utilidades de texto: clases para resaltar palabras en color accent o con degradado */
+.highlight {
+    color: var(--accent);
+}
+
+.accent {
+    color: var(--accent);
+}
+
+.gradient-text {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Estilo de selección de texto: fondo accent dorado con texto blanco al seleccionar contenido */
+::selection {
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+
+/* Personalización de barra de desplazamiento: estilo con degradado dorado para WebKit browsers */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--accent), var(--accent-dark));
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-light);
+}
+
+/* Accesibilidad: oculta elementos visualmente pero los mantiene accesibles para lectores de pantalla */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Diseño responsivo: ajustes para pantallas móviles (menor padding y tamaño de título) */
+@media (max-width: 768px) {
+    :root {
+        --section-padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
